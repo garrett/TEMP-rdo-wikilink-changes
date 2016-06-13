@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Weekly</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/weekly.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blog roundup, week of October 5</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/</id>
+    <published>2015-10-06T11:10:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Migrating Cinder volumes between OpenStack environments using shared NFS storage&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Many of the upgrade guides for OpenStack focus on in-place upgrades to your OpenStack environment. Some organizations may opt for a less risky (but more hardware intensive) option of setting up a parallel environment, and then migrating data into the new environment. In this article, we look at how to use Cinder backups with a shared NFS volume to facilitate the migration of Cinder volumes between two different OpenStack environments.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2r"&gt;http://tm3.org/2r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty (beta) DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Would you experience VXLAN tunnels disappiaring issue like it happens
+on RDO Kilo add following lines to ml2_conf.ini on each Compute Node&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2s"&gt;http://tm3.org/2s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So, you're an ATC. Let me tell you something&lt;/strong&gt; by Flavio Percoco&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's that time of the cycle - ha! you saw this comming, didn't you? -, in OpenStack, when we need to elect new members for the Technical Committee. In a previous post, I talked about what being a PTL means. I talked directly to candidates and I encouraged them to understand each and every point that I've made in that post. This time, though, I'd like to talk directly to ATCs for a couple of reasons. First one is that Thierry Carrez has a great post already where he explains what being a TC member means. Second one is that I think you, my dear ATC, are one of the most valuable member of this community and of the ones with most power throughout OpenStack.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2t"&gt;http://tm3.org/2t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2u"&gt;http://tm3.org/2u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How would work changing "enable_isolated_metadata" from false to true &amp;amp;&amp;amp; &lt;code&gt;openstack-service restart neutron&lt;/code&gt; on the fly on RDO Liberty ?&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Can meta-data co-exist in qrouter and qdhcp namespace at the same time
+so that LANs without Routers involved can access meta-data ?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2v"&gt;http://tm3.org/2v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Haikel Guemar talks about RPM packaging&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This continues my series talking with OpenStack project PTLs (Project Technical Leads) about their projects, what's new in Liberty, and what's coming in future releases.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) at &lt;a href="http://tm3.org/2w"&gt;http://tm3.org/2w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of September 21</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/09/rdo-blog-roundup-week-of-september-21/"/>
+    <id>http://rdoproject.org/blog/2015/09/rdo-blog-roundup-week-of-september-21/</id>
+    <published>2015-09-21T17:04:40+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Red Hat Confirms Speaking Sessions at OpenStack Summit Tokyo&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As this Fall’s OpenStack Summit in Tokyo approaches, the Foundation has posted the session agenda, outlining the final schedule of events. I am happy to report that Red Hat has 15 sessions that will be included in the weeks agenda, along with a few more as waiting alternates. With the limited space and shortened event this time around, I am please to see that Red Hat continues to remain in sync with the current topics, projects, and technologies the OpenStack community and customers are most interested in.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2g"&gt;http://tm3.org/2g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Driving in the Fast Lane: Huge Page support in OpenStack Compute&lt;/strong&gt; by Steve Gordon&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In a previous “&lt;a href="http://redhatstackblog.redhat.com/2015/05/05/cpu-pinning-and-numa-topology-awareness-in-openstack-compute/"&gt;Driving in the Fast Lane&lt;/a&gt;” blog post we focused on optimization of instance CPU resources. This time around let’s take a dive into the handling of system memory, and more specifically configurable page sizes. We will reuse the environment from the previous post, but add huge page support to our performance flavor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2h"&gt;http://tm3.org/2h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reviewing Puppet OpenStack patches&lt;/strong&gt; by Emilien Macchi&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Reviewing code takes to me 20% of my work. It’s a lot of time, but not too much when you look at OpenStack velocity. To be efficient, you need to understand how review process works and have the right tools in hand.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2i"&gt;http://tm3.org/2i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Horizon Performance Optimizations&lt;/strong&gt; by Silver Sky&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ome notes on Open Stack Horizon Performance optimizations on CentOS 7.1 install:
+4 vCPU (2.3 GHz Intel Xeon E5 v3), 2 GB – 4 GB RAM, SSD backed 40 GB RAW image.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2j"&gt;http://tm3.org/2j&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Python 3 Status in OpenStack Liberty&lt;/strong&gt; by  Victor Stinner&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Python 3 support in OpenStack Liberty made huge visible progress. Blocking libraries have been ported. Six OpenStack applications are now compatible with Python3: Aodh, Ceilometer, Gnocchi, Ironic, Rally and Sahara. Thanks to voting python34 check jobs, the Python 3 support can only increase, Python 2 only code cannot be reintroduced by mistake in tested code.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2k"&gt;http://tm3.org/2k&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Analyzing the performance of Red Hat Enterprise Linux OpenStack Platform using Rally&lt;/strong&gt; by Roger Lopez and Joe Talerico&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In our recent blog post, we’ve discussed the steps involved in determining the performance and scalability of a Red Hat Enterprise Linux OpenStack Platform environment. To recap, we’ve recommended the following:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2l"&gt;http://tm3.org/2l&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

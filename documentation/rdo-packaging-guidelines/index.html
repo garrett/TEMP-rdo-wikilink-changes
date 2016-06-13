@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+RDO OpenStack Packaging Guidelines &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='Haïkel Guémar' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/rdo-packaging-guidelines.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rdo-openstack-packaging-guidelines">RDO OpenStack Packaging Guidelines</h1>
+<ol id="markdown-toc">
+  <li><a id="markdown-toc-rdo-openstack-packaging-guidelines" href="#rdo-openstack-packaging-guidelines">RDO OpenStack Packaging Guidelines</a>    <ol>
+      <li><a id="markdown-toc-introduction" href="#introduction">Introduction</a></li>
+      <li><a id="markdown-toc-packaging-guidelines" href="#packaging-guidelines">Packaging Guidelines</a></li>
+      <li><a id="markdown-toc-packages-review-process" href="#packages-review-process">Packages Review Process</a>        <ol>
+          <li><a id="markdown-toc-for-reviewers" href="#for-reviewers">For reviewers</a></li>
+        </ol>
+      </li>
+      <li><a id="markdown-toc-rdo-guidelines" href="#rdo-guidelines">RDO Guidelines</a>        <ol>
+          <li><a id="markdown-toc-systemd-packaging" href="#systemd-packaging">Systemd packaging</a></li>
+          <li><a id="markdown-toc-python-packaging-guidelines" href="#python-packaging-guidelines">python packaging guidelines</a></li>
+          <li><a id="markdown-toc-packages-requirements" href="#packages-requirements">Packages requirements</a></li>
+          <li><a id="markdown-toc-configuration-files" href="#configuration-files">Configuration files</a></li>
+          <li><a id="markdown-toc-tests-packaging" href="#tests-packaging">Tests packaging</a></li>
+          <li><a id="markdown-toc-other-considerations" href="#other-considerations">Other considerations</a></li>
+          <li><a id="markdown-toc-patches" href="#patches">Patches</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This document collects guidelines and practical tips</p>
+
+<h2 id="packaging-guidelines">Packaging Guidelines</h2>
+
+<p>RDO packages mostly follow <a href="https://fedoraproject.org/wiki/Packaging:Guidelines">Fedora Packaging Guidelines</a>.
+There are two exceptions:</p>
+
+<ul>
+  <li>Override rules listed in this document.</li>
+  <li>Exceptions granted by RDO Packaging Group (e.g. bundling)</li>
+</ul>
+
+<p>A set of examples for spec and other useful files can be found in
+<a href="https://github.com/openstack-packages/openstack-example-spec">openstack-example-spec</a> github repository. These files can be used as templates for new packages although
+some adjustments may be needed for each particular case.</p>
+
+<h2 id="packages-review-process">Packages Review Process</h2>
+
+<ul>
+  <li>
+    <p>All reviews <strong>must</strong> block the review tracker using the alias RDO-<strong>release</strong> .
+Announcing reviews on the RDO mailing list is encouraged to raise awareness within the
+community and speed up the process.</p>
+  </li>
+  <li>
+    <p>General-purpose libraries and clients should be submitted through Fedora Package Review
+<a href="https://fedoraproject.org/wiki/Package_Review_Process">Process</a>.</p>
+  </li>
+  <li>
+    <p>As for OpenStack services, they should follow the same process but open a ticket under
+the <strong>RDO</strong> product and <strong>Package Review</strong> component. Packagers are encouraged to create
+a git repository with their packaging for pre-review.</p>
+  </li>
+</ul>
+
+<p>If you are looking for an example of Package Review for RDO project, <a href="https://bugzilla.redhat.com/buglist.cgi?bug_status=NEW&amp;bug_status=ASSIGNED&amp;classification=Community&amp;component=Package%20Review&amp;list_id=5247140&amp;product=RDO&amp;query_format=advanced">here</a>
+you have the list of currently open ones.</p>
+
+<h3 id="for-reviewers">For reviewers</h3>
+
+<p>Reviewers are encouraged to use fedora-review tool to generate and post formal review
+on the ticket.</p>
+
+<h2 id="rdo-guidelines">RDO Guidelines</h2>
+
+<h3 id="systemd-packaging">Systemd packaging</h3>
+
+<ul>
+  <li>All services must be configured to allow automated restart</li>
+</ul>
+
+<pre class="highlight shell"><code><span class="nv">Restart</span><span class="o">=[</span>on-failure|always]&#x000A;</code></pre>
+<ul>
+  <li>If a service depends on other for proper start, you can use the <code>After=</code> and
+optionally <code>Requires=</code> parameters in unit configuration file. An example of
+dependencies for neutron-openvswitch-agent service:</li>
+</ul>
+
+<pre class="highlight shell"><code><span class="nv">After</span><span class="o">=</span>syslog.target network.target network.service openvswitch.service&#x000A;<span class="nv">Requires</span><span class="o">=</span>openvswitch.service&#x000A;</code></pre>
+
+<ul>
+  <li>The systemd package provides a set of rpm macros to handle systemd operations
+on %post, %preun and %postun (more details <a href="https://fedoraproject.org/wiki/Packaging:Scriptlets#Systemd">here</a>).</li>
+</ul>
+
+<h3 id="python-packaging-guidelines">python packaging guidelines</h3>
+
+<ul>
+  <li>Remove requirements files used by pip to download dependencies from the network.
+That may hide missing dependencies or integration issues (e.g. a dependency package only available in an incompatible version)</li>
+</ul>
+
+<pre class="highlight shell"><code>  rm -rf <span class="o">{</span>,tests-<span class="o">}</span>requirements.txt&#x000A;</code></pre>
+
+<ul>
+  <li>Use versioned python macros everywhere.</li>
+</ul>
+
+<h3 id="packages-requirements">Packages requirements</h3>
+
+<ul>
+  <li>
+    <p>Check your package dependencies with <code>rdopkg reqcheck</code>.</p>
+  </li>
+  <li>
+    <p>Versions for build requirements are not needed as the latest available version
+will be always installed at build time by the packaging tools.</p>
+  </li>
+  <li>
+    <p>Actual requirements for default or common configurations of services must be
+added as explicit requires.</p>
+  </li>
+  <li>
+    <p>Optional requirements for specific configurations must not be added as explicit
+requires.</p>
+  </li>
+  <li>
+    <p>When versioning of explicit requires is needed be aware that epoch is used in
+some RDO packages. In those cases remember to add the epoch in the required
+version as in:</p>
+  </li>
+</ul>
+
+<pre class="highlight shell"><code>Requires:         python-oslo-config &gt;<span class="o">=</span> 2:2.6.0&#x000A;</code></pre>
+
+<h3 id="configuration-files">Configuration files</h3>
+
+<ul>
+  <li>Use oslo-config-generator to generate configuration files.</li>
+</ul>
+
+<pre class="highlight shell"><code>oslo-config-generator --config-file<span class="o">=</span>config-generator/keystone.conf&#x000A;</code></pre>
+
+<ul>
+  <li>Configuration files must be in /etc and not /usr/etc.</li>
+</ul>
+
+<h3 id="tests-packaging">Tests packaging</h3>
+
+<p>OpenStack projects provide different tests including unit tests and functional
+tests, typically using the tempest framework.</p>
+
+<ul>
+  <li>
+    <p>Core packages shouldn't include tests as are not required in runtime.</p>
+  </li>
+  <li>
+    <p>Unit tests should be included in a &lt;package name&gt;-tests-unit package that
+should depend on the test requirements.</p>
+  </li>
+  <li>
+    <p>Tempest tests should be included in a &lt;package name&gt;-tests-tempest package
+which should depend on the dependencies to run the provided tests. Note that
+some projects include tempest tests in the main project git repository (so tempest
+package would be a subpackage in the same spec file) while others use a separate
+git repository (so a specific distgit and spec will be needed).</p>
+  </li>
+  <li>
+    <p>&lt;package name&gt;-tests: includes all tests, and should be a virtual package
+requiring &lt;package name&gt;-tests-tempest and &lt;package name&gt;-tests-unit.</p>
+  </li>
+</ul>
+
+<h3 id="other-considerations">Other considerations</h3>
+
+<ul>
+  <li>To enforce consistency accross OpenStack services packages, use the following snippet to set upstream project name.</li>
+</ul>
+
+<pre class="highlight shell"><code>%global service keystone&#x000A;</code></pre>
+
+<p>RDO project provides different examples specs in
+<a href="https://github.com/openstack-packages/openstack-example-spec">openstack-example-spec</a>
+for the different package types (OpenStack service, library, client, dashboard
+plugin, etc…). This examples can be used as templates for new packages being
+added to RDO repositories.</p>
+
+<h3 id="patches">Patches</h3>
+
+<p>RDO is and intends to remain a vanilla distribution of OpenStack.
+Our default policy is to refuse downstream patches, but RDO Packaging Group may grant
+exceptions on per-case basis</p>
+
+<ul>
+  <li>
+    <p>Feature patches: must be submitted upstream</p>
+  </li>
+  <li>
+    <p>Security patches: requires RDO Security team clearance.</p>
+  </li>
+  <li>
+    <p>FTBFS patches: requires peer review, and must be submitted upstream when possible.</p>
+  </li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/rdo-packaging-guidelines.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 7 Jun 2016 14:29 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

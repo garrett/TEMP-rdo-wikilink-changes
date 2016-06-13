@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Summit</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/summit.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What did you do in Mitaka: Emilien Macchi</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/</id>
+    <published>2016-05-04T21:03:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Continuing my series of interviews with RDO engineers, here's my chat with Emilien Macchi, who I talked with at OpenStack Summit last week in Austin.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to talk about what you did in Mitaka, please contact me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" data-link="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, please download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/uinm26/emilien_macchi.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with Emilien Macchi, who is one of the people that
+worked on the Mitaka release of OpenStack. Thank you for taking time
+to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Emilien&lt;/strong&gt;: Thank you for welcoming me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: In Mitaka, most of my tasks were related to packaging testing. I'm
+currently leading the Puppet OpenStack group, which is a team where we
+develop some Puppet modules that deploy OpenStack in production. Red
+Hat is using the Puppet modules in TripleO, so we can automate the
+deployment of OpenStack services. Recently we switched the gates of
+OpenStack Infra to use RDO packaging. We had a lot of issued before
+because we didn't have much CI. But since Mitaka, the RDO and the
+Puppet teams worked a lot together to make sure that we can provide
+some testing together. We can fix things very early when it's broken
+upstream. Like when we have a new dependency or when we have a change
+in the requirements. That was this kind of test where you provide very
+early feedback to the RDO people that are doing the packaging. It was
+very interesting to work with RDO.&lt;/p&gt;
+
+&lt;p&gt;We provided early feedback on the builds, on the failures. We also
+contributed to … I say "we", I don't like to say "I" … we, my
+group, my Puppet group, we contributed to the new packages that we
+have in Mitaka. We updated the spec in the package so we could have
+more features, and more services in the RDO projects.&lt;/p&gt;
+
+&lt;p&gt;Testing! Testing every day. Testing, testing, testing. Participating
+in the events that the RDO community is having, like the weekly
+meetings, the testing days. It was very interesting for us to have
+this relationship with the RDO team.&lt;/p&gt;
+
+&lt;p&gt;So I'm looking forward to Newton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What do you anticipate you'll be working on in Newton?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Well, that's an interesting question. We are talking about this
+week. [At OpenStack Summit, Austin.]&lt;/p&gt;
+
+&lt;p&gt;The challenge for us … the biggest challenge, I guess, is to follow
+the release velocity of upstream projects. We have a bunch of projects
+in OpenStack, and it's very hard to catch up with all of the projects
+at the same time. In the meantime we have to because those projects,
+they are in the RDO project and also in the products, so that's
+something we need to … we need to scale the way that we producing
+all this work.&lt;/p&gt;
+
+&lt;p&gt;Something we are very focused on right now is to use the Software
+Factory project, which is how OpenStack Infra is operating to build
+OpenStack software. This is a project - an open source project - which
+is now used by RDO. We can have this same way as upstream, but for
+downstream - we can have the same way to produce the RDO artifacts,
+like the packages and the Puppet modules, and so on. That's the next
+big challenge, is to be fully integrated with Software Factory, to
+implement the missing features we will need to make the testing
+better.&lt;/p&gt;
+
+&lt;p&gt;Yeah, that's the biggest challenge: Improve the testing, and stopping
+doing manual things, automate all the things, that is the next
+challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much. Thanks for your time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Thank you for your time.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Vulnerability Management for OpenStack Newton Cycle</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/vulnerability-management-newton/"/>
+    <id>http://rdoproject.org/blog/2016/05/vulnerability-management-newton/</id>
+    <published>2016-05-01T03:00:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>tdecacqu</name>
+    </author>
+    <content type="html">&lt;p&gt;OpenStack engineers met in Austin last week to design the Newton cycle.
+Here is a report for the &lt;a href="https://security.openstack.org"&gt;Security Project&lt;/a&gt;
+and other associated efforts.&lt;/p&gt;
+
+&lt;h2 id="requirements-for-the-vulnerabilitymanaged-governance-tag"&gt;Requirements for the vulnerability:managed governance tag&lt;/h2&gt;
+
+&lt;p&gt;During Mitaka, the vulnerability management team ("VMT") introduced a new
+vulnerability:managed tag to help identify supported projects.
+In essence, this tag indicates that a project's security bug reports are triaged by the VMT
+&lt;a href="http://security.openstack.org/vmt-process.html#incident-report-taxonomy"&gt;taxonomy&lt;/a&gt;.
+For class A reports, the VMT issues an OpenStack Security Advisory ("OSSA").&lt;/p&gt;
+
+&lt;p&gt;The VMT documented a set of requirements to get the tag:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Deliverable repositories,&lt;/li&gt;
+  &lt;li&gt;Dedicated point of contact, usualy a subset of the core team called coresec,&lt;/li&gt;
+  &lt;li&gt;PTL agrees to act as a VMT liaison to escalate severe issues,&lt;/li&gt;
+  &lt;li&gt;Bug tracker reconfiguration, and&lt;/li&gt;
+  &lt;li&gt;Third-party review/audit/threat analysis.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The last point (item 5) intends to ensure that the VMT doesn't become a
+bottleneck for projects with poor security practices or that have unknown
+fundamental flaws.
+By design, the VMT is a small team, composed of 3 volunteers.
+Thus, new projects must demonstrate that they won't cause an unmanageable
+number of security bug reports.&lt;/p&gt;
+
+&lt;p&gt;In the next section, I will set-out how we can efficiently increase the
+number of vulnerability:managed projects as designed during the Newton summit
+&lt;a href="https://etherpad.openstack.org/p/security-newton-summit-threatanalysis"&gt;etherpad&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="what-vmt-members-need-to-know"&gt;What VMT members need to know&lt;/h2&gt;
+
+&lt;p&gt;Since day 1, doing VMT work for OpenStack has been a challenging task due to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A wide attack surface,&lt;/li&gt;
+  &lt;li&gt;Source code and api version changes,&lt;/li&gt;
+  &lt;li&gt;Deployment modes with distinct threats, and&lt;/li&gt;
+  &lt;li&gt;Coordination between different communities.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is the list of questions that need to be answered when managing a new
+project:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What are the input data formats and how are they processed ?&lt;/li&gt;
+  &lt;li&gt;Which actions are restricted to operators ?&lt;/li&gt;
+  &lt;li&gt;What has been considered a vulnerability in previous bug reports ?&lt;/li&gt;
+  &lt;li&gt;What can a malicious user do depends on:
+    &lt;ul&gt;
+      &lt;li&gt;Available services, including the non-obvious ones, such as nova-novncproxy,&lt;/li&gt;
+      &lt;li&gt;API endpoint paths, including old versions, such as glance v1, and&lt;/li&gt;
+      &lt;li&gt;Every other network-facing service to which a user can connect.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A document answering the above questions will likely be required for any
+vulnerability:managed tag application.
+Moreover, already supported projects will also need to validate the above
+requirements in order to keep the tag.&lt;/p&gt;
+
+&lt;p&gt;This document needs to be maintained within the OpenStack community using
+open code review. The &lt;a href="http://docs.openstack.org/sec/"&gt;security-guide&lt;/a&gt; or
+project documentation are appropriate locations to publish it.&lt;/p&gt;
+
+&lt;p&gt;Here is the proposed
+&lt;a href="http://openstack-security.github.io/collaboration/2016/04/26/threat-analysis-process.html"&gt;threat analysis process&lt;/a&gt;
+and
+&lt;a href="http://openstack-security.github.io/threatanalysis/2016/02/07/anchorTA.html"&gt;Anchor&lt;/a&gt;'s
+threat analysis.&lt;/p&gt;
+
+&lt;h2 id="stable-release"&gt;Stable Release&lt;/h2&gt;
+
+&lt;p&gt;Major changes to the OpenStack release process were introduced last cycles:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Integrated releases, such as 2015.1.2 are now gone,&lt;/li&gt;
+  &lt;li&gt;Projects may use different release models,&lt;/li&gt;
+  &lt;li&gt;Unified versions numbers &lt;a href="http://semver.org"&gt;semver&lt;/a&gt;, and&lt;/li&gt;
+  &lt;li&gt;Automated publication to &lt;a href="http://releases.openstack.org/"&gt;website&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The "stable summit" set new goals for the Newton cycle:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Increase stable release support to 18 months with an option for 6 additional
+months,&lt;/li&gt;
+  &lt;li&gt;Backwards compatibility for libraries, and&lt;/li&gt;
+  &lt;li&gt;Co-installability requirements.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;End of life policy is the most important topic for the VMT since it increases
+the number of supported branchs. Infra and QA are also directly affected since
+they have to maintain the CI capacity for supported stable releases. While in
+theory it's possible to extend support, here is a list of practical blockers to
+be addressed:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Stable branch gates break too often, see
+&lt;a href="http://status.openstack.org/openstack-health/#/g/build_queue/periodic-stable"&gt;openstack-health&lt;/a&gt;,&lt;/li&gt;
+  &lt;li&gt;Backport to old releases is time consuming when the affected code went
+through several refactors, and&lt;/li&gt;
+  &lt;li&gt;Long Term Stable (LTS) versions aren't an option because upgrade process
+must deploy each versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In summary, Kilo release end of life won't be extended and the branch will
+likely be closed soon, EOL: 2016-05-02. Further, external dependencies
+requirements are not supported by the VMT, but it is worth noting that a new
+Requirement Team will be created to manage this increasingly difficult
+situation.&lt;/p&gt;
+
+&lt;p&gt;More details in those two etherpads:
+&lt;a href="https://etherpad.openstack.org/p/stable-branch-eol-policy-newton"&gt;eol-policy&lt;/a&gt;
+and
+&lt;a href="https://etherpad.openstack.org/p/newton-stable-summit"&gt;stable summit&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="issue-tracker"&gt;Issue tracker&lt;/h2&gt;
+
+&lt;p&gt;Last but not least, there was a
+&lt;a href="https://etherpad.openstack.org/p/newton-infra-community-task-tracking"&gt;design session&lt;/a&gt;
+to discuss issue tracker for OpenStack projects. This is a critical topic for
+vulnerability management since most VMT work actually happens on the issue
+tracker.&lt;/p&gt;
+
+&lt;p&gt;OpenStack projects currently use launchpad.net to track issues and write
+blueprints for feature tracking. The workflow being sub-optimal, there is an
+on-going effort to replace launchpad by something better. Migration issues
+aside, the real concern is that we may end up with another sub-optimal solution
+which doesn't justify the migration cost.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, the OpenStack community initiated
+&lt;a href="https://storyboard.openstack.org"&gt;storyboard&lt;/a&gt; which is designed to address
+the exceptional needs of OpenStack development. Unfortunately, the project
+stalled due to the lack of reviewers.&lt;/p&gt;
+
+&lt;p&gt;The OpenStack community has three main options regarding issue tracking:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Develop its own issue tracker (e.g. storyboard),&lt;/li&gt;
+  &lt;li&gt;Operate a ready-to-use solution (e.g. maniphest), or&lt;/li&gt;
+  &lt;li&gt;Use an external service (e.g. launchpad).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This topic will be discussed in the following weeks.
+Hopefully it will lead to a long term decision from the TC with Infra
+approval.&lt;/p&gt;
+
+&lt;h2 id="conclusion"&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Once again, we have made great progress and I'm looking forward to further
+developments.
+Thank you all for the great OpenStack Newton Design Summit!&lt;/p&gt;
+
+&lt;p&gt;Tristan Cacqueray&lt;/p&gt;
+
+&lt;p&gt;OpenStack Vulnerability Management Team&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO BoF at OpenStack Summit, Austin</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/</id>
+    <published>2016-04-28T14:59:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://lh3.googleusercontent.com/V4ChZTDnjP5xnDwY_9CLqVk8mHY3c7h88fHjRp0lChKiwSxIo64hIfa7Z6hxEodhYn51sDhAwiQ=w1920-h1080-rw-no" /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Tuesday afternoon about 60 people gathered for the RDO BoF (Birds of a Feather) session at OpenStack Summit in Austin.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;By the way, the term Birds of a Feather comes from the saying "Birds of a feather flock together", which refers to like-minded people gathering.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The topics discussed can be found in the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-bof"&gt;agenda&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The network was friendly, and we managed to capture the whole session in a Google Hangout. The video of the session is &lt;a href="https://www.youtube.com/watch?v=pmb3RA1GmGs"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And there are several pictures from the event on the &lt;a href="https://plus.google.com/communities/110409030763231732154"&gt;RDO Google+ page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thank you for all who attended. You'll see follow-up discussion on a number of the topics discussed on &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list&lt;/a&gt; over the coming weeks.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Upcoming events in OpenStack and RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/"/>
+    <id>http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/</id>
+    <published>2016-04-06T19:04:59+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+
+&lt;p&gt;There's also a huge surge in things to announce around the RDO community, as well as the upstream OpenStack community:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;upstream release of Mitaka&lt;/a&gt; is this week. &lt;a href="http://stackalytics.com/?metric=commits"&gt;Stackalytics&lt;/a&gt; lists over 2500 people who have contributed to this release.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We'll be conducting a &lt;a href="https://www.rdoproject.org/testday/mitaka/ga/"&gt;test day for RDO Mitaka on April 13th and 14th&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://openstack.org/summit"&gt;OpenStack Summit&lt;/a&gt; is just 2 weeks away, and we'll be having an &lt;a href="https://www.openstack.org/summit/austin-2016/summit-schedule/events/6892"&gt;RDO BoF&lt;/a&gt; (Birds of a Feather) gathering there.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have something you'd like to demo in the RDO booth at OpenStack Summit, add your idea to the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-summit-booth"&gt;booth schedule etherpad&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And, as every week, there are lots of &lt;a href="http://rdoproject.org/events/"&gt;OpenStack Meetups&lt;/a&gt; all over the world this week. Especially don't miss Perry Meyers' RDO Q&amp;amp;A at the &lt;a href="http://www.meetup.com/Morgantown-Linux-User-Group/events/227482742/"&gt;Morgantown OpenStack Meetup&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Community Meetup at OpenStack Tokyo</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/community-meetup-at-openstack-tokyo/"/>
+    <id>http://rdoproject.org/blog/2015/11/community-meetup-at-openstack-tokyo/</id>
+    <published>2015-11-04T19:45:23+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;A week ago in Tokyo, we held the third RDO Community Meetup at the
+OpenStack Summit. We had about 70 people in attendance, and some good
+discussion. The full agenda for the meeting is at &lt;a href="https://etherpad.openstack.org/p/rdo-tokyo"&gt;https://etherpad.openstack.org/p/rdo-tokyo&lt;/a&gt; and below are some of the things that were discussed. (The complete recording is at the bottom of this post.)&lt;/p&gt;
+
+&lt;p&gt;People who were in attendance, please feel free to &lt;a href="https://github.com/redhat-openstack/website/blob/master/source/blog/2015-11-04-community-meetup-at-openstack-tokyo.html.md"&gt;update and annote&lt;/a&gt; your section of this report if you wish to add detail, or if I get anything wrong.&lt;/p&gt;
+
+&lt;p&gt;We started with a discussion of how the project is governed. It was observed that although we have a &lt;a href="https://www.redhat.com/archives/rdo-list/2015-November/msg00028.html"&gt;weekly meeting&lt;/a&gt;, it's not always possible for everyone to attend, but that these meetings are summarized back to the mailing list each week.&lt;/p&gt;
+
+&lt;p&gt;We announced that the new RDO website is live (you're looking at it now!) and that it is possible to &lt;a href="https://github.com/rbowen/rdo-website"&gt;send pull requests&lt;/a&gt; for it now.&lt;/p&gt;
+
+&lt;p&gt;Haikel asked whether there was any interest in his project of an RDO aarch64 port, and identified a few people who expressed interest.&lt;/p&gt;
+
+&lt;p&gt;Trown talked a bit about the status of &lt;a href="https://www.rdoproject.org/rdo-manager/"&gt;RDO-Manager&lt;/a&gt; in Liberty. Liberty is the first release where RDO-Manager has released at the same time, which is a big step. He briefly discussed the RDO Manager quickstart that is being worked on. Check back here later for a link to Trown's more detailed writeup.&lt;/p&gt;
+
+&lt;p&gt;Regarding the question of the relationship between RDO Manager and TripleO, it was established that RDO Manager is a downstream of TripleO, rather than being an upstream effort. It's more than just TripleO, but, rather, is a distribution of several tools, built on top of TripleO.&lt;/p&gt;
+
+&lt;p&gt;We spoke briefly about documenting what all of the moving pieces of the RDO project are, and how they fit together. Haikel said that he's made a start at documenting this, and drawing diagrams. He also encourage people to step up to participate in both documenting, and in improving the infrastructure.&lt;/p&gt;
+
+&lt;p&gt;A discussion arose about what the process is to get an upstream patch into RDO. From this, an &lt;a href="https://github.com/redhat-openstack/website/issues/213"&gt;action item&lt;/a&gt; was raised to more clearly document what the process is to request patches, and where to &lt;a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO"&gt;file tickets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We discussed the timing and frequency of test days in the Mitaka cycle, and this was later discussed more on IRC. The consensus was that there should be a test day about a week after each milestone, with a sanity check done during that week so that we don't have a catastrophic test day. Now that the &lt;a href="https://wiki.openstack.org/wiki/Mitaka_Release_Schedule"&gt;Mitaka release schedule is published&lt;/a&gt; we should be able to put together a tentative &lt;a href="https://www.rdoproject.org/testday/"&gt;test day schedule&lt;/a&gt; very soon.&lt;/p&gt;
+
+&lt;p&gt;An overview was given of the &lt;a href="https://wiki.openstack.org/wiki/Rpm-packaging"&gt;RPM packaging&lt;/a&gt; effort in upstream OpenStack.&lt;/p&gt;
+
+&lt;p&gt;The relationship with CentOS was discussed, in particular the manual process required to push packages up to the repos. This process still requires that we ping the CentOS admins, but this will soon be an automated process. Haikel also enumerated the various reasons that the relationship with CentOS is still of great benefit to RDO, including exposure to a wider audience due to CentOS's recognized name. There was also a view expressed that we should run an RDO-based cloud, perhaps in addition to the CentOS infrastructure, so that we are testing on our own platform.&lt;/p&gt;
+
+&lt;p&gt;Finally, Rich Megginson spoke about the data aggregation effort that he is working on with Tushar Katarki. Rich has written &lt;a href="http://richmegginson.livejournal.com/27696.html"&gt;a more detailed writeup of that section&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, a quick announcement was made of the upcoming &lt;a href="https://www.redhat.com/archives/rdo-list/2015-November/msg00027.html"&gt;RDO Community Day at FOSDEM&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to hear more detail from the meetup, I've put the &lt;a href="http://drbacchus.com/podcasts/openstack/rdo_meetup_tokyo.mp3"&gt;complete recording&lt;/a&gt; up, and you can listen below. (59 minutes, 109 MB)&lt;/p&gt;
+
+&lt;audio controls=""&gt;
+  &lt;source src="http://drbacchus.com/podcasts/openstack/rdo_meetup_tokyo.mp3" type="audio/mpeg" /&gt;
+&lt;/audio&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Vulnerability Management for OpenStack Mitaka cycle</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/vulnerability-management-mitaka/"/>
+    <id>http://rdoproject.org/blog/2015/11/vulnerability-management-mitaka/</id>
+    <published>2015-11-03T02:00:00+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>tdecacqu</name>
+    </author>
+    <content type="html">&lt;p&gt;Once again, OpenStack engineers met to design the Mitaka cycle.
+Here is a summary of the &lt;a href="https://security.openstack.org"&gt;Security Project&lt;/a&gt;
+and relevant release mangement changes.&lt;/p&gt;
+
+&lt;h2 id="what-is-the-openstack-security-project-"&gt;What is the OpenStack Security Project ?&lt;/h2&gt;
+
+&lt;p&gt;Security issues, tooling, innovations and education within OpenStack are the responsibility of the Security Project.
+The Security Project undertakes technical and governance activities for the OpenStack community,
+aiming to provide guidance, information and code that enhances the OpenStack ecosystem's security.&lt;/p&gt;
+
+&lt;h2 id="bandit-and-syntribos"&gt;Bandit and Syntribos&lt;/h2&gt;
+
+&lt;p&gt;The OSSP (OpenStack Security Project) discussed &lt;a href="https://wiki.openstack.org/wiki/Security/Projects/Bandit"&gt;Bandit&lt;/a&gt;
+and &lt;a href="http://git.openstack.org/cgit/openstack/syntribos"&gt;Syntribos&lt;/a&gt; developpements.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Bandit is a static analyser for python language whose purpose is to find trivial programing
+mistakes and to help enforce strong security guideline.&lt;/li&gt;
+  &lt;li&gt;Syntribos is an API testing framework that aims to facilitate fault injection tests through REST
+interfaces.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;While Bandit is currently used as a gate job for Keystone, Syntribos is currently being developed
+and its usecases are still under constructions.
+Overall, roadmap's goals are to get better reporting from the tools, more OpenStack projects
+on board and improved stability. Both etherpads used during design sessions are available here: &lt;a href="https://etherpad.openstack.org/p/security-mitaka-worksession-bandit"&gt;Bandit worksession&lt;/a&gt; and &lt;a href="https://etherpad.openstack.org/p/security-mitaka-worksession-syntribos"&gt;Syntribos worksession&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="governance-tag-vulnerabilitymanaged"&gt;Governance Tag: vulnerability:managed&lt;/h2&gt;
+
+&lt;p&gt;The vulnerability management team &lt;a href="https://security.openstack.org/vmt-process.html"&gt;VMT&lt;/a&gt; introduced a new tag &lt;a href="http://governance.openstack.org/reference/tags/vulnerability_managed.html"&gt;vulnerability:managed&lt;/a&gt;
+to help identify which projects are being supervised by the team.
+The incubation process for new projects is now described &lt;a href="http://governance.openstack.org/reference/tags/vulnerability_managed.html#requirements"&gt;there&lt;/a&gt; and we are looking to have a few more project on board.&lt;/p&gt;
+
+&lt;p&gt;In order to help us scale for the big tent, a new downstream stakeholder mailing list will be
+created to ease advanced notification workflow (pre-OSSAs).
+This list would also be useful for projects that are not yet supported and to warn
+stakeholders about upcoming vulnerabilities.&lt;/p&gt;
+
+&lt;h2 id="stable-release"&gt;Stable Release&lt;/h2&gt;
+
+&lt;p&gt;Stable releases such as 2015.1.2 are now gone and will no longer be produced.
+Instead, projects will now be able to release new versions independly and security fixes should
+be tagged and released right after their merge.
+This is a great improvement for all upstream release users and stable release managers as the
+process is now streamlined.&lt;/p&gt;
+
+&lt;p&gt;Other improvements for release management are to be expected, such as automation of release notes
+with &lt;a href="http://docs.openstack.org/developer/reno/"&gt;reno&lt;/a&gt;, a
+&lt;a href="https://www.openstack.org/software/project-navigator"&gt;project explorer&lt;/a&gt;
+and a handy page of version numbers recap for the &lt;a href="http://docs.openstack.org/releases/releases/liberty.html"&gt;last release&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once again, we have made great progress and I'm looking forward to further developments.
+Thank you all for the great OpenStack Mitaka Design Summit!&lt;/p&gt;
+
+&lt;p&gt;Tristan Cacqueray&lt;/p&gt;
+
+&lt;p&gt;OpenStack Vulnerability Management Team&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What does RDO stand for?</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/what-does-rdo-stand-for/"/>
+    <id>http://rdoproject.org/blog/2015/10/what-does-rdo-stand-for/</id>
+    <published>2015-10-28T02:35:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;What does RDO stand for?&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="tshirt" src="/images/blog/rdo-tshirt.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="/rdo/faq"&gt;RDO FAQ&lt;/a&gt; has long said that RDO doesn't stand for
+anything. This is a very unsatisfying answer to one of the most
+frequently asked questions about RDO. So, a little while ago, I started
+saying that RDO stands for "Rich's Distribution of OpenStack." Although
+tongue-in-cheek, this response emphasizes that RDO is a community driven
+project. So it's also Radez's Distribution of OpenStack, and Radhesh's and Russel's
+and red_trela's. (As well as lots of people whose names don't start with R!)&lt;/p&gt;
+
+&lt;p&gt;It also stands for "RPM Distribution of OpenStack." And "Really
+Deploy OpenStack", and "Rebuilt Daily OpenStack", and a variety of other
+things.&lt;/p&gt;
+
+&lt;p&gt;So, that's the thinking behind the tshirt that we're giving out at our booth at
+OpenStack Summit here in Tokyo. We still have a few left, so drop by the Red
+Hat booth and get yours while they last.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Ducks</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/ducks/"/>
+    <id>http://rdoproject.org/blog/2015/10/ducks/</id>
+    <published>2015-10-27T01:53:53+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="Ducks" src="/images/blog/ducks.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Why ducks?&lt;/p&gt;
+
+&lt;p&gt;Well, as everyone knows, sometimes, the moment you ask a question
+out loud, the obvious answer occurs to you. And often, when
+explaining a problem to someone else, you understand it better
+yourself.&lt;/p&gt;
+
+&lt;p&gt;Red Hat has your back on this. We have ducks at our booth at OpenStack
+Summit in Tokyo this week. The benefits of using a rubber duck as part
+of your programming work flow are &lt;a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging"&gt;well
+documented&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;So, come grab a duck, and learn more about RDO, in the OpenStack
+Marketplace at &lt;a href="http://openstack.org/summit/"&gt;OpenStack Summit&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Community Meetup at OpenStack Summit, Tokyo</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/"/>
+    <id>http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/</id>
+    <published>2015-10-14T17:15:07+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We'll be having an &lt;a href="http://sched.co/4MYy"&gt;RDO community meetup&lt;/a&gt; during the upcoming OpenStack Summit in Tokyo. It will be during lunch time (12:45 - 14:00)  in Sakura Lower Level S-1 and S-2.&lt;/p&gt;
+
+&lt;p&gt;As at previous Summits, we'll be gathering to discuss progress during
+the last six months, and plans for the future. Please add discussion items
+to the &lt;a href="https://etherpad.openstack.org/p/rdo-tokyo"&gt;agenda&lt;/a&gt; that you'd like for us to talk about.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>OpenStack Summit agenda live</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/09/openstack-summit-agenda-live/"/>
+    <id>http://rdoproject.org/blog/2013/09/openstack-summit-agenda-live/</id>
+    <published>2013-09-30T16:31:53+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;The agenda for the OpenStack Summit in Hong Kong is now live, at http://openstacksummitnovember2013.sched.org/&lt;/p&gt;
+
+&lt;p&gt;If you're going to be in Hong Kong, please let us know, or drop by and see us at the Red Hat booth. We'd love to talk with you.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

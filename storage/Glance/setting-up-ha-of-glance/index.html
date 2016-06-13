@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Setting-up-HA-of-Glance &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/storage/Glance/setting-up-ha-of-glance.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h2 id="setting-up-ha-of-glance">Setting up HA of Glance</h2>
+
+<p>This document outlines configuration details of setting up HA of Glance.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>On both nodes of Neutron (rdo-glance1</td>
+      <td>rdo-glance2), install the relevant RPMs:</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="highlight plaintext"><code>$ yum install -y openstack-glance openstack-utils openstack-selinux&#x000A;</code></pre>
+
+<p>Setup <code>glance-api.conf</code>:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/glance/glance-api.conf DEFAULT sql_connection mysql://glance:glancetest@vip-mysql/glance&#x000A;&#x000A;openstack-config --set /etc/glance/glance-api.conf paste_deploy flavor keystone&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_host vip-keystone&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_port 35357&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken auth_protocol http&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_tenant_name services&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_user glance&#x000A;openstack-config --set /etc/glance/glance-api.conf keystone_authtoken admin_password glancetest&#x000A;openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_hostname vip-qpid&#x000A;openstack-config --set /etc/glance/glance-api.conf DEFAULT qpid_heartbeat 2&#x000A;openstack-config --set /etc/glance/glance-api.conf DEFAULT registry_host vip-glance&#x000A;</code></pre>
+
+<p>Setup <code>glance-registry.conf</code>:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/glance/glance-registry.conf DEFAULT sql_connection mysql://glance:glancetest@vip-mysql/glance&#x000A;openstack-config --set /etc/glance/glance-registry.conf paste_deploy flavor keystone&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_host vip-keystone&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_port 35357&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken auth_protocol http&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_tenant_name services&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_user glance&#x000A;openstack-config --set /etc/glance/glance-registry.conf keystone_authtoken admin_password glancetest&#x000A;</code></pre>
+
+<p>Enable Glance's notifications (Needed for Ceilometer):</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/glance/glance-api.conf DEFAULT notifier_strategy qpid&#x000A;</code></pre>
+
+<p>On the first node of Glance (rdo-glance1), source the Keystone credentials and create a Keystone user, associate a role, and create Glance service and a Keystone endpoint for it.</p>
+
+<pre class="highlight plaintext"><code>. /srv/rhos/configs/keystonerc_admin&#x000A;&#x000A;keystone user-create --name glance --pass glancetest&#x000A;keystone  user-role-add --user glance --role admin --tenant services&#x000A;keystone service-create --name glance --type image --description &amp;quot;Glance Image Service&amp;quot;&#x000A;&#x000A;keystone endpoint-create --service glance --publicurl &amp;quot;http://vip-glance:9292&amp;quot; --adminurl &amp;quot;http://vip-glance:9292&amp;quot; --internalurl &amp;quot;http://vip-glance:9292&amp;quot;&#x000A;</code></pre>
+
+<p>Configure mysql:</p>
+
+<pre class="highlight plaintext"><code>mysql --user=root --password=mysqltest --host=vip-mysql&#x000A;&#x000A;CREATE DATABASE glance;&#x000A;GRANT ALL ON glance.* TO 'glance'@'%' IDENTIFIED BY 'glancetest';&#x000A;quit&#x000A;</code></pre>
+
+<p>Perform Glance db_sync:</p>
+
+<pre class="highlight plaintext"><code>su glance -s /bin/sh -c &amp;quot;glance-manage db_sync&amp;quot;&#x000A;</code></pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td>On both nodes of Glance (rdo-glance1</td>
+      <td>rdo-glance2), configure <code>pacemaker</code>:</td>
+    </tr>
+  </tbody>
+</table>
+
+<pre class="highlight plaintext"><code>chkconfig pacemaker on&#x000A;pcs cluster setup --name rdo-glance rdo-glance1 rdo-glance2&#x000A;pcs cluster start&#x000A;&#x000A;sleep 30&#x000A;&#x000A;pcs stonith create glance1-fence fence_xvm multicast_address=225.0.0.7 pcmk_host_list=rdo-glance1&#x000A;&#x000A;pcs stonith create glance2-fence fence_xvm multicast_address=225.0.0.8 pcmk_host_list=rdo-glance2&#x000A;&#x000A;mkdir -p /srv/rhos/glance&#x000A;&#x000A;pcs  resource create glance-fs Filesystem device=&amp;quot;mrg-01:/srv/rhos/glance&amp;quot;  directory=&amp;quot;/var/lib/glance&amp;quot; fstype=&amp;quot;nfs&amp;quot; options=&amp;quot;v3&amp;quot; --clone&#x000A;&#x000A;chown glance:nobody /var/lib/glance&#x000A;pcs resource create glance-registry lsb:openstack-glance-registry --clone&#x000A;pcs resource create glance-api lsb:openstack-glance-api --clone&#x000A;&#x000A;pcs constraint order start glance-fs-clone then glance-registry-clone&#x000A;pcs constraint colocation add glance-registry with glance-fs&#x000A;pcs constraint order start glance-registry-clone then glance-api-clone&#x000A;pcs constraint colocation add glance-api with glance-registry&#x000A;</code></pre>
+
+<p>Do a test by importing an image into Glance:</p>
+
+<pre class="highlight plaintext"><code>wget -c \&#x000A;http://cloud.fedoraproject.org/fedora-latest.x86_64.qcow2&#x000A;&#x000A;. /srv/rhos/configs/keystonerc_admin&#x000A;&#x000A;glance image-create --name fedora20 --is-public true \&#x000A;--disk-format qcow2 --container-format bare \&#x000A;&amp;lt; Fedora-20.qcow2&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/storage/Glance/setting-up-ha-of-glance.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 24 Sep 2015 06:39 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

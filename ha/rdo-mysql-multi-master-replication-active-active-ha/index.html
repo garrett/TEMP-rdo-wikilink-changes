@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+RDO MySQL Multi-Master Replication Active-Active HA &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/ha/rdo-mysql-multi-master-replication-active-active-ha.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rdo-mysql-multi-master-replication-active-active-ha">RDO MySQL Multi-Master Replication Active-Active HA</h1>
+
+<h2 id="overview">Overview</h2>
+
+<p>MariaDB+Galera, pacemaker, and haproxy are the new hotness, no doubt about it. But, I'm old school and have used MySQL multi-master replication with an LVS (piranha) load balancer in a 200 TPS production environment for nearly 10 years and feel more at ease using tried and true technologies. I'm not saying this is the best way, but I know that it's one way that works (and doesn't require pacemaker and corosync which just makes my eye twitch).</p>
+
+<p>There are 3 tasks to accomplish:</p>
+
+<ol>
+  <li>deploy RHEL6x VMs to host the load balancers and sql servers</li>
+  <li>deploy multi-master replication mysql database system</li>
+  <li>deploy piranha load balancer using Direct Routing</li>
+</ol>
+
+<p><strong>Conventions used:</strong></p>
+
+<ul>
+  <li>The load balancers and mysql servers must be on the same network segment, have the same netmask and gateway, and be able to receive the</li>
+</ul>
+
+<p>same broadcasts.</p>
+
+<ul>
+  <li>sql1 and lb1 are the first mysql and load balancer servers, respectively.</li>
+  <li>sql2 and lb2 are the second mysql and load balancer servers, respectively.</li>
+  <li>10.0.0.1 is the IP of the primary load balancer, lb1.example.com.</li>
+  <li>10.0.0.2 is the IP of the secondary load balancer, lb2.example.com.</li>
+  <li>10.0.0.3 is the IP of the VIP for the mysql server, sql.example.com.</li>
+  <li>10.0.0.4 is the IP of the first mysql Real Server, sql1.example.com.</li>
+  <li>10.0.0.5 is the IP of the second mysql Real Server, sql2.example.com.</li>
+</ul>
+
+<h2 id="vm-deployment">1. VM Deployment</h2>
+
+<p>In order to provide high availability and fault tolerance of the MySQL database, a minimum of 2 VMs are required for each mysql server and 2 VMs for the load balancers for a total of 4 VMs. Each pair of VMs should be hosted on separate hardware systems which also should be built with fault tolerance in mind - redundant UPS and/or generator backed electrical circuits and power distribution, redundant system power supplies, RAIDed disk, dual pathed and bonded NICs, dual socket CPUs, and ECC memory.</p>
+
+<p>Typically, these physical hosts should easily be able to host the necessary VMs for all OpenStack control services provided they have enough RAM:</p>
+
+<pre class="highlight plaintext"><code>   +---------------------+ +---------------------+&#x000A;    |   host system 1     | |   host system 2     |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | | load balancer 1 | | | | load balancer 2 | |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | | mysql server 1  | | | | mysql server 2  | |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | | amqp server 1   | | | | amqp server 2   | |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    | | controller 1    | | | | controller 2    | |&#x000A;    | +-----------------+ | | +-----------------+ |&#x000A;    +---------------------+ +---------------------+&#x000A;</code></pre>
+
+<p>The OpenStack MySQL database is not very large, but requires enough disk space for storing binary logs which are the key for database replication. For a medium sized cloud with 64 compute nodes and support for 4,000 2GB VMs, the following VM parameters are recommended:</p>
+
+<ul>
+  <li>2 vCPUs</li>
+  <li>2GB RAM</li>
+  <li>4GB swap</li>
+  <li>2GB / partition</li>
+  <li>16GB /var partition</li>
+  <li>RHELv6</li>
+</ul>
+
+<p>The load balancers require significantly less resources. The following specs are more than adequate:</p>
+
+<ul>
+  <li>1 vCPU</li>
+  <li>1GB RAM</li>
+  <li>1GB swap</li>
+  <li>2GB / partition</li>
+  <li>4GB /var partition</li>
+  <li>RHELv6</li>
+</ul>
+
+<p>Iptables must be configured on all VMs to allow traffic on ports 3306 to the hosts or network segment that requires access to mysql, and 539 on the load balancers for heartbeat communication.</p>
+
+<p>Additionally, stateful connections should not be maintained in iptables on the load balancers in order to allow for transparent connection failover between the primary and secondary load balancers. See the following for more information:</p>
+
+<p>[<a href="http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.failover.html#stateful_failover">http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.failover.html#stateful_failover</a> ] "On failover, a director configured with no filter rules can be replaced with an identically configured backup with no interruption of service to the client. There will be a time in the middle of the changeover where no packets are being transmitted (and possibly icmp packets are being generated), but in general once the new director is online, the connection between client and realserver should continue with no break in established tcp connections between the client and the realserver… If stateful filter rules are in place (e.g. only accept packets from ESTABLISHED connections) then after failover, the new director will be presented packets from tcp connections that are ESTABLISHED, but of which it has no record. The new director will REJECT/DROP these packets."</p>
+
+<p>To solve "The Arp Problem" in Direct Routing mode (see <a href="http://www.austintek.com/LVS/LVS-HOWTO/HOWTO/LVS-HOWTO.arp_problem.html">1</a>), the following steps must be performed on the mysql servers:</p>
+
+<p>1) Add the following lines to /etc/sysctl.conf then run 'sysctl -p':</p>
+
+<pre class="highlight plaintext"><code>  net.ipv4.conf.all.arp_announce = 2&#x000A;  net.ipv4.conf.all.arp_ignore = 1&#x000A;</code></pre>
+
+<p>2) Create the file /etc/sysconfig/network-scripts/ifcfg-lo:3 with the following contents and start the interface by running 'ifup lo:3':</p>
+
+<pre class="highlight plaintext"><code>  DEVICE=lo:3&#x000A;  BOOTPROTO=none&#x000A;  ONPARENT=yes&#x000A;  TYPE=Ethernet&#x000A;  IPADDR=10.0.0.3&#x000A;  NETMASK=255.255.255.255&#x000A;  GATEWAY=10.0.0.254&#x000A;  PEERDNS=no&#x000A;  NM_CONTROLLED=no&#x000A;</code></pre>
+
+<h2 id="mysql-multi-master-replication-deployment">2. MySQL Multi-Master Replication Deployment</h2>
+
+<p>In this set up, replication is performed at the query level - that is, the binary logs are replayed, query by query, to produce the replication between each system.</p>
+
+<p>The following guide are based on the "Advanced MySQL Replication Techniques" ( [http%3A%2F%2Fwww.onlamp.com%2Fpub%2Fa%2Fonlamp%2F2006%2F04%2F20%2Fadvanced-mysql-replication.html&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNGy-p0Wl41m7DxoLeACYaksXnrupQ] ) OnLamp article written by Giuseppe Maxia, "How To Set Up Database Replication in MySQL" ( [http%3A%2F%2Fwww.howtoforge.com%2Fmysql_database_replication&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNH8Kaa0MY1e6Gb-Z5jgJZ2_bT4z7Q] ) by Falko Timme, and Chapter 16, "Replication of the MySQL 5.1 Reference Manual" ( <a href="http://dev.mysql.com/doc/refman/5.1/en/replication.html">2</a> ). This guide is only valid for MySQL v5.1 and later.</p>
+
+<p>1) On each system, install the mysql client and server:</p>
+
+<pre class="highlight plaintext"><code>  yum -y install mysql mysql-server &#x000A;</code></pre>
+
+<p>2) Stop the mysql server on each system:</p>
+
+<pre class="highlight plaintext"><code>  service mysqld stop &#x000A;</code></pre>
+
+<p>3) Edit the /etc/my.cnf file on each system (NB: the my.cnf on each system will be slightly different).</p>
+
+<p>On sql1, my.cnf should look like the following:</p>
+
+<pre class="highlight plaintext"><code>  ############################################################################&#x000A;  [client]&#x000A;  port = 3306&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;   &#x000A;  [mysqld_safe]&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;  nice = 0&#x000A;  log = /var/log/mysqld.log&#x000A;  log-error = /var/log/mysqld.log&#x000A;  err-log = /var/log/mysqld.log&#x000A;  log-warnings = 2&#x000A;   &#x000A;  [mysqld]&#x000A;  user = mysql&#x000A;  pid-file = /var/run/mysqld/mysqld.pid&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;  port = 3306&#x000A;  basedir = /usr&#x000A;  datadir = /var/lib/mysql&#x000A;  tmpdir = /tmp&#x000A;  skip-external-locking&#x000A;  bind-address = 0.0.0.0&#x000A;  key_buffer_size = 512M&#x000A;  table_cache = 512&#x000A;  myisam_sort_buffer_size = 100M&#x000A;  max_connections = 500&#x000A;  max_connect_errors = 1000&#x000A;  max_allowed_packet = 16M&#x000A;  thread_stack = 192K&#x000A;  thread_cache_size = 8&#x000A;  myisam-recover = BACKUP&#x000A;  query_cache_limit = 1M&#x000A;  query_cache_size = 16M&#x000A;  log_error = /var/log/mysqld.log&#x000A;  log-warning = 2&#x000A;  expire_logs_days = 14&#x000A;  max_binlog_size = 100M&#x000A;   &#x000A;  # If innodb is used&#x000A;  innodb_flush_log_at_trx_commit = 1&#x000A;   &#x000A;  # For replication. **Note** server-id and auto_increment_offset values!&#x000A;  server_id = 1&#x000A;  auto_increment_offset = 1&#x000A;  auto_increment_increment = 10&#x000A;  master-host = sql2.example.com&#x000A;  master-user = replication&#x000A;  master-password = secret_pw&#x000A;  sync_binlog = 1&#x000A;  log-bin = mysql-bin&#x000A;  log-slave-updates&#x000A;  relay-log = sql1-relay-bin&#x000A;  slave_exec_mode = IDEMPOTENT&#x000A;   &#x000A;  # slave-skip-errors = 1062&#x000A;  # replicate-ignore-table = test.test&#x000A;  ############################################################################ &#x000A;</code></pre>
+
+<p>On sql2, my.cnf should look like the following:</p>
+
+<pre class="highlight plaintext"><code>  ############################################################################&#x000A;  [client]&#x000A;  port = 3306&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;   &#x000A;  [mysqld_safe]&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;  nice = 0&#x000A;  log = /var/log/mysqld.log&#x000A;  log-error = /var/log/mysqld.log&#x000A;  err-log = /var/log/mysqld.log&#x000A;  log-warnings = 2&#x000A;   &#x000A;  [mysqld]&#x000A;  user = mysql&#x000A;  pid-file = /var/run/mysqld/mysqld.pid&#x000A;  socket = /var/lib/mysql/mysql.sock&#x000A;  port = 3306&#x000A;  basedir = /usr&#x000A;  datadir = /var/lib/mysql&#x000A;  tmpdir = /tmp&#x000A;  skip-external-locking&#x000A;  bind-address = 0.0.0.0&#x000A;  key_buffer_size = 512M&#x000A;  table_cache = 512&#x000A;  myisam_sort_buffer_size = 100M&#x000A;  max_connections = 500&#x000A;  max_connect_errors = 1000&#x000A;  max_allowed_packet = 16M&#x000A;  thread_stack = 192K&#x000A;  thread_cache_size = 8&#x000A;  myisam-recover = BACKUP&#x000A;  query_cache_limit = 1M&#x000A;  query_cache_size = 16M&#x000A;  log_error = /var/log/mysqld.log&#x000A;  log-warning = 2&#x000A;  expire_logs_days = 14&#x000A;  max_binlog_size = 100M&#x000A;   &#x000A;  # If innodb is used&#x000A;  innodb_flush_log_at_trx_commit = 1&#x000A;   &#x000A;  # For replication. **Note** server-id and auto_increment_offset values!&#x000A;  server_id = 2&#x000A;  auto_increment_offset = 2&#x000A;  auto_increment_increment = 10&#x000A;  master-host = sql1.example.com&#x000A;  master-user = replication&#x000A;  master-password = secret_pw&#x000A;  sync_binlog = 1&#x000A;  log-bin = mysql-bin&#x000A;  log-slave-updates&#x000A;  relay-log = sql2-relay-bin&#x000A;  slave_exec_mode = IDEMPOTENT&#x000A;   &#x000A;  # slave-skip-errors = 1062&#x000A;  # replicate-ignore-table = test.test&#x000A;  ############################################################################&#x000A;</code></pre>
+
+<p>4) On sql1 start the mysqld service and ignore any errors that may indicate that that the master-host options have been deprecated and will be removed in a future release. These errors are indeed correct, however, on the initialization of the multi-master replication database the options included in the my.cnf file will be used to generate an appropriate /var/lib/mysql/master.info file which then takes precedence over the options in my.cnf and the errors will go away in subsequent restarts.</p>
+
+<p>5) Start the mysql client on sql1 and issue the following commands:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; grant replication slave, replication client on *.* to 'replication'@'sql2.example.com' identified by 'secret_pw';&#x000A;  mysql&gt; grant replication slave, replication client on *.* to'replication'@'sql1.example.com' identified by 'secret_pw';&#x000A;  mysql&gt; flush privileges;&#x000A;</code></pre>
+
+<p>6) Remain logged into the mysql client and issue the following command to obtain the log file name and log position - record these values. (NB: do NOT terminate the mysql client session after you complete these commands - remain logged in to maintain the read lock):</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; slave stop;&#x000A;  mysql&gt; flush tables with read lock;&#x000A;  mysql&gt; show master status;&#x000A;</code></pre>
+
+<p>7) Start another login session into sql1 as root and rsync the mysql database directory from sql1 to sql2, excluding and deleting several files that are node specific:</p>
+
+<pre class="highlight plaintext"><code>  [root sql1 ]# rsync -av -e ssh --delete --exclude=*relay-bin* --exclude=mysql-bin.* --exclude=*.info /var/lib/mysql/sql2.example.com:/var/lib/mysql &#x000A;</code></pre>
+
+<p>8) You may now safely log out of the mysql client on sql1.</p>
+
+<p>9) On sql2, start the mysqld:</p>
+
+<pre class="highlight plaintext"><code>  service mysqld start &#x000A;</code></pre>
+
+<p>10) Start a mysql client session on sql2 and perform the following commands using the log file name and position recorded, above. NB: punctuation is very important:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; slave stop; &#x000A;  mysql&gt; change master to master_log_file='&lt;recorded log file name, above&gt;', master_log_pos=&lt;recorded log position, above&gt;; # &lt;- note lack of quotes mysql&gt; start slave;&#x000A;</code></pre>
+
+<p>11) As with sql1, issue the following command to obtain the log file name and log position - record these values. (NB: do NOT terminate the mysql client session after you complete these commands - remain logged in to maintain the read lock):</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; flush tables with read lock;&#x000A;  mysql&gt; show master status;&#x000A;</code></pre>
+
+<p>12) Log into sql1, start a mysql client session, and issue the following commands:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; slave stop;&#x000A;  mysql&gt; change master to master_log_file='&lt;recorded log file name, above&gt;', master_log_pos=&lt;recorded log position, above&gt;; # &lt;- note lack of quotes mysql&gt; start slave;&#x000A;</code></pre>
+
+<p>13) It is now safe to exit any mysql client sessions that may be open to unlock the databases.</p>
+
+<p>14) Each database should now be in sync with each other, but to verify this, start a mysql client session on each system and issue the following command:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; show slave status\G; &#x000A;</code></pre>
+
+<p>15) Look at the values of Slave_IO_State, Slave_IO_Running, Slave_SQL_Running, and Seconds_Behind_Master. There should be no errors. If there are errors, then re-start the procedure at step 6.</p>
+
+<p>16) Additionally, create a test table and input some data on both systems. On sql1, run:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; create table test.tester ( col1 int not null auto_increment, col2 int, primary key (col1) );&#x000A;  mysql&gt; insert into tester (col2) values ('1'),('3'),('5');&#x000A;  mysql&gt; select * from test.tester; &#x000A;</code></pre>
+
+<p>On sql2, run:</p>
+
+<pre class="highlight plaintext"><code>  mysql&gt; select * from test.tester;&#x000A;  mysql&gt; insert into tester (col2) values ('2'),('4'),('6');&#x000A;  mysql&gt; select * from test.tester; &#x000A;</code></pre>
+
+<p>The select output should be the same on each system.</p>
+
+<p>17) Proceed with granting access to the appropriate OpenStack users such as nova, keystone, glance, quantum, cinder, etc.</p>
+
+<h2 id="piranha-deployment-with-direct-routing">3. Piranha Deployment with Direct Routing</h2>
+
+<p>1) On lb1 and lb2, install the piranha load balancing packages:</p>
+
+<pre class="highlight plaintext"><code>   yum install piranha  &#x000A;</code></pre>
+
+<p>2) Create the file /usr/local/bin/check_tcp_port.sh with the following contents, and make it executable:</p>
+
+<pre class="highlight plaintext"><code>  ############################################################################&#x000A;  #!/bin/sh&#x000A;   &#x000A;  if [ -z $1 ] &amp;&amp; [ -z $2 ]; then&#x000A;    echo "Usage: $0 addr port"&#x000A;    exit 1&#x000A;  fi&#x000A;   &#x000A;  ` TEST=`/usr/bin/nc -zvv $1 $2 2&gt;/dev/null | grep -c succeed` `&#x000A;   &#x000A;  if [ $TEST == 1 ]; then&#x000A;    echo "OK"&#x000A;  else&#x000A;    echo "FAIL"&#x000A;  fi&#x000A;   &#x000A;  exit 0&#x000A;  ############################################################################&#x000A;    &#x000A;</code></pre>
+
+<p>3) Edit the /etc/sysconfig/ha/lvs.cf file on each load balancer and make it look like the following:</p>
+
+<pre class="highlight plaintext"><code>  serial_no = 2013042401&#x000A;  service = lvs&#x000A;  primary = 10.0.0.1&#x000A;  service = lvs&#x000A;  rsh_command = ssh&#x000A;  backup_active = 1&#x000A;  backup = 10.0.0.2&#x000A;  heartbeat = 1&#x000A;  heartbeat_port = 539&#x000A;  keepalive = 6&#x000A;  deadtime = 18&#x000A;  debug_level = NONE&#x000A;  monitor_links = 1&#x000A;  syncdaemon = 1&#x000A;  hard_shutdown = 0&#x000A;  network = direct&#x000A;   &#x000A;  virtual openstack_mysql_3306 {&#x000A;    active = 1&#x000A;    address = 10.0.0.3 eth0:6&#x000A;    vip_nmask = 255.255.240.0&#x000A;    port = 3306&#x000A;    persistent = 60&#x000A;    pmask = 255.255.240.0&#x000A;    use_regex = 0&#x000A;    send_program = "/usr/local/bin/check_tcp_port.sh %h 3306"&#x000A;    send = "\n"&#x000A;    expect = "OK"&#x000A;    load_monitor = none&#x000A;    scheduler = wlc&#x000A;    protocol = tcp&#x000A;    timeout = 5&#x000A;    reentry = 10&#x000A;    quiesce_server = 1&#x000A;    server sql1.example.com {&#x000A;    address = 10.0.0.4&#x000A;    active = 1&#x000A;    weight = 1&#x000A;    }&#x000A;    server sql2.example.com {&#x000A;    address = 10.0.0.5&#x000A;    active = 1&#x000A;    weight = 1&#x000A;    }&#x000A;  }&#x000A;   &#x000A;</code></pre>
+
+<p>4) Shutdown the pulse service on lb2 and restart the pulse service on lb1.</p>
+
+<pre class="highlight plaintext"><code>  service pulse restart&#x000A;    &#x000A;</code></pre>
+
+<p>5) Verify that service is working by running the following command on lb1:</p>
+
+<pre class="highlight plaintext"><code>  ipvsadm -Ln&#x000A;    &#x000A;</code></pre>
+
+<p>The output should look like this:</p>
+
+<pre class="highlight plaintext"><code>  IP Virtual Server version 1.2.1 (size=4096)&#x000A;  Prot LocalAddress:Port Scheduler Flags&#x000A;    -&gt; RemoteAddress:Port Forward Weight ActiveConn InActConn&#x000A;  TCP 10.0.0.3:3306 wlc persistent 60 mask 255.255.240.0&#x000A;    -&gt; 10.0.0.4:3306 Route 1 0 0&#x000A;    -&gt; 10.0.0.5:3306 Route 1 0 0&#x000A;    &#x000A;</code></pre>
+
+<p>Also, tail /var/log/messages on the load balancers and look for the following:</p>
+
+<pre class="highlight plaintext"><code>  Apr 3 15:02:13 lb1.example.com nanny[29298]: [ active ] making 10.0.0.5:3306 available&#x000A;    &#x000A;</code></pre>
+
+<p>6) From a client on the network (NB: NOT the load balancer), connect to the service IP of the sql server:</p>
+
+<pre class="highlight plaintext"><code>  [root client ]# mysql -u nova -h 10.0.0.3 -p&#x000A;    &#x000A;</code></pre>
+
+<p>If this is successful, then congratulations, you have a fully functioning load-balanced multi-master mysql replication database system for your Red Hat OpenStack Cloud.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/ha/rdo-mysql-multi-master-replication-active-active-ha.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 25 Sep 2015 02:04 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

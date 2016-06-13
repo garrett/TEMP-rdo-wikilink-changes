@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+2015 January &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/newsletter/2015-january.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="january">2015 January</h1>
+
+<p>January 2015 RDO Community Newsletter</p>
+
+<p>Thanks for being part of the RDO community.</p>
+
+<p>2015 is already shaping up to be an exciting year for RDO, and for OpenStack in general. In this first newsletter of the year, we'd like to talk about some of what's coming this year.</p>
+
+<p>Quick links:</p>
+
+<ul>
+  <li>Quick Start - <a href="http://rdoproject.org/quickstart">http://rdoproject.org/quickstart</a></li>
+  <li>Mailing Lists - <a href="https://rdoproject.org/Mailing_lists">https://rdoproject.org/Mailing_lists</a></li>
+  <li>RDO packages - <a href="https://repos.fedorapeople.org/repos/openstack/openstack-juno/">https://repos.fedorapeople.org/repos/openstack/openstack-juno/</a></li>
+  <li>RDO blog - <a href="http://rdoproject.org/blog">http://rdoproject.org/blog</a></li>
+  <li>Q&amp;A - <a href="http://ask.openstack.org/">http://ask.openstack.org/</a></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>RDO and CentOS</li>
+</ul>
+
+<p>We've been talking for a long time about the relationship between RDO and CentOS. CentOS is where you get the best experience with RDO, because it's where it's getting the most testing. It's the perfect platform to do your testing and proof of concept installs. Then, when you're ready to go to production, you can stick with CentOS, or, if you want a supported enterprise platform, the transition to RHEL is a is a simple one because of how close it is to Red Hat Enterprise Linux.</p>
+
+<p>In the last few weeks of 2014, we strengthened that relationship with CentOS in several ways, largely as a result of conversations in Paris, at the OpenStack Summit in November.</p>
+
+<p>The first of these shifts is that we've moved the CI (Continuous Integration) effort to the CentOS community, where we can get a wider involvement in the process from people outside of Red Hat. So, starting early this year, you'll find RDO testing happening on <a href="http://ci.centos.org/">http://ci.centos.org/</a> so that we're always certain that everything is working on this important platform.</p>
+
+<p>Then, at our meeting in Paris, many people said that the packaging effort needed to be entirely in the open, whereas we'd been doing some of it "behind the wall" at Red Hat. So we're moving the RDO packaging effort into the CentOS CBS - the Community Build System. You can read more about the CBS at <a href="http://wiki.centos.org/HowTos/CommunityBuildSystem">http://wiki.centos.org/HowTos/CommunityBuildSystem</a> and you can read our documentation about packaging RDO at <a href="http://rdoproject.org/packaging/">http://rdoproject.org/packaging/</a> We need your feedback about this document, and your experiences as you try it out, so that we can improve that process, and get more people involved in packaging RDO.</p>
+
+<p>And, as an umbrella for these efforts, we're working to create a Cloud Infrastructure SIG to coordinate the efforts of packaging OpenStack, and other cloud infrastructures, on the CentOS platform, as well as the interactions with other SIGs to ensure interoperability, so that people running CentOS can use all of these various things together seamlessly. You can read more about the Cloud SIG effort at <a href="http://wiki.centos.org/SpecialInterestGroup/Cloud">http://wiki.centos.org/SpecialInterestGroup/Cloud</a> and expect that to progress rapidly in the coming weeks and months.</p>
+
+<ul>
+  <li>Juno, Kilo, L___</li>
+</ul>
+
+<p>In October 2014, OpenStack Juno was released, and the OpenStack Summit in Paris focuses on planning for the next release, code-named Kilo.</p>
+
+<p>On April 30th, OpenStack Kilo will be released - <a href="https://wiki.openstack.org/wiki/Kilo_Release_Schedule">https://wiki.openstack.org/wiki/Kilo_Release_Schedule</a> - featuring many significant improvements that were planned at the OpenStack Summit in Paris. Starting in February of this year, expect a series of posts by various OpenStack engineers telling you what will be coming in Kilo.</p>
+
+<p>Then, in May (18th - 22nd), we'll be gathering in Vancouver for the OpenStack Summit,/ where work will begin on the 'L' version. You'll find some preliminary information about the event at <a href="https://www.openstack.org/summit/vancouver-2015/">https://www.openstack.org/summit/vancouver-2015/</a></p>
+
+<p>If you're looking for RDO enthusiasts, we'll be at lots of other events, too, including:</p>
+
+<pre class="highlight plaintext"><code>     * FOSDEM - `[`http://fosdem.org/`](http://fosdem.org/)` where we're hoping to find a room&#x000A;       for an RDO community meetup. While you're there, drop by the&#x000A;       CentOS table, and the OpenStack table, as well as the numerous&#x000A;       other great community projects that will be represented. January&#x000A;       31 and February 1, in Brussels, Belgium.&#x000A;&#x000A;     * SCALE - The Southern California Linux Expo -&#x000A;       `[`http://www.socallinuxexpo.org/scale13x`](http://www.socallinuxexpo.org/scale13x)` , February 19-22 in Los&#x000A;       Angeles.&#x000A;&#x000A;     * Meetups - there are dozens of OpenStack meetups every week,&#x000A;       around the world. Some of these include deep technical content,&#x000A;       while others are primarily social in nature. These informal&#x000A;       gatherings are the best place to get together with other&#x000A;       OpenStack enthusiasts and discuss the daily struggle. If you're&#x000A;       presenting at a Meetup, please let me know so that I can help&#x000A;       you get the word out to the community. And if you attend an&#x000A;       OpenStack meetup, we'd like to hear about your experience, and&#x000A;       what you learned. Find meetups in your area at&#x000A;       `[`http://meetup.com/`](http://meetup.com/)` or look for our weekly meetup announcements&#x000A;       on the rdo-list mailing list.&#x000A;</code></pre>
+
+<ul>
+  <li>Ask.OpenStack.org</li>
+</ul>
+
+<p>As you're no doubt aware, the very best place to ask questions about OpenStack is the site that says it in its name - <a href="http://ask.openstack.org/">http://ask.openstack.org/</a> We've long encouraged RDO users to ask their questions there, because it gives a wider pool of experts to answer the questions. Also, since RDO is a packaging of OpenStack, without any changes or patches, most of the questions that you might ask about it are, in fact, questions about upstream OpenStack.</p>
+
+<p>It's also a great way to sharpen your own expertise, by trying to answer the questions that you know something about, or identify questions that have already been answered, and direct the asker to the answer that's already been provided.</p>
+
+<p>If you're interested in being on the list of people that I contact with unanswered questions, please let me know, along with what topics you'd like to be contacted for. This helps us get people's questions answered quickly without you having to check the site every day.</p>
+
+<ul>
+  <li>Keep in touch</li>
+</ul>
+
+<p>There's lots of ways to stay in in touch with what's going in in the RDO community. The best ways are …</p>
+
+<pre class="highlight plaintext"><code>   * Follow us on Twitter - `[`http://twitter.com/rdocommunity`](http://twitter.com/rdocommunity)` &#x000A;   * Google+ - `[`http://tm3.org/rdogplus`](http://tm3.org/rdogplus)`  ` * Facebook - `[`http://facebook.com/rdocommunity`](http://facebook.com/rdocommunity)&#x000A;   * rdo-list mailing list - `[`http://www.redhat.com/mailman/listinfo/rdo-list`](http://www.redhat.com/mailman/listinfo/rdo-list)` &#x000A;   * This newsletter - `[`http://www.redhat.com/mailman/listinfo/rdo-newsletter`](http://www.redhat.com/mailman/listinfo/rdo-newsletter)` &#x000A;   * RDO Q&amp;A - `[`http://ask.openstack.org/`](http://ask.openstack.org/)` &#x000A;   * IRC - #rdo on Freenode.irc.net&#x000A;</code></pre>
+
+<p>Finally, remember that the OpenStack User Survey is always open, so every time you deploy a new OpenStack cloud, go update your records at <a href="https://www.openstack.org/user-survey/">https://www.openstack.org/user-survey/</a> so that, when Vancouver rolls around, we have a clearer picture of the OpenStack usage out in the wild.</p>
+
+<p>Thanks again for being part of the RDO community!</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/newsletter/2015-january.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 10 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

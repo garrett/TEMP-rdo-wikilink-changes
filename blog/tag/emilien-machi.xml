@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Emilien Machi</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/emilien-machi.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What did you do in Mitaka: Emilien Macchi</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/</id>
+    <published>2016-05-04T21:03:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Continuing my series of interviews with RDO engineers, here's my chat with Emilien Macchi, who I talked with at OpenStack Summit last week in Austin.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to talk about what you did in Mitaka, please contact me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" data-link="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, please download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/uinm26/emilien_macchi.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with Emilien Macchi, who is one of the people that
+worked on the Mitaka release of OpenStack. Thank you for taking time
+to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Emilien&lt;/strong&gt;: Thank you for welcoming me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: In Mitaka, most of my tasks were related to packaging testing. I'm
+currently leading the Puppet OpenStack group, which is a team where we
+develop some Puppet modules that deploy OpenStack in production. Red
+Hat is using the Puppet modules in TripleO, so we can automate the
+deployment of OpenStack services. Recently we switched the gates of
+OpenStack Infra to use RDO packaging. We had a lot of issued before
+because we didn't have much CI. But since Mitaka, the RDO and the
+Puppet teams worked a lot together to make sure that we can provide
+some testing together. We can fix things very early when it's broken
+upstream. Like when we have a new dependency or when we have a change
+in the requirements. That was this kind of test where you provide very
+early feedback to the RDO people that are doing the packaging. It was
+very interesting to work with RDO.&lt;/p&gt;
+
+&lt;p&gt;We provided early feedback on the builds, on the failures. We also
+contributed to … I say "we", I don't like to say "I" … we, my
+group, my Puppet group, we contributed to the new packages that we
+have in Mitaka. We updated the spec in the package so we could have
+more features, and more services in the RDO projects.&lt;/p&gt;
+
+&lt;p&gt;Testing! Testing every day. Testing, testing, testing. Participating
+in the events that the RDO community is having, like the weekly
+meetings, the testing days. It was very interesting for us to have
+this relationship with the RDO team.&lt;/p&gt;
+
+&lt;p&gt;So I'm looking forward to Newton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What do you anticipate you'll be working on in Newton?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Well, that's an interesting question. We are talking about this
+week. [At OpenStack Summit, Austin.]&lt;/p&gt;
+
+&lt;p&gt;The challenge for us … the biggest challenge, I guess, is to follow
+the release velocity of upstream projects. We have a bunch of projects
+in OpenStack, and it's very hard to catch up with all of the projects
+at the same time. In the meantime we have to because those projects,
+they are in the RDO project and also in the products, so that's
+something we need to … we need to scale the way that we producing
+all this work.&lt;/p&gt;
+
+&lt;p&gt;Something we are very focused on right now is to use the Software
+Factory project, which is how OpenStack Infra is operating to build
+OpenStack software. This is a project - an open source project - which
+is now used by RDO. We can have this same way as upstream, but for
+downstream - we can have the same way to produce the RDO artifacts,
+like the packages and the Puppet modules, and so on. That's the next
+big challenge, is to be fully integrated with Software Factory, to
+implement the missing features we will need to make the testing
+better.&lt;/p&gt;
+
+&lt;p&gt;Yeah, that's the biggest challenge: Improve the testing, and stopping
+doing manual things, automate all the things, that is the next
+challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much. Thanks for your time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Thank you for your time.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

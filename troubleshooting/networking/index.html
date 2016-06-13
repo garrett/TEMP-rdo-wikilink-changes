@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Networking &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/troubleshooting/networking.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="networking">Networking</h1>
+
+<p class="no_toc">(See Also: <a href="/networking">Networking</a>)</p>
+
+<p>Check out this webcast - an overview of networking principles and how they apply to Neutron and OpenvSwitch - by Dave Neary.</p>
+
+<iframe width="630" src="//youtube.com/embed/afImoFeuDnY" frameborder="0" align="center" allowfullscreen="true"></iframe>
+
+<h2 id="toolchain">Toolchain</h2>
+
+<p>A number of tools come in handy when troubleshooting Neutron/Quantum networking issues.</p>
+
+<ul>
+  <li><a href="http://openvswitch.org/">Open vSwitch</a> (<a href="http://openvswitch.org/support/">documentation</a>)
+    <ul>
+      <li><a href="http://openvswitch.org/support/dist-docs/ovs-vsctl.8.txt">ovs-vsctl</a> - tool for querying and configuring ovs-vswitchd</li>
+      <li><a href="http://openvswitch.org/support/dist-docs/ovs-ofctl.8.txt">ovs-ofctl</a> - OpenFlow configuration tool</li>
+      <li><a href="http://openvswitch.org/support/dist-docs/ovs-dpctl.8.txt">ovs-dpctl</a> - query and configure Open vSwitch datapaths</li>
+    </ul>
+  </li>
+  <li><a href="//www.linuxfoundation.org/collaborate/workgroups/networking/iproute2">iproute tools</a>
+    <ul>
+      <li><a href="http://www.policyrouting.org/iproute2.doc.html">iproute2 HOWTO</a></li>
+      <li><a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2_examples">iproute2 examples</a></li>
+    </ul>
+  </li>
+  <li><a href="http://www.tcpdump.org/">tcpdump</a> (see next section)
+    <ul>
+      <li><a href="http://www.tcpdump.org/#documentation">tcpdump documentation</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="tcpdump">tcpdump</h3>
+
+<p>tcpdump will be your best friend so it's best to learn and understand how to use it. When debugging routing issues with quantum, tcpdump can be used to investigate the ingress and egress of traffic. For example:</p>
+
+<pre class="highlight plaintext"><code>       tcpdump -n -i br-int  &#x000A;</code></pre>
+
+<p>The above command will capature all traffic on the internal bridge interface.</p>
+
+<pre class="highlight plaintext"><code>       tcpdump -n -i br-int  -w tcpdump.pcap&#x000A;</code></pre>
+
+<p>The above command will capture all traffic on the internal bridge interface and dump it to a file named tcpdump.pcap.</p>
+
+<pre class="highlight plaintext"><code>       tcpdump -r tcpdump.pcap&#x000A;</code></pre>
+
+<p>The above command will read in a previously created tcpdump file</p>
+
+<pre class="highlight plaintext"><code>       tcpdump -n -i any&#x000A;</code></pre>
+
+<p>The above command will capture all traffic on any interface. …</p>
+
+<h2 id="iproute2">iproute2</h2>
+
+<p>iproute2 provides a tool called ip which allows you to debug what is going on.</p>
+
+<p>Here are some diagnostics commands for networking (assuming you are using Neutron). Of-course, you'll replace the router namespace, dhcp namespace IDs , IP addresses accordingly:</p>
+
+<pre class="highlight plaintext"><code># List namespaces&#x000A;$ ip netns&#x000A;qdhcp-4a04382f-03bf-49a9-9d4a-35ab9ffc22ad&#x000A;qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f&#x000A;&#x000A;# Show all interfaces inside the namespace&#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ip a&#x000A;&#x000A;# Check routing table inside the router namespace     &#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ip r&#x000A;&#x000A;# IP config inside the router namesapce &#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ifconfig&#x000A;&#x000A;# IP configu inside the dhcp namesace&#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ifconfig&#x000A;&#x000A;# Ping the private IP (of the cirros guest)&#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ping -c2 30.0.0.7&#x000A;$ ip netns exec qrouter-1fabd5f0-f80b-468d-b733-1b80d0c3e80f \&#x000A;  ping -c2 192.168.122.14&#x000A;&#x000A;# ssh into cirros guest&#x000A;$ ip netns exec qdhcp-4a04382f-03bf-49a9-9d4a-35ab9ffc22ad ssh   cirros@30.0.0.7&#x000A;</code></pre>
+
+<h2 id="common-issues">Common issues</h2>
+
+<ul>
+  <li>I can create an instance, but cannot SSH or ping it
+    <ul>
+      <li>
+        <p>Verify that traffic to port 22 and ICMP traffic of any type (-1:-1) is allowed in the default security group
+In the dashboard, in the Project tab, under "Access and Security", check the rules which are active on the security group you are using with your instances (typically "default"). You should see a rule allowing traffic to port 22 over tcp from all hosts, and a port enabling icmp traffic of all types (-1). If you don't, create the necessary rules, and try again.</p>
+      </li>
+      <li>
+        <p>Verify that you can ping and SSH the host where the instance is running
+From the host where you are attempting to connect to your instance, verify that network traffic is being correctly routed to the compute node in question.</p>
+      </li>
+      <li>
+        <p>Ensure that the router is correctly created, that the internal subnet and external subnet are attached to it, and that it can route traffic from your IP to the instance IP
+If your VM is in the 192.168.1.x subnet, and the host from which you are trying to connect is in the 192.168.0.x subnet, then you will need to have a route from one to the other. Ensure that the subnet 192.168.1.x and 192.168.0.x are both added to a router which you create in Neutron</p>
+      </li>
+      <li>
+        <p>Check that you can ping an instance from inside its network namespace.
+If you are using network namespaces, then each VLAN will have its own namespace, and entities inside that namespace will be invisible from outside. You can check whether you can ping an instance from inside the namespace by first finding the namespace identifier, and then using the iproute toolset to execute a "ping" inside that namespace:</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>ip netns list&#x000A;# Identify virtual router to which your subnet is connected&#x000A;ip netns exec qrouter-de0b9dbe-6b65-45ee-9ff2-c752c7937a9e ping 10.10.0.7&#x000A;# IP address and qrouter ID correspond to the network namespace and private IP address for instance&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <ul>
+      <li>
+        <p>Check the OVS routing table to ensure that it is correctly routing traffic from internal to external.
+You should see a route for each subnet attached to your virtual router, and you should see routing which will allow traffic from the VM to get to the subnet of the host from which you are trying to connect (or to a public gateway)</p>
+
+<pre class="highlight plaintext"><code>ip netns exec qrouter-de0b9dbe-6b65-45ee-9ff2-c752c7937a9e route -n&#x000A;</code></pre>
+      </li>
+      <li>
+        <p>Verify that br-ex is associated with the physical NIC, and that the virtual router can route traffic to the IP address of the host. For a single NIC set-up, you will need to bring up br-ex at boot time, and connect eth0 to it.
+To set up br-ex initially (on a host with static IP 192.168.0.2), the following will do the initial configuration:</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>ip addr flush eth0&#x000A;ovs-vsctl add-port br-ex eth0&#x000A;ip addr add 192.168.0.2 dev br-ex&#x000A;ip link set br-ex up&#x000A;</code></pre>
+
+<p>To make changes persist after boot, you will need to create /etc/sysconfig/network-scripts/ifcfg-br-ex as follows (replace DNS, IP addresses for your local network):</p>
+
+<pre class="highlight plaintext"><code>DEVICE=br-ex&#x000A;TYPE=Ethernet&#x000A;BOOTPROTO=static&#x000A;ONBOOT=yes&#x000A;IPADDR=192.168.0.2&#x000A;NETMASK=255.255.255.0&#x000A;GATEWAY=192.168.0.1&#x000A;DNS1=89.2.0.1&#x000A;DNS2=89.2.0.1&#x000A;DOMAIN=neary.home&#x000A;NAME="System br-ex"&#x000A;</code></pre>
+
+<p>After this, you will no longer need to bring up eth0, and all going well you will be able to access both instances and the management interface on the same host.</p>
+
+<ul>
+  <li>I cannot associate a floating IP with an instance
+    <ul>
+      <li>If the error is that the external network is not visible from the subnet: Check that br-ex has its MAC address set correctly. Check for the error "Device or resource busy" in /var/log/messages - if it's present, you will need to bring down br-ex, set its MAC address to match that of the physical NIC, and bring it back up.</li>
+    </ul>
+  </li>
+  <li>I can create an instance, however, it does not get a DHCP address
+    <ul>
+      <li>See <a href="http://docs.openstack.org/trunk/openstack-ops/content/network_troubleshooting.html">network troubleshooting</a> for information on sniffing the various steps of the allocation of an IP address by DHCP - verify that your DHCP agent is running, is receiving the DHCPDISCOVER request, and is replying to it - and verify that your host is receiving the DHCP reply.</li>
+      <li>Make sure that IPv6 is enabled. Disabling IPv6 will give an error such as "Address family not supported".</li>
+      <li>If you are using OpenvSwitch with VLAN, make sure that the network created includes VLAN information. You may need to restart the quantum-openvswitch-agent service and/or create a network using specific VLAN information.</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>If you are using more than one node for OpenStack (i.e., not an all-in-one installation), then you must use VLANs.</li>
+  <li>If you are using a virtual machine as a node in OpenStack, you must use the virtio network driver when using VLANs. The default rt8139 driver seems to drop VLAN information.</li>
+  <li>You must have an external network set as the gateway to the router if you want to get network traffic out of the private instance network.</li>
+</ul>
+
+<h2 id="useful-resources">Useful resources</h2>
+
+<ul>
+  <li><a href="//docs.openstack.org/trunk/openstack-network/admin/content/l3_workflow.html">Quantum L3 workflow</a></li>
+  <li><a href="//docs.openstack.org/trunk/openstack-ops/content/network_troubleshooting.html">Network troubleshooting</a></li>
+</ul>
+
+<category:troubleshooting> <category:documentation> <category:in progress=""> <category:networking>
+</category:networking></category:in></category:documentation></category:troubleshooting>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/troubleshooting/networking.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 3 Mar 2016 17:38 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Bof</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/bof.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO BoF at OpenStack Summit, Austin</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/</id>
+    <published>2016-04-28T14:59:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://lh3.googleusercontent.com/V4ChZTDnjP5xnDwY_9CLqVk8mHY3c7h88fHjRp0lChKiwSxIo64hIfa7Z6hxEodhYn51sDhAwiQ=w1920-h1080-rw-no" /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Tuesday afternoon about 60 people gathered for the RDO BoF (Birds of a Feather) session at OpenStack Summit in Austin.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;By the way, the term Birds of a Feather comes from the saying "Birds of a feather flock together", which refers to like-minded people gathering.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The topics discussed can be found in the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-bof"&gt;agenda&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The network was friendly, and we managed to capture the whole session in a Google Hangout. The video of the session is &lt;a href="https://www.youtube.com/watch?v=pmb3RA1GmGs"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And there are several pictures from the event on the &lt;a href="https://plus.google.com/communities/110409030763231732154"&gt;RDO Google+ page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thank you for all who attended. You'll see follow-up discussion on a number of the topics discussed on &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list&lt;/a&gt; over the coming weeks.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

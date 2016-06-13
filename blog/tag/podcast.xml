@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Podcast</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/podcast.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What did you do in Mitaka: Emilien Macchi</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/</id>
+    <published>2016-05-04T21:03:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Continuing my series of interviews with RDO engineers, here's my chat with Emilien Macchi, who I talked with at OpenStack Summit last week in Austin.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to talk about what you did in Mitaka, please contact me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" data-link="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, please download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/uinm26/emilien_macchi.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with Emilien Macchi, who is one of the people that
+worked on the Mitaka release of OpenStack. Thank you for taking time
+to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Emilien&lt;/strong&gt;: Thank you for welcoming me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: In Mitaka, most of my tasks were related to packaging testing. I'm
+currently leading the Puppet OpenStack group, which is a team where we
+develop some Puppet modules that deploy OpenStack in production. Red
+Hat is using the Puppet modules in TripleO, so we can automate the
+deployment of OpenStack services. Recently we switched the gates of
+OpenStack Infra to use RDO packaging. We had a lot of issued before
+because we didn't have much CI. But since Mitaka, the RDO and the
+Puppet teams worked a lot together to make sure that we can provide
+some testing together. We can fix things very early when it's broken
+upstream. Like when we have a new dependency or when we have a change
+in the requirements. That was this kind of test where you provide very
+early feedback to the RDO people that are doing the packaging. It was
+very interesting to work with RDO.&lt;/p&gt;
+
+&lt;p&gt;We provided early feedback on the builds, on the failures. We also
+contributed to … I say "we", I don't like to say "I" … we, my
+group, my Puppet group, we contributed to the new packages that we
+have in Mitaka. We updated the spec in the package so we could have
+more features, and more services in the RDO projects.&lt;/p&gt;
+
+&lt;p&gt;Testing! Testing every day. Testing, testing, testing. Participating
+in the events that the RDO community is having, like the weekly
+meetings, the testing days. It was very interesting for us to have
+this relationship with the RDO team.&lt;/p&gt;
+
+&lt;p&gt;So I'm looking forward to Newton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What do you anticipate you'll be working on in Newton?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Well, that's an interesting question. We are talking about this
+week. [At OpenStack Summit, Austin.]&lt;/p&gt;
+
+&lt;p&gt;The challenge for us … the biggest challenge, I guess, is to follow
+the release velocity of upstream projects. We have a bunch of projects
+in OpenStack, and it's very hard to catch up with all of the projects
+at the same time. In the meantime we have to because those projects,
+they are in the RDO project and also in the products, so that's
+something we need to … we need to scale the way that we producing
+all this work.&lt;/p&gt;
+
+&lt;p&gt;Something we are very focused on right now is to use the Software
+Factory project, which is how OpenStack Infra is operating to build
+OpenStack software. This is a project - an open source project - which
+is now used by RDO. We can have this same way as upstream, but for
+downstream - we can have the same way to produce the RDO artifacts,
+like the packages and the Puppet modules, and so on. That's the next
+big challenge, is to be fully integrated with Software Factory, to
+implement the missing features we will need to make the testing
+better.&lt;/p&gt;
+
+&lt;p&gt;Yeah, that's the biggest challenge: Improve the testing, and stopping
+doing manual things, automate all the things, that is the next
+challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much. Thanks for your time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Thank you for your time.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in Mitaka? Javier Peña</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-javier-pena/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-javier-pena/</id>
+    <published>2016-04-26T17:18:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We're continuing our series of "What did you do in Mitaka?"
+interviews. This one is with Javier Peña.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/82a4c-5ec74f?from=yiiadmin" data-link="https://www.podbean.com/media/player/82a4c-5ec74f?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, you can download the file &lt;a href="https://rdocommunity.podbean.com/mf/play/fgk3cc/javier-pena-mitaka.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: Today I'm speaking with Javier Peña, who is another member
+of the Red Hat OpenStack engineering team. Thanks for making time to
+speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Javier&lt;/strong&gt;: Thank you very much for inviting me, Rich.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you work on in the Mitaka cycle?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt;: I've been focusing on three main topics. First one was keeping the
+DLRN infrastructure up and running. As you know, this is the service
+we use to create RPM packages for our RDO distribution, straight from
+the upstream master commits.&lt;/p&gt;
+
+&lt;p&gt;It's been evolving quite a lot during this cycle. We ended up with so
+much success that we're having infrastructure issues. One of the
+topics for the next cycle will be to improve the infrastructure, but
+that's something we'll talk about later.&lt;/p&gt;
+
+&lt;p&gt;These packages have now been consumed by the TripleO, Kolla, and
+Puppet OpenStack CI, so we're quite well tested. Not only are we
+testing them directly from the RDO trunk repositories, but we have
+external trials as well.&lt;/p&gt;
+
+&lt;p&gt;On top of that I have also been working on packaging, just like some
+other colleagues on the team who've you've already had a chance to
+talk to - Haikel, Chandan - I have been contributing packages both to
+upstream Fedora, and also RDO directly.&lt;/p&gt;
+
+&lt;p&gt;And finally, I'm also one of the core maintainers of Packstack. In
+this cycle we've been adding support for some services such as AODH
+and Gnocchi. Also we switched Mysql support from the Python side. We
+switched libraries, and we had to do some work with the upstream
+Puppet community to make sure that PyMysql, which is now the default
+Python library used upstream, is also used inside the Puppet core and
+we can use it in Packstack.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: You mentioned briefly infrastructure changes that you'll be making
+in the upcoming cycle. Can you tell us more about what you have
+planned for Newton?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt;: Right now the DLRN infrastructure is building 6 different lines of
+repositories. We have CentOS master, which is now Newton. Mitaka,
+Liberty, and Kilo. And we have two branches for Fedora as well. So
+this is quite a heavy load for VMs that we're running right now. We
+were having some issues in the cloud we were running that instance. So
+what we're doing now is we are migrating to the CentOS CI
+infrastructure. We are having a much bigger machine in there. And also
+what we are going to do is we will be publishing the resulting
+repositories using the CentOS CDN, which is way more reliable than
+what we could build with individual VMs.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you again for your time. And we look forward to seeing what
+comes in Newton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt;: Thank you very much, Rich.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in MItaka? Haïkel Guémar</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/</id>
+    <published>2016-04-22T14:51:28+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;In this installment of the "What Did You Do in Mitaka" series, I'm
+speaking with Haïkel Guémar&lt;/p&gt;
+
+&lt;iframe id="audio_iframe" src="https://www.podbean.com/media/player/z8zks-5ea7c6?from=yiiadmin" data-link="http://www.podbean.com/media/player/z8zks-5ea7c6?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, you can download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/pfcayj/haikel-guemar-mitaka.mp/"&gt;HERE&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: Thanks for making time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Haïkel&lt;/strong&gt;: Thank you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: So, tell me, what did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: I work on the &lt;a href="http://rdoproject.org"&gt;RDO&lt;/a&gt; engineering team - the team that is responsible
+for the stewardship of RDO. For this cycle, I've been focusing on our
+new packaging work flow.&lt;/p&gt;
+
+&lt;p&gt;We were using, for a long time, a piece of infrastructure taken from
+Fedora, CentOS, and GitHub. This didn't work very well, and was not
+providing a consistent experience for the contributors. So we've been
+working with another team at Red Hat to provide a more integrated
+platform, and one that mirrors the one that we have upstream, based on
+the same tools - meaning Git, Gerrit, Jenkins, Nodepool, Zuul - that is
+called &lt;a href="https://github.com/redhat-cip/software-factory"&gt;Software Factory&lt;/a&gt;. So we've been working with the Software
+Factory team to provide a specialization of that platform called
+&lt;a href="https://github.com/redhat-cip/rpmfactory"&gt;RPMFactory&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;RPMFactory is a platform specialized for producing RPMs in a
+continuous delivery fashion. It has all the advantages of the old
+tooling we have been using, but with more consistency. You don't have
+to look in different places to find the source code, the packaging,
+and stuff like that. Everything is under a single portal.&lt;/p&gt;
+
+&lt;p&gt;That's what I've been focusing on during this cycle, on top of my
+usual duties, which is producing packages and fixing it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: And looking forward to the Newton release, what do you think you're
+going to be working on in that cycle?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: While we've been working in the new workflow, we've been setting a
+new goal, that is to decrease the gap between upstream releases and
+RDO releases down to 2 weeks. Well, we did it &lt;a href="https://www.rdoproject.org/blog/2016/04/rdo-mitaka-released/"&gt;on the very same day&lt;/a&gt; for
+Mitaka! So my goal would be for Newton to do as good as this time, or
+even better. Why not under 2 hours? Not putting on ourselves more
+pressure, but to try to release almost at the same time as upstream
+GA, RDO. And also with the same quality standards.&lt;/p&gt;
+
+&lt;p&gt;One of the few things that I was not happy with during the Mitaka
+cycle was mostly the fact that we didn't manage to release some
+packages in time, so I'd like to do better. Soon enough I will be
+asking for people to fill in a wish list on packaging, so that we are
+able to work on that earlier. And so we could release them on time
+with GA.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thanks again for taking the time to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Thank you Rich, for the series.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in Mitaka:  Ihar Hrachyshka talks about Neutron</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ihar-hrachyshka-talks-about-neutron/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ihar-hrachyshka-talks-about-neutron/</id>
+    <published>2016-04-15T18:08:04+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;In this installment of our "What did you do in Mitaka?" series, Ihar Hrachyshka talks about his work on Neutron both in Mitaka, and what's planned for Newton.&lt;/p&gt;
+
+&lt;p&gt;You can listen below. If the player doesn't work for you, you can listen &lt;a href="http://rdocommunity.podbean.com/mf/web/sipki2/ihar_hrachyshka_mitaka.mp3/"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe id="audio_iframe" src="https://www.podbean.com/media/player/7ximn-5e7230" width="100%" height="100" frameborder="0" scrolling="no"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: Hello, I'm speaking with &lt;a href="http://tm3.org/64"&gt;Ihar Hrachyshka&lt;/a&gt; about the work that he did
+in the RDO community on the &lt;a href="http://releases.openstack.org/mitaka/index.html"&gt;Mitaka release of OpenStack&lt;/a&gt;. Thank you for
+taking time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ihar&lt;/strong&gt;: Thank you for having me&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Could you mention the things that you've worked on in Mitaka, both
+upstream, and also specifically for &lt;a href="http://rdoproject.org"&gt;RDO&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I&lt;/strong&gt;: One thing that I was focusing on during Mitaka in upstream is - we
+are looking at how we can enhance the upgrade story for the project I
+work on, which is &lt;a href="https://wiki.openstack.org/wiki/Neutron"&gt;Neutron&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(See &lt;a href="http://docs.openstack.org/releasenotes/neutron/mitaka.html"&gt;Neutron Mitaka release notes&lt;/a&gt;  )&lt;/p&gt;
+
+&lt;p&gt;There was a lot of good work done in this regard on other projects, in
+previous cycles, like in Nova. And Neutron was kind of lagging on
+that. During Mitaka, we formed a sub-team that looks specifically into
+the upgrade story, and we've identified several pain points that we
+were addressing during this cycle, and plan to continue the work in
+Neutron, and forward.&lt;/p&gt;
+
+&lt;p&gt;One thing that we've identified is even though so-called rolling
+upgrades were kind of supported in the sense that there was some code
+to handle that scenario, for upgrades. But it was never actually
+validated in our CI gate, so no-one could be sure that it actually
+worked. So that was one thing that we tackled. We added proper jobs to
+validate these scenarios, and make sure that they work.&lt;/p&gt;
+
+&lt;p&gt;Another thing for upgrades is that we are looking at reducing and
+maybe even eliminating any downtime for API endpoints for Neutron,
+especially in the case when you have highly-available controllers. That
+involves a lot of work in the code base, a lot of change there to
+refactor the code. We've already started the work during Mitaka, and
+we're going to proceed with that in Newton. We hope that we complete
+this work in Newton, and then for all upgrades starting from Newton to
+the next release, operators will be able to retain their Neutron API
+available while controllers are upgraded one by one. That's one thing
+that I was working on.&lt;/p&gt;
+
+&lt;p&gt;There are other things. There was a lot of work done in Neutron in the
+scope of Quality of Service (QOS). The initial support for QOS in
+Neutron was merged in Liberty, but it's still quite limited, so we
+expand on what we had done in that release. Specifically, the initial
+support was just for OpenVSwitch, but in Mitaka we added support for
+Linuxbridge ml2 driver. We also added role-based access control for QOS
+policies. We added support for so-called DSCP tags, which is a feature
+to prioritize traffic based on which port it came from.&lt;/p&gt;
+
+&lt;p&gt;Another interesting thing that we finally tackled in Mitaka is MTU
+support. This is one of the huge pain points that were identified
+by operators in the past, that Neutron, while being the networking
+solution for OpenStack, cannot actually properly handle MTUs - which
+stands for Maximum Transfer Unit. Neutron could not actually handle,
+neither standard MTUs for ethernet, nor so-called jumbo frames, which
+is really bad. It means that instances did not have access to the full
+capabilities of the underlying physical infrastructure. That should
+hopefully go away in Mitaka, because there were several changes there,
+both on the Neutron side, and on Nova, which now should make Neutron
+work out of the box, both for non-standard and standard MTU sizes.&lt;/p&gt;
+
+&lt;p&gt;Finally, one thing to note, apart from pure upstream work in the
+Master branch, is that in Neutron, in this Mitaka release, we adopted
+a new approach to handle backports for stable branches. Now instead of
+waiting for something to break in a user installation, and then
+reacting to their bug reports, we are proactively backporting all of
+the bug fixes from the latest master branch into stable branches, and
+release new stable releases, often. We hope that it will reduce the
+number of painful problems, in actual installations that rely on stable
+branches, very significantly.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: This sounds like an enormous amount of work. How many people are
+you working with across how many organizations, would you estimate?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I&lt;/strong&gt;: In OpenStack it's always that you work with other people. I would
+say … I don't know … there are I think 5, 6, major contributors to
+Neutron. Surely, nothing comes in OpenStack if you're just single. So
+that's collaboration.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much for your time, and we look forward to seeing
+what comes in Newton.&lt;/p&gt;
+
+&lt;p&gt;I: Thank you.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Haikel Guemar talks about RPM packaging</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/haikel-guemar-talks-about-rpm-packaging/"/>
+    <id>http://rdoproject.org/blog/2015/10/haikel-guemar-talks-about-rpm-packaging/</id>
+    <published>2015-10-05T15:38:27+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;em&gt;This continues my &lt;a href="/blog/ptl-interviews"&gt;series talking with OpenStack project PTLs&lt;/a&gt; (Project Technical Leads) about their projects, what's new in Liberty, and what's coming in future releases.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;If the audio player below doesn't work for you, you can listen to the interview &lt;a href="http://drbacchus.com/podcasts/openstack/haikel_packaging.mp3"&gt;HERE&lt;/a&gt; or
+see the transcript below.&lt;/p&gt;
+
+&lt;audio controls=""&gt;
+  &lt;source src="http://drbacchus.com/podcasts/openstack/haikel_packaging.mp3" type="audio/mpeg" /&gt;
+&lt;/audio&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: I'm Rich Bowen, I'm the community liaison for the OpenStack project
+at Red Hat. I'm speaking with Haikel Guemar, who is the Project
+Technical Lead (PTL) on the &lt;a href="https://wiki.openstack.org/wiki/Rpm-packaging"&gt;RPM packaging project&lt;/a&gt; at OpenStack. Thanks
+for taking this time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Thank you, Rich. I appreciate it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: This is a fairly new project, in terms of actually being part of
+OpenStack - is that right?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Yeah, exactly. We've been an official project for a few months, and
+we're still in bootstrapping. There has been some discussion at the
+last Summit to converge packaging project to work together, upstream.
+After some discussion we discussion, we decided to split between two
+separate projects, one around Debian packaging, and one around RPM
+packaging. So we've been working with people from RDO, SUSE, and also
+some people from Mirantis, to work together on RPM packaging upstream.&lt;/p&gt;
+
+&lt;p&gt;By the way, I'm co-PTL of the project. I'm co-leading the project with
+Dirk Mueller from SUSE. Hats off to Dirk, if you're listening to us.
+We're trying to bring packaging into the heart of the project, because
+OpenStack is fairly good at trying to develop its own software
+pipeline, and the only bit that was missing was packaging - the last
+missing bit between the project and the end-user.&lt;/p&gt;
+
+&lt;p&gt;So, we've been trying to do that, and also help the upstream project
+to understand what are our needs upstream, because we have very
+specific requirements that we want them to hear.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: How do you picture this project changing the downstream projects like
+RDO and Fuel? Do you think there will be a big impact on those, or
+will they go on as though nothing's changed?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: I think there will be some impact, because if all the downstream
+packages are working on this, at some point we will be able to produce
+multiple packagings. There will still be some differences, but what we
+are working on - trying to mitigate them and trying to share most of
+our workers.&lt;/p&gt;
+
+&lt;p&gt;Speaking now with my RDO hat - I do hope that at some point, RDO will
+derive from our upstream RPM packaging. That's what we want to do - be
+closer to upstream. That's the point of RDO, not of the upstream
+project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Looking forward to that time, what would then be the role of
+projects like RDO, and Fuel. Would they still be relevant, or do you
+see them going away long term.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Tough question. I think they will still be there, because at some
+point we will be targeting very different segments. For instance, RDO
+itself is the upstream for other downstream distributions of
+OpenStack. Like, obviously, the Red Hat one, or Cisco's, or many
+others. I think that maybe RDO might disappear, maybe, but we still
+want to have some degree of integration. I hope that most of it will
+go upstream, because that's where people are working, and we want to
+deal with before it reaches the users, not after we release.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: In Liberty, and even more in future releases, with the integrated
+release kind of going away, and more reliance on tags, is the RPM
+packaging project going to package everything, or just a particular
+tag, or will that be up to the community.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: That will be up to the community. The core upstream RPM packaging
+team will be working on core projects. We will be looking at Big Tent
+projects according to our own drive. But if people want to contribute
+any other Big Tent projects, they are welcome to do it. We are really
+looking forward to extending the comunity. We're still a small team so
+we will be focusing on core OpenStack. Currently we're working on
+clients because that's what everyone needs to work with OpenStack, and
+when we're done, then we'll start working on services.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: One of the things that RDO does is the CI effort within the CentOS
+infrastructure. And there's obviously also a lot of that happening in
+the upstream OpenStack. Will the RPM packaging rely on the upstream
+for this?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: We had some talks about it, and that was a funny discussion,
+because we discovered that our respective CI are more or less the same
+steps, and encounter the same issues. So we are willing to push more
+of the CI upstream.&lt;/p&gt;
+
+&lt;p&gt;I personally hope - but it's not something that we agreed on - I hope
+that we will become part of the continuous delivery pipeline of
+OpenStack. That means that every commit from upstream would be
+packaged and then introduced into the CI, and then these patches would
+be usable for other CI, since we don't have any concrete example, I
+will take one from RDO. We've been working with Puppet upstream CI
+recently, as they wanted to have come CI on CentOS, so we've been
+working on fixing staging issues that were affecting their CI so they
+could test properly Puppet upstream modules on CentOS. That was
+amazing because they helped us find many many issues that we were able to
+solve very early. And that's what I hope for the upstream RPM project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: I noticed that they are no candidates for the PTL for the project
+in the coming election. Is that just because the project is so new,
+you're not going to have turnover in that?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Yeah, that was the discussion just this afternoon about it. We're
+still new, and we don't want to confuse people with elections just
+now. We're still building the community, and we've been working on
+that with Dirk. The project won't be leaderless. It's still difficult
+too, because we still have so much to do.&lt;/p&gt;
+
+&lt;p&gt;The main difference between the RPM packaging team and other teams is
+that we're not solely dedicated to work on upstream tasks, like
+Cinder, Glance, or Nova. We have much more downstream-focused teams,
+so we wanted to stay focused. So we thought we would just keep the
+same PTLs for the next cycle. And then when we are more mature we will
+have candidacy.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: As PTL … it's been interesting talking with various projects,
+because the role of PTL can vary a great deal depending on the size
+and maturity of the project. I was wondering if you could tell us what
+your responsibilities are as PTL.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Our responsibility is ensuring that all the community team is
+aligned around the same goals. It means also trying to gather new
+members. For instance, being the PTL brings the attention on you, so
+people contact you so they can join the project. As we are still
+small, that was a critical path, and I have been trying to have them
+join the team, and make them active participants. I've been pretty
+happy that, for instance, Mirantis people reached out to me, and
+they've been able to join, and I appreciate that. One of the other
+things is to ensure that we are working together. I'm pretty happy
+that I am co-PTL with Dirk, because we can share the load. It is very
+tiring. We have to schedule meetings and gather people. Recently we
+had a hack day, to solve some of our impediments. We have to ensure
+that we have enough people, and we have the right people, to help. For
+instance, we have tooling issues, so I tried to get some people who
+would be likely to work on that aspect available for that day. I do
+not view the PTL as someone who decides everything. It's more about
+being the coordinator.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Finally: if somebody does want to get involved in the project,
+where should they come? Is it to the mailing list, or IRC, or what?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: We're still using the openstack-devel mailing list with 'RPM
+Packaging' topics. We have an IRC channel on Freenode, which is
+#openstack-rpm-packaging. We have regular meetings every two weeks on
+Thursday. We sometimes have an additional meeting, at the same time.
+We keep logs of our agenda. And if you need anything else, just ping
+&lt;code&gt;number80&lt;/code&gt; or &lt;code&gt;dirk&lt;/code&gt; on the channel, and we'd be happy to help you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you again for taking time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Thank you.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Podcast: Ohad Levy on RDO and the Foreman</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2014/03/podcast-ohad-levy-on-rdo-and-the-foreman/"/>
+    <id>http://rdoproject.org/blog/2014/03/podcast-ohad-levy-on-rdo-and-the-foreman/</id>
+    <published>2014-03-11T12:09:27+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Yesterday I spoke with Ohad Levy about his work on installing RDO using the Foreman. I had done an interview with him at FOSDEM on the same topic, but that didn't work out.&lt;/p&gt;
+
+&lt;iframe id="audio_iframe" src="http://www.podbean.com/media/player/28r5n-5e72d3" width="100%" height="100" frameborder="0" scrolling="no"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;If the player above doesn't work for you, you can listen to the interview &lt;a href="http://rdocommunity.podbean.com/mf/web/rqdcqx/ohad_levy_foreman.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

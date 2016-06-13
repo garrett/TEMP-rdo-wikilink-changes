@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Creation of Trove-Compatible Images for RDO &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='Rich Bowen' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content='Creation of Trove-Compatible Images for RDO' property='og:title'>
+<meta content='[A guest post by Victoria Martínez de la Cruz]&#x000A;&#x000A;OpenStack Trove, included in the latest RDO releases, allows users to use the features of relational and non-relational databases without the added complexity...' property='og:description'>
+<meta content='http://rdoproject.org/blog/2015/03/creation-of-trove-compatible-images-for-rdo/' property='og:url'>
+<meta content='2015-03-30T10:41:11Z' property='article:published_time'>
+<meta content='rbowen' property='article:author:username'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content='Creation of Trove-Compatible Images for RDO' name='twitter:title'>
+<meta content='[A guest post by Victoria Martínez de la Cruz]&#x000A;&#x000A;OpenStack Trove, included in the latest RDO releases, allows users to use the features of relational and non-relational databases without the added complexity...' name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Creation of Trove-Compatible Images for RDO
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2015-03-30T10:41:11Z'>
+Monday 30 March 2015
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>[A guest post by Victoria Martínez de la Cruz]</p>
+
+<p>OpenStack Trove, included in the latest RDO releases, allows users to use the features of relational and non-relational databases without the added complexity of handling administrative tasks. With Trove, database users don't need to be database experts to provision and manage multiple databases instances.</p>
+
+<p>Apart from the installation and configuration of the different modules you require to use Trove, you will need to build an image specific to the OS and storage backend of your choice.</p>
+
+<p>Currently, there is no easy way to build these images: you can either inject the required files manually or you can use an utility called diskimage-builder.</p>
+
+<p>In this guide we are going to explain how to build a RHEL-based Trove compatible images using a script that wraps diskimage-builder and adds all the required bits.</p>
+
+<p>Red Hat Enterprise Linux (RHEL) 7 is the minimum recommended version, or the equivalent version of one of the RHEL-based Linux distributions such as CentOS 7, or Fedora 21 or later, to do this task. Also, we assume you have the latest RDO, and that you have already subscribed to the appropriate repositories.</p>
+
+<ol>
+  <li>
+    <h1 id="install-trove-image-elements">Install trove-image-elements</h1>
+  </li>
+</ol>
+
+<p>The trove-image-elements repository contains the code necessary to build the images with the supported storage backends – currently MySQL and MongoDB. Install git and clone it in your environment using the following directives:</p>
+
+<blockquote>
+  <p>$ sudo yum -y install git
+$ sudo git clone https://github.com/vkmc/trove-image-elements</p>
+</blockquote>
+
+<ol>
+  <li>
+    <h1 id="download-a-rhel-based-guest-image">Download a RHEL-based guest image</h1>
+  </li>
+</ol>
+
+<p>Get a base guest image for the distro of your choice. You can get RHEL 7, CentOS 7 and Fedora 21 guest images in https://rdoproject.org/Image_resources. You can also get images for RHEL 6, CentOS 6 or Fedora 20, but the image creation process has not been tested with those versions.</p>
+
+<ol>
+  <li>
+    <h1 id="create-the-image">Create the image</h1>
+  </li>
+</ol>
+
+<p>The diskimage-builder tool works by taking a disk image, installing pieces of software - called 'elements' - and repacking it for use.</p>
+
+<p>Running the script will generate a (a great deal of) log output, as the utility opens your base image, registers it to RHSM (in the case of RHEL), updates the system image, installs trove-guestagent and the storage backend of your choice, and packages the image for use in Trove. At the end, you'll have a file named <code>DISTRO-DATASTORE-guest-image.qcow2</code>, where DISTRO and DATASTORE are the GNU/Linux distribution and storage backend you selected.</p>
+
+<h2 id="create-a-rhel7-image">3.1 Create a RHEL7 image</h2>
+
+<p>Run create_trove_image.sh with the following parameters to create a RHEL 7 image with MySQL:</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh –distro rhel –datastore mysql –local-image &lt;path-to-local-image&gt; –rh-user <your-rh-user> --rh-password &lt;your-rh-password&gt; --rh-pool-id &lt;subscription-pool-id&gt;</your-rh-user></p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh -d rhel -s mysql -i &lt;path-to-local-image&gt; -u &lt;your-rh-user&gt; -p &lt;your-rh-password&gt; -o <subscription-pool-id></subscription-pool-id></p>
+</blockquote>
+
+<h2 id="create-a-centos-7-image">3.2 Create a CentOS 7 image</h2>
+
+<p>Run create_trove_image.sh with the following parameters to create a CentOS 7 image with MySQL:</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh –distro centos –datastore mysql –local-image &lt;path-to-local-image&gt;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh -d centos -s mysql -i &lt;path-to-local-image&gt;</p>
+</blockquote>
+
+<h2 id="create-a-fedora-21-image">3.3 Create a Fedora 21 image</h2>
+
+<p>Run create_trove_image.sh with the following parameters to create a Fedora 21 image with MySQL:</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh –distro fedora –datastore mysql –local-image &lt;path-to-local-image&gt;</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+  <p>$ sudo ./create_trove_image.sh -d fedora -s mysql -i <path-to-local-image></path-to-local-image></p>
+</blockquote>
+
+<ol>
+  <li>
+    <h1 id="register-the-image-with-trove">Register the Image with Trove</h1>
+  </li>
+</ol>
+
+<p>First, upload the image to Glance, using either the UI or the API. In the
+UI, you can find this in your project's interface at Compute/Images.</p>
+
+<p>Second, register this image with Trove. There is no way to do this from the UI yet, so
+you have to do this using the API. For this, we provide a second script load_trove_image.sh.</p>
+
+<p>Simply run load_image_trove.sh specifying the datastore, the datastore version, the packages
+required by the image you want to upload and the image id generated by Glance.</p>
+
+<blockquote>
+  <p>$ sudo ./load_trove_image.sh –datastore mysql –datastore-version centos-mysql5.5 –packages mysql-server=5.5 –id bbd73560-58aa-4377-b961-3d12e76b0bed</p>
+</blockquote>
+
+<p>or</p>
+
+<blockquote>
+  <p>$ sudo ./load_trove_image.sh -s mysql -v centos-mysql5.5 -p mysql-server=5.5 -i bbd73560-58aa-4377-b961-3d12e76b0bed</p>
+</blockquote>
+
+<p>You are now ready to begin using Trove: launch a new instance using the image you just created and start creating your DBs.</p>
+
+</section>
+<footer class='post-meta'>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2015-03-30-creation-of-trove-compatible-images-for-rdo.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 10 Nov 2015 18:09 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

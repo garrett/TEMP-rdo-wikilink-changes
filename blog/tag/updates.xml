@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Updates</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/updates.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Packstack updated in EPEL6</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/08/packstack-updated-in-epel6/"/>
+    <id>http://rdoproject.org/blog/2013/08/packstack-updated-in-epel6/</id>
+    <published>2013-08-20T14:30:15+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Packstack package has been updated in RDO Grizzly EPEL6 repo to openstack-packstack-2013.1.1-0.27.dev672.el6.&lt;/p&gt;
+
+&lt;p&gt;Changelog:
+* Mon Aug 19 2013 Martin Mágr &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#109;&amp;#109;&amp;#097;&amp;#103;&amp;#114;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#109;&amp;#109;&amp;#097;&amp;#103;&amp;#114;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt; - 2013.1.1-0.27.dev672
+- Added net.bridge.bridge-nf-call*=1 for –allinone installation (#997941)
+- Added global option –exclude-servers=EXCLUDE_SERVERS (#996782)&lt;/p&gt;
+
+&lt;p&gt;(Via Martin on the rdo-list mailing list - https://www.redhat.com/archives/rdo-list/2013-August/msg00151.html )&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>[package announce] openstack-packstack updated</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/08/package-announce-openstack-packstack-updated/"/>
+    <id>http://rdoproject.org/blog/2013/08/package-announce-openstack-packstack-updated/</id>
+    <published>2013-08-13T16:09:08+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Greetings,&lt;/p&gt;
+
+&lt;p&gt;Packstack packages has been updated in RDO Grizzly and Havana repos
+to openstack-packstack-2013.1.1-0.24.dev660 (grizzly) and openstack-packstack-2013.2.1-0.2.dev702 (havana)&lt;/p&gt;
+
+&lt;p&gt;%changelog
+* Tue Aug 13 2013 Martin Mágr &lt;mmagr redhat="" com=""&gt; - 2013.1.1-0.24.dev660
+- ovs_use_veth=True is no longer required
+- Allow tempest repo uri and revision configuration
+- Update inifile module to support empty values&lt;/mmagr&gt;&lt;/p&gt;
+
+&lt;p&gt;%changelog
+* Tue Aug 13 2013 Martin Mágr &lt;mmagr redhat="" com=""&gt; - 2013.2.1-0.2.dev702
+- ovs_use_veth=True is no longer required
+- Remove libvirt's default network (i.e. virbr0) to avoid confusion
+- Rename Quantum to Neutron
+- Added support for configuration of Cinder NFS backend driver (#916301)
+- Removed CONFIG_QUANTUM_USE_NAMESPACES option&lt;/mmagr&gt;&lt;/p&gt;
+
+&lt;p&gt;(See https://www.redhat.com/archives/rdo-list/2013-August/msg00102.html for any followup posts.)&lt;/p&gt;
+</content>
+  </entry>
+</feed>

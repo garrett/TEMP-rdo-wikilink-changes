@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+TripleO Architecture Overview &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/tripleo/architecture-overview.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="tripleo-architecture-overview">TripleO Architecture Overview</h1>
+
+<h2 id="quickstart">QuickStart</h2>
+
+<p>This document lists the main components of TripleO, and gives some description of how each component is used. There are links to additional sources of information throughout the document. For those wishing to start actually using TripleO, the current installation documentation is here - <a href="https://repos.fedorapeople.org/repos/openstack-m/rdo-manager-docs/liberty/introduction/introduction.html">https://repos.fedorapeople.org/repos/openstack-m/rdo-manager-docs/liberty/introduction/introduction.html</a></p>
+
+<h2 id="introduction---tripleo">Introduction - TripleO</h2>
+
+<p>TripleO is a set of tools for deploying, and managing OpenStack - <a href="https://wiki.openstack.org/wiki/TripleO">https://wiki.openstack.org/wiki/TripleO</a></p>
+
+<p>The name TripleO refers to three related things:</p>
+
+<ul>
+  <li>A design pattern, where an underlying OpenStack instance is used to deploy and then to manage another, usually more complex, OpenStack instance.</li>
+  <li>A set of configuration files and scripts which contain OS image building rules and service configuration rules</li>
+  <li>The upstream program within the OpenStack project which develops the various scripts and utilities which are combined to deliver the complete software solution.</li>
+</ul>
+
+<p>The design pattern, where a sophisticated, general-purpose OpenStack instance is created by, and then runs on top of, a simpler, single-purpose deployment instance of OpenStack, is what gives TripleO its name. It is short for <em>OpenStack On OpenStack</em>.</p>
+
+<h2 id="benefits">Benefits</h2>
+
+<p>Using TripleO’s combination of OpenStack components, and their APIs, as the infrastructure to deploy and operate OpenStack itself delivers several benefits:</p>
+
+<ul>
+  <li>TripleO’s APIs *are* the OpenStack APIs. They’re well maintained, well documented, and come with client libraries and command line tools. Users who invest time in learning about TripleO’s APIs are also learning about OpenStack itself, and users who are already familiar with OpenStack will find a great deal in TripleOthat they already understand.</li>
+  <li>Using the OpenStack components allows more rapid feature development of TripleO than might otherwise be the case; TripleO automatically inherits all the new features which are added to Glance, Heat etc., even when the developer of the new feature didn’t explicitly have TripleO and TripleO in mind.</li>
+  <li>The same applies to bug fixes and security updates. When OpenStack developers fix bugs in the common components, those fixes are inherited by TripleO</li>
+  <li>Users’ can invest time in integrating their own scripts and utilities with TripleO’s APIs with some confidence. Those APIs are cooperatively maintained and developed by the OpenStack community. They’re not at risk of being suddenly changed or retired by a single controlling vendor.</li>
+  <li>For developers, tight integration with the openstack APIs provides a solid architecture, which has gone through extensive community review.</li>
+</ul>
+
+<p>It should be noted that not everything in TripleO is a reused OpenStack element. The Tuskar API, for example (which lets users design the workload cloud that they want to deploy), is found in TripleO but not, so far at least, in a typical Openstack instance. The Tuskar API is described in more detail below.</p>
+
+<h2 id="deploying-the-workload-cloud-with-tripleo">Deploying the workload cloud with TripleO</h2>
+
+<p>To begin using TripleO, it is necessary to install the deployment cloud (sometimes referred to as the <em>undercloud</em>). The deployment cloud is a working instance of OpenStack, typically on a single machine. It is somewhat limited, because it only really exists for a single purpose: to deploy, and then manage, the workload cloud (sometimes referred to as the <em>overcloud</em>).</p>
+
+<p>In TripleO, installing and configuring the deployment cloud is done using a script called instack. Detailed instructions are included in the QuickStart link at the head of this document.</p>
+
+<p>The setup that instack carries out includes:</p>
+
+<ul>
+  <li>Installing the required software to run the deployment cloud and configuring services</li>
+  <li>Populating the Tuskar DB with default roles</li>
+  <li>Setting a flavor management policy for the installation</li>
+  <li>Downloading, or building, OS images</li>
+  <li>Uploading those images into Glance.</li>
+</ul>
+
+<p>When instack has set up the deployment cloud, the user has a single machine which is running a collection of core OpenStack services, and a couple of other services. The easiest way to understand all of these is to walk through the process of using them to define, prepare for, then deploy and monitor, the workload cloud.</p>
+
+<h2 id="hardware-discovery">Hardware discovery</h2>
+
+<p>Deploying the workload cloud requires suitable hardware. The first task is to register the available hardware with Ironic, OpenStack’s equivalent of a hypervisor for managing baremetal servers. The sequence of events is pictured below.</p>
+
+<p><img alt="" title="Hw_discovery_seq.jpg" src="/images/wiki/Hw_discovery_seq.jpg" /></p>
+
+<ul>
+  <li>The user, via the TripleO UI, the command-line tools, or through direct API calls, registers the power management credentials for a node with Ironic.</li>
+  <li>The user then instructs Ironic to reboot the node</li>
+  <li>Because the node is new, and not already fully registered, there are no specific PXE-boot instructions for it. In that case, the default action is to boot into a discovery ramdisk</li>
+  <li>The discovery ramdisk probes the hardware on the node and gathers facts, including the number of CPU cores, the local disk size and the amount of RAM.</li>
+  <li>The ramdisk posts the facts to the discoverd API</li>
+  <li>Discoverd matches the hardware facts it has received with the node whose power management details are already registered with Ironic, and updates the Ironic DB, completing the registration of the node.</li>
+</ul>
+
+<h2 id="understanding-roles">Understanding roles</h2>
+
+<p>Roles are stored in the Tuskar DB, and are used through interaction with the Tuskar API. A role brings together three things:</p>
+
+<ul>
+  <li>An image; the software to be installed on a node</li>
+  <li>A flavor; the size of node suited to the role</li>
+  <li>A set of heat templates; instructions on how to configure the node for its task</li>
+</ul>
+
+<p>In the case of the “Compute” role:</p>
+
+<ul>
+  <li>the image must contain all the required software to boot an OS and then run the KVM hypervisor and the Nova compute service</li>
+  <li>the flavor (at least for a deployment which isn’t a simple proof of concept), should specify that the machine has enough CPU capacity and RAM to host several VMs concurrently</li>
+  <li>the Heat templates will take care of ensuring that the Nova service is correctly configured on each node when it first boots.</li>
+</ul>
+
+<p>The roles in the current version of TripleO aren’t intended to be very customisable. The associated image can be updated, to allow for newer images with bug fixes, and the associated flavors can be changed (unless the deployment is only a proof of concept - see below), but the Heat templates which configure a node for its role cannot easily be altered, neither can roles be added or removed.</p>
+
+<p>In principle, a user might create their own role definition which did just about anything; they could even be used to deploy something other than an OpenStack workload cloud. However, the inter-related OS images (composed from TripleO image elements) and instance configuration rules (contained in TripleO Heat templates) are complex. A small amount of changes could prevent them from adding up to an operational workload cloud. Roles are used when the user designs the workload cloud they wish to deploy, which is described in a later section.</p>
+
+<h2 id="managing-flavors">Managing flavors</h2>
+
+<p>When users are creating virtual machines (VMs) in an OpenStack cloud, the flavor that they choose specifies the capacity of the VM which should be created. The flavor defines the CPU count, the amount of RAM, the amount of disk space etc.. As long as the cloud has enough capacity to grant the user’s wish, and the user hasn’t reached their quota limit, the flavor acts as a set of instructions on exactly what kind of VM to create on the user’s behalf.</p>
+
+<p>In the deployment cloud, where the machines are usually physical rather than virtual (or, at least, pre-existing, rather than created on demand), flavors have a slightly different effect. Essentially, they act as a constraint. Of all of the discovered hardware, only nodes which match a specified flavor are suitable for a particular role. This can be used to ensure that the large machines with a great deal of RAM and CPU capacity are used to run Nova in the workload cloud, and the smaller machines run less demanding services, such as Keystone.</p>
+
+<p>The version of TripleO included in TripleO is capable of handling flavors in two different modes. The simpler PoC (Proof of Concept) mode is intended to enable new users to experiment, without worrying about matching hardware profiles. In the mode, there’s one single, global flavor, and any hardware can match it. That effectively removes flavor matching. Users can use whatever hardware they wish.</p>
+
+<p>For the second mode, named Scale because it is suited to larger scale workload cloud deployments, flavor matching is in full effect. A node will only be considered suitable for a given role if the role is associated with a flavor which matches the capacity of the node. Nodes without a matching flavor are effectively unusable.</p>
+
+<p>This second mode allows users to ensure that their different hardware types end up running their intended role, though it takes some extra effort to configure.</p>
+
+<h2 id="preparing-the-deployment-plan">Preparing the deployment plan</h2>
+
+<p>Tuskar exposes a REST API and allows users to define, or update, a deployment plan. That plan contains the details of the roles to be assigned, and the service configuration parameters to be deployed. When the user is satisfied that their deployment plan is correct, then can extract it from Tuskar, and pass it to Heat, which orchestrates the deployment of the actual cloud, based on the plan.</p>
+
+<p>Updating a deployed cloud follows a similar process: The deployment plan is Tuskar is amended to that, for example, it includes an increased number of Nova Compute nodes. That amended plan is then passed to Heat.</p>
+
+<p>There are notes here which described how to interact directly with the Tuskar API to retrieve and update a deployment plan. <a href="https://rdoproject.org/Tuskar-API">https://rdoproject.org/Tuskar-API</a></p>
+
+<p>For many users, the simplest way to read and update a deployment plan will be via the TripleO UI.</p>
+
+<p>In a default installation of TripleO, there’s a single pre-loaded deployment plan in Tuskar. The details can be retrieved with this command on the deployment cloud node:</p>
+
+<p><code>curl -v -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' </code><a href="http://0.0.0.0:8585/v2/plans/"><code>http://0.0.0.0:8585/v2/plans/</code></a></p>
+
+<p>There’s a large amount of output, the majority of which is the array of parameters which the deployment plans contain, these cover multiple passwords, some usernames, networking options, the name of the flavor to request when creating an instance of a particular role etc..</p>
+
+<p>On the command line, the complete set of details of a plan, including all the parameters, can be seen by first, retrieving the plan ID:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ tuskar plan-list&#x000A;  +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;  | uuid                                 | name      | description | roles                                              |&#x000A;  +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;  | 193f7d1d-a1a9-4605-a54f-2c4ead45a7ab | overcloud | None        | controller, swift-storage, compute, cinder-storage |&#x000A;  +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;</code></pre>
+
+<p>and then by using the uuid for the default plan to run:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ tuskar plan-show 193f7d1d-a1a9-4605-a54f-2c4ead45a7ab&#x000A;</code></pre>
+
+<p>That command lists a lot of output, including all the plan’s set of parameters.</p>
+
+<p>It is possible to alter the parameters associated with a plan, via the command line, or via the REST API. The following command increases the number of instances of the “compute” role which the plan will deploy to 6:</p>
+
+<pre class="highlight plaintext"><code>  tuskar plan-patch -A compute-1::count=6 193f7d1d-a1a9-4605-a54f-2c4ead45a7ab&#x000A;</code></pre>
+
+<p>Once the deployment plan is complete, it’s ready to be passed to Heat, the service which actually launches the workload cloud. The command-line tools for Heat consume yaml files. Those yaml files, containing the whole deployment, can be output from Tuskar with this command:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost tmp]$ tuskar plan-templates -O /tmp 193f7d1d-a1a9-4605-a54f-2c4ead45a7ab&#x000A;  Following templates has been written:&#x000A;  /tmp/plan.yaml&#x000A;  /tmp/environment.yaml&#x000A;  /tmp/provider-swift-storage-1.yaml&#x000A;  /tmp/provider-cinder-storage-1.yaml&#x000A;  /tmp/provider-controller-1.yaml&#x000A;  /tmp/provider-compute-1.yaml&#x000A;</code></pre>
+
+<h2 id="deploying-the-workload-cloud">Deploying the workload cloud</h2>
+
+<p>Bringing the deployment cloud into existence, by parsing the deployment plan from Tuskar and orchestrating the deployment of multiple nodes with images that their roles dictate, and with the required service parameters, is the role of Heat, OpenStack’s orchestration engine.</p>
+
+<p>Heat exposes a Rest API ( <a href="http://developer.openstack.org/api-ref-orchestration-v1.html">http://developer.openstack.org/api-ref-orchestration-v1.html</a> ) and also has a client CLI. As in many cases, the simplest way to use create a deployment cloud may well be to use the TripleO web UI.</p>
+
+<p>Heat’s own term for the applications that it creates is stack. The workload cloud, in Heat terms, is a particularly complex instance of a stack.</p>
+
+<p>Creating the stack with the CLI can be done like this:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost tmp]$ heat stack create -f tuskar_templates/plan.yaml -e tuskar_templates/environment.yaml&#x000A;</code></pre>
+
+<p>In order to the stack to be deployed, Heat makes successive calls to Nova, OpenStack’s compute service controller. Nova depends upon Ironic,which, as described above has acquired an inventory of discovered hardware by this stage in the process</p>
+
+<p>It is at this point that the flavors act as a constraint on the range of machines which can be scheduled onto. For each request to deploy a new node with a specific role, Nova filters the of available nodes, ensuring that the selected nodes meets the hardware requirements.</p>
+
+<p>Once the target node has been selected, Ironic does the actual provisioning of the node, Ironic retrieves the OS image associated with the role from Glance, causes the node to boot a deployment ramdisk and then, in the typical case, exports the node’s local disk over iSCSI so that the disk can be partitioned and the have the OS image written onto it by the Ionic Conductor.</p>
+
+<p>Once the nodes are booted, Heat also manages passing parameters to the newly launched OS in order to complete the configuration of services on the node.</p>
+
+<p>The status of the deploying stack, and the completion of the deployment can be seen with this command:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ heat stack-list&#x000A;  +--------------------------------------+------------+-----------------+----------------------+&#x000A;  | id                                   | stack_name | stack_status    | creation_time        |&#x000A;  +--------------------------------------+------------+-----------------+----------------------+&#x000A;  | 5b5dc570-c62c-4026-aa70-098c1ac383cb | overcloud  | CREATE_COMPLETE | 2015-03-12T20:15:16Z |&#x000A;  +--------------------------------------+------------+-----------------+----------------------+&#x000A;</code></pre>
+
+<p>“heat stack-show” will return a complete description of the state of the cloud.</p>
+
+<p>After the deployment of the workload cloud, there’s a set of steps which are required to initialise the keystone service, to register service endpoints, and to complete the configuration of Neutron.</p>
+
+<p>Those capabilities are integrated into the TripleO UI. From the command line, they are all encapsulated in the instack-deploy-overcloud script, which in turn calls init-keystone tripleo setup-endpoints and setup-neutron.</p>
+
+<h2 id="monitoring-the-workload-cloud">Monitoring the workload cloud</h2>
+
+<p>When the workload cloud is deployed, Ceilometer can be configured to track a set of OS metrics for each node (system load, CPU utilization, swap usage etc.) These metrics are graphed in the TripleO UI, both for individual nodes, and for groups of nodes, such as the collection of nodes which are all delivering a particular role.</p>
+
+<p>Additionally, Ironic exports IPMI metrics for nodes, which can also be stored in Ceilometer. This enables checks on hardware state such as fan operation/failure and internal chassis temperatures.</p>
+
+<p>The metrics which Ceilometer gathers can be queried for Ceilometer's REST API, or by using the command line client, as in the following example:</p>
+
+<p>The first stage is to get the Instance UUID which will be used to identify the node we want to report on:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ ironic node-list&#x000A;  +--------------------------------------+--------------------------------------+-------------+--------------------+-------------+&#x000A;  | UUID                                 | Instance UUID                        | Power State | Provisioning State | Maintenance |&#x000A;  +--------------------------------------+--------------------------------------+-------------+--------------------+-------------+&#x000A;  | 15739d49-90ab-4a42-9620-fe140f5bdcb5 | 9282131d-5e25-495c-82ce-dcbcd34158f7 | power on    | active             | False       |&#x000A;  | 3fb4021c-5a79-47ca-af39-f0dcde7109a4 | 31fac73a-90d0-44ef-b3ef-014b43f735e8 | power on    | active             | False       |&#x000A;  | 4c9915f1-8f6e-4110-85e3-6dcb8539f51d | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | power on    | active             | False       |&#x000A;  | 3ef1e9e9-9f6b-4bbd-aab1-dd0941fb1ae1 | 0a00e394-be74-45b2-9046-1d81dac3d4a4 | power on    | active             | False       |&#x000A;  +--------------------------------------+--------------------------------------+-------------+--------------------+-------------+&#x000A;</code></pre>
+
+<p>Having looked up the nodes, we can then look up the available meters for that node:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ ceilometer meter-list --query resource=d52ebd4f-a28b-49cf-8adc-61847e6bb525&#x000A;  +------------------------------------------+------------+-----------+--------------------------------------+---------+------------+&#x000A;  | Name                                     | Type       | Unit      | Resource ID                          | User ID | Project ID |&#x000A;  +------------------------------------------+------------+-----------+--------------------------------------+---------+------------+&#x000A;  | hardware.cpu.load.15min                  | gauge      | process   | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.cpu.load.1min                   | gauge      | process   | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.cpu.load.5min                   | gauge      | process   | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.memory.swap.avail               | gauge      | B         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.memory.swap.total               | gauge      | B         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.memory.total                    | gauge      | B         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.memory.used                     | gauge      | B         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.network.ip.incoming.datagrams   | cumulative | datagrams | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.network.ip.outgoing.datagrams   | cumulative | datagrams | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.system_stats.cpu.idle           | gauge      | %         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.system_stats.cpu.util           | gauge      | %         | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.system_stats.io.incoming.blocks | cumulative | blocks    | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  | hardware.system_stats.io.outgoing.blocks | cumulative | blocks    | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | None    | None       |&#x000A;  +------------------------------------------+------------+-----------+--------------------------------------+---------+------------+&#x000A;</code></pre>
+
+<p>Retrieving the actual performance metrics for a node involves a query to return a set of samples:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ ceilometer sample-list --meter hardware.cpu.load.5min -q 'resource_id=d52ebd4f-a28b-49cf-8adc-61847e6bb525'&#x000A;  +--------------------------------------+------------------------+-------+--------+---------+---------------------+&#x000A;  | Resource ID                          | Name                   | Type  | Volume | Unit    | Timestamp           |&#x000A;  +--------------------------------------+------------------------+-------+--------+---------+---------------------+&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.32   | process | 2015-03-13T11:02:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.09   | process | 2015-03-13T10:52:28 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.2    | process | 2015-03-13T10:42:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.07   | process | 2015-03-13T10:32:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.26   | process | 2015-03-13T10:22:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.02   | process | 2015-03-13T10:12:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.14   | process | 2015-03-13T10:02:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.26   | process | 2015-03-13T09:52:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.09   | process | 2015-03-13T09:42:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.65   | process | 2015-03-13T09:32:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.17   | process | 2015-03-13T09:22:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.39   | process | 2015-03-13T09:12:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.13   | process | 2015-03-13T09:02:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.28   | process | 2015-03-13T08:52:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.05   | process | 2015-03-13T08:42:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.2    | process | 2015-03-13T08:32:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.03   | process | 2015-03-13T08:22:27 |&#x000A;  | d52ebd4f-a28b-49cf-8adc-61847e6bb525 | hardware.cpu.load.5min | gauge | 4.14   | process | 2015-03-13T08:12:27 |&#x000A;</code></pre>
+
+<p>Further information on using the Ceilometer to is available here: <a href="https://www.rdoproject.org/CeilometerQuickStart">https://www.rdoproject.org/CeilometerQuickStart</a></p>
+
+<h2 id="scaling-out-the-workload-cloud">Scaling out the workload cloud</h2>
+
+<p>This page ( <a href="https://www.rdoproject.org/TripleO-CLI#Post-Deployment">https://www.rdoproject.org/TripleO-CLI#Post-Deployment</a> ) contains a description of scaling out a deployed workload cloud. The process involves two stages:</p>
+
+<ul>
+  <li>Updating the plan managed by Tuskar, as described in the “Preparing the deployment plan” section above</li>
+  <li>Calling heat stack-update, to apply the set of changes to Heat’s stack; the workload cloud.</li>
+</ul>
+
+<p>As in the case of the original deployment of the overcloud via Heat, that status of the update can be checked by running heat stack-list.</p>
+
+<p>It's also possible to see a history of the events associated with a stack with this command:</p>
+
+<pre class="highlight plaintext"><code>  [stack@localhost ~]$ heat event-list overcloud&#x000A;  +-----------------------------------+--------------------------------------+------------------------+--------------------+----------------------+&#x000A;  | resource_name                     | id                                   | resource_status_reason | resource_status    | event_time           |&#x000A;  +-----------------------------------+--------------------------------------+------------------------+--------------------+----------------------+&#x000A;  | CephStorageNodesPostDeployment    | 72670265-5145-4bae-b445-f920ccc9aa64 | state changed          | CREATE_COMPLETE    | 2015-03-12T20:19:40Z |&#x000A;  | CephStorageNodesPostDeployment    | b41db82a-6e17-4eb6-8666-0d5f60a234f9 | state changed          | CREATE_IN_PROGRESS | 2015-03-12T20:19:37Z |&#x000A;  | ControllerNodesPostDeployment     | f91ede39-f2b8-44b2-8644-072a04d619f0 | state changed          | CREATE_COMPLETE    | 2015-03-12T20:19:37Z |&#x000A;  | ComputeNodesPostDeployment        | 80912537-d95c-44a6-9975-9ce43d739f8b | state changed          | CREATE_COMPLETE    | 2015-03-12T20:17:58Z |&#x000A;  | ControllerNodesPostDeployment     | eadbef1a-e932-4f60-a94d-417007ae6578 | state changed          | CREATE_IN_PROGRESS | 2015-03-12T20:17:38Z |&#x000A;  | ControllerCephDeployment          | 47482901-69a7-4699-973d-c507e762dce8 | state changed          | CREATE_COMPLETE    | 2015-03-12T20:17:38Z |&#x000A;  | ControllerAllNodesDeployment      | 44436938-71e5-452e-a37f-956f3c8cec8e | state changed          | CREATE_COMPLETE    | 2015-03-12T20:17:38Z |&#x000A;  | ComputeNodesPostDeployment        | 4ac03e96-b9e3-437a-b0bb-a21774069abc | state changed          | CREATE_IN_PROGRESS | 2015-03-12T20:17:13Z |&#x000A;  | ComputeAllNodesDeployment         | 253244ba-aae4-4cb0-8d85-968699425217 | state changed          | CREATE_COMPLETE    | 2015-03-12T20:17:13Z |&#x000A;  | BlockStorageNodesPostDeployment   | cbc1a747-f683-4b74-bbc0-72a8095c8af1 | state changed          | CREATE_COMPLETE    | 2015-03-12T20:17:09Z |&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/tripleo/architecture-overview.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 18 Apr 2016 11:33 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

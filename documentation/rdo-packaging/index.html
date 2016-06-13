@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+RDO OpenStack Packaging &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='jruzicka' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/rdo-packaging.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rdo-openstack-packaging">RDO OpenStack Packaging</h1>
+
+<ol id="markdown-toc">
+  <li><a id="markdown-toc-rdo-openstack-packaging" href="#rdo-openstack-packaging">RDO OpenStack Packaging</a>    <ol>
+      <li><a id="markdown-toc-introduction" href="#introduction">Introduction</a>        <ol>
+          <li><a id="markdown-toc-packaging-overview" href="#packaging-overview">Packaging overview</a></li>
+          <li><a id="markdown-toc-distgit---where-the-spec-file-lives" href="#distgit---where-the-spec-file-lives">distgit - where the .spec file lives</a>            <ol>
+              <li><a id="markdown-toc-branches-in-distgits" href="#branches-in-distgits">Branches in distgits</a></li>
+            </ol>
+          </li>
+          <li><a id="markdown-toc-patches-branch" href="#patches-branch">Patches branch</a></li>
+          <li><a id="markdown-toc-rdopkg" href="#rdopkg">rdopkg</a></li>
+          <li><a id="markdown-toc-rdoinfo-metadata" href="#rdoinfo-metadata">rdoinfo metadata</a></li>
+          <li><a id="markdown-toc-dlrn" href="#dlrn">DLRN</a></li>
+          <li><a id="markdown-toc-prerequisites-for-packagers" href="#prerequisites-for-packagers">Prerequisites for packagers</a></li>
+        </ol>
+      </li>
+      <li><a id="markdown-toc-rdo-trunk-packaging-guide" href="#rdo-trunk-packaging-guide">RDO Trunk Packaging Guide</a>        <ol>
+          <li><a id="markdown-toc-run-dlrn" href="#run-dlrn">Run DLRN</a></li>
+          <li><a id="markdown-toc-submitting-distgit-changes-to-gerrit" href="#submitting-distgit-changes-to-gerrit">Submitting distgit changes to gerrit</a></li>
+          <li><a id="markdown-toc-browsing-gerrit-for-reviews" href="#browsing-gerrit-for-reviews">Browsing gerrit for reviews</a></li>
+          <li><a id="markdown-toc-how-to-add-a-new-package-to-rdo-trunk" href="#how-to-add-a-new-package-to-rdo-trunk">How to add a new package to RDO Trunk</a></li>
+        </ol>
+      </li>
+      <li><a id="markdown-toc-rdo-cloudsig-packaging-guide" href="#rdo-cloudsig-packaging-guide">RDO CloudSIG Packaging Guide</a>        <ol>
+          <li><a id="markdown-toc-initial-repository-setup" href="#initial-repository-setup">Initial repository setup</a></li>
+          <li><a id="markdown-toc-simple-spec-fix" href="#simple-spec-fix">Simple <code>.spec</code> fix</a></li>
+          <li><a id="markdown-toc-introducingremoving-patches" href="#introducingremoving-patches">Introducing/removing patches</a></li>
+          <li><a id="markdown-toc-rebasing-on-new-version" href="#rebasing-on-new-version">Rebasing on new version</a></li>
+        </ol>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This document attempts to be the definitive source of information about
+<em>RDO</em> OpenStack packaging for developers and packagers.</p>
+
+<h3 id="packaging-overview">Packaging overview</h3>
+
+<p>RDO produces two set of packages repositories:</p>
+
+<ul>
+  <li>
+    <p><strong>RDO CloudSIG</strong> repositories provide packages of upstream point
+releases created through a controlled process using CentOS Community Build
+System. This is kind of "stable RDO".</p>
+  </li>
+  <li>
+    <p><strong>RDO Trunk</strong> repositories provide packages of latest upstream code without any
+additional patches. New packages are created on each commit merged on upstream
+OpenStack projects.</p>
+  </li>
+</ul>
+
+<p>Following diagram shows the global packaging process in RDO.</p>
+
+<p><img alt="RDO packaging workflow" src="/images/documentation/rdo-full-workflow-high-level-no-buildlogs.png" /></p>
+
+<p><a id="distgit"></a></p>
+
+<h3 id="distgit---where-the-spec-file-lives">distgit - where the .spec file lives</h3>
+
+<p><em>distgit</em> is a git repository which contains <code>.spec</code> file used for building
+a RPM package. It also contains other files needed for building source RPM
+such as patches to apply, init scripts etc.</p>
+
+<p>RDO packages' distgit repos are hosted on
+<a href="https://review.rdoproject.org/r/gitweb?p=openstack/nova-distgit.git;a=summary">review.rdoproject.org</a>
+and follow <code>$PROJECT-distgit</code> naming. You can navigate the full list of distgit repos using this
+<a href="https://review.rdoproject.org/r/#/admin/projects/?filter=distgit">link</a>.</p>
+
+<p>You can use <a href="#rdopkg">rdopkg</a> to clone a RDO package <code>distgit</code> and also setup related
+remotes:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg clone openstack-nova&#x000A;Cloning distgit into ./openstack-nova/&#x000A;git clone http://review.rdoproject.org/r/p/openstack/nova-distgit.git openstack-nova&#x000A;...&#x000A;</code></pre>
+
+<p>Inspect package history using <code>git</code>:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span><span class="nb">cd </span>openstack-nova&#x000A;<span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>git log --oneline&#x000A;ded74f2 Add privsep-helper to nova sudoers file&#x000A;55981cf Add python-microversion-parse dependency&#x000A;39d576a Update .gitreview&#x000A;4e53ad0 Add missing python-cryptography BuildRequires&#x000A;</code></pre>
+
+<p>See what <code>rdopkg</code> thinks about current distgit:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg pkgenv&#x000A;&#x000A;Package:   openstack-nova&#x000A;Version:   13.0.0&#x000A;Upstream:  13.0.0&#x000A;Tag style: X.Y.Z&#x000A;&#x000A;Patches style:          review&#x000A;Dist-git branch:        mitaka-rdo&#x000A;Local patches branch:   mitaka-patches&#x000A;Remote patches branch:  patches/mitaka-patches&#x000A;Remote upstream branch: upstream/master&#x000A;Patches chain:          http://review.rdoproject.org/r/631&#x000A;</code></pre>
+
+<p>Submit distgit changes for review:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg review-spec&#x000A;</code></pre>
+<p><a id="branches in distgits"></a></p>
+
+<h4 id="branches-in-distgits">Branches in distgits</h4>
+
+<p>Because of the different build tools used for RDO CloudSIG and Trunk repos and
+the differences in dependencies and content in packages for each OpenStack
+release, RDO maintains several branches in distgits:</p>
+
+<ul>
+  <li><strong>rpm-&lt;release&gt;:</strong> is used to package RDO trunk (version can be master,
+mitaka or liberty )</li>
+  <li><strong>&lt;release&gt;-rdo:</strong> is used for RDO CloudSIG.</li>
+</ul>
+
+<p>There are a number of expected differences between the spec files in
+rpm-&lt;release&gt; and &lt;release&gt;-rdo branches:</p>
+
+<ul>
+  <li>
+    <p>For RDO trunk, packaging has had <code>Version:</code> and <code>Release:</code> fields
+both set to <code>XXX</code> as <code>dlrn</code> takes both of
+these from the tags set on the git repositories. For &lt;release&gt;-rdo branches
+they must be manually set to the right version and release.</p>
+  </li>
+  <li>
+    <p>%changelog section is empty in rpm-&lt;release&gt;.</p>
+  </li>
+  <li>
+    <p>Because we are packaging vanilla upstream code, patches aren't backported into the RDO Trunk repositories.</p>
+  </li>
+  <li>
+    <p>All of the specs in rpm-&lt;release&gt; branches contain a reference to <code>%{upstream_version}</code>
+in the <code>%setup macro</code>, this is because the subdirectory contained in
+the source tarball contains both the version and release, this is
+being passed into <code>rpmbuild</code>. In the Fedora packaging, spec can
+include compatibility macro e.g. <a href="https://review.rdoproject.org/r/gitweb?p=openstack/nova-distgit.git;a=blob;f=openstack-nova.spec;h=1dc49d1f8aacbaef235f1decc2319ce42fa68156;hb=refs/heads/liberty-rdo#l12">Nova</a>
+to avoid conflicts when backporting change from master packaging.</p>
+  </li>
+  <li>
+    <p>The files <code>sources</code> and <code>.gitignore</code> have been truncated in the
+master packaging</p>
+  </li>
+  <li>
+    <p>In <code>%files</code> avoid using <code>%{version}</code> and use instead wildcard <code>*</code></p>
+  </li>
+</ul>
+
+<h3 id="patches-branch">Patches branch</h3>
+
+<p>Because we rebase often in RDO CloudSIG repos, manual management of patch files in
+distgit would be <em>unbearable</em>. That's why each distgit branch
+has an associated <strong>patches branch</strong> which contains upstream git tree with
+extra downstream patches on top.</p>
+
+<p>A distgit can be automatically updated by <code>rdopkg</code> to include patches from
+associated <strong>patches branch</strong> and thus RPM patches are managed with <code>git</code>.</p>
+
+<p>Individual RDO patches are maintained in form of gerrit reviews on
+<a href="https://review.rdoproject.org/r/#/q/status%3Aopen+project%3Aopenstack/nova">review.rdoproject.org</a>.</p>
+
+<p><a id="rdopkg"></a></p>
+
+<h3 id="rdopkg">rdopkg</h3>
+
+<p><a href="https://github.com/redhat-openstack/rdopkg">rdopkg</a> is a command line tool
+that automates many operations on RDO packages including:</p>
+
+<ul>
+  <li>cloning package distgit and setting up remotes</li>
+  <li>introducing patches</li>
+  <li>rebases to new versions</li>
+  <li>sending changes for review</li>
+  <li>querying <code>rdoinfo</code> metadata</li>
+  <li>modifying .spec file: bumping versions, managing patches, writing
+changelog, producing meaningful commit messages, …</li>
+</ul>
+
+<p><code>rdopkg</code> is a Swiss army knife of RDO packaging and it automates a number of
+repetitive and error prone processes involving several underlying tools, each
+with its own quirks.</p>
+
+<p>Install <code>rdopkg</code> from <a href="https://copr.fedorainfracloud.org/coprs/jruzicka/rdopkg/"><code>jruzicka/rdopkg</code> copr</a>:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>dnf copr <span class="nb">enable </span>jruzicka/rdopkg&#x000A;<span class="gp">$&gt; </span>dnf install rdopkg&#x000A;</code></pre>
+
+<p><code>rdopkg</code> source lives at
+<a href="https://review.rdoproject.org/r/gitweb?p=rdopkg.git;a=summary">review.rdoproject.org</a>
+but it's also mirrored to
+<a href="https://github.com/redhat-openstack/rdopkg">github</a>.</p>
+
+<p>Bugs are tracked as
+<a href="https://github.com/redhat-openstack/rdopkg/issues">github issues</a>.</p>
+
+<p>Poke <code>jruzicka</code> on <code>#rdo</code> for help/hate/suggestions about <code>rdopkg</code>.</p>
+
+<p>See also <a href="https://www.rdoproject.org/packaging/rdopkg/rdopkg.1.html">man rdopkg</a>.</p>
+
+<p><a id="rdoinfo"></a></p>
+
+<h3 id="rdoinfo-metadata">rdoinfo metadata</h3>
+
+<p><code>rdoinfo</code> is a git repository containing RDO packaging metadata such as
+releases, packages, maintainers and more, currently in a single <code>rdo.yml</code> YAML
+file.</p>
+
+<p><code>rdoinfo</code> lives at
+<a href="https://review.rdoproject.org/r/gitweb?p=rdoinfo.git;a=summary">review.rdoproject.org</a>
+but it's also mirrored to
+<a href="https://github.com/redhat-openstack/rdoinfo">github</a>.</p>
+
+<p>To query <code>rdoinfo</code>, use <code>rdopkg info</code>:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg info&#x000A;<span class="gp">$&gt; </span>rdopkg info openstack-nova&#x000A;<span class="gp">$&gt; </span>rdopkg info maintainers:jruzicka@redhat.com&#x000A;</code></pre>
+
+<p>To integrate <code>rdoinfo</code> in your software, use <code>rdopkg.actionmods.rdoinfo</code>
+module.</p>
+
+<h3 id="dlrn">DLRN</h3>
+
+<p><a href="https://github.com/openstack-packages/DLRN">DLRN</a> is a tool used to build RPM
+packages on each commit merged in a set of configurable git repositories. DLRN
+uses rdoinfo to retrieve the metadata and repositories associated with each
+project in RDO (code and distgit) and mock to carry out the actual build in an
+isolated environment.</p>
+
+<p>DLRN is used to build the packages in RDO Trunk repositories that are available
+from <a href="http://trunk.rdoproject.org">http://trunk.rdoproject.org</a>.</p>
+
+<p>NVR for packages generated by DLRN follows some rules:</p>
+
+<ul>
+  <li>Version is set to MAJOR.MINOR.PATCH of the next upstream version.</li>
+  <li>Release is 0.&lt;timestamp&gt;.&lt;short commit hash&gt;</li>
+</ul>
+
+<p>For example <code>openstack-neutron-8.1.1-0.20160531171125.ddfe09c.el7.centos.noarch.rpm</code>.</p>
+
+<h3 id="prerequisites-for-packagers">Prerequisites for packagers</h3>
+
+<ul>
+  <li>You need a <a href="https://github.com">github</a> account which is used to log into
+<a href="https://review.rdoproject.org/auth/login">review.rdoproject.org</a>.</li>
+  <li>You need to install <a href="#rdopkg">rdopkg</a> tool.</li>
+</ul>
+
+<h2 id="rdo-trunk-packaging-guide">RDO Trunk Packaging Guide</h2>
+
+<p>In RDO Trunk packages are built automatically by <a href="#DLRN">DLRN</a> from
+<code>.spec</code> templates residing in <code>rpm-master</code> and <code>rpm-$RELEASE</code> <a href="#distgit">distgits</a>.</p>
+
+<p>In order to build an <code>RPM</code> with the master packaging you'll need to
+install <a href="https://github.com/openstack-packages/DLRN">DLRN</a>,
+following the instructions described in this
+<a href="https://github.com/openstack-packages/DLRN/blob/master/README.rst">README</a>.</p>
+
+<h3 id="run-dlrn">Run DLRN</h3>
+
+<p>Once DLRN is installed, run <code>dlrn</code> for the package you are trying to build.</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>dlrn --config-file projects.ini --local --package-name openstack-cinder&#x000A;</code></pre>
+
+<p>This will clone the distgit for the project you're interested in into
+<code>data/openstack-cinder_distro</code>, you can now change this packaging and
+rerun the <code>dlrn</code> command in test your changes.</p>
+
+<p>If you have locally changed the packaging make sure to include <code>--dev</code>
+in the command line. This switches <code>dlrn</code> into "dev mode" which
+causes it to preserve local changes to your packaging between runs so
+you can iterate on spec changes. It will also cause the most current
+public master repository to be installed in your build image(as some
+of its contents will be needed for dependencies) so that the packager
+doesn't have to build the entire set of packages.</p>
+
+<p>The output from <code>dlrn</code> is a repository containing the packages you
+just built along with the most recent successfully built version of
+each package. To find the most recent repository follow the symbolic
+link <code>./data/repos/current</code></p>
+
+<h3 id="submitting-distgit-changes-to-gerrit">Submitting distgit changes to gerrit</h3>
+
+<p>When modifying spec files for RDO Trunk keep in mind the considerations shown
+in <a href="#branches-in-distgits">Branches in distgits</a> and follow the recommendations
+in the <a href="https://www.rdoproject.org/documentation/rdo-packaging-guidelines/">RDO Packaging Guidelines</a>.
+Once you are happy that you have your changes in distgit ready to be reviewed,
+create a <code>git commit</code> with an appropriate comment, add a <code>git remote</code>
+pointing to gerrit and then submit your patch</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>git review -s&#x000A;<span class="gp">$&gt; </span>git commit -p&#x000A;<span class="gp">$&gt; </span>git review rpm-master&#x000A;</code></pre>
+
+<h3 id="browsing-gerrit-for-reviews">Browsing gerrit for reviews</h3>
+
+<p>To look at all open patches for the upstream packaging simply use the this
+<a href="https://review.rdoproject.org/r/#/q/status:open">link</a> and look for your
+desired project, for example <code>openstack/cinder-distgit</code>.</p>
+
+<h3 id="how-to-add-a-new-package-to-rdo-trunk">How to add a new package to RDO Trunk</h3>
+
+<p>When a new package is required in RDO, it must be added to RDO Trunk packaging.
+To include new packages, following steps are required:</p>
+
+<ol>
+  <li>
+    <p>Create a "Package Review" bug in <a href="https://bugzilla.redhat.com/">Red Hat bugzilla</a>
+following the best practices described in <a href="/documentation/rdo-packaging-guidelines/">RDO OpenStack Packaging Guidelines</a>.</p>
+  </li>
+  <li>Send a review adding the new project in rdo.yml to the <a href="https://review.rdoproject.org/r/#/q/project:rdoinfo">rdoinfo project in
+review.rdoproject.org</a>. In
+this change you must provide the project information and Package Review bugzilla
+ticket in the commit message. In the project definition in rdo.yml file, specify
+only <code>under-review</code> as project tags (see <a href="https://review.rdoproject.org/r/#/c/1327/">this example</a>).
+As part of the review process, some tasks will be carried out by the RDO team:
+    <ul>
+      <li>The required projects will be created in <a href="https://review.rdoproject.org">https://review.rdoproject.org</a>.</li>
+      <li>The new projects will be added to zuul configuration in review.rdoproject.org
+  (as in <a href="https://review.rdoproject.org/r/#/c/1257/">this example</a>).</li>
+      <li>Once the projects are created, the change will be merged in rdoinfo project.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Create a new review to the new distgit project with the needed content (spec
+file, etc…) for the initial import. This will trigger a CI job to test the
+package build.</p>
+  </li>
+  <li>Once the initial import in the distgit is merged, send a new review to rdoinfo
+project to replace the <code>under-review</code> tag with the required versions where the
+package must be built. This change can be sent before merging review in step 3
+if a <code>Depends-On: &lt;gerrit-change-id step 3&gt;</code> is added.</li>
+</ol>
+
+<p>Once the change is merged in rdoinfo, a new package should be automatically built
+and published in the <a href="http://trunk.rdoproject.org/centos7-master/report.html">RDO Trunk repos</a>.</p>
+
+<p>RDO project is working to automate as much as possible this process. If you need
+help to add new packages, you can ask on <code>#rdo</code> or <code>rdo-list</code> mailing list.</p>
+
+<p><a id="#rdo-pkg-guide"></a></p>
+
+<h2 id="rdo-cloudsig-packaging-guide">RDO CloudSIG Packaging Guide</h2>
+
+<p>Packaging files for CloudSIG repos live in <code>$RELEASE-rdo</code> branches of
+<a href="#distgit">distgit</a>. Patches can be introduced as needed through associated
+<a href="#patches-branch">patches branch</a>.</p>
+
+<h3 id="initial-repository-setup">Initial repository setup</h3>
+
+<p><code>rdopkg clone</code> takes care of getting the package <a href="#distgit">distgit</a> and
+also setting up all relevant git remotes defined in <a href="#rdoinfo">rdoinfo</a>.
+Use <code>-u</code>/<code>--review-user</code> option to specify your github username if it differs
+from <code>$USER</code>.</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg clone openstack-nova -u github-username&#x000A;Cloning distgit into ./openstack-nova/&#x000A;git clone http://review.rdoproject.org/r/p/openstack/nova-distgit.git openstack-nova&#x000A;Adding patches remote...&#x000A;git remote add patches http://review.rdoproject.org/r/p/openstack/nova.git&#x000A;Adding upstream remote...&#x000A;git remote add upstream git://git.openstack.org/openstack/nova&#x000A;...&#x000A;</code></pre>
+
+<p>Check output of <code>rdopkg pkgenv</code> to see what <code>rdopkg</code> thinks about your
+package:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span><span class="nb">cd </span>openstack-nova&#x000A;<span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>rdopkg pkgenv&#x000A;</code></pre>
+
+<h3 id="simple-spec-fix">Simple <code>.spec</code> fix</h3>
+
+<p>The simplest kind of change that doesn't introduce/remove patches or
+different source tarball.</p>
+
+<ul>
+  <li>Make required changes.</li>
+  <li>Bump <code>Release</code>.</li>
+  <li>Provide useful <code>%changelog</code> entry describing your change.</li>
+  <li>Commit the <a href="#distgit">distgit</a> changes with meaningful commit message.</li>
+  <li>Send the change for review.</li>
+</ul>
+
+<p>Although this change is simple, <code>rdopkg fix</code> can still make some string
+manipulation for you. In following example, I add a new dependency to <code>nova</code>
+package:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span><span class="nb">cd </span>openstack-nova&#x000A;<span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>rdopkg fix&#x000A;&#x000A;Action required: Edit .spec file as needed and describe changes <span class="k">in </span>changelog.&#x000A;&#x000A;Once <span class="k">done</span>, run <span class="sb">`</span>rdopkg -c<span class="sb">`</span> to <span class="k">continue</span>.&#x000A;&#x000A;<span class="gp">$&gt; </span>vim openstack-nova.spec&#x000A;<span class="c"># Add Requires line and describe the change in %changelog</span>&#x000A;<span class="gp">$&gt; </span>rdopkg -c&#x000A;</code></pre>
+
+<p>After this, <code>rdopkg</code> generates new commit from the %changelog entry you
+provided and displays the diff:</p>
+
+<pre class="highlight diff"><code>    Epoch:            1&#x000A;    Version:          13.0.0&#x000A;   -Release:          1%{?dist}&#x000A;   +Release:          2%{?dist}&#x000A;    Summary:          OpenStack Compute (nova)&#x000A;<span class="err">&#x000A;</span>    ...&#x000A;<span class="err">&#x000A;</span>    Requires:         bridge-utils&#x000A;    Requires:         sg3_utils&#x000A;    Requires:         sysfsutils&#x000A;   +Requires:         banana&#x000A;<span class="err">&#x000A;</span>    %description compute&#x000A;    OpenStack Compute (codename Nova) is open source software designed to&#x000A;<span class="err">&#x000A;</span>    ...&#x000A;<span class="err">&#x000A;</span>    %changelog&#x000A;   +* Mon May 09 2016 Jakub Ruzicka &lt;jruzicka@redhat.com&gt; 1:13.0.0-2&#x000A;   +- Require banana package for the lulz&#x000A;   +&#x000A;    * Thu Apr  7 2016 Haïkel Guémar &lt;hguemar@fedoraproject.org&gt; - 1:13.0.0-1&#x000A;    - Upstream 13.0.0&#x000A;</code></pre>
+
+<p>Finally, send the changes for review:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>rdopkg review-spec&#x000A;</code></pre>
+
+<h3 id="introducingremoving-patches">Introducing/removing patches</h3>
+
+<p>See <a href="#patches-branch">patches branch</a> for introduction.</p>
+
+<p>Following schema shows the workflow to maintain patches applied in the packaging process.</p>
+
+<pre class="highlight plaintext"><code>     +------------------------+&#x000A;     |        upstream        |&#x000A;     |  github.com/openstack  |&#x000A;     +------------------------+&#x000A;                 |&#x000A; git cherry-pick | rdopkg review-patch&#x000A;                 V&#x000A;     +-------------------------+&#x000A;     |      patches branch     |&#x000A;     |  review.rdoproject.org  |&#x000A;     +-------------------------+&#x000A;                 |&#x000A;    rdopkg patch | rdopkg review-spec&#x000A;                 V&#x000A;     +-------------------------+&#x000A;     |        distgit          |&#x000A;     |  review.rdoproject.org  |&#x000A;     +-------------------------+&#x000A;</code></pre>
+
+<p>First, use <code>rdopkg get-patches</code> to get a <a href="#patches-branch">patches branch</a>
+associated with current <a href="#distgit">distgit</a>, cherry pick your patch(es) on
+top, and send them for review with <code>rdopkg review-patch</code>:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>rdopkg get-patches&#x000A;<span class="gp">$&gt; </span>git cherry-pick YOUR_PATCH&#x000A;<span class="gp">$&gt; </span>rdopkg review-patch&#x000A;</code></pre>
+
+<p>Once the patch gets approved (not merged), you can tell <code>rdopkg</code> to update the
+distgit and send the <code>.spec</code> change for review:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>rdopkg patch&#x000A;<span class="gp">$&gt; </span>rdopkg review-spec&#x000A;</code></pre>
+
+<h3 id="rebasing-on-new-version">Rebasing on new version</h3>
+
+<p>tl;dr <code>rdopkg new-verison</code> should take care of that:</p>
+
+<pre class="highlight shell"><code><span class="gp">$&gt; </span>git checkout mitaka-rdo&#x000A;<span class="gp">$&gt; </span>rdopkg new-version&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/rdo-packaging.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 7 Jun 2016 12:31 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+MidoNet 5.1 Integration with RDO Liberty on CentOS 7 &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/midonet-integration_mn-51-centos-7-liberty-rdo.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="midonet-51-integration-with-rdo-liberty-on-centos-7">MidoNet 5.1 Integration with RDO Liberty on CentOS 7</h1>
+
+<p>This guide covers the basic steps for the integration of
+<a title="MidoNet" href="https://www.midonet.org/">MidoNet</a> 5.1 into an RDO Liberty Packstack All-in-One installation
+on CentOS 7.</p>
+
+<p>It does not cover topics like the installation of a multi-node environment or
+BGP uplink configuration.</p>
+
+<p>Please see the "Quick Start Guides" and the "Operations Guide" at the
+<a title="MidoNet Documentation" href="https://docs.midonet.org/">MidoNet Documentation</a> web site for advanced installation and
+configuration instructions, or if you are not using a Packstack-based
+installation.</p>
+
+<p>In case that you find an issue with this guide, please report it to the
+<a title="MidoNet Community" href="https://github.com/midonet/midonet/wiki/Communication">MidoNet Community</a>.</p>
+
+<h2 id="conventions">Conventions</h2>
+
+<p>This guide uses the following variables, which have to be replaced with the
+corresponding values from the target environment:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code>&lt;HOST_NAME&gt;</code></td>
+      <td>The host name of the server.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;HOST_IP&gt;</code></td>
+      <td>The IP address of the server.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;ADMIN_TOKEN&gt;</code></td>
+      <td>The Keystone admin token.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;ADMIN_PASS&gt;</code></td>
+      <td>The Keystone <code>admin</code> user's password.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;MIDONET_PASS&gt;</code></td>
+      <td>The Keystone <code>midonet</code> user's password.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;MDP_SHARED_SECRET&gt;</code></td>
+      <td>The Metadata Proxy's shared secret.</td>
+    </tr>
+    <tr>
+      <td><code>&lt;NEUTRON_DB_PASS&gt;</code></td>
+      <td>The password for the Neutron database.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>For ease of configuration, this guide assumes that SELinux is set to permissive
+mode, as well as the firewall being disabled.</p>
+
+<ol>
+  <li>
+    <p>Disable SELinux</p>
+
+    <p>To change the mode, execute the following command:</p>
+
+<pre class="highlight plaintext"><code># setenforce Permissive&#x000A;</code></pre>
+
+    <p>To permanently change the SELinux configuration, edit the
+<code>/etc/selinux/config</code> file accordingly:</p>
+
+<pre class="highlight plaintext"><code>SELINUX=permissive&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Disable firewall</p>
+
+    <p>If installed, disable the firewall service:</p>
+
+<pre class="highlight plaintext"><code># systemctl stop firewalld&#x000A;# systemctl disable firewalld&#x000A;</code></pre>
+
+<pre class="highlight plaintext"><code># systemctl stop iptables&#x000A;# systemctl disable iptables&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h2 id="repository-configuration">Repository Configuration</h2>
+
+<ol>
+  <li>
+    <p>Enable CentOS extras repository</p>
+
+    <p>The extras repository provides the RPM that enables the OpenStack repository.
+CentOS includes the extras repository by default, but in case it has been
+disabled, re-enable it:</p>
+
+<pre class="highlight plaintext"><code># yum-config-manager --enablerepo=extras&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable CentOS OpenStack</p>
+
+<pre class="highlight plaintext"><code># yum install centos-release-openstack-liberty&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable DataStax repository</p>
+
+    <p>Create the <code>/etc/yum.repos.d/datastax.repo</code> file and edit it to contain the
+following:</p>
+
+<pre class="highlight plaintext"><code># DataStax (Apache Cassandra)&#x000A;[datastax]&#x000A;name = DataStax Repo for Apache Cassandra&#x000A;baseurl = http://rpm.datastax.com/community&#x000A;enabled = 1&#x000A;gpgcheck = 1&#x000A;gpgkey = https://rpm.datastax.com/rpm/repo_key&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable MidoNet repositories</p>
+
+    <p>Create the <code>/etc/yum.repos.d/midonet.repo</code> file and edit it to contain the
+following:</p>
+
+<pre class="highlight plaintext"><code>[midonet]&#x000A;name=MidoNet&#x000A;baseurl=http://builds.midonet.org/midonet-5/stable/el7/&#x000A;enabled=1&#x000A;gpgcheck=1&#x000A;gpgkey=https://builds.midonet.org/midorepo.key&#x000A;&#x000A;[midonet-openstack-integration]&#x000A;name=MidoNet OpenStack Integration&#x000A;baseurl=http://builds.midonet.org/openstack-liberty/stable/el7/&#x000A;enabled=1&#x000A;gpgcheck=1&#x000A;gpgkey=https://builds.midonet.org/midorepo.key&#x000A;&#x000A;[midonet-misc]&#x000A;name=MidoNet 3rd Party Tools and Libraries&#x000A;baseurl=http://builds.midonet.org/misc/stable/el7/&#x000A;enabled=1&#x000A;gpgcheck=1&#x000A;gpgkey=https://builds.midonet.org/midorepo.key&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Install available updates</p>
+
+<pre class="highlight plaintext"><code># yum clean all&#x000A;# yum upgrade&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>If necessary, reboot the system</p>
+
+<pre class="highlight plaintext"><code># reboot&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h2 id="openstack-installation">OpenStack Installation</h2>
+
+<ol>
+  <li>
+    <p>Install Packstack</p>
+
+<pre class="highlight plaintext"><code># yum install openstack-packstack&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Install OpenStack</p>
+
+<pre class="highlight plaintext"><code># packstack --allinone&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="openstack-installation-clean-up">OpenStack Installation Clean-up</h3>
+
+<ol>
+  <li>
+    <p>Remove Open vSwitch packages</p>
+
+<pre class="highlight plaintext"><code># yum erase openstack-neutron-openvswitch openvswitch python-openvswitch&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Remove ML2 Plug-in</p>
+
+<pre class="highlight plaintext"><code># yum erase openstack-neutron-ml2&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Stop and disable Neutron Agents</p>
+
+<pre class="highlight plaintext"><code># systemctl stop neutron-dhcp-agent&#x000A;# systemctl disable neutron-dhcp-agent&#x000A;# systemctl stop neutron-l3-agent&#x000A;# systemctl disable neutron-l3-agent&#x000A;# systemctl stop neutron-metadata-agent&#x000A;# systemctl disable neutron-metadata-agent&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h2 id="openstack-integration">OpenStack Integration</h2>
+
+<h3 id="keystone-integration">Keystone Integration</h3>
+
+<ol>
+  <li>
+    <p>Create MidoNet API Service</p>
+
+    <p>As Keystone <code>admin</code> user, execute the following command:</p>
+
+<pre class="highlight plaintext"><code># openstack service create --name midonet --description "MidoNet API Service" midonet&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create MidoNet Administrative User</p>
+
+    <p>As Keystone <code>admin</code> user, execute the following commands:</p>
+
+<pre class="highlight plaintext"><code>$ openstack user create --password-prompt midonet&#x000A;$ openstack role add --project services --user midonet admin&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="neutron-integration">Neutron Integration</h3>
+
+<h4 id="neutron-server-configuration">Neutron Server Configuration</h4>
+
+<ol>
+  <li>
+    <p>Install the MidoNet Plug-in</p>
+
+<pre class="highlight plaintext"><code># yum install python-networking-midonet&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Edit the <code>/etc/neutron/neutron.conf</code> file and configure the following
+parameters:</p>
+
+<pre class="highlight plaintext"><code>[DEFAULT]&#x000A;core_plugin = midonet.neutron.plugin_v2.MidonetPluginV2&#x000A;service_plugins = midonet.neutron.services.l3.l3_midonet.MidonetL3ServicePlugin&#x000A;&#x000A;dhcp_agent_notification = False&#x000A;&#x000A;allow_overlapping_ips = True&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create the directory for the MidoNet plugin configuration:</p>
+
+<pre class="highlight plaintext"><code># mkdir /etc/neutron/plugins/midonet&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create the <code>/etc/neutron/plugins/midonet/midonet.ini</code> file and edit it to
+contain the following:</p>
+
+<pre class="highlight plaintext"><code>[DATABASE]&#x000A;sql_connection = mysql://neutron:&lt;NEUTRON_DB_PASS&gt;@&lt;HOST_NAME&gt;/neutron&#x000A;&#x000A;[MIDONET]&#x000A;# MidoNet API URL&#x000A;midonet_uri = http://&lt;HOST_NAME&gt;:8181/midonet-api&#x000A;# MidoNet administrative user in Keystone&#x000A;username = midonet&#x000A;password = &lt;MIDONET_PASS&gt;&#x000A;# MidoNet administrative user's tenant&#x000A;project_id = services&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Update the <code>/etc/neutron/plugin.ini</code> symlink to point Neutron to the MidoNet
+configuration:</p>
+
+<pre class="highlight plaintext"><code># ln -sfn /etc/neutron/plugins/midonet/midonet.ini /etc/neutron/plugin.ini&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h4 id="neutron-database-rebuild">Neutron Database Rebuild</h4>
+
+<p>Packstack already created some Neutron networks that have to be removed</p>
+
+<ol>
+  <li>
+    <p>Stop Neutron service</p>
+
+<pre class="highlight plaintext"><code># systemctl stop neutron-server&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Rebuild Neutron database</p>
+
+<pre class="highlight plaintext"><code># mysql -e 'drop database neutron'&#x000A;# mysql -e 'create database neutron'&#x000A;&#x000A;# su -s /bin/sh -c \&#x000A;   "neutron-db-manage \&#x000A;   --config-file /etc/neutron/neutron.conf \&#x000A;   --config-file /etc/neutron/plugin.ini upgrade head" \&#x000A;   neutron&#x000A;&#x000A;# su -s /bin/sh -c \&#x000A;   "neutron-db-manage --subproject networking-midonet upgrade head" \&#x000A;   neutron&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Restart Neutron service</p>
+
+<pre class="highlight plaintext"><code># systemctl start neutron-server&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="horizon-integration">Horizon Integration</h3>
+
+<p>To enable load balancing in the Horizon Dashboard, change the <code>enable_lb</code> option
+to <code>True</code> in the <code>/etc/openstack-dashboard/local_settings</code> file:</p>
+
+<pre class="highlight plaintext"><code>OPENSTACK_NEUTRON_NETWORK = {&#x000A;   'enable_lb': True,&#x000A;   ...&#x000A;}&#x000A;</code></pre>
+
+<h3 id="libvirt-configuration">Libvirt Configuration</h3>
+
+<ol>
+  <li>
+    <p>Edit the <code>/etc/libvirt/qemu.conf</code> file to contain the following:</p>
+
+<pre class="highlight plaintext"><code>user = "root"&#x000A;group = "root"&#x000A;&#x000A;[...]&#x000A;&#x000A;cgroup_device_acl = [&#x000A;    "/dev/null", "/dev/full", "/dev/zero",&#x000A;    "/dev/random", "/dev/urandom",&#x000A;    "/dev/ptmx", "/dev/kvm", "/dev/kqemu",&#x000A;    "/dev/rtc","/dev/hpet", "/dev/vfio/vfio",&#x000A;    "/dev/net/tun"&#x000A;]&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Restart Libvirt:</p>
+
+<pre class="highlight plaintext"><code># systemctl restart libvirtd&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h2 id="midonet-installation">MidoNet Installation</h2>
+
+<h3 id="midonet-network-state-database">MidoNet Network State Database</h3>
+
+<h4 id="zookeeper-installation">ZooKeeper Installation</h4>
+
+<ol>
+  <li>
+    <p>Install ZooKeeper packages:</p>
+
+<pre class="highlight plaintext"><code># yum install java-1.7.0-openjdk-headless&#x000A;# yum install zookeeper zkdump nmap-ncat&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Edit the <code>/etc/zookeeper/zoo.cfg</code> file to contain the following:</p>
+
+<pre class="highlight plaintext"><code>server.1=&lt;HOST_NAME&gt;:2888:3888&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create data directory:</p>
+
+<pre class="highlight plaintext"><code># mkdir /var/lib/zookeeper/data&#x000A;# chown zookeeper:zookeeper /var/lib/zookeeper/data&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create the <code>/var/lib/zookeeper/data/myid</code> file and edit it to contain the
+host's ID:</p>
+
+<pre class="highlight plaintext"><code># echo 1 &gt; /var/lib/zookeeper/data/myid&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create Java Symlink</p>
+
+<pre class="highlight plaintext"><code># mkdir -p /usr/java/default/bin/&#x000A;# ln -s /usr/lib/jvm/jre-1.7.0-openjdk/bin/java /usr/java/default/bin/java&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable and start ZooKeeper</p>
+
+<pre class="highlight plaintext"><code># systemctl enable zookeeper&#x000A;# systemctl start zookeeper&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Verify ZooKeeper Operation</p>
+
+    <p>A basic check can be done by executing the <code>ruok</code> (Are you ok?) command on
+the node. This will reply with <code>imok</code> (I am ok.) if the server is running in
+a non-error state:</p>
+
+<pre class="highlight plaintext"><code>$ echo ruok | nc 127.0.0.1 2181&#x000A;imok&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h4 id="cassandra-installation">Cassandra Installation</h4>
+
+<ol>
+  <li>
+    <p>Install the Cassandra package:</p>
+
+<pre class="highlight plaintext"><code>yum install dsc20&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Configure the cluster.</p>
+
+    <p>Edit the <code>/etc/cassandra/conf/cassandra.yaml</code> to contain the following:</p>
+
+<pre class="highlight plaintext"><code># The name of the cluster.&#x000A;cluster_name: 'midonet'&#x000A;&#x000A;[...]&#x000A;&#x000A;# Addresses of hosts that are deemed contact points.&#x000A;seed_provider:&#x000A;    - class_name: org.apache.cassandra.locator.SimpleSeedProvider&#x000A;      parameters:&#x000A;          - seeds: "&lt;HOST_NAME&gt;"&#x000A;&#x000A;# Address to bind to and tell other Cassandra nodes to connect to.&#x000A;listen_address: &lt;HOST_NAME&gt;&#x000A;&#x000A;[...]&#x000A;&#x000A;# The address to bind the Thrift RPC service.&#x000A;rpc_address: &lt;HOST_NAME&gt;&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Edit the service's init script</p>
+
+    <p>On installation, the <code>/var/run/cassandra</code> directory is created, but because
+it is located on a temporary file system it will be lost after system reboot.
+As a result it is not possible to stop or restart the Cassandra service
+anymore.</p>
+
+    <p>To avoid this, edit the <code>/etc/init.d/cassandra</code> file to create the directory
+on service start:</p>
+
+<pre class="highlight plaintext"><code>[...]&#x000A;case "$1" in&#x000A;    start)&#x000A;        # Cassandra startup&#x000A;        echo -n "Starting Cassandra: "&#x000A;        mkdir -p /var/run/cassandra&#x000A;        chown cassandra:cassandra /var/run/cassandra&#x000A;        su $CASSANDRA_OWNR -c "$CASSANDRA_PROG -p $pid_file" &gt; $log_file 2&gt;&amp;1&#x000A;        retval=$?&#x000A;[...]&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable and start Cassandra</p>
+
+<pre class="highlight plaintext"><code># systemctl enable cassandra&#x000A;# systemctl start cassandra&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Verify Cassandra Operation</p>
+
+    <p>A basic check can be done by executing the <code>nodetool status</code> command. This
+will reply with <code>UN</code> (Up / Normal) in the first column if the server is
+running in a non-error state:</p>
+
+<pre class="highlight plaintext"><code>$ nodetool -host 127.0.0.1 status&#x000A;[...]&#x000A;Status=Up/Down&#x000A;|/ State=Normal/Leaving/Joining/Moving&#x000A;--  Address    Load      Tokens  Owns    Host ID                               Rack&#x000A;UN  192.0.2.1  46.14 KB  256     100.0%  11111111-2222-3333-4444-555555555555  rack1&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="midonet-cluster-installation">Midonet Cluster Installation</h3>
+
+<ol>
+  <li>
+    <p>Install MidoNet Cluster package</p>
+
+<pre class="highlight plaintext"><code># yum install midonet-cluster&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Set up mn-conf</p>
+
+    <p>Edit <code>/etc/midonet/midonet.conf</code> to point the Cluster to ZooKeeper:</p>
+
+<pre class="highlight plaintext"><code>[zookeeper]&#x000A;zookeeper_hosts = &lt;HOST_NAME&gt;:2181&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Configure access to the NSDB</p>
+
+    <p>Run the following command to set the cloud-wide values for the ZooKeeper and
+Cassandra server addresses:</p>
+
+<pre class="highlight plaintext"><code># cat &lt;&lt; EOF | mn-conf set -t default&#x000A;zookeeper {&#x000A;    zookeeper_hosts = "&lt;HOST_NAME&gt;:2181"&#x000A;}&#x000A;&#x000A;cassandra {&#x000A;    servers = "&lt;HOST_NAME&gt;"&#x000A;}&#x000A;EOF&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Configure Keystone access</p>
+
+    <p>Set up access to Keystone for the MidoNet Cluster node:</p>
+
+<pre class="highlight plaintext"><code># cat &lt;&lt; EOF | mn-conf set -t default&#x000A;cluster.auth {&#x000A;    provider_class = "org.midonet.cluster.auth.keystone.v2_0.KeystoneService"&#x000A;    admin_role = "admin"&#x000A;    keystone.tenant_name = "admin"&#x000A;    keystone.admin_token = "&lt;ADMIN_TOKEN&gt;"&#x000A;    keystone.host = &lt;HOST_NAME&gt;&#x000A;    keystone.port = 35357&#x000A;}&#x000A;EOF&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Start the MidoNet Cluster</p>
+
+<pre class="highlight plaintext"><code># systemctl enable midonet-cluster&#x000A;# systemctl start midonet-cluster&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="midonet-cli-installation">MidoNet CLI Installation</h3>
+
+<ol>
+  <li>
+    <p>Install MidoNet CLI package</p>
+
+<pre class="highlight plaintext"><code># yum install python-midonetclient&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Configure MidoNet CLI</p>
+
+    <p>Create the <code>~/.midonetrc</code> file and edit it to contain the following:</p>
+
+<pre class="highlight plaintext"><code>[cli]&#x000A;api_url = http://&lt;HOST_NAME&gt;:8181/midonet-api&#x000A;username = admin&#x000A;password = &lt;ADMIN_PASS&gt;&#x000A;project_id = admin&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="midonet-agent-midolman-installation">MidoNet Agent (Midolman) Installation</h3>
+
+<ol>
+  <li>
+    <p>Install Midolman package:</p>
+
+<pre class="highlight plaintext"><code># yum install midolman&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Set up mn-conf</p>
+
+    <p>Edit <code>/etc/midolman/midolman.conf</code> to point the MidoNet Agent to ZooKeeper:</p>
+
+<pre class="highlight plaintext"><code>[zookeeper]&#x000A;zookeeper_hosts = &lt;HOST_NAME&gt;:2181&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Configure MidoNet Metadata Proxy</p>
+
+    <p>Run the following commands to set the cloud-wide values for the MidoNet
+Metadata Proxy:</p>
+
+<pre class="highlight plaintext"><code># echo "agent.openstack.metadata.nova_metadata_url : \"http://&lt;HOST_NAME&gt;:8775\"" | mn-conf set -t default&#x000A;# echo "agent.openstack.metadata.shared_secret : &lt;MDP_SHARED_SECRET&gt;" | mn-conf set -t default&#x000A;# echo "agent.openstack.metadata.enabled : true" | mn-conf set -t default&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Enable and start MidoNet Agent</p>
+
+<pre class="highlight plaintext"><code># systemctl enable midolman&#x000A;# systemctl start midolman&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h3 id="midonet-tunnel-zone-creation-and-host-registration">MidoNet Tunnel Zone Creation and Host Registration</h3>
+
+<p>We first need to create a Tunnel Zone in the Midonet CLI and then register the Midolman agent to it. This will allow the Midolman agent to send packets and communicate to the Midonet API.</p>
+
+<ol>
+  <li>
+    <p>Launch the MidoNet CLI:</p>
+
+<pre class="highlight plaintext"><code># midonet-cli&#x000A;midonet&gt;&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create Tunnel Zone:</p>
+
+<pre class="highlight plaintext"><code>midonet&gt; tunnel-zone create name tz type vxlan&#x000A;tzone0&#x000A;&#x000A;midonet&gt; list tunnel-zone&#x000A;tzone tzone0 name tz type vxlan&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Add host to Tunnel Zone:</p>
+
+<pre class="highlight plaintext"><code>midonet&gt; list host&#x000A;host host0 name [...] alive true addresses [...] flooding-proxy-weight 1&#x000A;&#x000A;midonet&gt; tunnel-zone tzone0 add member host host0 address &lt;HOST_IP&gt;&#x000A;zone tzone0 host host0 address 192.0.2.1&#x000A;&#x000A;midonet&gt; exit&#x000A;</code></pre>
+  </li>
+</ol>
+
+<h2 id="initial-networks-creation">Initial Networks Creation</h2>
+
+<ol>
+  <li>
+    <p>Create an external network</p>
+
+    <p>As Keystone <code>admin</code> user, execute the following commands:</p>
+
+<pre class="highlight plaintext"><code># neutron net-create ext-net --router:external&#x000A;&#x000A;# neutron subnet-create \&#x000A;   ext-net 203.0.113.0/24 \&#x000A;   --name ext-subnet \&#x000A;   --allocation-pool start=203.0.113.101,end=203.0.113.200 \&#x000A;   --disable-dhcp \&#x000A;   --gateway 203.0.113.1&#x000A;</code></pre>
+  </li>
+  <li>
+    <p>Create a network for the <code>demo</code> tenant:</p>
+
+    <p>As Keystone <code>demo</code> user, execute the following commands:</p>
+
+<pre class="highlight plaintext"><code># neutron net-create demo-net&#x000A;&#x000A;# neutron subnet-create \&#x000A;   demo-net 192.168.1.0/24 \&#x000A;   --name demo-subnet \&#x000A;   --dns-nameserver 8.8.8.8 \&#x000A;   --gateway 192.168.1.1&#x000A;&#x000A;# neutron router-create demo-router&#x000A;&#x000A;# neutron router-interface-add demo-router demo-subnet&#x000A;&#x000A;# neutron router-gateway-set demo-router ext-net&#x000A;</code></pre>
+  </li>
+</ol>
+
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/midonet-integration_mn-51-centos-7-liberty-rdo.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Wed 30 Mar 2016 02:54 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

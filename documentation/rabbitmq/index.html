@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+RabbitMQ &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/rabbitmq.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="rabbit-mq">Rabbit MQ</h1>
+
+<h2 class="no_toc" id="using-rabbitmq-with-rdo-havana">Using RabbitMQ with RDO Havana</h2>
+
+<p>OpenStack requires a messaging service for internal communications between various components. Currently, this is done by using an AMQP broker. OpenStack can be configured to use either the Qpid broker or the RabbitMQ broker. In RDO, the default broker is Qpid. This guide will show how to replace Qpid with RabbitMQ, as well as how to deploy highly available RabbitMQ.</p>
+
+<p>This guide will assume that RDO has been installed on a single node via packstack. RabbitMQ support in packstack is new, and not yet available in the RDO packstack package. Therefore it is necessary to run packstack from source, for now.</p>
+
+<p>First, install required packages.</p>
+
+<pre class="highlight plaintext"><code>% yum install -y http://rdo.fedorapeople.org/rdo-release.rpm python-netaddr python-setuptools git&#x000A;</code></pre>
+
+<p>Grab the packstack source.</p>
+
+<pre class="highlight plaintext"><code>% git clone git://github.com/stackforge/packstack&#x000A;% cd packstack&#x000A;</code></pre>
+
+<p>Install the openstack puppet modules.</p>
+
+<pre class="highlight plaintext"><code>% python setup.py install_puppet_modules&#x000A;</code></pre>
+
+<p>Generate a default answers file for packstack.</p>
+
+<pre class="highlight plaintext"><code>% ./bin/packstack --gen-answer-file=answers&#x000A;</code></pre>
+
+<p>Configure packstack to use RabbitMQ in place of Qpid.</p>
+
+<pre class="highlight plaintext"><code>% sed -i 's/CONFIG_AMQP_SERVER=qpid/CONFIG_AMQP_SERVER=rabbitmq/' answers&#x000A;</code></pre>
+
+<p>If you are using RHEL, you must enable EPEL for RabbitMQ and Erlang to be available. Skip this step if using Fedora.</p>
+
+<pre class="highlight plaintext"><code>% sed -i 's/CONFIG_USE_EPEL=n/CONFIG_USE_EPEL=y/' answers&#x000A;</code></pre>
+
+<p>Finally, run packstack with the answers file.</p>
+
+<pre class="highlight plaintext"><code>%  ./bin/packstack --answer-file=answers&#x000A;</code></pre>
+
+<p>Alternatively you can set the amqp server and epel along with the allinone option:</p>
+
+<pre class="highlight plaintext"><code>% packstack --allinone --amqp-server=rabbitmq --use-epel=y&#x000A;</code></pre>
+
+<p>This will configure the rabbitmq as the amqp server, enable epel and then run the installation.</p>
+
+<p>If the OpenStack services are properly configured and using RabbitMQ, several queues should exist. Use the rabbitmqctl utility to get a list of queues.</p>
+
+<pre class="highlight plaintext"><code># rabbitmqctl list_queues name&#x000A;Listing queues ...&#x000A;ceilometer.agent.central&#x000A;ceilometer.agent.central.node-01&#x000A;ceilometer.agent.central_fanout_691f5ec697b44ac59f1d6502b1416098&#x000A;ceilometer.agent.compute&#x000A;ceilometer.agent.compute.node-01&#x000A;ceilometer.agent.compute_fanout_7b9dc502d91448928eb2e9cf8484a002&#x000A;ceilometer.alarm&#x000A;ceilometer.alarm.alarm_notifier&#x000A;ceilometer.alarm.node-01&#x000A;ceilometer.alarm_fanout_3ecad8cb2fd74faf875ec806a76d8d3c&#x000A;ceilometer.collector&#x000A;ceilometer.collector.node-01&#x000A;ceilometer.collector.metering&#x000A;ceilometer.collector_fanout_0d82ff676f554feca7ba0094eeac37d9&#x000A;ceilometer.collector_fanout_aac2e75d971348eabdbd620004a8304d&#x000A;cert&#x000A;cert.node-01&#x000A;cert_fanout_ae8623777cfb4a8cb7d5caca4613d230&#x000A;cinder-backup&#x000A;cinder-backup:node-01&#x000A;cinder-backup_fanout_9a9350ea037c43609044fe764a725825&#x000A;cinder-scheduler&#x000A;cinder-scheduler:node-01&#x000A;cinder-scheduler_fanout_3431689e0f13454eb256cacfaf486b1f&#x000A;cinder-volume&#x000A;cinder-volume:node-01&#x000A;cinder-volume_fanout_1f3b5f700c9b49aeb89e63e4028f7355&#x000A;compute&#x000A;compute.node-01&#x000A;compute_fanout_da934d2e469c423780134c7dede23cf2&#x000A;conductor&#x000A;conductor.node-01&#x000A;conductor_fanout_a83b91a499a74a49a53430d1c457d311&#x000A;consoleauth&#x000A;consoleauth.node-01&#x000A;consoleauth_fanout_0e7ad3a49caa45ed8a11e4ae966f33f0&#x000A;dhcp_agent&#x000A;dhcp_agent.node-01&#x000A;dhcp_agent_fanout_0f8e1a1e15df46f4907a763efc01da9a&#x000A;dhcp_agent_fanout_26792e5100c84c5c83fd9d38270ca008&#x000A;glance_notifications.info&#x000A;l3_agent&#x000A;l3_agent.node-01&#x000A;l3_agent_fanout_2c9aee1c6ed7436fad08394e7892e862&#x000A;notifications.error&#x000A;notifications.info&#x000A;notifications.warn&#x000A;q-agent-notifier-network-delete_fanout_bbda4ea39b3d429bbdb775098b5a5d1c&#x000A;q-agent-notifier-network-delete_fanout_cc1956e54fe7426791223654b64d607a&#x000A;q-agent-notifier-network-delete_fanout_d45046ba0d1c4fc29258cc7a2dfea55e&#x000A;q-agent-notifier-port-update_fanout_4f99b23047ad46c8bcd29be4bbe73088&#x000A;q-agent-notifier-port-update_fanout_5de0f2fff1214b5db7734a1ac1834914&#x000A;q-agent-notifier-port-update_fanout_b24021a711674ea29a30fd441296bca0&#x000A;q-l3-plugin&#x000A;q-plugin&#x000A;reply_01cf9c9a5aff45dd99bd445d1c7c0548&#x000A;reply_08726de3da75449eb7122d57c2e65f21&#x000A;reply_69371f8be5b24a78a48d60251f991657&#x000A;reply_82f2a6704e2c48a4a73f6b9721f11b1e&#x000A;reply_884d5a9bc92644c79cb8e9d65ca49483&#x000A;reply_9dfc307e1984498888cb1b54cb4b5a3e&#x000A;reply_f5477d2019ca4dc2ad79f782f0c48199&#x000A;scheduler&#x000A;scheduler.node-01&#x000A;scheduler_fanout_e774adbbfb784b6c8edff8d9e579b2e0&#x000A;...done.&#x000A;</code></pre>
+
+<h3 id="high-availability">High Availability</h3>
+
+<p>To setup RabbitMQ for high availability, create a cluster of RabbitMQ brokers and enable mirrored queues. The example given here will use three RabbitMQ brokers in a single cluster. The RabbitMQ service will run on the OpenStack node (10.15.85.141) as well as two additional nodes (10.15.85.142 and 10.15.85.143). These nodes will form the RabbitMQ cluster.</p>
+
+<p>Note: The example given here is not a complete solution for high availability. This example is is only intended to show how to configure RabbitMQ such that it is not a single point of failure.</p>
+
+<p>First, stop all of the OpenStack services on node-01.</p>
+
+<pre class="highlight plaintext"><code>% openstack-service stop&#x000A;</code></pre>
+
+<p>Install the RabbitMQ service on the additional RabbitMQ brokers (node-02 and node-03).</p>
+
+<pre class="highlight plaintext"><code>% yum install rabbitmq-server&#x000A;</code></pre>
+
+<p>Before starting the RabbitMQ service on the two additional nodes, copy the erlang cookie from first node to the two additional RabbitMQ brokers. This cookie must be equivalent on each node in the RabbitMQ cluster.</p>
+
+<pre class="highlight plaintext"><code>% scp /var/lib/rabbitmq/.erlang.cookie root@node-02:/var/lib/rabbitmq/.erlang.cookie&#x000A;% scp /var/lib/rabbitmq/.erlang.cookie root@node-03:/var/lib/rabbitmq/.erlang.cookie&#x000A;</code></pre>
+
+<p>Make sure that this cookie is owned by user 'rabbitmq', group 'rabbitmq' and has mode 400 on both node.</p>
+
+<pre class="highlight plaintext"><code>% chown rabbitmq:rabbitmq /var/lib/rabbitmq/.erlang.cookie&#x000A;% chmod 400 /var/lib/rabbitmq/.erlang.cookie&#x000A;</code></pre>
+
+<p>Now enable and start the RabbitMQ service on node-02 and node-03.</p>
+
+<pre class="highlight plaintext"><code>% chkconfig rabbitmq-server on&#x000A;% service rabbitmq-server start&#x000A;</code></pre>
+
+<p>At this point there are three independent RabbitMQ brokers. The next step is to form a cluster and enable mirrored queues. To create the cluster, login to each of the additional RabbitMQ nodes and instruct them to join the first node to form a cluster.</p>
+
+<p>On node-02:</p>
+
+<pre class="highlight plaintext"><code># rabbitmqctl stop_app&#x000A;Stopping node 'rabbit@node-02' ...&#x000A;...done.&#x000A;&#x000A;# rabbitmqctl join_cluster rabbit@node-01&#x000A;Clustering node 'rabbit@node-02' with 'rabbit@node-01' ...&#x000A;...done.&#x000A;&#x000A;# rabbitmqctl start_app&#x000A;Starting node 'rabbit@node-02' ...&#x000A;...done.&#x000A;</code></pre>
+
+<p>On node-03:</p>
+
+<pre class="highlight plaintext"><code># rabbitmqctl stop_app&#x000A;Stopping node 'rabbit@node-03' ...&#x000A;...done.&#x000A;&#x000A;# rabbitmqctl join_cluster rabbit@node-01&#x000A;Clustering node 'rabbit@node-03' with 'rabbit@node-01' ...&#x000A;...done.&#x000A;&#x000A;# rabbitmqctl start_app&#x000A;Starting node 'rabbit@node-03' ...&#x000A;...done.&#x000A;</code></pre>
+
+<p>At this point there should be a three node RabbitMQ cluster. The status of the cluster can be obtained from any of the three members.</p>
+
+<pre class="highlight plaintext"><code>Cluster status of node 'rabbit@node-01' ...&#x000A;[{nodes,[{disc,['rabbit@node-01','rabbit@node-02',&#x000A;        'rabbit@node-03']}]},&#x000A; {running_nodes,['rabbit@node-03','rabbit@node-02',&#x000A;                 'rabbit@node-01']},&#x000A; {partitions,[]}]&#x000A;...done.&#x000A;</code></pre>
+
+<p>The final step for setting up the cluster is to create a policy that instructs RabbitMQ to use mirrored queues. In normal operation, queues are not mirrored across cluster nodes. Enabling mirrored queues allows producers and consumers to connect to any of the RabbitMQ brokers and access the same message queues.</p>
+
+<pre class="highlight plaintext"><code>% rabbitmqctl set_policy HA '^(?!amq\.).*' '{"ha-mode": "all"}'&#x000A;</code></pre>
+
+<p>Finally, since the message queues are accessible via any of the three RabbitMQ brokers, setup a load balancer for RabbitMQ. The example below show how to configure HAProxy on the OpenStack node (node-01) to serve as a load balancer for RabbitMQ.</p>
+
+<p>Install haproxy on node-01.</p>
+
+<pre class="highlight plaintext"><code>% yum install haproxy&#x000A;</code></pre>
+
+<p>Edit /etc/haproxy/haproxy.cfg and create a simple TCP proxy for RabbitMQ.</p>
+
+<pre class="highlight plaintext"><code>global&#x000A;    daemon&#x000A;&#x000A;defaults&#x000A;    mode tcp&#x000A;    maxconn 10000&#x000A;    timeout connect 5s&#x000A;    timeout client 100s&#x000A;    timeout server 100s&#x000A;&#x000A;listen rabbitmq 10.15.85.141:5670&#x000A;    mode tcp&#x000A;    balance roundrobin&#x000A;    server node-01 10.15.85.141:5672 check inter 5s rise 2 fall 3&#x000A;    server node-02 10.15.85.142:5672 check inter 5s rise 2 fall 3&#x000A;    server node-03 10.15.85.143:5672 check inter 5s rise 2 fall 3&#x000A;</code></pre>
+
+<p>The example shown above creates a TCP proxy listening on port 5670 of the OpenStack node (node-01) with IP address 10.15.85.141.. The OpenStack node is also a RabbitMQ broker, so it is also listed as a backend server along with the other two brokers. Connections to this proxy will be distributed in a round-robin manner to the three RabbitMQ brokers, each which is listening on port 5672. Note that the client and server timeouts are set relatively high (100 seconds). This prevents haproxy from closing idle connections too aggressively.</p>
+
+<p>Note: The proxy create for RabbitMQ could have just as easily been created to listen on a virtual IP address. As long as HAProxy can bind to the address/port and the OpenStack services are configured with the correct address/port, the RabbitMQ proxy will work as intended.</p>
+
+<p>Start haproxy on the OpenStack node.</p>
+
+<pre class="highlight plaintext"><code>% service haproxy start&#x000A;</code></pre>
+
+<p>With haproxy serving as a proxy for RabbitMQ, configure each OpenStack service to use address 10.15.85.141, port 5670 for RabbitMQ. The 'rabbit_host' and 'rabbit_port' should match the address and port of the RabbitMQ proxy.</p>
+
+<p>Neutron:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_host 10.15.85.141&#x000A;openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_port 5670&#x000A;</code></pre>
+
+<p>Nova:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_host 10.15.85.141&#x000A;openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_port 5670&#x000A;</code></pre>
+
+<p>Glance:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/glance/glance-api.conf DEFAULT rabbit_host 10.15.85.141&#x000A;openstack-config --set /etc/glance/glance-api.conf DEFAULT rabbit_port 5670&#x000A;</code></pre>
+
+<p>Cinder:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/cinder/cinder.conf DEFAULT rabbit_host 10.15.85.141&#x000A;openstack-config --set /etc/cinder/cinder.conf DEFAULT rabbit_port 5670&#x000A;</code></pre>
+
+<p>Ceilometer:</p>
+
+<pre class="highlight plaintext"><code>openstack-config --set /etc/ceilometer/ceilometer.conf DEFAULT rabbit_host 10.15.85.141&#x000A;openstack-config --set /etc/ceilometer/ceilometer.conf DEFAULT rabbit_port 5670&#x000A;</code></pre>
+
+<p>Finally, define the RabbitMQ cluster nodes in the configuration file such that the node will join the cluster on restart. Edit /etc/rabbitmq/rabbitmq.config on each of the RabbitMQ cluster ndoes.</p>
+
+<pre class="highlight plaintext"><code>[{rabbit,&#x000A;  [{cluster_nodes, {['rabbit@node-01', 'rabbit@node-02', 'rabbit@node-03'], ram}}]}].&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/rabbitmq.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 3 Dec 2015 13:31 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

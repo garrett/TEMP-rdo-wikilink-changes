@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Keystone integration with IDM &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/keystone-integration-with-idm.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="keystone-integration-with-idm">Keystone integration with IDM</h1>
+
+<h2 class="no_toc" id="overview">Overview</h2>
+
+<p>This page describes a possible Keystone and Red Hat IdM integration scenario. There are many possible ways to integrate the two technologies. This scenario meets the following requirements:</p>
+
+<ul>
+  <li>Keystone Accounts, Tenants, and Roles are stored in the Red Hat IdM database.</li>
+  <li>User accounts are managed by Red Hat IdM.</li>
+  <li>Tenants and Roles are managed by Keystone.</li>
+  <li>The Keystone service catalog is stored in MySQL.</li>
+</ul>
+
+<p>Roles and privileges are created so that a Keystone administrator (or service) can not inadvertently write to objects in the standard Red Hat IdM tree.</p>
+
+<h2 id="example-architecture">Example Architecture</h2>
+
+<p>In this example, two systems will be used. The first (<code>ipa01</code>) is an IdM master server. Information on initial installation and configuration of the IdM software is here:</p>
+
+<p><a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Identity_Management_Guide/installing-ipa.html">https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Identity_Management_Guide/installing-ipa.html</a></p>
+
+<p>The second system (<code>keystone</code>) is a RDO Keystone server. Information on the initial installation and configuration of Keystone is here:</p>
+
+<p><a href="http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/ch_installing-openstack-identity-service.html">http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/ch_installing-openstack-identity-service.html</a></p>
+
+<p>This guide assumes a manual installation of RDO and its services (i.e. not using packstack).</p>
+
+<h2 id="idm-preparation">IdM Preparation</h2>
+
+<p>Either install Red Hat IdM from scratch or start with an existing Red Hat IdM directory. In this example, we have an existing directory rooted at <code>dc=example,dc=com</code> User accounts are stored in <code>cn=users,cn=accounts,dc=example,dc=com</code> as per the default.</p>
+
+<h3 id="install-the-keystone-schema">Install the Keystone schema</h3>
+
+<p>Note: the following assumes that you want to manage assignment data in LDAP. In the Havana and later releases, the Identity backend only contains user and group information. Projects, roles, role assignments, and domains are all stored in the Assignment backend. The preferred approach is to store assignments in SQL, not in LDAP. Thus, the following custom schema is not necessary.</p>
+
+<p>Keystone will pull user account information from <code>cn=users,cn=accounts</code>, but we'll configure it to store Tenants and Roles in <code>cn=openstack</code>. This allows us to grant permission to that tree while restricting permissions to the standard tree. The following schema needs to be imported to support Keystone:</p>
+
+<pre class="highlight plaintext"><code>dn: cn=openstack,dc=example,dc=com&#x000A;objectClass: top&#x000A;objectClass: nsContainer&#x000A;cn: openstack&#x000A;&#x000A;dn: cn=enabled_users,cn=openstack,dc=example,dc=com&#x000A;objectClass: groupOfNames&#x000A;objectClass: top&#x000A;cn: enabled_users&#x000A;&#x000A;dn: ou=tenants,cn=openstack,dc=example,dc=com&#x000A;objectClass: top&#x000A;objectClass: organizationalUnit&#x000A;ou: tenants&#x000A;&#x000A;dn: cn=enabled_tenants,cn=openstack,dc=example,dc=com&#x000A;objectClass: groupOfNames&#x000A;objectClass: top&#x000A;cn: enabled_tenants&#x000A;&#x000A;dn: ou=roles,cn=openstack,dc=example,dc=com&#x000A;objectClass: top&#x000A;objectClass: organizationalUnit&#x000A;ou: roles&#x000A;</code></pre>
+
+<p>The <code>enabled_users</code> and <code>enabled_tenants</code> groups are used to emulate the "enabled" attribute, since it is unsupported in Red Hat IdM's default schema. It is possible to use any groupOfNames for the "enabled emulation" feature. Implementations may wish to use an existing group in IdM instead. For example, using the <code>cn=ipausers,cn=groups,cn=accounts,dc=example,dc=com</code> group will automatically "enable" all IdM users in Keystone.</p>
+
+<p>To add the schema to the Red Hat IdM database, first save the LDIF above into a text file in root's home directory on <code>ipa01</code>. Edit the file, replacing <code>dc=example,dc=com</code> with the correct domain suffix. Then load the schema with <code>ldapadd</code>:</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapadd -x -D"cn=Directory Manager" -W &lt; openstack.ldif&#x000A;</code></pre>
+
+<p>You will be prompted for the Directory Manager password.</p>
+
+<p>Next, create an "OpenStack Administrator" role with permission to edit that subtree. Before running these or any other <code>ipa</code> commands, authenticate to IdM as a user which has administrative privileges.</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ipa role-add --desc="OpenStack Administrator" "OpenStack Administrator"&#x000A;[admin@ipa01 ~]$ ipa permission-add "Manage OpenStack Tenants and Roles" \&#x000A; --subtree="ldap:///cn=openstack,dc=example,dc=com" \&#x000A; --permissions=write,add,delete \&#x000A; --attrs=member,roleOccupant&#x000A;[admin@ipa01 ~]$ ipa privilege-add "Manage OpenStack" --desc "Manage OpenStack Tenants and Roles"&#x000A;[admin@ipa01 ~]$ ipa privilege-add-permission "Manage OpenStack" \&#x000A;  --permissions="Manage OpenStack Tenants and Roles"&#x000A;[admin@ipa01 ~]$ ipa role-add-privilege --privileges "Manage OpenStack" "OpenStack Administrator"&#x000A;</code></pre>
+
+<p>Last, create a group named <code>osadmins</code> with the role that was created above.</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ipa group-add --desc="OpenStack Admins" osadmins&#x000A;[admin@ipa01 ~]$ ipa role-add-member --groups=osadmins "OpenStack Administrator"&#x000A;</code></pre>
+
+<h3 id="creating-the-openstack-administrator-account">Creating the OpenStack administrator account</h3>
+
+<p>User accounts in OpenStack will be drawn from the IdM user list. The following steps will create an initial administration account to use in creating the initial Keystone Tenants, Roles, and Service Catalog. An existing administrator or human account could be used as well - add the account to the <code>osadmins</code> group to inherit the "OpenStack Administrator" role which grants write access to the subtree.</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ipa user-add&#x000A;First name: RDO&#x000A;Last name: Administrator&#x000A;User login [radministrator]: rdoadmin&#x000A;---------------------&#x000A;Added user "rdoadmin"&#x000A;---------------------&#x000A;[admin@ipa01 ~]$ ipa user-mod --email=rdoadmin@example.com rdoadmin&#x000A;[admin@ipa01 ~]$ ipa passwd rdoadm&#x000A;[admin@ipa01 ~]$ ipa group-add-member --users=rdoadmin osadmins&#x000A;</code></pre>
+
+<p>Next, add the user to the <code>enabled_users</code> group in the <code>cn=openstack</code> tree. Use the account which was added to the <code>osadmins</code> group to verify that the privilege was inherited correctly:</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;&gt; dn: cn=enabled_users,cn=openstack,dc=example,dc=com&#x000A;&gt; changetype: modify&#x000A;&gt; add: member&#x000A;&gt; member: uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com&#x000A;&gt; &#x000A;&gt; EOF&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=enabled_users,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<p>If the <code>ldapmodify</code> command does not succeed, troubleshoot the role, permission, and privilege created in the first step.</p>
+
+<p>If using an existing IdM group to determine whether or not an account is "enabled" for OpenStack, the administrative user will need to be added to that group instead of <code>cn=enabled_users,cn=openstack</code>.</p>
+
+<h2 id="keystone-configuration">Keystone Configuration</h2>
+
+<h3 id="creating-a-keystoneconf">Creating a keystone.conf</h3>
+
+<p>Install the Keystone software, create the MySQL database, create the service token, and populate the MySQL database using the instructions provided here:</p>
+
+<p><a href="http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/install-keystone.html">http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/install-keystone.html</a></p>
+
+<p>After running <code>keystone-manage db_sync</code>, edit <code>/etc/keystone/keystone.conf</code>. In the <code>identity</code> section, comment out the SQL Identity driver and uncomment the LDAP driver:</p>
+
+<pre class="highlight plaintext"><code>[identity]&#x000A;#driver = keystone.identity.backends.sql.Identity&#x000A;driver = keystone.identity.backends.ldap.Identity&#x000A;</code></pre>
+
+<p>If you wish to store assignments in the LDAP store, configure the <code>ldap</code> section to use the Red Hat IdM LDAP database.</p>
+
+<pre class="highlight plaintext"><code>[ldap]&#x000A;url = ldap://ipa01.example.com&#x000A;user = uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com&#x000A;password = &lt;password&gt;&#x000A;suffix = cn=openstack,dc=example,dc=com&#x000A;use_dumb_member = False&#x000A;allow_subtree_delete = False&#x000A;# dumb_member = cn=dumb,dc=example,dc=com&#x000A;&#x000A;# Maximum results per page; a value of zero ('0') disables paging (default)&#x000A;# page_size = 0&#x000A;&#x000A;# The LDAP dereferencing option for queries. This can be either 'never',&#x000A;# 'searching', 'always', 'finding' or 'default'. The 'default' option falls&#x000A;# back to using default dereferencing configured by your ldap.conf.&#x000A;# alias_dereferencing = default&#x000A;&#x000A;# The LDAP scope for queries, this can be either 'one'&#x000A;# (onelevel/singleLevel) or 'sub' (subtree/wholeSubtree)&#x000A;# query_scope = one&#x000A;&#x000A;user_tree_dn = cn=users,cn=accounts,dc=example,dc=com&#x000A;# user_filter =&#x000A;user_objectclass = person&#x000A;#user_domain_id_attribute = businessCategory&#x000A;user_id_attribute = uid&#x000A;user_name_attribute = uid&#x000A;user_mail_attribute = mail&#x000A;# user_pass_attribute = userPassword&#x000A;# user_enabled_attribute = enabled&#x000A;# user_enabled_mask = 0&#x000A;# user_enabled_default = True&#x000A;user_attribute_ignore =  tenant_id,tenants&#x000A;user_allow_create = False&#x000A;user_allow_update = False&#x000A;user_allow_delete = False&#x000A;user_enabled_emulation = True&#x000A;user_enabled_emulation_dn = cn=enabled_users,cn=openstack,dc=example,dc=com&#x000A;&#x000A;tenant_tree_dn = ou=tenants,cn=openstack,dc=example,dc=com&#x000A;# tenant_filter =&#x000A;# tenant_objectclass = groupOfNames&#x000A;tenant_domain_id_attribute = businessCategory&#x000A;tenant_id_attribute = cn&#x000A;tenant_member_attribute = member&#x000A;# tenant_name_attribute = ou&#x000A;tenant_desc_attribute = description&#x000A;# tenant_enabled_attribute = enabled&#x000A;tenant_attribute_ignore =&#x000A;# tenant_allow_create = True&#x000A;# tenant_allow_update = True&#x000A;# tenant_allow_delete = True&#x000A;tenant_enabled_emulation = True&#x000A;tenant_enabled_emulation_dn = cn=enabled_tenants,cn=openstack,dc=example,dc=com&#x000A;&#x000A;role_tree_dn = ou=roles,cn=openstack,dc=example,dc=com&#x000A;# role_filter =&#x000A;# role_objectclass = organizationalRole&#x000A;# role_id_attribute = cn&#x000A;# role_name_attribute = ou&#x000A;# role_member_attribute = roleOccupant&#x000A;role_attribute_ignore =&#x000A;# role_allow_create = True&#x000A;# role_allow_update = True&#x000A;# role_allow_delete = True&#x000A;</code></pre>
+
+<p>Change the above suffixes to reflect the IdM installation (i.e. dc=example,dc=com). Note that this configuration uses the <code>rdoadmin</code> account created above to authenticate Keystone to IPA. If a different account was created for that purpose above, change the <code>user</code> and <code>password</code> value in the configuration file.</p>
+
+<p>If you wish to only use Users and Groups from IPA in a read only manner, and manage assignments in SQL the configuration file can be significantly simplified. Since LDAP is read only, you don't have to provide a user or password for the admin: it will do an anonymous bind instead. Since a user added from Keystone would not be a valid IPA user, a user should only be added via the IPA API.</p>
+
+<pre class="highlight plaintext"><code>[assignment]&#x000A;driver = keystone.assignment.backends.sql.Assignment&#x000A;&#x000A;[identity]&#x000A;driver = keystone.identity.backends.ldap.Identity&#x000A;&#x000A;[ldap]&#x000A;url = ldap://ipa01.example.com&#x000A;user_tree_dn=cn=users,cn=accounts,dc=example,dc=com&#x000A;user_id_attribute=uid&#x000A;group_tree_dn=cn=groups,cn=accounts,dc=example,dc=com&#x000A;</code></pre>
+
+<p>Here are some possible variations on the configuration values above:</p>
+
+<ul>
+  <li>The <code>user_id_attribute</code> and <code>user_name_attribute</code> could be mapped to other LDAP attributes in IdM. For example, to get a UUID for a user_id, <code>user_id_attribute</code> could be set to the <code>ipaUniqueId</code> attribute. The <code>uidNumber</code> attribute would be another good candidate for the <code>user_id_attribute</code> mapping. To get human readible user names, the <code>user_name_attribute</code> could be mapped to the <code>cn</code> attribute. Note that most authentication and role assignments are performed against the user <em>name</em> and not the user <em>id</em>. In most installations, both <code>user_id_attribute</code> and <code>user_id_attribute</code> should be set to <code>uid</code>.</li>
+  <li>As discussed above, the <code>user_enabled_emulation_dn</code> setting could be assigned to an existing IdM group. This simplifies new OpenStack account creation somewhat.</li>
+</ul>
+
+<h3 id="testing-the-configuration">Testing the configuration</h3>
+
+<p>Once the <code>keystone.conf</code> file has the correct mappings to the IdM database, restart the <code>openstack-keystone</code> service. Set the <code>SERVICE_TOKEN</code> and <code>SERVICE_ENDPOINT</code> environment variables to match the settings in <code>keystone.conf</code>:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# export SERVICE_TOKEN=012345SECRET99TOKEN012345&#x000A;[root@keystone ~]# export SERVICE_ENDPOINT=http://127.0.0.1:35357/v2.0/&#x000A;</code></pre>
+
+<p>If the LDAP mappings are correct in <code>keystone.conf</code>, the <code>user-list</code> command should show the list of users in the IdM database, including the one we enabled above.</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone user-list&#x000A;+------------+------------+---------+-------------------------------+&#x000A;|     id     |    name    | enabled |             email             |&#x000A;+------------+------------+---------+-------------------------------+&#x000A;|   admin    |   admin    |  False  |                               |&#x000A;....&#x000A;|  rdoadmin  |  rdoadmin  |   True  | rdoadmin@example.com |&#x000A;...&#x000A;+------------+------------+---------+-------------------------------+&#x000A;</code></pre>
+
+<p>If keystone returns a 401 error or a 404 error, confirm the settings in <code>/etc/keystone/keystone.conf</code>. Also consider setting <code>debug = True</code> in the <code>[DEFAULT]</code> section. This will print the actual LDAP queries being run against the IdM server and their return codes in <code>/var/log/keystone/keystone.log</code>.</p>
+
+<h3 id="creating-tenants-and-roles">Creating Tenants and Roles</h3>
+
+<p>Next, create the initial set of Tenants for OpenStack users and services to use. The following examples use the Tenant names from the OpenStack installation guide:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone tenant-create --name demo --description "Default Tenant"&#x000A;[root@keystone ~]# keystone tenant-create --name service --description "Service Tenant"&#x000A;</code></pre>
+
+<p>Verify that the tenants were created:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone tenant-list&#x000A;+----------------------------------+---------+---------+&#x000A;|                id                |   name  | enabled |&#x000A;+----------------------------------+---------+---------+&#x000A;| 573429b5b7cc4312b981117890c1e9d8 |  demo   |   True  |&#x000A;| a459741dfa8f4a8cb74306f001c564e3 | service |   True  |&#x000A;+----------------------------------+---------+---------+&#x000A;</code></pre>
+
+<p>Once the initial tenants have been created, add the <code>rdoadmin</code> user to the <code>demo</code> tenant on the IdM server:</p>
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;dn: cn=573429b5b7cc4312b981117890c1e9d8,ou=tenants,cn=openstack,dc=example,dc=com&#x000A;changetype: modify&#x000A;add: member&#x000A;member: uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com&#x000A;EOF&#x000A;&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=573429b5b7cc4312b981117890c1e9d8,ou=tenants,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<p>Next, create the initial set of Roles for OpenStack users and services to use back on the <code>keystone</code> server. The following examples create an <code>admin</code> and <code>user</code> role.</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone role-create --name admin&#x000A;[root@keystone ~]# keystone role-create --name user&#x000A;[root@keystone ~]# keystone role-list&#x000A;+----------------------------------+-------+&#x000A;|                id                |  name |&#x000A;+----------------------------------+-------+&#x000A;| d797691eb43640adb401c9b698fb4cef | admin |&#x000A;| 69dd03c5b0fb43c38da33c0af7b52cfc |  user |&#x000A;+----------------------------------+-------+&#x000A;</code></pre>
+
+<p>Lastly, grant the <code>admin</code> role to the OpenStack Administrator account in the demo Tenant:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone]# keystone user-role-add --user-id rdoadmin --tenant-id 573429b5b7cc4312b981117890c1e9d8 --role-id d797691eb43640adb401c9b698fb4cef&#x000A;</code></pre>
+
+<p>To test, create a <code>keystonerc_rdoadmin</code> file with the following contents:</p>
+
+<pre class="highlight plaintext"><code>export OS_USERNAME=rdoadmin&#x000A;export OS_TENANT_NAME=demo&#x000A;export OS_PASSWORD=&lt;password&gt;&#x000A;export OS_AUTH_URL=http://10.17.12.12:35357/v2.0/&#x000A;export PS1='[\u@\h \W(keystone_admin)]$ '&#x000A;</code></pre>
+
+<p>Initiate a new shell session on <code>keystone</code> without the <code>SERVICE_TOKEN</code> environment variable set, source the <code>keystonerc_rdoadmin</code> script and then test retrieving a token:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~(keystone_admin)]# keystone token-get&#x000A;+-----------+----------------------------------+&#x000A;|  Property |              Value               |&#x000A;+-----------+----------------------------------+&#x000A;|  expires  |       2013-06-15T02:15:17Z       |&#x000A;|     id    | a6a8fd0ac3c443dd9425489a4990be3b |&#x000A;| tenant_id | 573429b5b7cc4312b981117890c1e9d8 |&#x000A;|  user_id  |             rdoadmin             |&#x000A;+-----------+----------------------------------+&#x000A;</code></pre>
+
+<p>The <code>rdoadmin</code> user should also be able to list all users as it was granted the <code>admin</code> role:</p>
+
+<pre class="highlight plaintext"><code>[root@keystone ~(keystone_admin)]# keystone user-list&#x000A;+------------+------------+---------+-------------------------------+&#x000A;|     id     |    name    | enabled |             email             |&#x000A;+------------+------------+---------+-------------------------------+&#x000A;|   admin    |   admin    |  False  |                               |&#x000A;....&#x000A;|  rdoadmin  |  rdoadmin  |   True  | rdoadmin@example.com |&#x000A;...&#x000A;+------------+------------+---------+-------------------------------+&#x000A;</code></pre>
+
+<h2 id="creating-service-users">Creating Service Users</h2>
+
+<p>The glance, nova, ec2, cinder, and swift services all have service accounts in IdM to authenticate to Keystone. To create these accounts, use the following procedure:</p>
+
+<ul>
+  <li>Create the user account in IdM</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ipa user-add glance --cn=glance --first=glance --last=service&#x000A;-------------------&#x000A;Added user "glance"&#x000A;-------------------&#x000A;  User login: glance&#x000A;  First name: glance&#x000A;  Last name: service&#x000A;  Full name: glance&#x000A;  Display name: glance service&#x000A;  Initials: gs&#x000A;  Home directory: /home/glance&#x000A;  GECOS field: glance service&#x000A;  Login shell: /bin/sh&#x000A;  Kerberos principal: glance@EXAMPLE.COM&#x000A;  UID: 1840200016&#x000A;  GID: 1840200016&#x000A;  Password: False&#x000A;  Kerberos keys available: False&#x000A;</code></pre>
+
+<ul>
+  <li>Set the user's password</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ipa passwd glance&#x000A;New Password: &#x000A;Enter New Password again to verify: &#x000A;--------------------------------------------------&#x000A;Changed password for "glance@EXAMPLE.COM"&#x000A;--------------------------------------------------&#x000A;[admin@ipa01 ~]$ kinit glance@EXAMPLE.COM&#x000A;Password for glance@EXAMPLE.COM: &#x000A;Password expired.  You must change it now.&#x000A;Enter new password: &#x000A;Enter it again: &#x000A;</code></pre>
+
+<ul>
+  <li>Add the user to the <code>enabled_users</code> group in the <code>cn=openstack</code> subtree</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;&gt; dn: cn=enabled_users,cn=openstack,dc=example,dc=com&#x000A;&gt; changetype: modify&#x000A;&gt; add: member&#x000A;&gt; member: uid=glance,cn=users,cn=accounts,dc=example,dc=com&#x000A;&gt; EOF&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=enabled_users,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<ul>
+  <li>Add the user to the <code>service</code> tenant in the <code>cn=openstack</code> subtree</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;&gt; dn: cn=a459741dfa8f4a8cb74306f001c564e3,ou=tenants,cn=openstack,dc=example,dc=com&#x000A;&gt; changetype: modify&#x000A;&gt; add: member&#x000A;&gt; member: uid=glance,cn=users,cn=accounts,dc=example,dc=com&#x000A;&gt; EOF&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=a459741dfa8f4a8cb74306f001c564e3,ou=tenants,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<ul>
+  <li>Add the <code>admin</code> role to the user account in the <code>service</code> tenant.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone user-role-add --user-id glance --tenant-id a459741dfa8f4a8cb74306f001c564e3 --role-id d797691eb43640adb401c9b698fb4cef&#x000A;</code></pre>
+
+<p>Repeat this process with each of the other services which will be enabled in this OpenStack instance. For each of those services, edit the appropriate configuration file and set the <code>keystone_authtoken</code> attributes to match the IdM user account. For example:</p>
+
+<pre class="highlight plaintext"><code>[keystone_authtoken]&#x000A;auth_host = &lt;your keystone IP&gt;&#x000A;auth_port = 35357&#x000A;auth_protocol = http&#x000A;admin_tenant_name = service&#x000A;admin_user = glance&#x000A;admin_password = &lt;password&gt;&#x000A;</code></pre>
+
+<h2 id="populating-the-service-catalog">Populating the Service Catalog</h2>
+
+<p>The last step in Keystone configuration is to populate the Service Catalog. In this example, services are stored in the MySQL database. The following page describes the population of the Service Catalog:</p>
+
+<p><a href="http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/keystone-service-endpoint-create.html">http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/keystone-service-endpoint-create.html</a></p>
+
+<h2 id="managing-user-accounts">Managing User Accounts</h2>
+
+<h3 id="granting-openstack-privileges-to-an-existing-red-hat-idm-user">Granting OpenStack privileges to an existing Red Hat IdM user</h3>
+
+<p>To grant privileges to an existing IdM user, use the following process:</p>
+
+<ul>
+  <li>Add the account to the OpenStack enabled_users group:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;&gt; dn: cn=enabled_users,cn=openstack,dc=example,dc=com&#x000A;&gt; changetype: modify&#x000A;&gt; add: member&#x000A;&gt; member: uid=msolberg,cn=users,cn=accounts,dc=example,dc=com&#x000A;&gt; EOF&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=enabled_users,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<ul>
+  <li>Add the account to the appropriate tenant</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01 ~]$ ldapmodify -x -D"uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com" -W &lt;&lt;EOF&#x000A;dn: cn=573429b5b7cc4312b981117890c1e9d8,ou=tenants,cn=openstack,dc=example,dc=com &#x000A;changetype: modify&#x000A;add: member                                                               &#x000A;member: uid=msolberg,cn=users,cn=accounts,dc=example,dc=com&#x000A;EOF&#x000A;&#x000A;Enter LDAP Password: &#x000A;modifying entry "cn=573429b5b7cc4312b981117890c1e9d8,ou=tenants,cn=openstack,dc=example,dc=com"&#x000A;</code></pre>
+
+<ul>
+  <li>Add the the appropriate role to the tenant in Keystone</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@keystone ~]# keystone user-role-add --user-id msolberg --tenant-id 573429b5b7cc4312b981117890c1e9d8 --role-id 69dd03c5b0fb43c38da33c0af7b52cfc&#x000A;</code></pre>
+
+<h2 id="securing-openstack-services">Securing OpenStack Services</h2>
+
+<p>By default, communication between the services which comprise RDO is not encrypted or authenticated. The following steps walk through creating certificates for these services using the Red Hat IdM certificate infrastructure. It is assumed that each service is already configured as per the OpenStack Installation Guide:</p>
+
+<p><a href="http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/">http://docs.openstack.org/grizzly/openstack-compute/install/yum/content/</a></p>
+
+<h3 id="securing-horizon">Securing Horizon</h3>
+
+<p>OpenStack end users communicate with the Horizon dashbard over HTTP using a web browser. The following steps will encrypt that communication:</p>
+
+<ul>
+  <li>Join the host to IdM (if you haven't already)</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard]# yum -y install ipa-client&#x000A;[root@dashboard]# ipa-client-install&#x000A;</code></pre>
+
+<ul>
+  <li>Test IdM</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard]# getent group ipausers&#x000A;</code></pre>
+
+<ul>
+  <li>On the IdM server, create a service principal for the host, substituting the hostname of the service which runs the dashboard:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01]$ ipa service-add HTTP/dashboard.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>On the dashboard host, install mod_ssl on the system:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard ~]# yum -y install mod_ssl&#x000A;</code></pre>
+
+<ul>
+  <li>Request a web certificate</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard ~]# ipa-getcert request -r -f /etc/pki/tls/certs/`hostname -s`-http.crt -k /etc/pki/tls/private/`hostname -s`-http.key -N CN=`hostname --fqdn` -D `hostname` -U id-kp-serverAuth -K HTTP/`hostname --fqdn`&#x000A;</code></pre>
+
+<ul>
+  <li>Edit ssl.conf and point httpd to the new cert and key:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard ~]# vi /etc/httpd/conf.d/ssl.conf&#x000A;</code></pre>
+
+<ul>
+  <li>Configure it like:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>SSLCertificateFile /etc/pki/tls/certs/&lt;host&gt;-http.crt&#x000A;SSLCertificateKeyFile /etc/pki/tls/private/&lt;host&gt;-http.key&#x000A;SSLCertificateChainFile /etc/ipa/ca.crt&#x000A;</code></pre>
+
+<ul>
+  <li>Optionally create a VirtualHost entry which redirects clients to the SSL. Substitute the hostname of the server running the dashboard in this example.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard ~]# cat &gt;&gt; /etc/httpd/conf.d/redirect.conf &lt;&lt;EOF&#x000A;&gt; NameVirtualHost *:80&#x000A;&gt; &lt;VirtualHost *:80&gt;&#x000A;&gt;    ServerName dashboard.example.com&#x000A;&gt;    Redirect permanent / https://dashboard.example.com/&#x000A;&gt; &lt;/VirtualHost&gt;&#x000A;EOF&#x000A;</code></pre>
+
+<ul>
+  <li>Restart apache</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@dashboard ~]# service httpd restart&#x000A;</code></pre>
+
+<p>Requests to the web service on dashboard.example.com now be redirected to the SSL virtual host on that server. Ensure that the certificate presented to the web browser is valid and signed by the IdM master server.</p>
+
+<h2 id="securing-mysql-wip">Securing MySQL (WIP)</h2>
+
+<ul>
+  <li>On the IdM server, create a service principal for the host, substituting the hostname of the server running MySQL:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01]$ ipa service-add mysql/mysql.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Request a certificate</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# ipa-getcert request -r -f /etc/pki/tls/certs/`hostname -s`-mysql.crt -k /etc/pki/tls/private/`hostname -s`-mysql.key -N CN=`hostname --fqdn` -D `hostname` -U id-kp-serverAuth -K mysql/`hostname --fqdn`&#x000A;</code></pre>
+
+<ul>
+  <li>Edit /etc/my.conf and point mysqld to the new cert and key:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[client]&#x000A;ssl_ca=/etc/ipa/ca.crt&#x000A;...&#x000A;[mysqld]&#x000A;ssl_ca=/etc/ipa/ca.crt&#x000A;ssl_cert=/etc/pki/tls/certs/&lt;host&gt;-mysql.crt&#x000A;ssl-key=/etc/pki/tls/private/&lt;host&gt;-mysql.key&#x000A;</code></pre>
+
+<ul>
+  <li>Restart mysqld:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# service mysqld restart&#x000A;</code></pre>
+
+<ul>
+  <li>Test that SSL is working:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# mysql -e "\s"&#x000A;--------------&#x000A;mysql  Ver 14.14 Distrib 5.5.31, for Linux (x86_64) using readline 5.1&#x000A;&#x000A;Connection id:          487&#x000A;Current database:&#x000A;Current user:           root@localhost&#x000A;SSL:                    Cipher in use is DHE-RSA-AES256-SHA&#x000A;Current pager:          stdout&#x000A;Using outfile:          ''&#x000A;Using delimiter:        ;&#x000A;Server version:         5.5.31 MySQL Community Server (GPL)&#x000A;Protocol version:       10&#x000A;Connection:             Localhost via UNIX socket&#x000A;Server characterset:    latin1&#x000A;Db     characterset:    latin1&#x000A;Client characterset:    utf8&#x000A;Conn.  characterset:    utf8&#x000A;UNIX socket:            /var/lib/mysql/mysql.sock&#x000A;Uptime:                 2 sec&#x000A;&#x000A;Threads: 10  Questions: 791702  Slow queries: 0  Opens: 91  Flush tables: 1  Open tables: 84  Queries per second avg: 4.800&#x000A;</code></pre>
+
+<ul>
+  <li>Configure the OpenStack services to use SSL. Set the SQL connection (either connection or sql_connection, depending on the service) . <strong>Note</strong>: that this also changes from addressing the host by IP address to FQDN:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>connection = mysql://keystone_admin:a3a9e1219b81473e@mysql.example.com/keystone?ssl_ca=/etc/ipa/ca.crt&#x000A;</code></pre>
+
+<ul>
+  <li>To these files:
+    <ul>
+      <li>/etc/glance/glance-api.conf</li>
+      <li>/etc/glance/glance-registry.conf</li>
+      <li>/etc/cinder/cinder.conf</li>
+      <li>/etc/nova/nova.conf</li>
+      <li>/etc/keystone/keystone.conf</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Restart the services:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# service openstack-glance-api restart&#x000A;[root@mysql ~]# service openstack-glance-registry restart&#x000A;[root@mysql ~]# service openstack-cinder restart&#x000A;[root@mysql ~]# service openstack-nova-api restart&#x000A;[root@mysql ~]# service openstack-nova-cert restart&#x000A;[root@mysql ~]# service openstack-nova-compute restart&#x000A;[root@mysql ~]# service openstack-nova-conductor restart&#x000A;[root@mysql ~]# service openstack-nova-consoleauth restart&#x000A;[root@mysql ~]# service openstack-nova-network restart&#x000A;[root@mysql ~]# service openstack-nova-novncproxy restart&#x000A;[root@mysql ~]# service openstack-nova-scheduler restart&#x000A;[root@mysql ~]# service openstack-keystone restart&#x000A;</code></pre>
+
+<h2 id="securing-qpidd-with-ssl-wip">Securing qpidd with SSL (WIP)</h2>
+
+<p>Configuring qpidd does not currently work without making some manual changes, depending on the version of OpenStack you are running. nova and glance do not properly allow SSL configuration due to launchpad bug <a href="https://bugs.launchpad.net/oslo-incubator/+bug/1158807">https://bugs.launchpad.net/oslo-incubator/+bug/1158807</a> . It is a one-line change to make in the nova and cinder python files.</p>
+
+<ul>
+  <li>Install the qpid-cpp-server-ssl package</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># yum install qpid-cpp-server-ssl&#x000A;</code></pre>
+
+<ul>
+  <li>Create the IPA service</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># ipa service-add qpid/qpid.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Create a directory to store the NSS certificate database for qpidd</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># mkdir /etc/pki/qpid&#x000A;# certutil -N -d /etc/pki/qpid (note the password you use)&#x000A;</code></pre>
+
+<ul>
+  <li>Create a password file containing the password you set on the NSS database</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># echo password &gt; /etc/pki/qpid/password.conf&#x000A;</code></pre>
+
+<ul>
+  <li>Fix permissions and ownership of files</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># chown -R qpidd /etc/pki/qpid&#x000A;# chmod 600 /etc/pki/qpid/password.conf&#x000A;# restorecon /etc/pki/qpid/*&#x000A;</code></pre>
+
+<ul>
+  <li>Request an SSL certificate</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># ipa-getcert request -d /etc/pki/qpid -n broker -p /etc/pki/qpid/password.conf -N CN=`hostname --fqdn` -D `hostname` -U id-kp-serverAuth -K qpidl/`hostname --fqdn`&#x000A;</code></pre>
+
+<ul>
+  <li>Add configuration options to <code>/etc/qpidd.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>require-encryption=yes&#x000A;ssl-require-client-authentication=no&#x000A;ssl-cert-db=/etc/pki/qpid&#x000A;ssl-cert-password-file=/etc/pki/qpid/password.conf&#x000A;ssl-cert-name=broker&#x000A;ssl-port=5671&#x000A;</code></pre>
+
+<ul>
+  <li>Configure nova to use ssl in <code>/etc/nova/nova.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>qpid_protocol=ssl&#x000A;qpid_port=5671&#x000A;</code></pre>
+
+<ul>
+  <li>Configure cinder to use ssl in <code>/etc/cinder/cinder.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>qpid_protocol=ssl&#x000A;qpid_port=5671&#x000A;</code></pre>
+
+<ul>
+  <li>Restart the nova and cinder services</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># service openstack-cinder-api restart&#x000A;# service openstack-cinder-scheduler restart&#x000A;# service openstack-cinder-volume restart&#x000A;# service openstack-glance-api restart&#x000A;# service openstack-glance-registry restart&#x000A;# service openstack-keystone restart&#x000A;# service openstack-nova-api restart&#x000A;# service openstack-nova-cert restart&#x000A;# service openstack-nova-compute restart&#x000A;# service openstack-nova-conductor restart&#x000A;# service openstack-nova-consoleauth restart&#x000A;# service openstack-nova-network restart&#x000A;# service openstack-nova-novncproxy restart&#x000A;# service openstack-nova-scheduler restart&#x000A;</code></pre>
+
+<h2 id="securing-qpidd-with-kerberos-wip">Securing qpidd with Kerberos (WIP)</h2>
+
+<p>You can secure qpidd with either Kerberos or SSL, but not both. Securing with Kerberos provides an encrypted channel as well as authentication.</p>
+
+<ul>
+  <li>Install the python-saslwrapper package</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># yum install python-saslwrapper&#x000A;</code></pre>
+
+<ul>
+  <li>Add an IPA service for qpidd</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01]$ ipa service-add qpidd/openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Retrieve a keytab for this new service</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# ipa-getkeytab -s ipa01.example.com -k /etc/qpidd.keytab -p qpidd/openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Fix permissions and ownership of the keytab</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# chown qpidd /etc/qpidd.keytab&#x000A;[root@openstack]# chmod 600 /etc/qpidd.keytab&#x000A;</code></pre>
+
+<ul>
+  <li>Configure qpidd by setting auth and realm in <code>/etc/qpidd.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>auth=yes&#x000A;realm=EXAMPLE.COM&#x000A;</code></pre>
+
+<ul>
+  <li>Configure GSSAPI as the only allowed mechanism for qpidd in <code>/etc/sasl2/qpidd.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>mech_list: GSSAPI&#x000A;</code></pre>
+
+<ul>
+  <li>Create the file <code>/etc/sysconfig/qpidd</code> to tell qpidd the location of its Kerberos keytab:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>KRB5_KTNAME=/etc/qpidd.keytab&#x000A;</code></pre>
+
+<ul>
+  <li>In Fedora we need to do another couple of steps so systemd will load the sysconfig file. Create a copy of the qpidd systemd service:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># cp /usr/lib/systemd/system/qpidd.service /etc/systemd/system&#x000A;</code></pre>
+
+<ul>
+  <li>Edit the version in <code>/etc/systemd/system</code> and add this to the [Service] section</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>EnvironmentFile=-/etc/sysconfig/qpidd&#x000A;</code></pre>
+
+<ul>
+  <li>Restart qpidd</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# service qpidd restart&#x000A;</code></pre>
+
+<ul>
+  <li><code>/var/log/messages</code> should be complaining now about cinder and nova</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>ERROR [cinder.openstack.common.rpc.impl_qpid] Unable to connect to AMQP server: Error in sasl_client_start (-1) SASL(-1): generic failure: GSSAPI Error: Unspecified GSS failure.  Minor code may provide more information (Cannot determine realm for numeric host address).&#x000A;</code></pre>
+
+<ul>
+  <li>Configure nova to use a DNS name instead of an IP address in <code>/etc/nova/nova.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>qpid_hostname=openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Configure cinder to use a DNS name instead of an IP address in <code>/etc/nova/cinder.conf</code></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>qpid_hostname=openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Restart nova and cinder</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# service openstack-cinder-api restart&#x000A;[root@openstack]# service openstack-cinder-scheduler restart &#x000A;[root@openstack]# service openstack-cinder-volume restart &#x000A;[root@openstack]# service openstack-nova-api restart&#x000A;[root@openstack]# service openstack-nova-cert restart&#x000A;[root@openstack]# service openstack-nova-compute restart&#x000A;[root@openstack]# service openstack-nova-conductor restart&#x000A;[root@openstack]# service openstack-nova-consoleauth restart&#x000A;[root@openstack]# service openstack-nova-network restart&#x000A;[root@openstack]# service openstack-nova-novncproxy restart&#x000A;</code></pre>
+
+<ul>
+  <li>Now if you look in <code>/var/log/messages</code> there should be errors about a missing credentials cache:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>GSSAPI Error: Unspecified GSS failure.  Minor code may provide more information (Credentials cache file '/tmp/krb5cc_162' not found)&#x000A;</code></pre>
+
+<ul>
+  <li>Create an IPA service for nova and cinder</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[admin@ipa01]$ ipa service-add nova/openstack.example.com&#x000A;[admin@ipa01]$ ipa service-add cinder/openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Get the uid for nova and cinder</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# id nova&#x000A;uid=162(nova) gid=162(nova) groups=162(nova),99(nobody),107(qemu)&#x000A;[root@openstack# id cinder&#x000A;uid=165(cinder) gid=165(cinder) groups=165(cinder),99(nobody)&#x000A;</code></pre>
+
+<ul>
+  <li>Create a keytab for nova</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack#  ipa-getkeytab -s ipa01.example.com -k /etc/nova.keytab -p nova/openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Create a keytab for cinder</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack#  ipa-getkeytab -s ipa01.example.com -k /etc/cinder.keytab -p cinder/openstack.example.com&#x000A;</code></pre>
+
+<ul>
+  <li>Create a credentials cache for nova using the id for the nova user</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack# kinit -k /etc/nova.keytab -c /tmp/krb5cc_162 nova/openstack.example.com&#x000A;[root@openstack# chown nova /tmp/krb5cc_162&#x000A;</code></pre>
+
+<ul>
+  <li>Create a credentials cache for cinder using the id for the cinder user</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack# kinit -k /etc/cinder.keytab -c /tmp/krb5cc_165 cinder/openstack.example.com&#x000A;[root@openstack# chown cinder /tmp/krb5cc_165&#x000A;</code></pre>
+
+<ul>
+  <li>Restart qpidd again to force a reconnection attempt</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@openstack]# service qpidd restart&#x000A;</code></pre>
+
+<p>The GSSAPI errors should be gone, nova and cinder are now using Kerberos for authentication and encryption.</p>
+
+<p>The problem with this is that the key we just obtained is only good for a specified period of time: 24 hours by default. Once 24 hours passes the Kerberos ticket will no longer be valid and nova and cinder will no longer be able to communicate with qpidd.</p>
+
+<p>The fix for now is to create a cron job which will renew these credentials.</p>
+
+<pre class="highlight plaintext"><code>  [root@openstack]# crontab -e&#x000A;  1 0,6,12,18 * * * su - nova -c "kinit nova/openstack.example.com -kt /etc/nova.keytab -c /tmp/krb5cc_162"&#x000A;  1 0,6,12,18 * * * su - cinder -c "kinit cinder/openstack.example.com -kt /etc/cinder.keytab -c /tmp/krb5cc_165"&#x000A;</code></pre>
+
+<h2 id="securing-keystone">Securing Keystone</h2>
+
+<p>When a server joins an IdM domain, the OpenLDAP client libraries are configured to communicate with the IdM server over LDAPS. To verify that the system has been configured correctly, check <code>/etc/openldap/ldap.conf</code>. It should contain a reference to a certificate file:</p>
+
+<pre class="highlight plaintext"><code> [root@keystone]# cat /etc/openldap/ldap.conf&#x000A;#File modified by ipa-client-install&#x000A;&#x000A;URI ldaps://ipa01.example.com&#x000A;BASE dc=example,dc=com&#x000A;TLS_CACERT /etc/ipa/ca.crt&#x000A;</code></pre>
+
+<p>If this is configured correctly, the connection between Keystone and the IdM server can be encrypted by changing the protocol from <code>ldap://</code> to <code>ldaps://</code> in <code>/etc/keystone/keystone.conf</code>. For example:</p>
+
+<pre class="highlight plaintext"><code>[ldap]&#x000A;url = ldaps://ipa01.example.com&#x000A;user = uid=rdoadmin,cn=users,cn=accounts,dc=example,dc=com&#x000A;...&#x000A;</code></pre>
+
+<p>Support for LDAP with StartTLS in Keystone should be available in the Havana release. That functionality can be tracked here: <a href="https://bugs.launchpad.net/keystone/+bug/1040115">https://bugs.launchpad.net/keystone/+bug/1040115</a></p>
+
+<h2 id="other-considerations">Other Considerations</h2>
+
+<ul>
+  <li>The default password policy for IdM users requires them to change their password every 90 days. This will wreak havok upon most OpenStack environments. To mitigate this, create a "Service Account" group in IdM and assign a new password policy to that group. Add cinder, nova, etc. to that group.</li>
+  <li>In the same vein, the account that Keystone uses to authenticate to IdM (set in <code>/etc/keystone/keystone.conf</code> is also a service account. It probably makes more sense to name the user <code>uid=keystone</code> and add the user to the "Service Account" IdM group as well. Make sure that this service account also has the "OpenStack Administrator" privilege created above.</li>
+  <li>This example architecture is not highly available. It probably makes sense to use a load balancer instead of a direct LDAP connection to the IdM master.</li>
+  <li>It is tempting to use the groups defined in IdM as tenants in OpenStack. This cuts down on the amount of LDIF typing required. Note that OpenStack roles are created underneath tenants, which is probably not what we want in the IdM tree:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code> # d797691eb43640adb401c9b698fb4cef, a459741dfa8f4a8cb74306f001c564e3, tenants&#x000A; , openstack, example.com&#x000A;dn: cn=d797691eb43640adb401c9b698fb4cef,cn=a459741dfa8f4a8cb74306f001c564e3,ou&#x000A; =tenants,cn=openstack,dc=example,dc=com&#x000A;objectClass: organizationalRole&#x000A;objectClass: top&#x000A;roleOccupant: uid=glance,cn=users,cn=accounts,dc=example,dc=com&#x000A;roleOccupant: uid=nova,cn=users,cn=accounts,dc=example,dc=com&#x000A;roleOccupant: uid=cinder,cn=users,cn=accounts,dc=example,dc=com&#x000A;roleOccupant: uid=ec2,cn=users,cn=accounts,dc=example,dc=com&#x000A;roleOccupant: uid=swift,cn=users,cn=accounts,dc=example,dc=com&#x000A;cn: d797691eb43640adb401c9b698fb4cef&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/keystone-integration-with-idm.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 18 Apr 2016 11:33 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

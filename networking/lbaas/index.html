@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+LBaaS &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/lbaas.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="l-baa-s">L Baa S</h1>
+
+<h2 class="no_toc" id="configuring-and-deploying-lbaas-in-openstack">Configuring and Deploying LBaaS in OpenStack</h2>
+
+<p>This document was written for the Havana release so may well be out of date. Please help out!</p>
+
+<p>The Neutron LBaaS (load-balancer-as-a-service) extension provides a means to load balance traffic for services running on virtual machines in the cloud. The LBaaS API provides an API to quickly and easily deploy a load balancer. This guide will show how to configure and deploy a load balancer using the LBaaS API with RDO.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>In this guide, haproxy will be used as the load balancer. Be sure that you either have haproxy installed or have access to a yum repository that provides the haproxy package.</p>
+
+<p>To avoid issues with networking, it is best to provide a static IP address and disabling NetworkManager</p>
+
+<pre class="highlight plaintext"><code># systemctl disable NetworkManager&#x000A;# systemctl enable network&#x000A;# systemctl stop NetworkManager.service&#x000A;# systemctl start network.service&#x000A;</code></pre>
+
+<h3 id="installation">Installation</h3>
+
+<p>The Neutron LBaaS extension can be enabled and configured by packstack at install time. To do so, use the <code>--os-neutron-lbaas-install</code> option to indicate you want to install the LBaaS agent:</p>
+
+<pre class="highlight plaintext"><code># packstack --allinone --os-neutron-lbaas-install=y&#x000A;</code></pre>
+
+<p>In the above example, packstack will do an all-in-one install on the local host. In the future it may be possible to have packstack install and configure the LBaaS agent on multiple hosts.</p>
+
+<h3 id="deploy">Deploy</h3>
+
+<p>After the install the LBaaS plugin is configured and the LBaaS agent is running, the next step is to boot the virtual machines and deploy a load balancer. In the example shown here, the "demo" tenant, which is provisioned by packstack, will be used.</p>
+
+<p>This example also makes use of a custom image that has the httpd service enabled. This is the service that will be load-balanced. In addition, the image was built such that the virtual machine's host name is retrieved from the metadata service and placed in /var/www/html/index.html. This is done by using a simple curl command in rc.local:</p>
+
+<pre class="highlight plaintext"><code>curl -s -o /var/www/html/index.html http://169.254.169.254/latest/meta-data/hostname&#x000A;</code></pre>
+
+<p>This is useful to show the load balancer working later in the example.</p>
+
+<p>First, use the demo tenant:</p>
+
+<pre class="highlight plaintext"><code># source keystonerc_demo&#x000A;</code></pre>
+
+<p>Import the custom image that has httpd enabled and a modified rc.local script:</p>
+
+<pre class="highlight plaintext"><code># glance image-create --name rhel-http --is-public true --disk-format qcow2 --container-format bare --file rhel.qcow2&#x000A;</code></pre>
+
+<p>Check that the image was imported:</p>
+
+<pre class="highlight plaintext"><code># glance image-list&#x000A;+--------------------------------------+-----------+-------------+------------------+------------+--------+&#x000A;| ID                                   | Name      | Disk Format | Container Format | Size       | Status |&#x000A;+--------------------------------------+-----------+-------------+------------------+------------+--------+&#x000A;| 74f1b121-1531-4c48-b528-bdb22d327359 | cirros    | qcow2       | bare             | 13147648   | active |&#x000A;| 5d6bd846-e044-4a8f-99f0-5ca1d006f8ef | rhel-http | qcow2       | bare             | 1690042368 | active |&#x000A;+--------------------------------------+-----------+-------------+------------------+------------+--------+&#x000A;</code></pre>
+
+<p>Next, create a keypair to use when we boot the image:</p>
+
+<pre class="highlight plaintext"><code># nova keypair-add rdo-key &gt; rdo-key.pem&#x000A;# nova keypair-list&#x000A;+---------+-------------------------------------------------+&#x000A;| Name    | Fingerprint                                     |&#x000A;+---------+-------------------------------------------------+&#x000A;| rdo-key | 35:4a:79:73:94:74:d1:5b:bc:10:6a:01:01:69:a7:51 |&#x000A;+---------+-------------------------------------------------+&#x000A;</code></pre>
+
+<p>Create the virtual machines by booting the custom image. Each of the resulting instances will be running the httpd service, which we can then load balance. This example will use three httpd servers.</p>
+
+<pre class="highlight plaintext"><code># nova boot --flavor 2 --image rhel-http --key-name rdo_key rhel-01&#x000A;# nova boot --flavor 2 --image rhel-http --key-name rdo_key rhel-02&#x000A;# nova boot --flavor 2 --image rhel-http --key-name rdo_key rhel-03&#x000A;</code></pre>
+
+<p>Once the virtual machines are up and running, check that each is active and has an IP address on the private network.</p>
+
+<pre class="highlight plaintext"><code># nova list&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| ID                                   | Name    | Status | Task State | Power State | Networks         |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| 1fffa4ec-2bd6-426d-89b0-ead561545de7 | rhel-01 | ACTIVE | None       | Running     | private=10.0.0.3 |&#x000A;| ae1f4f60-18c1-4001-8a55-7b7036ca6b3c | rhel-02 | ACTIVE | None       | Running     | private=10.0.0.4 |&#x000A;| 429be6ec-a069-4dcd-bfca-33cd42606d39 | rhel-03 | ACTIVE | None       | Running     | private=10.0.0.5 |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;</code></pre>
+
+<p>Before creating a load balancer, optionally test that each server is running the httpd service by creating three floating IP addresses and associating them with the virtual machines. Then, use a simple curl or wget command to send an HTTP request to each virtual machine. The HTTP response should be the virtual machine's host name. This step is not required since the servers will be accessible via the load balancer later on in our example.</p>
+
+<p>Check to see what networks are available:</p>
+
+<pre class="highlight plaintext"><code># neutron net-list&#x000A;+--------------------------------------+---------+--------------------------------------------------+&#x000A;| id                                   | name    | subnets                                          |&#x000A;+--------------------------------------+---------+--------------------------------------------------+&#x000A;| 3f006c95-f46e-4d93-87e5-4107cff5cd8f | public  | 348baf31-c788-4617-a82f-3ba684054cf3             |&#x000A;| bae98178-f724-4b06-9d66-3f2b687cd731 | private | a4f17073-298e-4d92-8c19-8f3333145fd0 10.0.0.0/24 |&#x000A;+--------------------------------------+---------+--------------------------------------------------+&#x000A;</code></pre>
+
+<p>Create three floating IP addresses on the 'public' network by running the following command three times:</p>
+
+<pre class="highlight plaintext"><code># neutron floatingip-create public&#x000A;</code></pre>
+
+<p>Check to see which floating IP addresses were created:</p>
+
+<pre class="highlight plaintext"><code># neutron floatingip-list --sort-key floating_ip_address --sort-dir asc&#x000A;+--------------------------------------+------------------+---------------------+---------+&#x000A;| id                                   | fixed_ip_address | floating_ip_address | port_id |&#x000A;+--------------------------------------+------------------+---------------------+---------+&#x000A;| 5064e824-d4a2-4c8d-9c91-e8d864df0b94 |                  | 172.24.4.227        |         |&#x000A;| 85905522-6354-4728-a6fa-ff76a3e79e50 |                  | 172.24.4.228        |         |&#x000A;| 96943920-105e-4017-9393-873ef4607b5f |                  | 172.24.4.229        |         |&#x000A;+--------------------------------------+------------------+---------------------+---------+&#x000A;</code></pre>
+
+<p>Now associate a floating IP address with each instance.</p>
+
+<pre class="highlight plaintext"><code># nova add-floating-ip rhel-01 172.24.4.227&#x000A;# nova add-floating-ip rhel-02 172.24.4.228&#x000A;# nova add-floating-ip rhel-03 172.24.4.229&#x000A;</code></pre>
+
+<p>Verify that the floating IP addresses were correctly associated with each virtual machine.</p>
+
+<pre class="highlight plaintext"><code># neutron floatingip-list --sort-key floating_ip_address --sort-dir asc&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;| id                                   | fixed_ip_address | floating_ip_address | port_id                              |&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;| 5064e824-d4a2-4c8d-9c91-e8d864df0b94 | 10.0.0.3         | 172.24.4.227        | f4369fd1-ff7e-422f-aabf-ebba6f9416c9 |&#x000A;| 85905522-6354-4728-a6fa-ff76a3e79e50 | 10.0.0.4         | 172.24.4.228        | 8d3d59c6-b1cc-482c-b2ab-018d6a3b6de1 |&#x000A;| 96943920-105e-4017-9393-873ef4607b5f | 10.0.0.5         | 172.24.4.229        | e5938653-ecbc-484a-99bb-235627935c8b |&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>Before sending HTTP requests to each virtual machine, add a security group rule that will allow TCP traffic on port 80 to be passed to the virtual machines.</p>
+
+<pre class="highlight plaintext"><code># neutron security-group-rule-create --protocol tcp --port-range-min 80 --port-range-max 80 --direction ingress default&#x000A;</code></pre>
+
+<p>Use curl to send an HTTP request to each instance. Since each instance has its hostname in /var/www/html/index.html, each HTTP response should simply contain the hostname.</p>
+
+<pre class="highlight plaintext"><code># curl -w "\n" 172.24.4.227&#x000A;rhel-01&#x000A;&#x000A;# curl -w "\n" 172.24.4.228&#x000A;rhel-02&#x000A;&#x000A;# curl -w "\n" 172.24.4.229&#x000A;rhel-03&#x000A;</code></pre>
+
+<p>These results confirm that each virtual machine will respond to a simple HTTP request with its hostname. This will be useful later in the example when HTTP requests are sent via the load balancer.</p>
+
+<p>The floating IP addresses that were associated with each virtual machine are no longer needed, so it is safe is disassociate them.</p>
+
+<pre class="highlight plaintext"><code># nova floating-ip-list&#x000A;+--------------+--------------------------------------+----------+--------+&#x000A;| Ip           | Instance Id                          | Fixed Ip | Pool   |&#x000A;+--------------+--------------------------------------+----------+--------+&#x000A;| 172.24.4.227 | 1fffa4ec-2bd6-426d-89b0-ead561545de7 | 10.0.0.3 | public |&#x000A;| 172.24.4.228 | ae1f4f60-18c1-4001-8a55-7b7036ca6b3c | 10.0.0.4 | public |&#x000A;| 172.24.4.229 | 429be6ec-a069-4dcd-bfca-33cd42606d39 | 10.0.0.5 | public |&#x000A;+--------------+--------------------------------------+----------+--------+&#x000A;&#x000A;# nova remove-floating-ip rhel-01 172.24.4.227&#x000A;# nova remove-floating-ip rhel-02 172.24.4.228&#x000A;# nova remove-floating-ip rhel-03 172.24.4.229&#x000A;</code></pre>
+
+<p>Confirm that the floating IP addresses still exist but are no longer associated with the virtual machines.</p>
+
+<pre class="highlight plaintext"><code># nova floating-ip-list&#x000A;+--------------+-------------+----------+--------+&#x000A;| Ip           | Instance Id | Fixed Ip | Pool   |&#x000A;+--------------+-------------+----------+--------+&#x000A;| 172.24.4.227 | None        | None     | public |&#x000A;| 172.24.4.228 | None        | None     | public |&#x000A;| 172.24.4.229 | None        | None     | public |&#x000A;+--------------+-------------+----------+--------+&#x000A;</code></pre>
+
+<h3 id="create-the-load-balancer">Create the load balancer</h3>
+
+<p>The first step when creating a load balancer is to create a pool. A pool is a group of virtual machines, known as members, that will provide the actual service. In this example there will be three members, each capable of providing the httpd service. In addition, the pool also defines the protocol, the load balancing algorithm, and the subnet with which to associate the load balancer. Note that the subnet must be the same as the subnet of the members that belong to the pool.</p>
+
+<p>First, get the subnet ID from neutron.</p>
+
+<pre class="highlight plaintext"><code># neutron subnet-list&#x000A;+--------------------------------------+----------------+-------------+--------------------------------------------+&#x000A;| id                                   | name           | cidr        | allocation_pools                           |&#x000A;+--------------------------------------+----------------+-------------+--------------------------------------------+&#x000A;| a4f17073-298e-4d92-8c19-8f3333145fd0 | private_subnet | 10.0.0.0/24 | {"start": "10.0.0.2", "end": "10.0.0.254"} |&#x000A;+--------------------------------------+----------------+-------------+--------------------------------------------+&#x000A;</code></pre>
+
+<p>Next, create the pool.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-pool-create --name http-pool --lb-method ROUND_ROBIN --protocol HTTP --subnet-id a4f17073-298e-4d92-8c19-8f3333145fd0&#x000A;Created a new pool:&#x000A;+------------------------+--------------------------------------+&#x000A;| Field                  | Value                                |&#x000A;+------------------------+--------------------------------------+&#x000A;| admin_state_up         | True                                 |&#x000A;| description            |                                      |&#x000A;| health_monitors        |                                      |&#x000A;| health_monitors_status |                                      |&#x000A;| id                     | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| lb_method              | ROUND_ROBIN                          |&#x000A;| members                |                                      |&#x000A;| name                   | http-pool                            |&#x000A;| protocol               | HTTP                                 |&#x000A;| provider               | haproxy                              |&#x000A;| status                 | PENDING_CREATE                       |&#x000A;| status_description     |                                      |&#x000A;| subnet_id              | a4f17073-298e-4d92-8c19-8f3333145fd0 |&#x000A;| tenant_id              | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| vip_id                 |                                      |&#x000A;+------------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>The example above creates a pool named "http-pool", which uses the HTTP protocol and a round-robin load balancing algorithm. This pool is associated with the private subnet. The lb-pool-list and lb-pool-show commands may be used to get information about existing pools.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-pool-list&#x000A;+--------------------------------------+-----------+----------+-------------+----------+----------------+----------------+&#x000A;| id                                   | name      | provider | lb_method   | protocol | admin_state_up | status         |&#x000A;+--------------------------------------+-----------+----------+-------------+----------+----------------+----------------+&#x000A;| 01745519-f910-4393-b237-a24a4f9c2a7d | http-pool | haproxy  | ROUND_ROBIN | HTTP     | True           | PENDING_CREATE |&#x000A;+--------------------------------------+-----------+----------+-------------+----------+----------------+----------------+&#x000A;&#x000A;# neutron lb-pool-show http-pool&#x000A;+------------------------+--------------------------------------+&#x000A;| Field                  | Value                                |&#x000A;+------------------------+--------------------------------------+&#x000A;| admin_state_up         | True                                 |&#x000A;| description            |                                      |&#x000A;| health_monitors        |                                      |&#x000A;| health_monitors_status |                                      |&#x000A;| id                     | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| lb_method              | ROUND_ROBIN                          |&#x000A;| members                |                                      |&#x000A;| name                   | http-pool                            |&#x000A;| protocol               | HTTP                                 |&#x000A;| provider               | haproxy                              |&#x000A;| status                 | PENDING_CREATE                       |&#x000A;| status_description     |                                      |&#x000A;| subnet_id              | a4f17073-298e-4d92-8c19-8f3333145fd0 |&#x000A;| tenant_id              | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| vip_id                 |                                      |&#x000A;+------------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>The next step is to create members and add them to the pool. A member is nothing more than the IP address and port of a virtual machine that can provide the service being load-balanced. In this example there are three virtual machines listening on port 80. Create a member for each of these servers and add them to the pool.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-create --address 10.0.0.3 --protocol-port 80 http-pool&#x000A;# neutron lb-member-create --address 10.0.0.4 --protocol-port 80 http-pool&#x000A;# neutron lb-member-create --address 10.0.0.5 --protocol-port 80 http-pool&#x000A;</code></pre>
+
+<p>The lb-member-list and lb-member-show commands may be used to get information about existing members.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-list --sort-key address --sort-dir asc&#x000A;+--------------------------------------+----------+---------------+----------------+----------------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status         |&#x000A;+--------------------------------------+----------+---------------+----------------+----------------+&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | True           | PENDING_CREATE |&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | PENDING_CREATE |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | PENDING_CREATE |&#x000A;+--------------------------------------+----------+---------------+----------------+----------------+&#x000A;&#x000A;# neutron lb-member-show 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;+--------------------+--------------------------------------+&#x000A;| Field              | Value                                |&#x000A;+--------------------+--------------------------------------+&#x000A;| address            | 10.0.0.3                             |&#x000A;| admin_state_up     | True                                 |&#x000A;| id                 | 5750769c-3131-41bd-b0f1-be6c41aa15c9 |&#x000A;| pool_id            | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| protocol_port      | 80                                   |&#x000A;| status             | ACTIVE                               |&#x000A;| status_description |                                      |&#x000A;| tenant_id          | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| weight             | 1                                    |&#x000A;+--------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>Note that the member shown above has a pool ID that corresponds to the 'http-pool'. The lb-pool-show command may also be used to see the members of a given pool.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-pool-show http-pool&#x000A;+------------------------+--------------------------------------+&#x000A;| Field                  | Value                                |&#x000A;+------------------------+--------------------------------------+&#x000A;| admin_state_up         | True                                 |&#x000A;| description            |                                      |&#x000A;| health_monitors        |                                      |&#x000A;| health_monitors_status |                                      |&#x000A;| id                     | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| lb_method              | ROUND_ROBIN                          |&#x000A;| members                | 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 |&#x000A;|                        | 5750769c-3131-41bd-b0f1-be6c41aa15c9 |&#x000A;|                        | 63f009cf-f6bc-4274-8e5d-f9c2613d7912 |&#x000A;| name                   | http-pool                            |&#x000A;| protocol               | HTTP                                 |&#x000A;| provider               | haproxy                              |&#x000A;| status                 | PENDING_CREATE                       |&#x000A;| status_description     |                                      |&#x000A;| subnet_id              | a4f17073-298e-4d92-8c19-8f3333145fd0 |&#x000A;| tenant_id              | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| vip_id                 |                                      |&#x000A;+------------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>The next step is to create a health monitor and associate it with othe pool. The health monitor is responsible for periodically checking the health of each member of the pool.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-healthmonitor-create --delay 5 --type HTTP --max-retries 3 --timeout 2&#x000A;Created a new health_monitor:&#x000A;+----------------+--------------------------------------+&#x000A;| Field          | Value                                |&#x000A;+----------------+--------------------------------------+&#x000A;| admin_state_up | True                                 |&#x000A;| delay          | 5                                    |&#x000A;| expected_codes | 200                                  |&#x000A;| http_method    | GET                                  |&#x000A;| id             | 1de041b8-37bd-4b9a-aac6-a4669110eb46 |&#x000A;| max_retries    | 3                                    |&#x000A;| pools          |                                      |&#x000A;| tenant_id      | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| timeout        | 2                                    |&#x000A;| type           | HTTP                                 |&#x000A;| url_path       | /                                    |&#x000A;+----------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>In this example, the health monitor will perform an HTTP GET of the "/" path. This health check expects an HTTP status of 200 in the response, and the connection must be established within 2 seconds. This check will be retried a maximum of 3 times before a member is determined to be failed.</p>
+
+<p>At this point the health monitor has not yet been associated with a pool, so it is not actually performing any health checks. Associating the health monitor with the 'http-pool' will cause each of the members of the pool to be checked in the manner described above.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-healthmonitor-associate 1de041b8-37bd-4b9a-aac6-a4669110eb46 http-pool&#x000A;</code></pre>
+
+<p>The lb-healthmonitor-list and lb-healthmonitor-show may be used to get information about existing health monitors.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-healthmonitor-list&#x000A;+--------------------------------------+------+----------------+&#x000A;| id                                   | type | admin_state_up |&#x000A;+--------------------------------------+------+----------------+&#x000A;| 1de041b8-37bd-4b9a-aac6-a4669110eb46 | HTTP | True           |&#x000A;+--------------------------------------+------+----------------+&#x000A;&#x000A;# neutron lb-healthmonitor-show 1de041b8-37bd-4b9a-aac6-a4669110eb46&#x000A;+----------------+-------------------------------------------------------------------------------------------------------------+&#x000A;| Field          | Value                                                                                                       |&#x000A;+----------------+-------------------------------------------------------------------------------------------------------------+&#x000A;| admin_state_up | True                                                                                                        |&#x000A;| delay          | 5                                                                                                           |&#x000A;| expected_codes | 200                                                                                                         |&#x000A;| http_method    | GET                                                                                                         |&#x000A;| id             | 1de041b8-37bd-4b9a-aac6-a4669110eb46                                                                        |&#x000A;| max_retries    | 3                                                                                                           |&#x000A;| pools          | {"status": "PENDING_CREATE", "status_description": null, "pool_id": "01745519-f910-4393-b237-a24a4f9c2a7d"} |&#x000A;| tenant_id      | 47e1f8f3b8dc4ab2a5f931cdd502afae                                                                            |&#x000A;| timeout        | 2                                                                                                           |&#x000A;| type           | HTTP                                                                                                        |&#x000A;| url_path       | /                                                                                                           |&#x000A;+----------------+-------------------------------------------------------------------------------------------------------------+&#x000A;</code></pre>
+
+<p>The final step in creating the load balancer is to create the virtual IP address, or VIP. This will create a VIP for the load balancer on the private subnet and associate the virtual IP address with the pool. The VIP must be created on the same subnet as the pool, which in this example is the 'private' subnet. A floating IP address on the 'public' network can then be associated with the virtual IP address on the 'private_subnet' such that the load balancer will be externally accessible. First, create the VIP.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-vip-create --name http-vip --protocol-port 80 --protocol HTTP --subnet-id a4f17073-298e-4d92-8c19-8f3333145fd0 http-pool&#x000A;Created a new vip:&#x000A;+--------------------+--------------------------------------+&#x000A;| Field              | Value                                |&#x000A;+--------------------+--------------------------------------+&#x000A;| address            | 10.0.0.6                             |&#x000A;| admin_state_up     | True                                 |&#x000A;| connection_limit   | -1                                   |&#x000A;| description        |                                      |&#x000A;| id                 | 72848e0a-bb58-406d-aa9b-dcb6ca93a69f |&#x000A;| name               | http-vip                             |&#x000A;| pool_id            | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| port_id            | d2319cc8-6bc7-4a04-b3a6-4906ecc5d6b3 |&#x000A;| protocol           | HTTP                                 |&#x000A;| protocol_port      | 80                                   |&#x000A;| status             | PENDING_CREATE                       |&#x000A;| status_description |                                      |&#x000A;| subnet_id          | a4f17073-298e-4d92-8c19-8f3333145fd0 |&#x000A;| tenant_id          | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;+--------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>The lb-vip-list and lb-vip-show commands may be used to get information about existing virtual IP addresses:</p>
+
+<pre class="highlight plaintext"><code># neutron lb-vip-list&#x000A;+--------------------------------------+----------+----------+----------+----------------+--------+&#x000A;| id                                   | name     | address  | protocol | admin_state_up | status |&#x000A;+--------------------------------------+----------+----------+----------+----------------+--------+&#x000A;| 72848e0a-bb58-406d-aa9b-dcb6ca93a69f | http-vip | 10.0.0.6 | HTTP     | True           | ACTIVE |&#x000A;+--------------------------------------+----------+----------+----------+----------------+--------+&#x000A;&#x000A;# neutron lb-vip-show 72848e0a-bb58-406d-aa9b-dcb6ca93a69f&#x000A;+--------------------+--------------------------------------+&#x000A;| Field              | Value                                |&#x000A;+--------------------+--------------------------------------+&#x000A;| address            | 10.0.0.6                             |&#x000A;| admin_state_up     | True                                 |&#x000A;| connection_limit   | -1                                   |&#x000A;| description        |                                      |&#x000A;| id                 | 72848e0a-bb58-406d-aa9b-dcb6ca93a69f |&#x000A;| name               | http-vip                             |&#x000A;| pool_id            | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| port_id            | d2319cc8-6bc7-4a04-b3a6-4906ecc5d6b3 |&#x000A;| protocol           | HTTP                                 |&#x000A;| protocol_port      | 80                                   |&#x000A;| status             | ACTIVE                               |&#x000A;| status_description |                                      |&#x000A;| subnet_id          | a4f17073-298e-4d92-8c19-8f3333145fd0 |&#x000A;| tenant_id          | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;+--------------------+--------------------------------------+&#x000A;</code></pre>
+
+<p>At this point the load-balancer has been successfully created and should be functional. Traffic sent to address 10.0.0.6 on port 80 will be load-balanced across all active members of our pool. To make the load balancer externally accessible, create a floating IP address and associate it with the virtual IP address.</p>
+
+<pre class="highlight plaintext"><code># neutron floatingip-create public&#x000A;Created a new floatingip:&#x000A;+---------------------+--------------------------------------+&#x000A;| Field               | Value                                |&#x000A;+---------------------+--------------------------------------+&#x000A;| fixed_ip_address    |                                      |&#x000A;| floating_ip_address | 172.24.4.230                         |&#x000A;| floating_network_id | 3f006c95-f46e-4d93-87e5-4107cff5cd8f |&#x000A;| id                  | 6becaba6-b3fe-4e54-8bd6-f5d8364a363f |&#x000A;| port_id             |                                      |&#x000A;| router_id           |                                      |&#x000A;| tenant_id           | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;+---------------------+--------------------------------------+&#x000A;&#x000A;# neutron floatingip-associate 6becaba6-b3fe-4e54-8bd6-f5d8364a363f d2319cc8-6bc7-4a04-b3a6-4906ecc5d6b3&#x000A;</code></pre>
+
+<p>Use the floatingip-list command to see that the floating IP address (172.24.4.230) is associated with the virtual IP address (10.0.0.6).</p>
+
+<pre class="highlight plaintext"><code># neutron floatingip-list --sort-key floating_ip_address --sort-dir asc&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;| id                                   | fixed_ip_address | floating_ip_address | port_id                              |&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;| 5064e824-d4a2-4c8d-9c91-e8d864df0b94 |                  | 172.24.4.227        |                                      |&#x000A;| 85905522-6354-4728-a6fa-ff76a3e79e50 |                  | 172.24.4.228        |                                      |&#x000A;| 96943920-105e-4017-9393-873ef4607b5f |                  | 172.24.4.229        |                                      |&#x000A;| 6becaba6-b3fe-4e54-8bd6-f5d8364a363f | 10.0.0.6         | 172.24.4.230        | d2319cc8-6bc7-4a04-b3a6-4906ecc5d6b3 |&#x000A;+--------------------------------------+------------------+---------------------+--------------------------------------+&#x000A;</code></pre>
+
+<h3 id="testing">Testing</h3>
+
+<p>Now that the load balancer is running and externally accessible, test that traffic is properly load-balanced and the health checker works correctly. First, check what members are active.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-list --sort-key address --sort-dir asc&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | True           | ACTIVE |&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | ACTIVE |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | ACTIVE |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;</code></pre>
+
+<p>Since this example has a single pool and all members are marked 'active', successive HTTP requests to the virtual IP address should be balanced round-robin across all three members. Recall that each virtual machine will respond to an HTTP request with its hostname.</p>
+
+<pre class="highlight plaintext"><code># for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;</code></pre>
+
+<p>Next, mark one of the member's 'admin_state_up' flag to False. A member with 'admin_state_up' set to False should not be considered for load-balancing.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-update 5750769c-3131-41bd-b0f1-be6c41aa15c9 --admin_state_up False&#x000A;Updated member: 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;&#x000A;# neutron lb-member-list --sort-key address --sort-dir asc&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | False          | ACTIVE |&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | ACTIVE |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | ACTIVE |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;</code></pre>
+
+<p>The member with IP address 10.0.0.3 (rhel-01) should no longer receive traffic from the load balancer. Note that the virtual machine itself is still running. This is effectively the same as removing the member from the pool. Repeat the test that sends multiple HTTP requests to the load balancer.</p>
+
+<pre class="highlight plaintext"><code># for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-02&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-03&#x000A;</code></pre>
+
+<p>As expected, virtual machine 'rhel-01' is not considered for load-balancing. Set the admin_state_up flag back to True and rerun the test.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-update 5750769c-3131-41bd-b0f1-be6c41aa15c9 --admin_state_up True&#x000A;Updated member: 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;&#x000A;# neutron lb-member-list --sort-key address --sort-dir asc&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | True           | ACTIVE |&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | ACTIVE |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | ACTIVE |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;&#x000A;# for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;</code></pre>
+
+<p>As expected, 'rhel-01' is again eligible to receive HTTP requests via the load balancer.</p>
+
+<p>A member can also be disabled by setting its weight to 0.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-update 5750769c-3131-41bd-b0f1-be6c41aa15c9 --weight 0&#x000A;Updated member: 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;&#x000A;# neutron lb-member-show 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;+--------------------+--------------------------------------+&#x000A;| Field              | Value                                |&#x000A;+--------------------+--------------------------------------+&#x000A;| address            | 10.0.0.3                             |&#x000A;| admin_state_up     | True                                 |&#x000A;| id                 | 5750769c-3131-41bd-b0f1-be6c41aa15c9 |&#x000A;| pool_id            | 01745519-f910-4393-b237-a24a4f9c2a7d |&#x000A;| protocol_port      | 80                                   |&#x000A;| status             | ACTIVE                               |&#x000A;| status_description |                                      |&#x000A;| tenant_id          | 47e1f8f3b8dc4ab2a5f931cdd502afae     |&#x000A;| weight             | 0                                    |&#x000A;+--------------------+--------------------------------------+&#x000A;&#x000A;# for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-02&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-03&#x000A;</code></pre>
+
+<p>Notice that the member is still marked active and the admin_state_up flag is True, but the member's weight has been changed to 0. Regardless of the algorithm being used, a member with a weight of 0 will not receive any new connections from the load balancer. Set the member's weight back to 1 for it to once again be considered for load balancing.</p>
+
+<pre class="highlight plaintext"><code># neutron lb-member-update 5750769c-3131-41bd-b0f1-be6c41aa15c9 --weight 1&#x000A;Updated member: 5750769c-3131-41bd-b0f1-be6c41aa15c9&#x000A;&#x000A;# for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;rhel-03&#x000A;rhel-02&#x000A;rhel-01&#x000A;</code></pre>
+
+<p>As expected, 'rhel-01' is again eligible to receive HTTP requests via the load balancer.</p>
+
+<p>A simple way to demonstrate the health checker is to shutdown one of the virtual machines. This will cause the health check to fail and the member should be marked inactive. Stop one of the virtual machines that is an active member of the pool and check that it is marked inactive.</p>
+
+<pre class="highlight plaintext"><code># nova list&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| ID                                   | Name    | Status | Task State | Power State | Networks         |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| 1fffa4ec-2bd6-426d-89b0-ead561545de7 | rhel-01 | ACTIVE | None       | Running     | private=10.0.0.3 |&#x000A;| ae1f4f60-18c1-4001-8a55-7b7036ca6b3c | rhel-02 | ACTIVE | None       | Running     | private=10.0.0.4 |&#x000A;| 429be6ec-a069-4dcd-bfca-33cd42606d39 | rhel-03 | ACTIVE | None       | Running     | private=10.0.0.5 |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;&#x000A;# nova stop rhel-03&#x000A;# nova list&#x000A;+--------------------------------------+---------+---------+------------+-------------+------------------+&#x000A;| ID                                   | Name    | Status  | Task State | Power State | Networks         |&#x000A;+--------------------------------------+---------+---------+------------+-------------+------------------+&#x000A;| 1fffa4ec-2bd6-426d-89b0-ead561545de7 | rhel-01 | ACTIVE  | None       | Running     | private=10.0.0.3 |&#x000A;| ae1f4f60-18c1-4001-8a55-7b7036ca6b3c | rhel-02 | ACTIVE  | None       | Running     | private=10.0.0.4 |&#x000A;| 429be6ec-a069-4dcd-bfca-33cd42606d39 | rhel-03 | SHUTOFF | None       | Shutdown    | private=10.0.0.5 |&#x000A;+--------------------------------------+---------+---------+------------+-------------+------------------+&#x000A;&#x000A;# neutron lb-member-list&#x000A;+--------------------------------------+----------+---------------+----------------+----------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status   |&#x000A;+--------------------------------------+----------+---------------+----------------+----------+&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | ACTIVE   |&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | True           | ACTIVE   |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | INACTIVE |&#x000A;+--------------------------------------+----------+---------------+----------------+----------+&#x000A;</code></pre>
+
+<p>Notice that 'rhel-03' (which has address 10.0.0.5) is now marked as an inactive member. This was caused by repeated failed health checks because that member is not responding to HTTP requests. Run our simple test of sending multiple HTTP requests to the load balancer.</p>
+
+<pre class="highlight plaintext"><code># for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-01&#x000A;rhel-02&#x000A;rhel-01&#x000A;rhel-02&#x000A;rhel-01&#x000A;rhel-02&#x000A;</code></pre>
+
+<p>As expected, 'rhel-03' does not receive any traffic from the load balancer. Although this virtual machine is down, it is still a member of the pool and therefore is still being health checked every 5 seconds. If the virtual machine is restarted, health checks of this member will once again be successful when httpd is responsive. The member should then be marked active and again be eligible to receive HTTP requests via the load-balancer.</p>
+
+<pre class="highlight plaintext"><code># nova start rhel-03&#x000A;# nova list&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| ID                                   | Name    | Status | Task State | Power State | Networks         |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;| 1fffa4ec-2bd6-426d-89b0-ead561545de7 | rhel-01 | ACTIVE | None       | Running     | private=10.0.0.3 |&#x000A;| ae1f4f60-18c1-4001-8a55-7b7036ca6b3c | rhel-02 | ACTIVE | None       | Running     | private=10.0.0.4 |&#x000A;| 429be6ec-a069-4dcd-bfca-33cd42606d39 | rhel-03 | ACTIVE | None       | Running     | private=10.0.0.5 |&#x000A;+--------------------------------------+---------+--------+------------+-------------+------------------+&#x000A;&#x000A;# neutron lb-member-list&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| id                                   | address  | protocol_port | admin_state_up | status |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;| 135846f5-e1b0-4ad0-83fd-de4dd1dbde58 | 10.0.0.4 |            80 | True           | ACTIVE |&#x000A;| 5750769c-3131-41bd-b0f1-be6c41aa15c9 | 10.0.0.3 |            80 | True           | ACTIVE |&#x000A;| 63f009cf-f6bc-4274-8e5d-f9c2613d7912 | 10.0.0.5 |            80 | True           | ACTIVE |&#x000A;+--------------------------------------+----------+---------------+----------------+--------+&#x000A;&#x000A;# for i in {1..6} ; do curl -w "\n" 172.24.4.230 ; done&#x000A;rhel-01&#x000A;rhel-02&#x000A;rhel-03&#x000A;rhel-01&#x000A;rhel-02&#x000A;rhel-03&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/lbaas.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 5 May 2016 01:14 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

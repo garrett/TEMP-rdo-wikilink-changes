@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+ProjectsInRDO &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/rdo/projectsinrdo.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="projects-in-rdo">Projects in RDO</h1>
+
+<p>The following is a list of Openstack Projects which are already packaged or currently in the process of being packaged and shipped as part of RDO. For the full list, see <a href="https://github.com/redhat-openstack/rdoinfo/blob/master/rdo.yml">rdo.yml</a></p>
+
+<h3 id="keystone">Keystone</h3>
+
+<p>Keystone provides authentication, authorization and service discovery mechanisms via HTTP primarily for use by projects in the OpenStack family. It is most commonly deployed as an HTTP interface to existing identity systems, such as LDAP.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Keystone">https://wiki.openstack.org/wiki/Keystone</a></li>
+  <li>Code: <a href="https://github.com/openstack/keystone">https://github.com/openstack/keystone</a></li>
+  <li>Package Maintainers:</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-keystone">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-keystone</a></li>
+</ul>
+
+<h3 id="glance">Glance</h3>
+
+<p>The Glance project provides services for discovering, registering, and retrieving virtual machine images. Glance has a RESTful API that allows querying of VM image metadata as well as retrieval of the actual image.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Glance">https://wiki.openstack.org/wiki/Glance</a></li>
+  <li>Code: <a href="https://github.com/openstack/glance">https://github.com/openstack/glance</a></li>
+  <li>Package Maintainers: hguemar@fedoraproject.org</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-glance">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-glance</a></li>
+</ul>
+
+<h3 id="cinder">Cinder</h3>
+
+<p>Cinders goal is to implement services and libraries to provide on demand, self-service access to Block Storage resources. Provide Software Defined Block Storage via abstraction and automation on top of various traditional backend block storage devices.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Cinder">https://wiki.openstack.org/wiki/Cinder</a></li>
+  <li>Code: <a href="https://github.com/openstack/cinder">https://github.com/openstack/cinder</a></li>
+  <li>Package Maintainers: hguemar@fedoraproject.org</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-cinder">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-cinder</a></li>
+</ul>
+
+<h3 id="swift">Swift</h3>
+
+<p>Swift is a distributed object storage system designed to scale from a single machine to thousands of servers. Swift is optimized for multi-tenancy and high concurrency. Swift is ideal for backups, web and mobile content, and any other unstructured data that can grow without bound.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Swift">https://wiki.openstack.org/wiki/Swift</a></li>
+  <li>Code: <a href="https://github.com/openstack/swift">https://github.com/openstack/swift</a></li>
+  <li>Package Maintainers: zaitcev@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-swift">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-swift</a></li>
+</ul>
+
+<h3 id="nova">Nova</h3>
+
+<p>OpenStack Nova provides a cloud computing fabric controller, supporting a wide variety of virtualization technologies, including KVM, Xen, LXC, VMware, and more. In addition to its native API, it includes compatibility with the commonly encountered Amazon EC2 and S3 APIs.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Nova">https://wiki.openstack.org/wiki/Nova</a></li>
+  <li>Code: <a href="https://github.com/openstack/nova">https://github.com/openstack/nova</a></li>
+  <li>Package Maintainers:</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-nova">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-nova</a></li>
+</ul>
+
+<h3 id="neutron">Neutron</h3>
+
+<p>Neutron is a virtual network service for Openstack.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Neutron">https://wiki.openstack.org/wiki/Neutron</a></li>
+  <li>Code: <a href="https://github.com/openstack/neutron">https://github.com/openstack/neutron</a></li>
+  <li>Package Maintainers: ihrachys@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-neutron">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-neutron</a></li>
+</ul>
+
+<h3 id="heat">Heat</h3>
+
+<p>Heat is a service to orchestrate multiple composite cloud applications using templates, through both an OpenStack-native ReST API and a CloudFormation-compatible Query API.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Heat">https://wiki.openstack.org/wiki/Heat</a></li>
+  <li>Code: <a href="https://github.com/openstack/heat">https://github.com/openstack/heat</a></li>
+  <li>Package Maintainers:</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-heat">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-heat</a></li>
+</ul>
+
+<h3 id="ceilometer">Ceilometer</h3>
+
+<p>The Ceilometer project aims to become the infrastructure to collect measurements within OpenStack so that no two agents would need to be written to collect the same data. Its primary targets are monitoring and metering, but the framework should be easily expandable to collect for other needs. To that effect, Ceilometer should be able to share collected data with a variety of consumers.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Ceilometer">https://wiki.openstack.org/wiki/Ceilometer</a></li>
+  <li>Code: <a href="https://github.com/openstack/ceilometer">https://github.com/openstack/ceilometer</a></li>
+  <li>Package Maintainers: pkilambi@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-ceilometer">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-ceilometer</a></li>
+</ul>
+
+<p>Gnocchi is the project name of a TDBaaS (Time Series Database as a Service) project started under the Ceilometer program umbrella.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Gnocchi">https://wiki.openstack.org/wiki/Gnocchi</a></li>
+  <li>Code: <a href="https://github.com/openstack/gnocchi">https://github.com/openstack/gnocchi</a></li>
+  <li>Package Maintainers: pkilambi@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-gnocchi">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-gnocchi</a></li>
+</ul>
+
+<h3 id="horizon">Horizon</h3>
+
+<p>Horizon is a Django-based project aimed at providing a complete OpenStack Dashboard along with an extensible framework for building new dashboards from reusable components.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Horizon">https://wiki.openstack.org/wiki/Horizon</a></li>
+  <li>Code: <a href="https://github.com/openstack/horizon">https://github.com/openstack/horizon</a></li>
+  <li>Package Maintainers: mrunge@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-horizon">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-horizon</a></li>
+</ul>
+
+<h3 id="ironic">Ironic</h3>
+
+<p>Ironic is an integrated OpenStack project which aims to provision bare metal machines instead of virtual machines, forked from the Nova Baremetal driver. It is best thought of as a bare metal hypervisor API and a set of plugins which interact with the bare metal hypervisors. By default, it will use PXE and IPMI in concert to provision and turn on/off machines, but Ironic also supports vendor-specific plugins which may implement additional functionality.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Ironic">https://wiki.openstack.org/wiki/Ironic</a></li>
+  <li>Code: <a href="https://github.com/openstack/ironic">https://github.com/openstack/ironic</a></li>
+  <li>Package Maintainers: dtantsur@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-ironic">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-ironic</a></li>
+</ul>
+
+<h3 id="trove">Trove</h3>
+
+<p>Trove is Database as a Service for Open Stack.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Trove">https://wiki.openstack.org/wiki/Trove</a></li>
+  <li>Code: <a href="https://github.com/openstack/trove">https://github.com/openstack/trove</a></li>
+  <li>Package Maintainers: victoria@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-trove">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-trove</a></li>
+</ul>
+
+<h3 id="sahara">Sahara</h3>
+
+<p>Sahara aims to provide users with simple means to provision a Hadoop cluster by specifying several parameters like Hadoop version, cluster topology, nodes hardware details and a few more.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Sahara">https://wiki.openstack.org/wiki/Sahara</a></li>
+  <li>Code: <a href="https://github.com/openstack/sahara">https://github.com/openstack/sahara</a></li>
+  <li>Package Maintainers: egafford@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-sahara">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-sahara</a></li>
+</ul>
+
+<h3 id="tempest">Tempest</h3>
+
+<p>Tempest is a set of integration tests to be run against a live OpenStack cluster. Tempest has batteries of tests for OpenStack API validation, Scenarios, and other specific tests useful in validating an OpenStack deployment.</p>
+
+<ul>
+  <li>Homepage: <a href="https://github.com/openstack/tempest">https://github.com/openstack/tempest</a></li>
+  <li>Code: <a href="https://github.com/openstack/tempest">https://github.com/openstack/tempest</a></li>
+  <li>Package Maintainers:</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=tempest">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=tempest</a></li>
+</ul>
+
+<h3 id="manila">Manila</h3>
+
+<p>Manila is a shared filesystem management project for OpenStack.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Manila">https://wiki.openstack.org/wiki/Manila</a></li>
+  <li>Code: <a href="https://github.com/openstack/manila">https://github.com/openstack/manila</a></li>
+  <li>Package Maintainers: zaitcev@redhat.com, hguemar@fedoraproject.org</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-manilla">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-manilla</a></li>
+</ul>
+
+<h3 id="designate">Designate</h3>
+
+<p>Designate is an OpenStack inspired DNSaaS.</p>
+
+<ul>
+  <li>Homepage: <a href="https://wiki.openstack.org/wiki/Designate">https://wiki.openstack.org/wiki/Designate</a></li>
+  <li>Code: <a href="https://github.com/openstack/designate">https://github.com/openstack/designate</a></li>
+  <li>Package Maintainers: jschwarz@redhat.com, ihrachys@redhat.com</li>
+  <li>Report Bug/Issues: <a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-designate">https://bugzilla.redhat.com/enter_bug.cgi?product=RDO&amp;component=openstack-designate</a></li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/rdo/projectsinrdo.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Wed 2 Mar 2016 14:32 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

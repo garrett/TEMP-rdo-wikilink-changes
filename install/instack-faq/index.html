@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Instack FAQ &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/install/instack-faq.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="instack-faq">Instack FAQ</h1>
+
+<p><a href="/install/deploying-rdo-using-instack/"> ← Deploying RDO using Instack</a></p>
+
+<p>This page includes tips, fixes and debugging steps for Instack installs:</p>
+
+<h2 id="i-got-a-disk-is-in-use-error-when-deploying-the-overcloud">I got a "disk is in use" error when deploying the Overcloud</h2>
+
+<p>If the undercloud machine was installed using LVM, when deploying overcloud nodes, you may see an error related to the disk being "in use". The workaround for this error is to:</p>
+
+<pre class="highlight plaintext"><code># Modify /etc/lvm/lvm.conf to set use_lvmetad to be 0&#x000A;vi /etc/lvm/lvm.conf&#x000A;use_lvmetad=0&#x000A;# Disable and stop relevant services&#x000A;systemctl stop lvm2-lvmetad&#x000A;systemctl stop lvm2-lvmetad.socket&#x000A;systemctl disable lvm2-lvmetad.socket&#x000A;systemctl stop lvm2-lvmetad&#x000A;</code></pre>
+
+<h2 id="are-there-any-example-rc-files-for-overcloud-deployment">Are there any example rc files for Overcloud deployment?</h2>
+
+<p>Example rc files to source before deploying the overcloud are included as part of the instack-undercloud package. Descriptions of the variables are below</p>
+
+<p>Example deploy-overcloudrc file for deploying the overcloud on a virtual machine setup:</p>
+
+<pre class="highlight plaintext"><code>/usr/share/instack-undercloud/deploy-virt-overcloudrc&#x000A;</code></pre>
+
+<p>Example deploy-overcloudrc file for deploying the overcloud on a bare metal machine setup:</p>
+
+<pre class="highlight plaintext"><code>/usr/share/instack-undercloud/deploy-baremetal-overcloudrc&#x000A;</code></pre>
+
+<p>Descriptions of the variables in the rc files</p>
+
+<ul>
+  <li>NODES_JSON: path to a file of the JSON representation of the baremetal nodes. Documented in the next section</li>
+  <li>NeutronPublicInterface: Overcloud management interface name</li>
+  <li>OVERCLOUD_LIBVIRT_TYPE: Overcloud libvirt type: qemu or kvm</li>
+  <li>NETWORK_CIDR: neutron network cidr</li>
+  <li>FLOATING_IP_START: floating ip allocation start</li>
+  <li>FLOATING_IP_END: floating ip allocation end</li>
+  <li>FLOATING_IP_CIDR: floating ip network cidr</li>
+  <li>NEUTRON_NETWORK_TYPE: tenant network type: gre or vxlan</li>
+  <li>NEUTRON_TUNNEL_TYPES: supported tenant network tunnel types: gre or vxlan or gre,vxlan</li>
+  <li>COMPUTESCALE: # of overcloud compute nodes</li>
+  <li>BLOCKSTORAGESCALE: # of overcloud block storage nodes</li>
+  <li>SWIFTSTORAGESCALE: # of overcloud object storage nodes</li>
+</ul>
+
+<h2 id="what-is-the-nodesjson-file-format">What is the NODES_JSON file format?</h2>
+
+<p>NODES_JSON in the deploy-overcloudrc file specifies a path to a JSON file and contains the data used to register nodes for baremetal provisioning. The JSON file should be in the following format.</p>
+
+<p>For virt (note that if you used <code>instack-virt-setup</code> the file has already been created for you automatically):</p>
+
+<pre class="highlight json"><code><span class="w">        </span><span class="p">{</span><span class="w">&#x000A;          </span><span class="s2">"nodes"</span><span class="p">:</span><span class="w">&#x000A;            </span><span class="p">[</span><span class="w">&#x000A;              </span><span class="p">{</span><span class="w">&#x000A;                </span><span class="s2">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4072"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"disk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"arch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stack"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.122.1"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contents of ssh private key go here"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pxe_ssh"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"mac"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">&#x000A;                  </span><span class="s2">"00:76:31:1f:f2:a0"</span><span class="w">&#x000A;                </span><span class="p">],</span><span class="w">&#x000A;                </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">&#x000A;              </span><span class="p">},</span><span class="w">&#x000A;              </span><span class="p">{</span><span class="w">&#x000A;                </span><span class="s2">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4072"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"disk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"arch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stack"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.122.1"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"contents of ssh private key go here"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"pm_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pxe_ssh"</span><span class="p">,</span><span class="w">&#x000A;                </span><span class="s2">"mac"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">&#x000A;                  </span><span class="s2">"00:76:31:1f:f2:a0"</span><span class="w">&#x000A;                </span><span class="p">],</span><span class="w">&#x000A;                </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">&#x000A;              </span><span class="p">}</span><span class="w">&#x000A;            </span><span class="p">]</span><span class="w">&#x000A;        </span><span class="p">}</span><span class="w">&#x000A;</span></code></pre>
+
+<p>For baremetal:</p>
+
+<pre class="highlight json"><code><span class="w">        </span><span class="p">{</span><span class="w">&#x000A;          </span><span class="s2">"nodes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">&#x000A;            </span><span class="p">{</span><span class="w">&#x000A;              </span><span class="s2">"pm_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi password goes here"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pxe_ipmitool"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"mac"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">&#x000A;                </span><span class="s2">"mac address of nic that will handle pxe boot goes here"</span><span class="w">&#x000A;              </span><span class="p">],</span><span class="w">&#x000A;              </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32768"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"disk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"arch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi username goes here"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi ip address goes here"</span><span class="w">&#x000A;            </span><span class="p">},</span><span class="w">&#x000A;            </span><span class="p">{</span><span class="w">&#x000A;              </span><span class="s2">"pm_password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi password goes here"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pxe_ipmitool"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"mac"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">&#x000A;                </span><span class="s2">"mac address of nic that will handle pxe boot goes here"</span><span class="w">&#x000A;              </span><span class="p">],</span><span class="w">&#x000A;              </span><span class="s2">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"memory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32768"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"disk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"900"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"arch"</span><span class="p">:</span><span class="w"> </span><span class="s2">"x86_64"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi username goes here"</span><span class="p">,</span><span class="w">&#x000A;              </span><span class="s2">"pm_addr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ipmi ip address goes here"</span><span class="w">&#x000A;            </span><span class="p">}</span><span class="w">&#x000A;          </span><span class="p">]</span><span class="w">&#x000A;        </span><span class="p">}</span><span class="w">&#x000A;</span></code></pre>
+
+<h2 id="how-do-i-delete-the-overcloud">How do I delete the Overcloud?</h2>
+
+<p>There are delete scripts included with the instack-undercloud package If you want to delete an overcloud and reset the environment to a state where you can deploy another overcloud. These steps only work if you used <code>instack-deploy-overcloud</code> to deploy the overcloud.</p>
+
+<ol>
+  <li>
+    <p>While logged into the undercloud node export the required variables into your shell in order to use the CLI tools for the undercloud and overcloud. If you copied the stackrc file into your home directory at the end of the undercloud installation, simply source that file. Alternatively, you can use the following command directly to set the needed environment variables.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>command $(sudo cat /root/stackrc </td>
+          <td> xargs)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>Run one of the following examples that matches how you deployed the overcloud.</p>
+
+    <p> instack-delete-overcloud</p>
+  </li>
+</ol>
+
+<h2 id="how-do-i-load-new-overcloud-images">How do I load new Overcloud images?</h2>
+
+<p>If new images are made available for download, or you build new images, you will need to load them into glance on the Undercloud. You can follow these steps to do so.</p>
+
+<ol>
+  <li>
+    <p>While logged into the undercloud node export the required variables into your shell in order to use the CLI tools for the undercloud and overcloud. If you copied the stackrc file into your home directory at the end of the undercloud installation, simply source that file. Alternatively, you can use the following command directly to set the needed environment variables.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>command $(sudo cat /root/stackrc </td>
+          <td> xargs)</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>Use the following command to load new images. Pass the command whatever new image file you want loaded into glance.</p>
+
+    <p>tripleo load-image -d overcloud-control.qcow2</p>
+  </li>
+</ol>
+
+<h2 id="how-do-i-view-the-undercloud-dashboard-when-using-a-remote-virt-host">How do I view the Undercloud Dashboard when using a remote virt host?</h2>
+
+<p>If your virt host is a remote system, and not the same system that you're running your web browser from, you can create an ssh tunnel from the virt host to the instack virtual machine for connectivity. On the virt host enter the following:</p>
+
+<pre class="highlight plaintext"><code>   sudo iptables -I INPUT -p tcp --dport 8080 -j ACCEPT&#x000A;  `  ssh -g -N -L 8080:192.168.122.55:80 `hostname` `&#x000A;</code></pre>
+
+<p>where 192.168.122.55 is the IP address of the instack virtual machine. Update appropriately for your environment. With the ssh tunnel created you can launch a browser on a system with connectivity to the virt host and go to <a href="http:">http://</a><virt-host>:8080/dashboard and the dashboard should appear. If you need to connect remotely through the virt host, you can chain ssh tunnels as needed.</virt-host></p>
+
+<p>When logging into the dashboard the default user and password are found in the /root/stackrc file on the instack virtual machine, OS_USERNAME and OS_PASSWORD. You can read more about using the dashboard in the User Guide.</p>
+
+<h2 id="what-configuration-changes-does-instack-virt-setup-make-to-the-virt-host">What configuration changes does <code>instack-virt-setup</code> make to the virt host?</h2>
+
+<p><code>instack-virt-setup</code> makes configuration changes to the virt host to allow for using a full virtual environment for testing an Overcloud deployment.</p>
+
+<p>These changes include:</p>
+
+<ul>
+  <li>Installs various packages such as openvswitch, libvirt, qemu, etc.</li>
+  <li>Adds a new openvswitch bridge called <code>brbm</code></li>
+  <li>Adds a new libvirt network also called <code>brbm</code>, which is configured to use the above bridge.</li>
+  <li>Reconfigures libvirtd to set the domain socket group ownership to the <code>libvirtd</code> group. This allows for easier interaction with libvirtd on the host</li>
+  <li>Adds the user running <code>instack-virt-setup</code> to the <code>libvirtd</code> group.</li>
+</ul>
+
+<h2 id="how-do-i-build-rhel-7-overcloud-images">How do I build RHEL 7 Overcloud images?</h2>
+
+<ul>
+  <li>Download the fedora-user.qcow2 image found here: <a href="https://repos.fedorapeople.org/repos/openstack-m/tripleo-images-rdo-juno/fedora-user.qcow2">https://repos.fedorapeople.org/repos/openstack-m/tripleo-images-rdo-juno/fedora-user.qcow2</a> This is the image that will be booted to test that your overcloud is working properly. <strong>Important Note:</strong> If you are deploying to a virtual environment, it is necessary that you use this specific image and not a generic cloud image from Fedora. As of this writing the stock Fedora cloud image has problems running in nested virt on RHEL 7.</li>
+  <li>Install <code>instack-undercloud</code> on the system to be used for the image builds.</li>
+  <li>Set the following environment variables in your shell, substituting appropriate values where necessary. In particular, any value wrapped in [] needs to be replaced with the appropriate value for your environment. The REG_USER and REG_PASSWORD can optionally be replaced by obtaining an activation key from your subscription administrator and setting REG_ACTIVATION_KEY.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>export NODE_DIST="rhel7"&#x000A;export DIB_CLOUD_IMAGES="[http://server/path/containing/image]"&#x000A;# A cloud guest image downloaded from the Red Hat Customer Portal&#x000A;export BASE_IMAGE_FILE="rhel-guest-image-7.0-20140930.0.x86_64.qcow2"&#x000A;export REG_METHOD=portal&#x000A;# Find this with `subscription-manager list --available`&#x000A;export REG_POOL_ID="[pool id]"&#x000A;export REG_PASSWORD="[your password]"&#x000A;export REG_USER="[your username]"&#x000A;export REG_REPOS="rhel-7-server-extras-rpms,rhel-ha-for-rhel-7-server-rpms,rhel-7-server-optional-rpms"&#x000A;</code></pre>
+
+<ul>
+  <li>Run <code>instack-build-images</code>.</li>
+</ul>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/install/instack-faq.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 25 Sep 2015 02:26 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

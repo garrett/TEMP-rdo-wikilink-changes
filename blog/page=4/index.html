@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+RDO Community News &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-haml'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<section class='blog-archive'>
+<h2>RDO Community News</h2>
+See also <a href="http://blogs.rdoproject.org">blogs.rdoproject.org</a>
+<section class='articles'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/03/how-i-started-contributing-to-rdo-project/">How i started contributing to the RDO Project</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/chandankumar/">chandankumar</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-03-02T16:50:36Z'>
+Wednesday  2 March
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>During my internship period at Red Hat, <a href="https://kushaldas.in/">Kushal</a> used to play with OpenStack and got a problem that a created instance is not able to get a public IP address so that he can access it from outside.</p>
+
+<p>From there I got introduced to OpenStack. I started by trying to install OpenStack (Icehouse) following the upstream documentation, to reproduce this problem.
+There, I found the steps were wrong, and from there I sent my first patch to the OpenStack docs which is when my <a href="http://stackalytics.com/report/users/chandankumar-093047">contribution</a> to OpenStack begins.
+I tried devstack, packstack, and other installers to deploy OpenStack.</p>
+
+<p>But I exactly don't remember how I got involved with <a href="https://www.rdoproject.org/">RDO Project</a>. As per <a href="https://review.gerrithub.io/#/q/owner:chkumar246%2540gmail.com+status:merged">Gerrit Hub Review history</a>,
+I made my first contribution to the RDO packages in March 2015. Since last year, I started attending <a href="https://www.rdoproject.org/community/community-meeting">RDO meetings</a> regularly.
+In the beginning, I just used to read the meeting logs and try to find out what is happening in the community.
+But later on, I started taking action items and tried to prepare for next meeting. 
+I failed a lot of times in the beginning and worked with the motive to complete the tasks properly.
+One day, I accidently raised my hand for chairing RDO meeting and it was a nice experience.
+Now I usually volunteer for chairing the RDO meeting.</p>
+
+<p>During the starting of liberty release, the RDO CI used to break due to missing packages. It was then I learned about <a href="https://www.rdoproject.org/packaging/rdo-packaging.html">RPM packaging</a> and started fixing those packages. Currently, I am maintaining 16 <a href="https://admin.fedoraproject.org/pkgdb/packager/chandankumar/">Fedora packages</a> and have learned a lot on how to fix packages when things went wrong.</p>
+
+<p>At the same time, I had started sending out <a href="https://www.redhat.com/archives/rdo-list/2016-March/msg00004.html">RDO Bug Statistics</a> to the RDO mailing list. It's a plain text report of how many new bugs were filed for different component, linked with the RDO product from Bugzilla, with comparisons to the previous week. You can look out for RDO bug statistics email on every Wednesday on the RDO mailing list.</p>
+
+<p>I am also involved in Python3 porting and including test requirements for RDO packages, which are still in progress. I learned how to help other package maintainers to improve their packages, which are consumed as a dependency in RDO.</p>
+
+<p>In last three months, I worked with the CERN guys to package Magnum and Magnum client, where I learned how a new OpenStack service is packaged and imported in RDO.</p>
+
+<p>Apart from that, I am contributing to the Delorean Project which powers the RDO CI and the RDO website during DOC and RDO test days. I've been also maintaining 4 <a href="https://github.com/redhat-openstack/rdoinfo/blob/master/rdo.yml">RDO packages</a>.</p>
+
+<p><strong>So, is contributing to RDO easy?</strong>
+Yes.</p>
+
+<ul>
+  <li>Are you a newcomer (want to dive into OpenStack)?
+    <ul>
+      <li>First try and test it using RDO Project <a href="https://www.rdoproject.org/install/quickstart/">quick start guide</a> and get your cloud running in 15 minutes.</li>
+      <li>Next, try out different scenarios and configure OpenStack services using RDO website documentation, look for anything wrong or enhancements that can be made in the documentation.
+RDO Project <a href="https://github.com/redhat-openstack/website">website source</a> is on Github and requires Markdown, so feel free to create an issue and send a pull request.</li>
+    </ul>
+  </li>
+  <li>Participate in weekly RDO meeting every Wednesday on #rdo channel on Freenode. Take action items and participate in the conversation. It will help you to know what is happening in the community and what's new coming.</li>
+  <li>Check the RDO Bug stats each Wednesday and help them in getting it traised.</li>
+  <li>Participate in RDO Docs day and Mitaka RDO test days.</li>
+  <li>Help in answering OpenStack Questions on <a href="https:ask.openstack.org">ask.openstack.org</a></li>
+  <li>Learn RPM packaging and start reviewing new package review bugs and fix the spec of RDO Packaging.</li>
+  <li>Know Python, contribute to <a href="https://github.com/openstack-packages/delorean">Delorean</a> and <a href="https://github.com/redhat-openstack/rdopkg">rdopkg</a> which powers the RDO packages development.</li>
+  <li>Look for issues in the OpenStack services and feel free to report the issue to the OpenStack upstream.</li>
+</ul>
+
+<p>Lastly, contributing to RDO Project helps you to contribute to OpenStack upstream and also helps growing the RDO Community.</p>
+
+<p>Thanks to <a href="https://twitter.com/apevec_">apevec</a>, <a href="https://twitter.com/hguemar">number80</a>, <a href="https://twitter.com/rbowen">rbowen</a>, <a href="https://twitter.com/fj_pena">jpena</a>, <a href="https://twitter.com/dmsimard">dmsimard</a>, <a href="https://twitter.com/EmilienMacchi">EmilienM</a>, <a href="https://twitter.com/matrunge">mrunge</a>, jruzicka and many more who helped me with fixing my silly mistakes and encouraging me to contribute more.</p>
+
+<a class="more-link view-article" href="/blog/2016/03/how-i-started-contributing-to-rdo-project/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/rdo-manager-is-now-tripleo/">"RDO Manager" is now "TripleO"</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rleander/">K Rain Leander</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-29T19:59:46Z'>
+Monday 29 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Because of its unique branding and name, one might assume that "RDO Manager" is not TripleO - perhaps it has additional downstream patches or maybe they're entirely different projects. You would not be alone because the community, the users and the developers alike have shared their confusion on this topic.</p>
+
+<p>The truth is "RDO Manager" really is "TripleO". There is no code or documentation difference.  The only thing that is different is the strategy around how the RDO community tests TripleO to ensure the stability of RDO packages but even this strategy is in the process of being sent upstream because we're convinced it's the best way forward.</p>
+
+<p>Historically, RDO Manager and TripleO were different projects. Today this is no longer the case and we plan on keeping it that way.</p>
+
+<p>Further, there is no other project in RDO that is renamed or rebranded. OpenStack Nova is referenced as Nova within the RDO project. Even the TripleO packages in RDO have the same naming as the upstream projects.</p>
+
+<p>With this in mind, on Wednesday, 24th, February, 2016, the RDO community discussed and voted to drop the "RDO Manager" brand and use TripleO instead. This will clear the confusion surrounding the topic of what IS RDO Manager as well as strengthen the TripleO name.  It is our hope that a clear 1:1 mapping between the projects will result in more integration with upstream on the CI side as well.</p>
+
+<p>Over the course of the next few weeks, the RDO community will work towards replacing mentions of "RDO Manager" in documentation, web sites, code, and repositories. If you'd like to help with this, please join us on irc Freenode #rdo.</p>
+
+<a class="more-link view-article" href="/blog/2016/02/rdo-manager-is-now-tripleo/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="../tag/.html"></a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/tripleo/">tripleo</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/rdo-blogs-week-of-february-22-2016/">RDO blogs, week of February 29, 2016</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-29T14:14:46Z'>
+Monday 29 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Here's what RDO enthusiasts have been blogging about in the last week:</p>
+
+<p><strong>Using a custom ssh config with Ansible’s synchronize module</strong>, by Harry Rybacki</p>
+
+<blockquote>
+  <p>Have you ever needed to specify which ssh config file rsync should use when called from Ansible’s synchronize module? I have and it was not obvious how to do so.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/52">http://tm3.org/52</a></p>
+
+<p><strong>RDO Mitaka 3 test day, March 10th, 11th</strong> by Rich Bowen</p>
+
+<blockquote>
+  <p>TL;DR:</p>
+
+  <ul>
+    <li>Mitaka 3 test day, March 10, 11</li>
+    <li>On-site test day in Brno</li>
+    <li>Demo of deploying with TripleO</li>
+  </ul>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/53">http://tm3.org/53</a></p>
+
+<p><strong>Keystone on Port 80 For Tripleo</strong> by Adam Young</p>
+
+<blockquote>
+  <p>Many services assume that Keystone listens on ports 5000 and 35357. I’d prefer to have Keystone listen on the standard HTTP(s) ports of 80 and 443. We can’t remove the non-standard ports without a good deal of rewriting. But there is nothing preventing us from running Keystone on port 80 or 443 in addition to those ports.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/54">http://tm3.org/54</a></p>
+
+<p><strong>Skydive : a real-time network analyzer</strong> by  Sylvain Afchain</p>
+
+<blockquote>
+  <p>SDN solutions are complex and troubleshooting/monitoring them is even harder. It seems that while we have a better way to automate the network we lose visibility and operability. For example, in order to troubleshoot an issue you have of to understand the network in general but also to have a deep understanding of how the SDN solution is implementing the network. And if you have multiple SDN solutions deployed – with maybe nested SDN solutions like container network in VMs – finding the root cause of an issue starts to be really hard.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/55">http://tm3.org/55</a></p>
+
+<p><strong>David Moreau Simard at OpenStack Montreal</strong> (Video)</p>
+
+<p>… watch at <a href="http://tm3.org/56">http://tm3.org/56</a></p>
+
+<p><strong>Hackery to get going RDO Kilo on Fedora 23</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Sequence of hacks required to get going RDO Kilo on Fedora 23 is caused by existence of many areas where Nova has a hard dependency on Glance v1. Per https://specs.openstack.org/openstack/nova-specs/specs/mitaka/approved/use-glance-v2-api.html</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/57">http://tm3.org/57</a></p>
+
+<a class="more-link view-article" href="/blog/2016/02/rdo-blogs-week-of-february-22-2016/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="../tag/.html"></a></li>
+<li><a href="/blog/tag/blog/">blog</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/david-moreau-simard-at-openstack-montreal/">David Moreau Simard at OpenStack Montreal</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-25T14:09:08Z'>
+Thursday 25 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>David Moreau Simard giving his talk at <a href="http://montrealopenstack.org/">OpenStack Montreal</a> about RDO CI:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XAWLm3jP7Mg" frameborder="0" allowfullscreen=""></iframe>
+
+
+<a class="more-link view-article" href="/blog/2016/02/david-moreau-simard-at-openstack-montreal/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/ci/">CI</a></li>
+<li><a href="/blog/tag/meetup/">meetup</a></li>
+<li><a href="/blog/tag/montreal/">montreal</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/testing/">testing</a></li>
+<li><a href="/blog/tag/video/">video</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/">RDO Mitaka 3 test day, March 10th, 11th</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-23T14:31:05Z'>
+Tuesday 23 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>TL;DR:</p>
+
+<ul>
+  <li><a href="https://www.rdoproject.org/testday/mitaka/milestone3/">Mitaka 3 test day, March 10, 11</a></li>
+  <li><a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/">On-site test day in Brno</a></li>
+  <li><a href="https://www.youtube.com/watch?v=4O8KvC66eeU">Demo of deploying with TripleO</a></li>
+</ul>
+
+<p><a href="http://releases.openstack.org/mitaka/schedule.html">Mitaka milestone 3</a> is scheduled for the week of February 29 - March 4 and, as per usual, we're planning a test day about a week out from that - March 10th and 11th. We've got the usual <a href="https://www.rdoproject.org/testday/mitaka/milestone3/">page of instructions</a> for testing.</p>
+
+<p>This time, however, we have two bonus events.</p>
+
+<p>First, we're delighted that Eliska Malikova is putting together an <a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/">on-site test day at the Red Hat office in Brno</a>, for anyone in that general area. If you wish to attend, <a href="https://www.eventbrite.com/e/rdo-on-site-test-day-brno-tickets-5934822213">please register</a> so that we know how much pizza to order. (Attendance is limited to 50, so please register sooner rather than later.)</p>
+
+<p>Second, as we attempt to get more people testing TripleO (formerly known as RDO Manager), John Trownbridge (that's Trown on IRC) will be doing a demo of the TripleO Quickstart. This will be conducted as a <a href="https://www.youtube.com/watch?v=4O8KvC66eeU">YouTube live stream</a> and will also be recorded, and available at that same location after the fact.</p>
+
+<p>So, please, come help us ensure that Mitaka is the best RDO yet. As usual, we'll be on #rdo (on Freenode IRC), and here on rdo-list, to field any questions. Full details are on the <a href="https://www.rdoproject.org/testday/mitaka/milestone3/">test day website</a> and, as usual, we can use lots of help making the test case instructions better, so that more people can participate.</p>
+
+<p>Thanks!</p>
+
+<a class="more-link view-article" href="/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/mitaka/">mitaka</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/testday/">testday</a></li>
+<li><a href="/blog/tag/testing/">testing</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/rdo-blog-roundup-16-feb-2016/">RDO blog roundup, 16 Feb 2016</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-16T15:54:08Z'>
+Tuesday 16 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Here's what's hit the RDO blogs in the last few weeks.</p>
+
+<p><strong>RDO Liberty DVR Neutron workflow on CentOS 7.2</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html<br />
+DVR is supposed to address following problems which has traditional 3 Node
+deployment schema</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4r">http://tm3.org/4r</a></p>
+
+<p><strong>RDO Community Day at FOSDEM</strong> by Rich Bowen</p>
+
+<blockquote>
+  <p>On Friday, in Brussels, 45 RDO enthusiasts gathered at the IBM Client Center in Brussels (Thanks, IBM!) for a full day of RDO content and discussion.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4s">http://tm3.org/4s</a></p>
+
+<p><strong>Python API for "boot from image creates new volume" RDO Liberty</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Post below addresses several questions been posted at ask.openstack.org
+In particular, code bellow doesn't require volume UUID to be  hard coded
+to start server attached to boot able cinder's LVM, created via glance image,
+which is supposed to be passed to script via command line. In the same way
+name of cinder volume and instance name may be passed to script via CLI.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4t">http://tm3.org/4t</a></p>
+
+<p><strong>Why does Red Hat contribute to RDO?</strong> by Nick Barcet</p>
+
+<blockquote>
+  <p>Red Hat's philosophy is 'Upstream First'. When we participate in an open source project, our contributions go into the upstream project first, as a prerequisite to deliver it in the downstream offering. Our continued focus, over the past years and in the future, is to reduce to a bare minimum the differences between Upstream, RDO and RHEL OpenStack Platform at General Availabilty time, as we believe this is the only way we can maximise our velocity in delivering new features. In doing so, we, as any successful enterprise would do, need to focus our efforts on what matters in respect to our "downstream" strategy, and it means that we do prioritize our efforts accordingly as we are contributing particular features and fixes.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4u">http://tm3.org/4u</a></p>
+
+<p><strong>Keystone Implied roles with CURL</strong> by Adam Young</p>
+
+<blockquote>
+  <p>Keystone now has Implied Roles.  What does this mean?  Lets say we define the role Admin to  imply the Member role.  Now, if you assigned someone Admin on a project they are automatically assigned the Member role on that project implicitly.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4v">http://tm3.org/4v</a></p>
+
+<p><strong>Systemd-nspawn for fun and…well, mostly for fun</strong> by Lars Kellogg-Stedman</p>
+
+<blockquote>
+  <p>systemd-nspawn has been called "chroot on steroids", but if you think of it as Docker with a slightly different target you wouldn't be far wrong, either. It can be used to spawn containers on your host, and has a variety of options for configuring the containerized environment through the use of private networking, bind mounts, capability controls, and a variety of other facilities that give you flexible container management.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4w">http://tm3.org/4w</a></p>
+
+<p><strong>A systemd-nspawn connection driver for Ansible</strong> by Lars Kellogg-Stedman</p>
+
+<blockquote>
+  <p>I wrote earlier about systemd-nspawn, and how it can take much of the fiddly work out of setting up functional chroot environments. I'm a regular Ansible user, and I wanted to be able to apply some of those techniques to my playbooks.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4x">http://tm3.org/4x</a></p>
+
+<p><strong>A Holla out to the Kolla devs</strong> by Adam Young</p>
+
+<blockquote>
+  <p>Devstack uses Pip to install packages, which conflict with the RPM versions on my Fedora system. Since I still need to get work done, and want to run tests on Keystone running against a live database, I’ve long wondered if I should go with container based approach. Last week, I took the plunge and started messing around with Docker. I got the MySQL Fedora container to run, then found Lars Keystone container using Sqlite, and was stumped. I poked around for a way to get the two containers talking to each other, and realized that we had a project dedicated to exactly that in OpenStack: Kolla. While it did not work for me right out of a git-clone, several of the Kolla devs worked with me to get it up and running. here are my notes, distilled.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4y">http://tm3.org/4y</a></p>
+
+<p><strong>Boosting the NFV datapath with RHEL OpenStack Platform</strong> by Nir Yechiel</p>
+
+<blockquote>
+  <p>With software-defined networking (SDN) and network functions virtualization (NFV) gaining traction, more cloud service providers are looking for open solutions, based on standardized hardware platforms and open source software. In particular, communication service providers (CSPs) are undergoing a major shift from specialized hardware-based network elements to a software based provisioning paradigm where virtualized network functions (VNFs) are deployed in private or hybrid clouds of network operators. Increasingly, OpenStack is seen as the virtual infrastructure platform of choice for NFV, with many of the world’s largest communications companies implementing solutions with OpenStack today.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4z">http://tm3.org/4z</a></p>
+
+<p><strong>OpenStack Keystone Q and A with the Boston University Distributed Systems Class Part 1</strong> by Adam Young</p>
+
+<blockquote>
+  <p>Dr. Jonathan Appavoo was kind enough to invite me to be a guest lecturer in his distributed systems class at Boston University. The students proved a list of questions, and I only got a chance to address a handful of them during the class. So, I’ll try to address the rest here.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4-">http://tm3.org/4-</a></p>
+
+<p><strong>Setup Swift as Glance backend on RDO Liberty (CentOS 7.2)</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Post below presumes that your testing Swift storage is located  somewhere on workstation (say /dev/sdb1) is about 25 GB (XFS) and before running packstack (AIO mode for testing)  following steps have been done :-</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/50">http://tm3.org/50</a></p>
+
+<p><strong>Boosting the NFV datapath with RHEL OpenStack Platform</strong> by Nir Yechiel</p>
+
+<blockquote>
+  <p>A post I wrote for the Red Hat Stack blog, trying to clarify what we are doing with RHEL OpenStack Platform to accelerate the datapath for NFV applications.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/51">http://tm3.org/51</a></p>
+
+<a class="more-link view-article" href="/blog/2016/02/rdo-blog-roundup-16-feb-2016/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/blog/">blog</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdocommunity/">rdocommunity</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/rdo-community-day-at-fosdem/">RDO Community Day at FOSDEM</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-04T16:06:05Z'>
+Thursday  4 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>On Friday, in Brussels, 45 RDO enthusiasts gathered at the IBM Client Center in Brussels (Thanks, IBM!) for a full day of RDO content and discussion.</p>
+
+<p>Most of the event was recorded. The camera battery ran out near the end, but we got audio for the rest of the event. I am in the process of uploading all of the video. (80GB of video!) It will be available <a href="https://www.rdoproject.org/events/rdo-day-fosdem-2016/">on the event page</a>  as soon as possible. Some of it is there already.</p>
+
+<p>The most exciting part of the event, for me anyways, was discovering that RDO is no longer completely a Red Hat project. More than half of those in attendance were from not from Red Hat. For comparison, last year we had about 30 people in attendance, and all but about 5 were from Red Hat.</p>
+
+<p>Below you can see some photos from the event.</p>
+
+<p><a data-flickr-embed="true" data-header="true" href="https://www.flickr.com/photos/rbowen/albums/72157664110725992" title="RDO Community Day, FOSDEM 2016"><img src="https://farm2.staticflickr.com/1462/24185123104_c50c8448e0_b.jpg" width="1024" height="576" alt="RDO Community Day, FOSDEM 2016" /></a><script async="" src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script></p>
+
+<p>The day started with a marvelous keynote from Thomas Oulevey about CERN's OpenStack deployment, which uses RDO. From there, we had presentations about RDO-Manager, and other talks about deploying, configuring, and managing OpenStack.</p>
+
+<p>I'd like to thank the folks that worked so hard to make this event happen, including especially the speakers, and Eliska Malakova who handled many of the logistics.</p>
+
+<a class="more-link view-article" href="/blog/2016/02/rdo-community-day-at-fosdem/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/fosdem/">fosdem</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/rdocommunity/">rdocommunity</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/02/why-does-red-hat-contribute-to-rdo/">Why does Red Hat contribute to RDO?</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/nick-barcet/">Nick Barcet</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-02-04T10:20:56Z'>
+Thursday  4 February
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Red Hat's philosophy is 'Upstream First'. When we participate in an open source project, our contributions go into the upstream project first, as a prerequisite to deliver it in the downstream offering. Our continued focus, over the past years and in the future, is to reduce to a bare minimum the differences between Upstream, RDO and RHEL OpenStack Platform at General Availabilty time, as we believe this is the only way we can maximise our velocity in delivering new features. In doing so, we, as any successful enterprise would do, need to focus our efforts on what matters in respect to our "downstream" strategy, and it means that we do prioritize our efforts accordingly as we are contributing particular features and fixes.</p>
+
+<p>Thus, it's useful to consider why Red Hat participates in RDO in the specific ways that we do.</p>
+
+<p>Red Hat is focusing on delivering a distribution of OpenStack targeting Enterprise private clouds and Telco NFVi needs. In order to do so, we invest on the upstream features that are the most commonly requested by our user base and by our investigations on the needs of these markets. Common themes on these markets are:</p>
+
+<ul>
+  <li>easy and automatizable deployments</li>
+  <li>life cycle and upgrade management, limiting down time</li>
+  <li>optional intergrated operational tools</li>
+  <li>high availability of the control plane</li>
+  <li>optional high availability of VMs</li>
+  <li>disaster recovery scenarios</li>
+  <li>scalability &amp; composability of deployments</li>
+  <li>multi-site deployments</li>
+  <li>performance improvements in networking, storage and compute</li>
+</ul>
+
+<p>We are also keen to enable integration of OpenStack with third party products below (storage, networking, compute, etc…) and above (management, orchestration, reporting, etc..) through well defined and stable interfaces defined upstreams, and using upstream developed integration, so that those integration are the easiest to consume by our customers and allowing them as much choice as possible at all level of the stack.</p>
+
+<a class="more-link view-article" href="/blog/2016/02/why-does-red-hat-contribute-to-rdo/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/philosophy/">philosophy</a></li>
+<li><a href="/blog/tag/redhat/">redhat</a></li>
+<li><a href="/blog/tag/upstream/">upstream</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/01/rdo-blog-roundup-25-jan-2016/">RDO blog roundup, 25 Jan 2016</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-01-25T19:50:46Z'>
+Monday 25 January
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Here's what RDO enthusiasts have been writing about in the last week:</p>
+
+<p><strong>Deploying an OpenStack undercloud/overcloud on a single server from my laptop with Ansible.</strong> by Harry Rybacki</p>
+
+<blockquote>
+  <p>During the summer of 2014 I worked on the OpenStack Keystone component while interning at Red Hat. Fast forward to the end of October 2015 and I once again find myself working on OpenStack for Red Hat — this time on the RDO Continuous Integration (CI) team. Since re-joining Red Hat I’ve developed a whole new level of respect not only for the wide breadth of knowledge required to work on this team but for deploying OpenStack in general.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4q">http://tm3.org/4q</a></p>
+
+<p><strong>Ceilometer Polling Performance Improvement</strong>, by Julien Danjou</p>
+
+<blockquote>
+  <p>During the OpenStack summit of May 2015 in Vancouver, the OpenStack Telemetry community team ran a session for operators to provide feedback. One of the main issues operators relayed was the polling that Ceilometer was running on Nova to gather instance information. It had a highly negative impact on the Nova API CPU usage, as it retrieves all the information about instances on regular intervals.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4m">http://tm3.org/4m</a></p>
+
+<p><strong>AIO RDO Liberty &amp;&amp; several external networks VLAN provider setup</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Post bellow is addressing the question when AIO RDO Liberty Node has to have external networks of VLAN type with predefined vlan tags. Straight forward packstack –allinone install doesn't  allow to achieve desired network configuration. External network provider of vlan type appears to be required. In particular case, office networks 10.10.10.0/24 vlan tagged (157) ,10.10.57.0/24 vlan tagged (172), 10.10.32.0/24 vlan tagged (200) already exists when RDO install is running. If demo_provision was "y" , then delete router1 and created external network of VXLAN type</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4l">http://tm3.org/4l</a></p>
+
+<p><strong>Caching in Horizon with Redis</strong> by Matthias Runge</p>
+
+<blockquote>
+  <p>Redis is a in-memory data structure store, which can be used as cache and session backend. I thought to give it a try for Horizon. Installation is quite simple, either pip install django-redis or dnf –enablerepo=rawhide install python-django-redis.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4n">http://tm3.org/4n</a></p>
+
+<p><strong>Red Hat Cloud Infrastructure Cited as a Leader Among Private Cloud Software Suites by Independent Research Firm</strong> by Gordon Tillmore</p>
+
+<blockquote>
+  <p>The Forrester report states that Red Hat “leads the evaluation with its powerful portal, top governance capabilities, and a strategy built around integration, open source, and interoperability. Rather than trying to build a custom approach for completing functions around operations, governance, or automation, Red Hat provides a very composable package by leveraging a mix of market standards and open source in addition to its own development.”</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4o">http://tm3.org/4o</a></p>
+
+<p><strong>Disable "Resource Usage"-dashboard in Horizon</strong> by Matthias Runge</p>
+
+<blockquote>
+  <p>When using Horizon as Admin user, you probably saw the metering dashboard, also known as "Resource Usage". It internally uses Ceilometer; Ceilometer continuously collects data from configured data sources. In a cloud environment, this can quickly grow enormously. When someone visits the metering dashboard in Horizon, Ceilometer then will accumulate requested data on the fly.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4p">http://tm3.org/4p</a></p>
+
+
+<a class="more-link view-article" href="/blog/2016/01/rdo-blog-roundup-25-jan-2016/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/blog/">blog</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+</div>
+</footer>
+</article>
+
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+<a href="/blog/2016/01/rdo-blog-roundup-jan-18-2016/">RDO blog roundup, Jan 18, 2016</a>
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-01-18T15:14:27Z'>
+Monday 18 January
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>It's been a slow few weeks on the RDO blog front. Keep those posts coming. Tell us what you've been working on!</p>
+
+<p><strong>NFV and Open Networking with RHEL OpenStack Platform</strong>, by Nir Yechiel</p>
+
+<blockquote>
+  <p>I was honored to be invited to speak on a local Intel event about Red Hat and what we are doing in the NFV space. I only had 30 minutes, so I tried to provide a high level overview of our offering, covering some main points:</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4h">http://tm3.org/4h</a></p>
+
+<p><strong>RDO Community Day @ FOSDEM</strong> by Rich Bowen</p>
+
+<blockquote>
+  <p>The schedule has now been published at https://www.rdoproject.org/events/rdo-day-fosdem-2016/</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/3z">http://tm3.org/3z</a></p>
+
+<p><strong>Openstack Neutron: troubleshooting and solving common problems</strong> by Arie Bergman</p>
+
+<blockquote>
+  <p>Important note: this post is based on the great sessions ‘I Can’t Ping My VM! Learn How to Debug Neutron and Solve Common Problems‘ of Rossella Sblendido &amp; OpenStack Neutron Troubleshooting by Assaf Muller . So the credit goes to them. I simply gathered it here in a written form and added little bit of description and examples.  Enjoy =)</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4i">http://tm3.org/4i</a></p>
+
+<p><strong>RDO doc day and test day</strong> by Rich Bowen</p>
+
+<blockquote>
+  <p>With the Mitaka milestone 2 release due very soon, the RDO community has two events in the coming days.</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4j">http://tm3.org/4j</a></p>
+
+<p><strong>Hackery setting up RDO Kilo on CentOS 7.2 with Mongodb &amp;&amp; Nagios up and running as of 01/08/2016</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>I have noticed several questions (ask.openstack.org,stackoverflow.com)
+regarding mentioned ongoing issue with mongodb-server and nagios when
+installing RDO Kilo 2015.1.1 on CentOS 7.2 via packstack. At the moment
+I see a hack provided bellow which might be applied as pre-installation step
+or fix after initial packstack crash. Bug submitted to bugzilla.redhat.com</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4k">http://tm3.org/4k</a></p>
+
+<p><strong>AIO RDO Liberty &amp;&amp; several external networks VLAN provider setup</strong> by Boris Derzhavets</p>
+
+<blockquote>
+  <p>Post below is addressing the question when AIO RDO Liberty Node has to have external networks of VLAN type with predefined vlan tags. Straight forward packstack –allinone install doesn't  allow to achieve desired network configuration. External network provider of vlan type appears to be required. In particular case, office networks 10.10.10.0/24 vlan tagged (157) ,10.10.57.0/24 vlan tagged (172), 10.10.32.0/24 vlan tagged (200) already exists when RDO install is running. If demo_provision was "y" , then delete router1 and created external network of VXLAN type</p>
+</blockquote>
+
+<p>… read more at <a href="http://tm3.org/4l">http://tm3.org/4l</a></p>
+
+
+<a class="more-link view-article" href="/blog/2016/01/rdo-blog-roundup-jan-18-2016/">View article &raquo;</a>
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/blog/">blog</a></li>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+</div>
+</footer>
+</article>
+
+<ul class='pagination'>
+<li>
+<a href="/blog/page=3/">Newer</a>
+</li>
+<li>
+<a href="/blog/">1</a>
+</li>
+<li>
+<a href="/blog/page=2/">2</a>
+</li>
+<li>
+<a href="/blog/page=3/">3</a>
+</li>
+<li class='active'>
+<span>4</span>
+</li>
+<li>
+<a href="/blog/page=5/">5</a>
+</li>
+<li>
+<a href="/blog/page=6/">6</a>
+</li>
+<li>
+<a href="/blog/page=7/">7</a>
+</li>
+<li>
+<a href="/blog/page=8/">8</a>
+</li>
+<li>
+<a href="/blog/page=5/">Older</a>
+</li>
+</ul>
+
+</section>
+
+</section>
+
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog.html.haml"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 7 Jan 2016 19:41 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

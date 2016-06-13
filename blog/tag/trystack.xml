@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Trystack</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/trystack.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Try out RDO on TryStack!</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/06/try-out-rdo-on-trystack/"/>
+    <id>http://rdoproject.org/blog/2013/06/try-out-rdo-on-trystack/</id>
+    <published>2013-06-05T11:19:30+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;In April, Red Hat released RDO, a distribution of OpenStack Grizzly for
+Red Hat Enterprise Linux and its derivatives, to make it easier for
+users of these platforms to get started with OpenStack.&lt;/p&gt;
+
+&lt;p&gt;Now we're making it even easier to try out OpenStack on RHEL by making
+it available on &lt;a href="http://trystack.org"&gt;TryStack.org&lt;/a&gt;, a publicly accessible cluster where
+anyone can register and try out OpenStack.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://x86.trystack.org"&gt;The x86 OpenStack cluster at TryStack.org&lt;/a&gt; runs on RHEL 6.4 and thanks to some awesome work from Dan Radez we have recently completed the upgrade to the Grizzly release using packages from RDO. Red Hat has committed to the ongoing support and maintenance of the x86 cluster.&lt;/p&gt;
+
+&lt;p&gt;Head over to &lt;a href="http://trystack.org"&gt;TryStack.org&lt;/a&gt; now to register for an account, and &lt;a href="http://rdoproject.org/Using_RDO_on_TryStack"&gt;try out RDO for your self&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more information on getting started with RDO on your own servers, visit rdoproject.org and &lt;a href="http://rdoproject.org/Quickstart"&gt;download the packages today&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Using NetApp for Cinder with RDO &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/storage/Cinder/using-netapp-for-cinder-with-rdo.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="using-netapp-for-cinder-with-rdo">Using NetApp for Cinder with RDO</h1>
+
+<p>It is possible to have Packstack configure Cinder to use NetApp storage devices as backends for providing block storage capabilities to OpenStack users. The NetApp driver for Cinder supports:</p>
+
+<ul>
+  <li>NetApp Clustered Data ONTAP (NFS/iSCSI)</li>
+  <li>NetApp Data ONTAP in 7-Mode (NFS/iSCSI)</li>
+  <li>NetApp E-Series (iSCSI)</li>
+</ul>
+
+<p>If Packstack is not already installed, follow steps 1 &amp; 2 in the <a href="http://rdoproject.org/Quickstart">RDO Quickstart</a> guide to get it installed.</p>
+
+<p><strong>Important:</strong> For information regarding best practices using NetApp storage with Cinder and other OpenStack services, see the <a href="http://netapp.github.io/openstack-deploy-ops-guide/">NetApp Deployment and Operations Guide</a>. If you have any questions, you can get in touch with us on the <a href="http://community.netapp.com/t5/OpenStack-Discussions/bd-p/openstack-discussions">NetApp OpenStack Community</a> page or join us on IRC in the #openstack-netapp channel on Freenode!</p>
+
+<h2 id="configure-via-answer-file">Configure via answer file</h2>
+
+<p>Generate a Packstack answer file:</p>
+
+<pre class="highlight plaintext"><code>packstack --gen-answer-file=~/answers.txt&#x000A;</code></pre>
+
+<p>Help text is provided above each parameter to whether it’s required for a given NetApp configuration. For more information about the specific parameters and examples of their use, see the <a href="http://docs.openstack.org/liberty/config-reference/content/netapp-volume-driver.html">NetApp unified driver docs</a> and choose the page detailing your storage family and protocol.</p>
+
+<p>The Packstack parameters are the same as those found in the docs, but in all caps and with <code>CONFIG_CINDER_</code> prepended. For example, entering the following into the answer file:</p>
+
+<pre class="highlight plaintext"><code>...&#x000A;CONFIG_CINDER_BACKEND=netapp&#x000A;CONFIG_CINDER_NETAPP_STORAGE_FAMILY=ontap_cluster&#x000A;CONFIG_CINDER_NETAPP_STORAGE_PROTOCOL=nfs&#x000A;CONFIG_CINDER_NETAPP_VSERVER=openstack-vserver&#x000A;CONFIG_CINDER_NETAPP_HOSTNAME=myhostname&#x000A;CONFIG_CINDER_NETAPP_SERVER_PORT=80&#x000A;CONFIG_CINDER_NETAPP_LOGIN=username&#x000A;CONFIG_CINDER_NETAPP_PASSWORD=password&#x000A;CONFIG_CINDER_NETAPP_NFS_SHARES=192.168.1.1:/cinder1,192.168.1.2:/cinder2&#x000A;CONFIG_CINDER_NETAPP_NFS_SHARES_CONFIG=/etc/cinder/nfs_shares&#x000A;...&#x000A;</code></pre>
+
+<p>generates the following in <code>cinder.conf</code>:</p>
+
+<pre class="highlight plaintext"><code>volume_driver=cinder.volume.drivers.netapp.common.NetAppDriver&#x000A;... other parameters ...&#x000A;[netapp]&#x000A;netapp_storage_family=ontap_cluster&#x000A;netapp_storage_protocol=nfs&#x000A;netapp_vserver=openstack-vserver&#x000A;netapp_server_hostname=myhostname&#x000A;netapp_server_port=80&#x000A;netapp_login=username&#x000A;netapp_password=password&#x000A;nfs_shares_config=/etc/cinder/nfs_shares&#x000A;</code></pre>
+
+<p><strong>Note:</strong> The NFS shares in the <code>nfs_shares</code> parameter are written to the file in the location specified by <code>nfs_shares_config</code>.</p>
+
+<p>When the answer file has been edited with your specific environment variables, run Packstack with:</p>
+
+<pre class="highlight plaintext"><code>packstack --answer-file=~/packstack-answer.txt&#x000A;</code></pre>
+
+<p>Packstack will alert you if any required parameters are missing or have incorrect values and then start the install.</p>
+
+<p>If you have any trouble creating Cinder volumes after the installation has finished, the log file found at <code>/var/log/cinder/volume.log</code> is a good place to begin troubleshooting. If you have any questions, drop us a line!</p>
+
+<h2 id="configure-via-command-line-arguments">Configure via command line arguments</h2>
+
+<p>Add NetApp arguments when installing:</p>
+
+<pre class="highlight plaintext"><code>packstack --arg1=... --argN=... --cinder-netapp-storage-family=ontap_cluster&#x000A;</code></pre>
+
+<p>Again, refer to the <a href="http://docs.openstack.org/liberty/config-reference/content/netapp-volume-driver.html">NetApp unified driver docs</a> for details about specific parameters.</p>
+
+<p>The Packstack parameters are the same as those found in the docs, but with <code>cinder-</code> prepended and all underscores turned into hyphens. For example, running Packstack with these arguments:</p>
+
+<pre class="highlight plaintext"><code>packstack --cinder-backend=netapp --cinder-netapp-storage-family=ontap_cluster --cinder-netapp-storage-protocol=nfs --cinder-netapp-vserver=openstack-vserver --cinder-netapp-hostname=myhostname --cinder-netapp-server-port=80 --cinder-netapp-login=username --cinder-netapp-password=password --cinder-netapp-nfs-shares-config=/etc/cinder/nfs_shares&#x000A;</code></pre>
+
+<p>is functionally equivalent to the answer file in the previous section.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/storage/Cinder/using-netapp-for-cinder-with-rdo.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 11 Jan 2016 10:59 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

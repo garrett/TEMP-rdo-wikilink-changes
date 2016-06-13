@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Neutron with existing external network &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/neutron-with-existing-external-network.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="neutron-with-existing-external-network">Neutron with existing external network</h1>
+
+<p>Many people have asked how to use packstack –allinone with an existing external network. This method should allow any machine on the network to be able to access launched instances via their floating IPs. Also, at the end of this message, there are some ideas for making this process better that I thought we could discuss.</p>
+
+<p>These instructions have been tested on Centos 7.</p>
+
+<p>Initially, follow the <a href="/install/quickstart/">Quickstart</a> but stop when you see the first "packstack –allinone" at Step 3, instead do:</p>
+
+<pre class="highlight plaintext"><code># packstack --allinone --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex --os-neutron-ovs-bridge-interfaces=br-ex:eth0 --os-neutron-ml2-type-drivers=vxlan,flat&#x000A;</code></pre>
+
+<p>This will define a logical name for our external physical L2 segment as "extnet". Later we will reference to our provider network by the name when creating external networks.</p>
+
+<p>The command also adds 'flat' network type to the list of types supported by the installation. This is needed when your provider network is a simple flat network (the most common setup for PoCs). If you use a VLAN segment for external connectivity, you should add 'vlan' to the list of type drivers.</p>
+
+<p>Note: the command is currently broken for Mitaka: https://bugzilla.redhat.com/show_bug.cgi?id=1316856, please skip –os-neutron-ovs-bridge-interfaces=br-ex:eth0 argument for now.</p>
+
+<p>(There's an alternate method using packstack –allinone –provision-all-in-one-ovs-bridge=n, but it's more complicated)</p>
+
+<p>After completion, given a single machine with a current IP of 192.168.122.212/24 via DHCP with gateway of 192.168.122.1:</p>
+
+<p>Make /etc/sysconfig/network-scripts/ifcfg-br-ex resemble:</p>
+
+<pre class="highlight plaintext"><code>DEVICE=br-ex&#x000A;DEVICETYPE=ovs&#x000A;TYPE=OVSBridge&#x000A;BOOTPROTO=static&#x000A;IPADDR=192.168.122.212 # Old eth0 IP since we want the network restart to not &#x000A;                       # kill the connection, otherwise pick something outside your dhcp range&#x000A;NETMASK=255.255.255.0  # your netmask&#x000A;GATEWAY=192.168.122.1  # your gateway&#x000A;DNS1=192.168.122.1     # your nameserver&#x000A;ONBOOT=yes&#x000A;</code></pre>
+
+<p>The file above will move the network parameters from eth0 to br-ex.</p>
+
+<p>Make /etc/sysconfig/network-scripts/ifcfg-eth0 resemble (no BOOTPROTO!):</p>
+
+<p>Note: if on Centos7, the file could be /etc/sysconfig/network-scripts/ifcfg-enp2s0</p>
+
+<pre class="highlight plaintext"><code>DEVICE=eth0&#x000A;TYPE=OVSPort&#x000A;DEVICETYPE=ovs&#x000A;OVS_BRIDGE=br-ex&#x000A;ONBOOT=yes&#x000A;</code></pre>
+
+<p>It is also possible to use a bond. In that case /etc/sysconfig/network-scripts/ifcfg-bond0 may look like this:</p>
+
+<pre class="highlight plaintext"><code>DEVICE=bond0&#x000A;DEVICETYPE=ovs&#x000A;TYPE=OVSPort&#x000A;OVS_BRIDGE=br-ex&#x000A;ONBOOT=yes&#x000A;BONDING_MASTER=yes&#x000A;BONDING_OPTS="mode=802.3ad"&#x000A;</code></pre>
+
+<p>This means, we will bring up the interface and plug it into br-ex OVS bridge as a port, providing the uplink connectivity.</p>
+
+<p>Restart the network service</p>
+
+<pre class="highlight plaintext"><code># reboot&#x000A;</code></pre>
+
+<p>or, alternatively:</p>
+
+<pre class="highlight plaintext"><code># service network restart&#x000A;</code></pre>
+
+<p>Now, create the external network with Neutron.</p>
+
+<pre class="highlight plaintext"><code># . keystonerc_admin&#x000A;# neutron net-create external_network --provider:network_type flat --provider:physical_network extnet  --router:external&#x000A;</code></pre>
+
+<p>Please note: "extnet" is the L2 segment we defined with –os-neutron-ovs-bridge-mappings above.</p>
+
+<p>You need to create a public subnet with an allocation range outside of your external DHCP range and set the gateway to the default gateway of the external network.</p>
+
+<p>Please note: 192.168.122.1/24 is the router and CIDR we defined in /etc/sysconfig/network-scripts/ifcfg-br-ex for external connectivity.</p>
+
+<pre class="highlight plaintext"><code># neutron subnet-create --name public_subnet --enable_dhcp=False --allocation-pool=start=192.168.122.10,end=192.168.122.20 \&#x000A;                        --gateway=192.168.122.1 external_network 192.168.122.0/24&#x000A;</code></pre>
+
+<p>Get a cirros image, not provisioned without demo provisioning:</p>
+
+<pre class="highlight plaintext"><code>curl http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img | glance \&#x000A;         image-create --name='cirros image' --visibility=public --container-format=bare --disk-format=qcow2&#x000A;</code></pre>
+
+<p>That's all you need to do from admin perspective to allow your users to connect their private networks to the outside world. Now let's switch to the user.</p>
+
+<p>Since you haven't created a user yet:</p>
+
+<pre class="highlight plaintext"><code>openstack project create --enable internal&#x000A;openstack user create --project internal --password foo --email bar@corp.com --enable internal&#x000A;</code></pre>
+
+<p>Now, let's switch to the newly created user:</p>
+
+<pre class="highlight plaintext"><code># export OS_USERNAME=internal&#x000A;# export OS_TENANT_NAME=internal&#x000A;# export OS_PASSWORD=foo&#x000A;</code></pre>
+
+<p>Then create a router and set its gateway using the external network created by the admin in one of previous steps:</p>
+
+<pre class="highlight plaintext"><code># neutron router-create router1&#x000A;# neutron router-gateway-set router1 external_network&#x000A;</code></pre>
+
+<p>Now create a private network and a subnet in it, since demo provisioning has been disabled:</p>
+
+<pre class="highlight plaintext"><code># neutron net-create private_network&#x000A;# neutron subnet-create --name private_subnet private_network 192.168.100.0/24&#x000A;</code></pre>
+
+<p>Finally, connect your new private network to the public network through the router, which will provide floating IP addresses.</p>
+
+<pre class="highlight plaintext"><code># neutron router-interface-add router1 private_subnet&#x000A;</code></pre>
+
+<p>Easiest way to the network and to launch instances is via horizon, which was set up by packstack.</p>
+
+<p>You should now be able to follow the steps at <a href="running an instance with Neutron">running an instance with Neutron</a> to launch an instance with external network access as admin, if you want other tenants you may need to create them manually.</p>
+
+<h2 id="see-also">See also</h2>
+
+<p>Watch this video for a demonstration of how to use DHCP on the bridge, including cloning the MAC address from eth0: <a href="https://www.youtube.com/watch?v=8zFQG5mKwPk">https://www.youtube.com/watch?v=8zFQG5mKwPk</a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/neutron-with-existing-external-network.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Wed 13 Apr 2016 20:35 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

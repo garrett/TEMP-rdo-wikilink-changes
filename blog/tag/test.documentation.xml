@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Test.Documentation</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/test.documentation.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO doc day and test day</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/01/rdo-doc-day-and-test-day/"/>
+    <id>http://rdoproject.org/blog/2016/01/rdo-doc-day-and-test-day/</id>
+    <published>2016-01-07T20:30:02+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;With the Mitaka milestone 2 release due &lt;a href="http://docs.openstack.org/releases/schedules/mitaka.html"&gt;very soon&lt;/a&gt;, the RDO community
+has two events in the coming days.&lt;/p&gt;
+
+&lt;p&gt;On January 20th/21st, we'll be focusing on improving the website and
+documentation, to make it easier for people to get started with
+OpenStack on CentOS. We'll be gathering on #rdo (on Freenode IRC) for
+any associated questions/discussion, and working through the &lt;a href="https://github.com/redhat-openstack/website/issues"&gt;open issues
+list&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;On January 27th/28th, we'll be running a test day of the Mitaka
+milestone 2 packages. Details of that test day will be &lt;a href="https://www.rdoproject.org/testday/"&gt;on the test days page&lt;/a&gt; in the coming days, along with
+suggested test scenarios that we'd like to run through. Once again,
+we'll be gathering on #rdo for this event.&lt;/p&gt;
+
+&lt;p&gt;We look forward to expanding the audience of these test days, and
+thereby improve everyone's CentOS OpenStack experience. So please set
+aside an hour or two to help us test. Thanks.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

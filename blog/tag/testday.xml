@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Testday</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/testday.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO Mitaka 3 test day, March 10th, 11th</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/</id>
+    <published>2016-02-23T15:31:05+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;TL;DR:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;Mitaka 3 test day, March 10, 11&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/"&gt;On-site test day in Brno&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4O8KvC66eeU"&gt;Demo of deploying with TripleO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;Mitaka milestone 3&lt;/a&gt; is scheduled for the week of February 29 - March 4 and, as per usual, we're planning a test day about a week out from that - March 10th and 11th. We've got the usual &lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;page of instructions&lt;/a&gt; for testing.&lt;/p&gt;
+
+&lt;p&gt;This time, however, we have two bonus events.&lt;/p&gt;
+
+&lt;p&gt;First, we're delighted that Eliska Malikova is putting together an &lt;a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/"&gt;on-site test day at the Red Hat office in Brno&lt;/a&gt;, for anyone in that general area. If you wish to attend, &lt;a href="https://www.eventbrite.com/e/rdo-on-site-test-day-brno-tickets-5934822213"&gt;please register&lt;/a&gt; so that we know how much pizza to order. (Attendance is limited to 50, so please register sooner rather than later.)&lt;/p&gt;
+
+&lt;p&gt;Second, as we attempt to get more people testing TripleO (formerly known as RDO Manager), John Trownbridge (that's Trown on IRC) will be doing a demo of the TripleO Quickstart. This will be conducted as a &lt;a href="https://www.youtube.com/watch?v=4O8KvC66eeU"&gt;YouTube live stream&lt;/a&gt; and will also be recorded, and available at that same location after the fact.&lt;/p&gt;
+
+&lt;p&gt;So, please, come help us ensure that Mitaka is the best RDO yet. As usual, we'll be on #rdo (on Freenode IRC), and here on rdo-list, to field any questions. Full details are on the &lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;test day website&lt;/a&gt; and, as usual, we can use lots of help making the test case instructions better, so that more people can participate.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO test day summary</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-test-day-summary/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-test-day-summary/</id>
+    <published>2015-10-14T16:42:05+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;A big thanks to everyone that participated in the &lt;a href="http://beta.rdoproject.org/testday/rdo-test-day-liberty-02/"&gt;RDO Test Day&lt;/a&gt; over the last 48 hours. Here's a few statistics from the day.&lt;/p&gt;
+
+&lt;p&gt;29 people wrote 74 email messages to the &lt;a href="https://www.redhat.com/archives/rdo-list/2015-October/thread.html"&gt;rdo-list mailing list&lt;/a&gt;. (Of course, they weren't all about the test day, but many of them were.)&lt;/p&gt;
+
+&lt;p&gt;42 participants sent a collective 1074 messages to the #rdo IRC channel on Freenode.net. (Likewise, not all about test day.)&lt;/p&gt;
+
+&lt;p&gt;We had &lt;a href="http://tm3.org/liberty-test-day-bugs"&gt;23 new issues&lt;/a&gt; opened in the ticketing system.&lt;/p&gt;
+
+&lt;p&gt;Some people have put their day's experience in the &lt;a href="https://etherpad.openstack.org/p/rdo_test_day_oct_2015"&gt;etherpad&lt;/a&gt; and some have updated the &lt;a href="http://beta.rdoproject.org/testday/testedsetups-liberty-02/"&gt;Tested Scenarios page&lt;/a&gt;. If you didn't put your notes anywhere, please do update one of those in the coming day or two, so that we don't lose what we learned.&lt;/p&gt;
+
+&lt;p&gt;So, thanks to all of you. Particular thanks to trown for getting things rolling and herding the cats.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

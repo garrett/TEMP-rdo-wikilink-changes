@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Test Day</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/test-day.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Upcoming events in OpenStack and RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/"/>
+    <id>http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/</id>
+    <published>2016-04-06T19:04:59+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+
+&lt;p&gt;There's also a huge surge in things to announce around the RDO community, as well as the upstream OpenStack community:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;upstream release of Mitaka&lt;/a&gt; is this week. &lt;a href="http://stackalytics.com/?metric=commits"&gt;Stackalytics&lt;/a&gt; lists over 2500 people who have contributed to this release.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We'll be conducting a &lt;a href="https://www.rdoproject.org/testday/mitaka/ga/"&gt;test day for RDO Mitaka on April 13th and 14th&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://openstack.org/summit"&gt;OpenStack Summit&lt;/a&gt; is just 2 weeks away, and we'll be having an &lt;a href="https://www.openstack.org/summit/austin-2016/summit-schedule/events/6892"&gt;RDO BoF&lt;/a&gt; (Birds of a Feather) gathering there.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have something you'd like to demo in the RDO booth at OpenStack Summit, add your idea to the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-summit-booth"&gt;booth schedule etherpad&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And, as every week, there are lots of &lt;a href="http://rdoproject.org/events/"&gt;OpenStack Meetups&lt;/a&gt; all over the world this week. Especially don't miss Perry Meyers' RDO Q&amp;amp;A at the &lt;a href="http://www.meetup.com/Morgantown-Linux-User-Group/events/227482742/"&gt;Morgantown OpenStack Meetup&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+</feed>

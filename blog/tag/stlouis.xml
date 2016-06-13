@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Stlouis</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/stlouis.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>St. Louis OpenStack Meetup</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/st-louis-openstack-meetup/"/>
+    <id>http://rdoproject.org/blog/2016/04/st-louis-openstack-meetup/</id>
+    <published>2016-04-01T18:36:56+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;On Tuesday evening I had the privilege of addressing the &lt;a href="http://www.meetup.com/OpenStack-STL/events/229344473/"&gt;St. Louis OpenStack Meetup group&lt;/a&gt;. I gave an Introduction to OpenStack presentation to about 30 attendees, many of whom were indeed OpenStack beginners, or just beginning to research what this OpenStack thing is all about.&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;
+  &lt;p lang="en" dir="ltr"&gt;&lt;a href="https://twitter.com/rbowen"&gt;@rbowen&lt;/a&gt; speaking at tonight's &lt;a href="https://twitter.com/hashtag/OpenStack?src=hash"&gt;#OpenStack&lt;/a&gt; meet up hosted at CenturyLink's new cloud dev center &lt;a href="https://t.co/6Rxuvz3phe"&gt;pic.twitter.com/6Rxuvz3phe&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;— OpenStack St.Louis (@openstackstl) &lt;a href="https://twitter.com/openstackstl/status/714966918587875328"&gt;March 30, 2016&lt;/a&gt;&amp;lt;/blockquote&amp;gt;
+&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+
+  &lt;p&gt;There were roughly 30 people in attendance, and questions ranged across a variety of topics, including ease of deployment, ongoing support, and the upgrade path for future versions.&lt;/p&gt;
+
+  &lt;p&gt;A huge thank you is due to CenturyLink, who hosted the meetup in their beautiful office facility, and to  Ranga Chakravarthula, who coordinated everything.&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+</feed>

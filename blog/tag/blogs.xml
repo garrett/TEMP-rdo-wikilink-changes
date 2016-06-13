@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Blogs</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/blogs.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Recent RDO Blogs - June 8, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/06/recent-rdo-blogs-june-8-2016/"/>
+    <id>http://rdoproject.org/blog/2016/06/recent-rdo-blogs-june-8-2016/</id>
+    <published>2016-06-08T17:51:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://rdoproject.org/images/blog_cloud.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here's what RDO engineers have been blogging about over the last few weeks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;[Event Report] RDO Bug Triage Day on 18th and 19th May, 2016&lt;/strong&gt; by Chandan Kumar&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the RDO development continues to grow, the numbers of bugs also grow. To make the community robust and heavy, it is also necessary to triage and fix the existing bugs so that product will be more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6x"&gt;http://tm3.org/6x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to fix a FTBFS using DLRN&lt;/strong&gt; by  Frederic Lepied&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DLRN is the tool used by the RDO project to build RPM packages for every commit from the OpenStack projects. See http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future for more details on how DLRN works. These commits from the upstream OpenStack projects can introduce changes that break the packaging. We call these FTBFS (Failure To Build From Source).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6y"&gt;http://tm3.org/6y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gnocchi talk at the Paris Monitoring Meetup #6&lt;/strong&gt; by Julien Danjou&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Last week was the sixth edition of the Paris Monitoring Meetup, where I was invited as a speaker to present and talk about Gnocchi.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6z"&gt;http://tm3.org/6z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OVB: TripleO on a Public OpenStack&lt;/strong&gt;  by Gonéri Le Bouder&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In order to deploy an OpenStack cloud with the TripleO installer ( http://tripleo.org/ ), one needs at least 2 nodes for a basic setup.  If one is interested in deploying more complex topologies, more nodes might be required, for an Highly Available (HA) setup, 4 nodes are required.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6-"&gt;http://tm3.org/6-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reviews for RDO packages&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are in the process of getting the docs straightened out for reviewing RDO packages. As we do, I want to record what I have working.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/70"&gt;http://tm3.org/70&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Newbie in RDO: one size doesn't fit all&lt;/strong&gt; by amoralej&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to RDO faq, the main goal is to maintain a freely-available, community-supported distribution of OpenStack based on RPM packages able to run Red Hat Enterprise Linux, CentOS, Fedora, and their derivatives. But the RDO community is diverse and different use patterns have been found over the time with different requirements:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/71"&gt;http://tm3.org/71&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Newbie in RDO (2): RDO Trunk from a bird's eye view&lt;/strong&gt; by amoralej&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my previous post if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/72"&gt;http://tm3.org/72&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Evolving the OpenStack HA Architecture&lt;/strong&gt; by Andy Beekhof&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the current OpenStack HA architecture used by Red Hat, SuSE and others, Systemd is the entity in charge of starting and stopping most OpenStack services. Pacemaker exists as a layer on top, signalling when this should happen, but Systemd is the part making it happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/73"&gt;http://tm3.org/73&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO @ Red Hat Summit&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Red Hat Summit is just a few weeks away, and it's a great place to learn about RDO, and deploying OpenStack on Red Hat Enterprise Linux or CentOS. If you're coming, be sure to drop by the RDO booth in the Community Central section of the exhibit hall. Grab an RDO tshirt, watch demos of what people are doing on top of RDO, and we'll have experts there to answer your questions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/74"&gt;http://tm3.org/74&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ARA: One month and 200 commits later&lt;/strong&gt; by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On May 21st, I wrote a blog post about ARA, an idea to store, browse and troubleshoot Ansible playbook runs. Let’s rewind a bit further back in time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/75"&gt;http://tm3.org/75&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SAML Federated Auth Plugin&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;SAML is usually thought of as a WebSSO mechanism, but it can be made to work for command line operations if you use the Extended Client Protocol (ECP). When we did the Rippowam demo last year, we were successful in getting an Unscoped token by using ECP, but that was not sufficient to perform operations on other services that need a scoped token.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/76"&gt;http://tm3.org/76&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>[Event Report] RDO Bug Triage Day on 18th and 19th May, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-bug-triage-day-event-report/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-bug-triage-day-event-report/</id>
+    <published>2016-05-24T01:47:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>chandankumar</name>
+    </author>
+    <content type="html">&lt;p&gt;As the RDO development continues to grow, the numbers of bugs also grow. 
+To make the community robust and heavy, it is also necessary to triage and fix the existing bugs so that product will be more valuable.&lt;/p&gt;
+
+&lt;p&gt;We had hosted RDO Bug Triage Day on 18th and 19th May, 2016.&lt;/p&gt;
+
+&lt;p&gt;The main aim of the triage day was :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mass Closing of "End of Life" Bugs through automation with proper EOL statement.
+On 19th May, 2016 RDO meeting, after evaluating the Fedora EOL statement, we came up with this :
+&lt;strong&gt;"This bug is against a Version which has reached End of Life. If it's still present in supported release (http://releases.openstack.org), please update Version and reopen."&lt;/strong&gt;
+Thanks to Rich Bowen for proposing it,&lt;/li&gt;
+  &lt;li&gt;Analysis the bug and assign proper component, target-release and ask for more information if the bug is incomplete&lt;/li&gt;
+  &lt;li&gt;Close the Bug if it is already fixed in the current release&lt;/li&gt;
+  &lt;li&gt;Provide patches to the existing Bugs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Those 2 days was awesome for RDO.&lt;/p&gt;
+
+&lt;p&gt;Here is some of the stats of RDO Bug Triage Day:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;433 Bugs affected on Bug Triage Day.&lt;/li&gt;
+  &lt;li&gt;398 Bugs closed on Bug Triage Day out of which 365 EOL Bugs closed by &lt;a href="https://gist.github.com/chkumar246/23237abe5203d963054092fd989a2b88"&gt;automation script&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;35 Bugs triaged on Bug Triage Day and most of the EOL triaged bugs closed due to EOL automation script&lt;/li&gt;
+  &lt;li&gt;22 people participated in the RDO Bug Triage Day.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks to Pradeep Kilambi, Peter Nordquist, Javier Pena, Ivan Chavero, Matthias Runge, Suraj Narwade, Christopher Brown, Dan Prince, Mike Burns, Dmitry Tantsur, Alfredo Moralejo,
+Alan Pevec, Miroslav Suchy, Masanari Matsuoka, Garth Mollett, Giulio Fidente, David Moreau Simard,  Chandan Kumar and Emilien Macchi for participating and making the RDO Bug 
+triage day successful.&lt;/p&gt;
+
+&lt;p&gt;The above stats is generated using &lt;a href="https://gist.github.com/chkumar246/22ecfa8f5de4d98fb2a289904910dc4f"&gt;bztraigeday_stats.py script&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO Blogs: week of May 23, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-blogs-week-of-may-23-2016/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-blogs-week-of-may-23-2016/</id>
+    <published>2016-05-23T19:34:03+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO engineers have been blogging about over the last week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connecting another vm to your tripleo-quickstart deployment&lt;/strong&gt;  by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let's say that you have set up an environment using tripleo-quickstart and you would like to add another virtual machine to the mix that has both "external" connectivity ("external" in quotes because I am using it in the same way as the quickstart does w/r/t the undercloud) and connectivity to the overcloud nodes. How would you go about setting that up?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6t"&gt;http://tm3.org/6t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reproducing an Open vSwitch Bridge Configuration&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the previous post, I described the setup for installing FreeIPA on a VM parallel to the undercloud VM setup by Tripleo Quickstart. The network on the undercloud VM has been setup up by Ironic and Neutron to listen on a network defined for the overcloud. I want to reproduce this on a second machine that is not enrolled in the undercloud. How can I reproduce the steps?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6u"&gt;http://tm3.org/6u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ARA: An idea to store, browse and troubleshoot Ansible Playbook runs&lt;/strong&gt; by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ansible can be used for a lot of things and it’s grown pretty popular for managing servers and their configuration. In the RDO and OpenStack communities, Ansible is heavily used to deploy or test OpenStack through Continuous Integration (CI). Projects like TripleO-Quickstart, WeIRDO, OpenStack-Ansible or Zuul v3 are completely driven by Ansible.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6v"&gt;http://tm3.org/6v&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blogs over the last few weeks</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-blogs-over-the-last-few-weeks/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-blogs-over-the-last-few-weeks/</id>
+    <published>2016-05-17T19:18:56+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I've been traveling a lot over the last few weeks, and have fallen behind on the blog post updates. Here's what RDO enthusiasts have been blogging about since OpenStack Summit.&lt;/p&gt;
+
+&lt;p&gt;I posted a number of "&lt;strong&gt;What Did You Do In Mitaka&lt;/strong&gt;" interview posts, so here those are, all together:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ivan-chavero/"&gt;Ivan Chavero&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ihar-hrachyshka-talks-about-neutron/"&gt;Ihar Hrachyshka&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-chandan-kumar/"&gt;Chandan Kumar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/"&gt;Haïkel Guémar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-javier-pena/"&gt;Javier Peña&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"&gt;Emilien Macchi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-david-moreau-simard/"&gt;David Moreau Simard&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-adam-young/"&gt;Adam Young&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Additionally, there were the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploying the new OpenStack EC2 API project&lt;/strong&gt; by Tim Bell&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack has supported a subset of the EC2 API since the start of the project. This was originally built in to Nova directly. At CERN, we use this for a number of use cases where the experiments are running across both the on-premise and AWS clouds and would like a consistent API. A typical example of this is the HTCondor batch system which can instantiate new workers according to demand in the queue on the target cloud.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6e"&gt;http://tm3.org/6e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Running Keystone Unit Tests against older Versions of RDO Etc&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just because upstrem is no longer supporting Essix doesn’t mean that someone out there is not running it. So, if you need to back port a patch, you might find yourself in the position of having to run unit tests against an older version of Keystone (or other) that does not run cleanly against the files installed by tox.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6f"&gt;http://tm3.org/6f&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Containers and the CERN cloud&lt;/strong&gt; by Ricardo Rocha&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In recent years, different groups at CERN started looking at using containers for different purposes, covering infrastructure services but also end user applications. These efforts have been mostly done independently, resulting in a lot of repeated work especially for the parts which are CERN specific: integration with the identity service, networking and storage systems. In many cases, the projects could not complete before reaching a usable state, as some of these tasks require significant expertise and time to be done right. Alternatively, they found different solutions to the same problem which led to further complexity for the supporting infrastructure services. However, the use cases were real, and a lot of knowledge had been built on the available tools and their capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6g"&gt;http://tm3.org/6g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Meet Red Hat OpenStack Platform 8&lt;/strong&gt; by Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Last week we marked the general availability of our Red Hat OpenStack Platform 8 release, the latest version of Red Hat’s highly scalable IaaS platform based on the OpenStack community “Liberty” release. A co-engineered solution that integrates the proven foundation of Red Hat Enterprise Linux with Red Hat’s OpenStack technology to form a production-ready cloud platform, Red Hat OpenStack Platform is becoming a gold standard for large production OpenStack deployments. Hundreds of global production deployments and even more proof-of-concepts are underway, in the information, telecommunications, financial sectors, and large enterprises in general. Red Hat OpenStack Platform also benefits from a strong ecosystem of industry leaders for transformative network functions virtualization (NFV), software-defined networking (SDN), and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6h"&gt;http://tm3.org/6h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 1&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We’re live from Austin, Texas, where the 13th semi-annual OpenStack Summit is officially underway! This event has come a long way from its very first gathering six years ago, where 75 people gathered to learn about OpenStack in its infancy. That’s a sharp contrast with the 7,000+ people in attendance here, in what marks Austin’s second OpenStack Summit, returning to where it all started!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6i"&gt;http://tm3.org/6i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 2&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the second busy day of OpenStack Summit has come to a close. Not surprisingly, there was plenty of news, interesting sessions, great discussions on the showfloor, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6j"&gt;http://tm3.org/6j&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Culture and technology can drive the future of OpenStack&lt;/strong&gt; by E.G.Nadhan&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“OpenStack in the future is whatever we expand it to”, said Red Hat Chief Technologist, Chris Wright during his keynote at the OpenStack Summit in Austin. After watching several keynotes including those from Gartner and AT&amp;amp;T, I attended other sessions during the course of the day culminating in a session by Lauren E Nelson, Senior Analyst at Forrester Research. Wright’s statement made me wonder about what lies in store for OpenStack and where would the OpenStack Community — the “we” that Wright referred to — take it to in the future.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6k"&gt;http://tm3.org/6k&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 3&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the third day of OpenStack Summit has come to a close. As with the first two days of the event, there was plenty of news, interesting sessions, great discussions on the showfloor, and more. All would likely agree that the 13th OpenStack Summit has been a Texas-sized success so far!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6l"&gt;http://tm3.org/6l&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resource management at CERN&lt;/strong&gt; by Tim Bell&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As part of the recent OpenStack summit in Austin, the Scientific Working group was established looking into how scientific organisations can best make use of OpenStack clouds.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6m"&gt;http://tm3.org/6m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 4&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the fourth day of the main OpenStack Summit has come to a close. While there are quite a few working sessions and contributor meet-ups on Friday, Thursday marks the last official day of the main summit event. The exhibition hall closed its doors around lunch time, and the last of the vendor sessions occurred later in the afternoon. As the day concluded, many attendees were already discussing travel plans for OpenStack Summit Barcelona in October!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6n"&gt;http://tm3.org/6n&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Newton from a Telemetry point of view&lt;/strong&gt; by Julien Danjou&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's again that time of the year, where we all fly out to a different country to chat about OpenStack and what we'll do during the next 6 months. This time, it was in Austin, TX and we chatted about the new Newton release that will be out in October.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6o"&gt;http://tm3.org/6o&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Identity work for the OpenStack Newton release&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Newton Summit is behind us, and we have six months to prepare for the next release in both upstream OpenStack and RDO. Here is my attempt to build a prioritized list of the large tasks I want to tackle in this release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6p"&gt;http://tm3.org/6p&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitaka Cinder Recap sessions&lt;/strong&gt; by Gorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;During Mitaka we introduced some big changes in Cinder that have a great impact for developers working on new and existing functionality. These new features include, but are not limited to, API microversions, support for Rolling Upgrades, and conditional DB update functionality to remove API races. So we decided to have Recap Sessions during the OpenStack Summit in Austin.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6q"&gt;http://tm3.org/6q&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Analysis of techniques for ensuring migration completion with KVM&lt;/strong&gt; by Daniel Berrange&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Live migration is a long standing feature in QEMU/KVM (and other competing virtualization platforms), however, by default it does not cope very well with guests whose workload are very memory write intensive. It is very easy to create a guest workload that will ensure a migration will never complete in its default configuration. For example, a guest which continually writes to each byte in a 1 GB region of RAM will never successfully migrate over a 1Gb/sec NIC. Even with a 10Gb/s NIC, a slightly larger guest can dirty memory fast enough to prevent completion without an unacceptably large downtime at switchover. Thus over the years, a number of optional features have been developed for QEMU with the aim to helping migration to complete.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6r"&gt;http://tm3.org/6r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did everyone do for the Mitaka release of OpenStack ?&lt;/strong&gt; by David Moreau Dimard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just what did everyone do for the Mitaka OpenStack release ?
+RDO community liaison Rich Bowen went to find out.
+He interviewed some developers and engineers that worked on OpenStack and RDO throughout the Mitaka cycle and asked them what they did and what they were up to for the Newton cycle.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6s"&gt;http://tm3.org/6s&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO Blogs, Week of April 18</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-18/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-18/</id>
+    <published>2016-04-18T17:57:52+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;This has been a big few weeks for RDO, and for OpenStack in general, with the Mitaka release coming out, and OpenStack Summit just around the corner.&lt;/p&gt;
+
+&lt;p&gt;Here's some of what RDO enthusiasts have been blogging about in the last few days.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Mitaka released&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The RDO community is pleased to announce the general availability of the RDO build for OpenStack Mitaka for RPM-based distributions - CentOS Linux 7 and Red Hat Enterprise Linux. RDO is suitable for building private, public, and hybrid clouds and Mitaka is the 13th release from the OpenStack project, which is the work of more than 2500 contributors from around the world.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/65"&gt;http://tm3.org/65&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What, Why, and How is the CentOS Cloud SIG?&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2 years ago we started the CentOS Cloud SIG. Progress has been slow but steady. Slow, I think, because we've not done a wonderful job of explaining what it's for, and why it matters. But it has been a very important aspect of moving the RDO project forward, so it deserves better explanation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/66"&gt;http://tm3.org/66&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Naming is hard or Who Let The Vowels Out&lt;/strong&gt; by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When Derek Higgins started the tool to build OpenStack packages based on latest upstream aka "trunk" changes, the name Delorean seemed like a good choice: the tool is keeping older builds so you could "go back in time" like with a time machine, it's geeky enough and there's Irish connection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/67"&gt;http://tm3.org/67&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Integrating OpenStack into the Enterprise&lt;/strong&gt; by Michael Solberg&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Adoption of OpenStack in the enterprise has been progressing steadily over the last two years. As a Forrester Report* on enterprise adoption from September noted, “OpenStack demonstrates the completeness, robustness, and capability upon which a broader range of adopters can depend.” OpenStack deployments have proven to be complex in larger IT organizations though, but not because of the reasons that you might anticipate. Much has been made about the complexity of installing the software, but we’ve found that the lion’s share of effort in these implementation comes around the practice of integrating IaaS into the fabric of enterprise IT and evolving existing processes to meet the expectations of the user community.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/68"&gt;http://tm3.org/68&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Started with Puppet for Keystone&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Tripleo uses Puppet to manage the resources in a deployment. Puppet has a command line tool to look at resources.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/69"&gt;http://tm3.org/69&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did you do in Mitaka: Ihar Hrachyshka talks about Neutron&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In this installment of our "What did you do in Mitaka?" series, Ihar Hrachyshka talks about his work on Neutron both in Mitaka, and what's planned for Newton.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) more at &lt;a href="http://tm3.org/6a"&gt;http://tm3.org/6a&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did you do in Mitaka? : Ivan Chavero&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The OpenStack cloud software project recently released the Mitaka release. RDO is a community distribution of OpenStack. I've invited several of the engineers that work on RDO to talk about what they did in the Mitaka cycle.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) more at &lt;a href="http://tm3.org/6b"&gt;http://tm3.org/6b&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Learning something new about Oslo Versioned Objects&lt;/strong&gt; byGorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you work on an OpenStack project that is in the process of adopting Versioned Objects or has recently adopted them, like we have in Cinder, you’ve probably done some code reviews, and even implemented a couple of Versioned Objects yourself, and are probably thinking that you know your way around them pretty well, but maybe there are some gaps in that knowledge that you are not aware of, specially if you are taking Nova’s or Cinder’s code as reference, at least I know I had some gaps. If you aren’t a seasoned Versioned Object user like the Nova people are, I recommend you keep reading.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6c"&gt;http://tm3.org/6c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TripleO with already deployed servers&lt;/strong&gt; by James Slagle&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Recently I’ve been prototyping how to use TripleO with already deployed
+and provisioned servers. In such a scenario, Nova and Ironic would not be used
+to do the initial operating system provisioning of the Overcloud nodes.
+Instead, the nodes would already be powered on, running an OS, and ready to
+start to configure OpenStack.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6d"&gt;http://tm3.org/6d&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO Blogs, week of April 11</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-1/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-1/</id>
+    <published>2016-04-11T19:10:34+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts were blogging about this week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;St. Louis OpenStack Meetup&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On Tuesday evening I had the privilege of addressing the St. Louis OpenStack Meetup group. I gave an Introduction to OpenStack presentation to about 30 attendees, many of whom were indeed OpenStack beginners, or just beginning to research what this OpenStack thing is all about.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/60"&gt;http://tm3.org/60&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events in OpenStack and RDO&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/61"&gt;http://tm3.org/61&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Extending OpenStack Disaster Recovery to Google Cloud Storage&lt;/strong&gt; by Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The OpenStack Cinder Backup service was introduced in Cinder in the Grizzly release to allow users to create backups from their volumes and store it to their Swift object storage system (still very common use case in OpenStack private clouds to date). Since then, the Backup API continued to mature with every release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/62"&gt;http://tm3.org/62&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of November 3</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-3/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-3/</id>
+    <published>2015-11-03T19:30:32+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Due to travels, it's been 2 weeks since the last RDO blog update. In conjuction with OpenStack Summit having been last week, this means that I have a &lt;em&gt;huge&lt;/em&gt; list of blog posts to catch you up on this week.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ansible 2.0: The Docker connection driver&lt;/strong&gt;, by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the release of Ansible 2.0 draws closer, I'd like to take a look at some of the new features that are coming down the pipe. In this post, we'll look at the docker connection driver.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/35"&gt;http://tm3.org/35&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO test day summary&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A big thanks to everyone that participated in the RDO Test Day over the last 48 hours. Here's a few statistics from the day.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/36"&gt;http://tm3.org/36&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrapping Ansible on Fedora 23&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you've tried running Ansible against a Fedora 23 system, you may have run into the following problem:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/37"&gt;http://tm3.org/37&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Stupid Ansible Tricks: Running a role from the command line&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When writing Ansible roles I occasionally want a way to just run a role from the command line, without having to muck about with a playbook. I've seen similar requests on the mailing lists and on irc.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/38"&gt;http://tm3.org/38&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Admin&lt;/strong&gt;, by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;While I tend to play up bug 968696 for dramatic effect, the reality is we have a logical contradiction on what we mean by ‘admin’ when talking about RBAC.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/39"&gt;http://tm3.org/39&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Announcing the Release of Kolla Liberty&lt;/strong&gt; by Steve Dake&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello OpenStackers! The Kolla community is pleased to announce the release of the Kolla Liberty.  This release fixes 432 bugs and implements 58 blueprints!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3a"&gt;http://tm3.org/3a&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DevOps in a Bi-Modal World (Part 3 of 4)&lt;/strong&gt; by James Labocki&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In Part 2 of this series, we discussed what IT needs to do in a Mode 1 world to make itself more relevant to the business and reduce complexity. In this part, we will turn our attention to Mode 2 and discuss how the organization can solve its challenges by improving agility and increasing scalability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3b"&gt;http://tm3.org/3b&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cinder HA Active-Active specs up for review&lt;/strong&gt; by Gorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It’s been some time since the last time I talked here about High Availability Active-Active configurations in Openstack’s Cinder service, and now I am quite pleased -and a little bit embarrassed it took so long- to announce that all specs are now up for reviewing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3c"&gt;http://tm3.org/3c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty released in CentOS Cloud SIG&lt;/strong&gt; by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are pleased to announce the general availability of the RDO build for OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of contributors around the OpenStack.org project space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3d"&gt;http://tm3.org/3d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DevOps in a Bi-Modal World (Part 4 of 4)&lt;/strong&gt; by James Labocki&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In this series we have seen the complexity of bridging the gap between existing infrastructure and processes (Mode 1) and new, agile processes and architectures (Mode 2). Each brings its own set of challenges and demands on the organization. In Mode-1 organizations are looking to increase relevance and reduce complexity, and in Mode-2 they are looking to improve agility and increase scalability. In this post we will discuss how Red Hat addresses and solves each of these challenges.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3e"&gt;http://tm3.org/3e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Security Groups using OVN ACLs&lt;/strong&gt; by Russell Bryant&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack Security Groups give you a way to define packet filtering policy that is implemented by the cloud infrastructure.  OVN and its OpenStack Neutron integration now includes support for security groups and this post discusses how it works.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3f"&gt;http://tm3.org/3f&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty DVR Neutron workflow on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html  DVR is supposed to address following problems which has traditional 3 Node deployment schema:-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/34"&gt;http://tm3.org/34&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why the Operating System Matters&lt;/strong&gt; by Margaret Dawson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In IT today, we love to note that the infrastructure layer has become commoditized. This started with virtualization, as we could create many virtual machines within a single physical machine. Cloud has taken us further with a key value proposition of delivering cloud services on any standard server or virtualized environment, enabling easier scalability and faster service delivery, among other benefits.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3g"&gt;http://tm3.org/3g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ansible 2.0: New OpenStack modules&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is the second in a loose sequence of articles looking at new features in Ansible 2.0. In the previous article I looked at the Docker connection driver. In this article, I would like to provide an overview of the new-and-much-improved suite of modules for interacting with an OpenStack environment, and provide a few examples of their use.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3h"&gt;http://tm3.org/3h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 0 (Pre-event)&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ve always enjoyed traveling to Tokyo, Japan, as the people are always so friendly and willing to help. Whether it’s finding my way through the Narita airport or just trying to find a place to eat, they’re always willing to help – even with the language barrier. And each time I visit, I see something new, learn another word (or two) in Japanese, and it all just seems new and exciting all over again. Add in the excitement and buzz of an OpenStack Summit and you’ve got a great week in Tokyo!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3i"&gt;http://tm3.org/3i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ducks&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Why ducks?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3j"&gt;http://tm3.org/3j&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Container Stack for OpenStack (Part 1 of 2)&lt;/strong&gt; by Joe Fernandes&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Open source continues to be a tremendous source of innovation and nowhere is that more evident than at the biannual OpenStack Summit. Over the past couple of years, as OpenStack interest and adoption has grown, we’ve seen another important innovation emerge from the open source community in the form of Linux containers, driven by Docker and associated open source projects. As the world gathers in Tokyo for another OpenStack Summit, we wanted to talk about how Red Hat is bringing these two innovations together, to make OpenStack a great platform for running containerized applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3k"&gt;http://tm3.org/3k&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 1&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Kon’nichiwa from Tokyo, Japan where the 11th semi-annual OpenStack Summit is officially underway! This event has come a long way from its first gathering, more than five years ago, where 75 people gathered in Austin, Texas to learn about OpenStack in its infancy. That’s a sharp contrast with the 5,000+ people in attendance here in what marks Asia’s second OpenStack Summit.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3l"&gt;http://tm3.org/3l&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What does RDO stand for?&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The RDO FAQ has long said that RDO doesn't stand for anything. This is a very unsatisfying answer to one of the most frequently asked questions about RDO. So, a little while ago, I started saying that RDO stands for "Rich's Distribution of OpenStack." Although tongue-in-cheek, this response emphasizes that RDO is a community driven project. So it's also Radez's Distribution of OpenStack, and Radhesh's and Russel's and red_trela's. (As well as lots of people whose names don't start with R!)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3m"&gt;http://tm3.org/3m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proven OpenStack solutions. Simple OpenStack deployment. Powerful results.&lt;/strong&gt; by Radhesh Balakrishnan&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;According to an IDC global survey sponsored by Cisco of 3,643 enterprise executives responsible for IT decisions, 69% of respondents indicated that their organizations have a cloud adoption strategy in place. Of these organizations, 65% say OpenStack is an important part of their cloud strategy and had higher expectations for business improvements associated with cloud adoption.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3n"&gt;http://tm3.org/3n&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 2&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Tokyo, Japan where the second day of OpenStack Summit has come to a close with plenty of news, interesting sessions, great discussion on the showfloor, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3o"&gt;http://tm3.org/3o&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Container Stack for OpenStack (Part 2 of 2)&lt;/strong&gt; Joe Fernandes&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In Part 1 of this blog series, I talked about how Red Hat has been working with the open source community to build a new container stack and our commitment to bring that to OpenStack. In Part 2 I will discuss additional capabilities Red Hat is working on to build an enterprise container infrastructure and how this is forms the foundation of our containerized application platform in OpenShift.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3p"&gt;http://tm3.org/3p&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 3&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Tokyo, Japan where the third and final day of OpenStack Summit has come to a close. As with the previous days of the event, there was plenty of news, interesting sessions, great discussions on the show floor, and more. All would likely agree that the 11th OpenStack Summit was a rousing overall success!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3q"&gt;http://tm3.org/3q&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Puppet OpenStack plans for Mitaka&lt;/strong&gt; by Emilien Macchi&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Our Tokyo week just ended and I really enjoyed to be at the Summit with the Puppet OpenStack folks.
+This blog post summarizes what we did this week and what we plan for the next release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3r"&gt;http://tm3.org/3r&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO in the news</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/rdo-in-the-news/"/>
+    <id>http://rdoproject.org/blog/2013/05/rdo-in-the-news/</id>
+    <published>2013-05-02T18:28:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;Since launching on April 15th, RDO has garnered a lot of attention - both in press and in blogs and podcasts. Here's a review of what's been happening in the RDO world.&lt;/p&gt;
+
+&lt;h2 id="podcast-rdo-at-the-openstack-summit"&gt;Podcast: RDO at the OpenStack Summit&lt;/h2&gt;
+
+&lt;p&gt;In Portland during &lt;a href="https://www.openstack.org/summit/portland-2013/"&gt;the OpenStack Summit&lt;/a&gt; Dave Neary sat down with Richard Morrell of Red hat to record a podcast, covering questions like "what is RDO?", "who is it for?" "why are Red Hat releasing a community distribution of OpenStack?"&lt;/p&gt;
+
+&lt;p&gt;Hear the answers to these questions and more &lt;a href="http://cloudevangelist.org/2013/04/17/podcast-openstack-developer-summit-2013/"&gt;at the Cloud Evangelist website&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="openstack-summit-review"&gt;OpenStack Summit review&lt;/h2&gt;
+
+&lt;p&gt;Jason Brooks from the RDO team &lt;a href="http://community.redhat.com/openstack-summit-highlights-amazing-open-source-outcomes/"&gt;wrote up his experiences&lt;/a&gt; from the OpenStack Summit and the RDO launch.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What impressed me more than the growth of the project, however, was the way that
+OpenStack embodies one of things I love most about open source, namely, its knack
+for helping people to peel back or eliminate barriers to innovation. The more
+freedom we afford ourselves to experiment with and improve the systems we care
+about, the more amazing results we can achieve.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Read more over at &lt;a href="http://community.redhat.com/"&gt;the Red Hat community blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="rdo-launch-news---quick-links"&gt;RDO launch news - quick links&lt;/h2&gt;
+
+&lt;p&gt;We got a lot of attention during the launch. Here is a selection of some of the things which were written about us.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TechCrunch: &lt;a href="http://techcrunch.com/2013/04/15/red-hat-announces-rdo-and-openstack-partner-program/"&gt;Red Hat Announces RDO And OpenStack Partner Program&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;[PackStack] is interesting. OpenStack is a complex suite of tools, and the installation process is non-trivial. Any work to streamline that will reduce at least one barrier to success.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;readwrite.com: &lt;a href="http://readwrite.com/2013/04/16/will-red-hats-openstack-contributions-turn-to-gold"&gt;Will Red Hat's OpenStack Contributions Turn To Gold?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;It's happening again. Red Hat, which for years has dominated both the development and monetization of Linux, has turned its code contributing hand to OpenStack, the popular open-source cloud computing project. While Red Hat initially fought OpenStack, today it has become OpenStack's biggest contributor.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GigaOM: &lt;a href="http://gigaom.com/2013/04/17/why-openstack-is-like-kale-its-cheap-easy-to-source-and-good-for-you/"&gt;Why OpenStack is like kale — it’s cheap, easy to source and good for you&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;V3: &lt;a href="http://www.v3.co.uk/v3-uk/news/2264088/red-hat-openstack-is-the-only-way-to-avoid-cloud-lockin"&gt;Red Hat: OpenStack is the only way to avoid cloud lock-in&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Application Development Trends: &lt;a href="http://adtmag.com/articles/2013/04/16/open-stack-distro.aspx"&gt;Red Hat Launches OpenStack Distro, Partner Network&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;PCWorld: &lt;a href="http://www.pcworld.com/article/2034674/red-hat-releases-community-openstack-distribution.html"&gt;Red Hat releases community OpenStack distribution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Computer Weekly: &lt;a href="http://www.computerweekly.com/blogs/open-source-insider/2013/04/red-hat-opens-rdo-openstack-community.html"&gt;Red Hat opens RDO OpenStack community&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ServerWatch: &lt;a href="http://www.serverwatch.com/server-news/red-hat-launches-open-source-openstack-rdo-community-distribution.html"&gt;Red Hat Launches Open Source OpenStack RDO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="news-from-around-the-world"&gt;News from around the world&lt;/h2&gt;
+
+&lt;p&gt;OpenStack has a worldwide community, and the RDO release got worldwide attention. Here are some articles in various languages from around the world.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Chinese: &lt;a href="http://www.lupaworld.com/article-223802-1.html"&gt;Red Hat releases open source RDO&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Japanese: &lt;a href="http://news.mynavi.jp/news/2013/05/02/051/"&gt;Install instructions in Japanese&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Japanese: TechCrunch: &lt;a href="http://jp.techcrunch.com/2013/04/16/20130415red-hat-announces-rdo-and-openstack-partner-program/"&gt;Red Hat announces RDO and OpenStack partner program&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;French: Le Mag IT: [Red Hat présente RDO une version communautaire de sa distribution OpenStack]http://www.lemagit.fr/economie/business/2013/04/18/red-hat-presente-rdo-une-version-communautaire-de-sa-distribution-openstack/&lt;/li&gt;
+  &lt;li&gt;French: Le Monde Informatique: &lt;a href="http://www.lemondeinformatique.fr/actualites/lire-red-hat-publie-une-distribution-communautaire-d-openstack-53255.html"&gt;Red Hat publie une distribution communautaire d'OpenStack&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Italian: Tom's Hardware: &lt;a href="http://www.tomshw.it/cont/news/red-hat-openstack-cresce-la-community/45196/1.html"&gt;Red Hat OpenStack: cresce la community&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spanish: Silicon Week: &lt;a href="http://www.siliconweek.es/noticias/red-hat-anuncia-rdo-su-propia-distribucion-de-openstack-soportada-por-la-comunidad-35643"&gt;Red Hat anuncia RDO, su propia distribución de OpenStack soportada por la comunidad&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let us know in the comments if you spot other articles about RDO!&lt;/p&gt;
+</content>
+  </entry>
+</feed>

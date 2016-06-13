@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Rdocommunity</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/rdocommunity.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blogs, last 2 weeks</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/03/rdo-blogs-last-2-weeks/"/>
+    <id>http://rdoproject.org/blog/2016/03/rdo-blogs-last-2-weeks/</id>
+    <published>2016-03-14T19:57:10+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I was traveling much of last week, so we have two weeks of blog posts to catch you up on, and there's some really good ones in here.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;"RDO Manager" is now "TripleO"&lt;/strong&gt;, by K Rain Leander&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Because of its unique branding and name, one might assume that "RDO Manager" is not TripleO - perhaps it has additional downstream patches or maybe they're entirely different projects. You would not be alone because the community, the users and the developers alike have shared their confusion on this topic.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/58"&gt;http://tm3.org/58&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Creating an additional host for a Tripleo overcloud&lt;/strong&gt;, by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ve been successful following the steps to get a Tripleo deployment. I now need to add another server to host the Identity Management and Federation services. Here’s the steps:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/59"&gt;http://tm3.org/59&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Montreal: A talk about CI in OpenStack and RDO&lt;/strong&gt;, by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack Montreal is a meetup that happens around every 2 months in Montreal. We talk and discuss about different OpenStack topics with interests for developers, users and operators. If you’d like to keep up with the event, attend (or present a topic!), please subscribe to the mailing list to be notified when something’s going on.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5a"&gt;http://tm3.org/5a&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Packstack gates against itself&lt;/strong&gt; by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Today I made an announcement on both openstack-dev and rdo-list that Packstack was going to gate against itself.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5b"&gt;http://tm3.org/5b&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Kilo ML2&amp;amp;OVS&amp;amp;VLAN Mutti Node Deployment on Fedora 23&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;To complete packstack run for two nodes Controller/Network and Compute
+setup I had to apply as pre-installation following patches, otherwise neutron
+puppet crashed on Fedora 23 :-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5c"&gt;http://tm3.org/5c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How i started contributing to the RDO Project&lt;/strong&gt; by Chandan Kumar&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;During my internship period at Red Hat, Kushal used to play with OpenStack and got a problem that a created instance is not able to get a public IP address so that he can access it from outside.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5d"&gt;http://tm3.org/5d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What Can Talk To What on the OpenStack Message Broker&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If a hypervisor is compromised, the Nova Compute instance running on that node is also compromised. If the compute instance is compromised, then its access to the Message Queue has to be considered tainted as well. What degree of risk does this pose?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5e"&gt;http://tm3.org/5e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Status of Python 3 in OpenStack Mitaka&lt;/strong&gt; by Victor Stinner&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Now that most OpenStack services have reached feature freeze for the Mitaka cycle (November 2015-April 2016), it’s time to look back on the progress made for Python 3 support.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5f"&gt;http://tm3.org/5f&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup DVR on RDO Liberty Controller &amp;amp;&amp;amp; 2(x)Computes ML2/OVS/VLAN landscape&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just a reminder in Juno and Kilo DVR was available for deployments using VXLAN tunneling and required l2population activation on all nodes. One of new features of Liberty is DVR compatibility with ML2&amp;amp;OVS&amp;amp;VLAN deployed landscapes. On RDO Liberty packstack doesn't play so nicely doing VLAN deployment as in case of  VXLAN tunneling. Attempt to use old templates for answer file just does all configs properly only on Controller/Network Node.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5g"&gt;http://tm3.org/5g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Infra: Jenkins Jobs&lt;/strong&gt; by Arie Bregman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A few days ago, while adding a new job to OpenStack Infra, I realized how difficult it must be for newcomers ( to OpenStack) to understand how OpenStack CI works and make new changes. The OpenStack Infra documentation coverage of each project is great and very detailed , but connecting the dots, which  assembles the complete work-flow can be a complex task for anyone.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5h"&gt;http://tm3.org/5h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Glance Mitaka: Passing the torch&lt;/strong&gt; by Flavio Percoco&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I'm not going to run for Glance's PTL position for the Newton timeframe. There are many motivations behind this choice. Some of them I'm willing to discuss in private if people are interested but I'll go as far as saying there are personal and professional reasons for me to not run again.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5i"&gt;http://tm3.org/5i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;HA support for DVR centralized default SNAT functionality on RDO Mitaka Milestone 3&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Verification been done bellow is actually targeting conversion of HAProxy/Keepalived (Active/Active) 3 Node Controller which design was suggested for RDO Liberty  in https://github.com/beekhof/osp-ha-deploy/blob/master/HA-keepalived.md
+to be able support Compute Nodes running in DVR mode. The core issue on Liberty was resolved for Mitaka , see upstream record  [RFE] Unable to create a router that's both HA and distributed 
+General concepts (DVR/SNAT) are explained here Distributed Virtual Routing – SNAT&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5j"&gt;http://tm3.org/5j&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, 16 Feb 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-blog-roundup-16-feb-2016/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-blog-roundup-16-feb-2016/</id>
+    <published>2016-02-16T16:54:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what's hit the RDO blogs in the last few weeks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty DVR Neutron workflow on CentOS 7.2&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html&lt;br /&gt;
+DVR is supposed to address following problems which has traditional 3 Node
+deployment schema&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4r"&gt;http://tm3.org/4r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Community Day at FOSDEM&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On Friday, in Brussels, 45 RDO enthusiasts gathered at the IBM Client Center in Brussels (Thanks, IBM!) for a full day of RDO content and discussion.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4s"&gt;http://tm3.org/4s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Python API for "boot from image creates new volume" RDO Liberty&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Post below addresses several questions been posted at ask.openstack.org
+In particular, code bellow doesn't require volume UUID to be  hard coded
+to start server attached to boot able cinder's LVM, created via glance image,
+which is supposed to be passed to script via command line. In the same way
+name of cinder volume and instance name may be passed to script via CLI.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4t"&gt;http://tm3.org/4t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why does Red Hat contribute to RDO?&lt;/strong&gt; by Nick Barcet&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Red Hat's philosophy is 'Upstream First'. When we participate in an open source project, our contributions go into the upstream project first, as a prerequisite to deliver it in the downstream offering. Our continued focus, over the past years and in the future, is to reduce to a bare minimum the differences between Upstream, RDO and RHEL OpenStack Platform at General Availabilty time, as we believe this is the only way we can maximise our velocity in delivering new features. In doing so, we, as any successful enterprise would do, need to focus our efforts on what matters in respect to our "downstream" strategy, and it means that we do prioritize our efforts accordingly as we are contributing particular features and fixes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4u"&gt;http://tm3.org/4u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keystone Implied roles with CURL&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Keystone now has Implied Roles.  What does this mean?  Lets say we define the role Admin to  imply the Member role.  Now, if you assigned someone Admin on a project they are automatically assigned the Member role on that project implicitly.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4v"&gt;http://tm3.org/4v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Systemd-nspawn for fun and…well, mostly for fun&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;systemd-nspawn has been called "chroot on steroids", but if you think of it as Docker with a slightly different target you wouldn't be far wrong, either. It can be used to spawn containers on your host, and has a variety of options for configuring the containerized environment through the use of private networking, bind mounts, capability controls, and a variety of other facilities that give you flexible container management.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4w"&gt;http://tm3.org/4w&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A systemd-nspawn connection driver for Ansible&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I wrote earlier about systemd-nspawn, and how it can take much of the fiddly work out of setting up functional chroot environments. I'm a regular Ansible user, and I wanted to be able to apply some of those techniques to my playbooks.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4x"&gt;http://tm3.org/4x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Holla out to the Kolla devs&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Devstack uses Pip to install packages, which conflict with the RPM versions on my Fedora system. Since I still need to get work done, and want to run tests on Keystone running against a live database, I’ve long wondered if I should go with container based approach. Last week, I took the plunge and started messing around with Docker. I got the MySQL Fedora container to run, then found Lars Keystone container using Sqlite, and was stumped. I poked around for a way to get the two containers talking to each other, and realized that we had a project dedicated to exactly that in OpenStack: Kolla. While it did not work for me right out of a git-clone, several of the Kolla devs worked with me to get it up and running. here are my notes, distilled.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4y"&gt;http://tm3.org/4y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Boosting the NFV datapath with RHEL OpenStack Platform&lt;/strong&gt; by Nir Yechiel&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;With software-defined networking (SDN) and network functions virtualization (NFV) gaining traction, more cloud service providers are looking for open solutions, based on standardized hardware platforms and open source software. In particular, communication service providers (CSPs) are undergoing a major shift from specialized hardware-based network elements to a software based provisioning paradigm where virtualized network functions (VNFs) are deployed in private or hybrid clouds of network operators. Increasingly, OpenStack is seen as the virtual infrastructure platform of choice for NFV, with many of the world’s largest communications companies implementing solutions with OpenStack today.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4z"&gt;http://tm3.org/4z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Keystone Q and A with the Boston University Distributed Systems Class Part 1&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Dr. Jonathan Appavoo was kind enough to invite me to be a guest lecturer in his distributed systems class at Boston University. The students proved a list of questions, and I only got a chance to address a handful of them during the class. So, I’ll try to address the rest here.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/4-"&gt;http://tm3.org/4-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup Swift as Glance backend on RDO Liberty (CentOS 7.2)&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Post below presumes that your testing Swift storage is located  somewhere on workstation (say /dev/sdb1) is about 25 GB (XFS) and before running packstack (AIO mode for testing)  following steps have been done :-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/50"&gt;http://tm3.org/50&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Boosting the NFV datapath with RHEL OpenStack Platform&lt;/strong&gt; by Nir Yechiel&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A post I wrote for the Red Hat Stack blog, trying to clarify what we are doing with RHEL OpenStack Platform to accelerate the datapath for NFV applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/51"&gt;http://tm3.org/51&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Community Day at FOSDEM</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-community-day-at-fosdem/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-community-day-at-fosdem/</id>
+    <published>2016-02-04T17:06:05+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;On Friday, in Brussels, 45 RDO enthusiasts gathered at the IBM Client Center in Brussels (Thanks, IBM!) for a full day of RDO content and discussion.&lt;/p&gt;
+
+&lt;p&gt;Most of the event was recorded. The camera battery ran out near the end, but we got audio for the rest of the event. I am in the process of uploading all of the video. (80GB of video!) It will be available &lt;a href="https://www.rdoproject.org/events/rdo-day-fosdem-2016/"&gt;on the event page&lt;/a&gt;  as soon as possible. Some of it is there already.&lt;/p&gt;
+
+&lt;p&gt;The most exciting part of the event, for me anyways, was discovering that RDO is no longer completely a Red Hat project. More than half of those in attendance were from not from Red Hat. For comparison, last year we had about 30 people in attendance, and all but about 5 were from Red Hat.&lt;/p&gt;
+
+&lt;p&gt;Below you can see some photos from the event.&lt;/p&gt;
+
+&lt;p&gt;&lt;a data-flickr-embed="true" data-header="true" href="https://www.flickr.com/photos/rbowen/albums/72157664110725992" title="RDO Community Day, FOSDEM 2016"&gt;&lt;img src="https://farm2.staticflickr.com/1462/24185123104_c50c8448e0_b.jpg" width="1024" height="576" alt="RDO Community Day, FOSDEM 2016" /&gt;&lt;/a&gt;&lt;script async="" src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;The day started with a marvelous keynote from Thomas Oulevey about CERN's OpenStack deployment, which uses RDO. From there, we had presentations about RDO-Manager, and other talks about deploying, configuring, and managing OpenStack.&lt;/p&gt;
+
+&lt;p&gt;I'd like to thank the folks that worked so hard to make this event happen, including especially the speakers, and Eliska Malakova who handled many of the logistics.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

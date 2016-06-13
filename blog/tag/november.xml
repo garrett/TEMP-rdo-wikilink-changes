@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: November</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/november.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blog roundup, week of November 23</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-23/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-23/</id>
+    <published>2015-11-23T21:14:24+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO engineers have been blogging about lately:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Automated API testing workflow&lt;/strong&gt; by Tristan Cacqueray&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Services exposed to a network of any sort are in risk of security exploits. The API is the primary target of such attacks, and it is often abused by input that developers did not anticipate.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3y"&gt;http://tm3.org/3y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Community Day @ FOSDEM&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We're pleased to announce that we'll be holding an RDO Community Day in conjunction with the CentOS Dojo on the day before FOSDEM. This event will be held at the IBM Client Center in Brussels, Belgium, on Friday, January 29th, 2016.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3z"&gt;http://tm3.org/3z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Translating Between RDO/RHOS and Upstream OpenStack releases&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There is a straight forward mapping between the version numbers used for RDO and Red Hat Enterprise Linux OpenStack Platform release numbers, and the upstream releases of OpenStack. I can never keep them straight. So, I write code.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3-"&gt;http://tm3.org/3-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Does cloud-native have to mean all-in?&lt;/strong&gt; by Gordon Haff&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Cloud-native application architectures promise improved business agility and the ability to innovate more rapidly than ever before. However, many existing conventional applications will provide important business value for many years. Does an organization have to commit 100% to one architecture versus another to realize true business benefits?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/40"&gt;http://tm3.org/40&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of November 9</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/</id>
+    <published>2015-11-09T18:34:33+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts were blogging about this week. If you were
+at OpenStack Summit in Tokyo last month, don't forget to write up your
+experience.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty released in CentOS Cloud SIG&lt;/strong&gt;, by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are pleased to announce the general availability of the RDO build for OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of contributors around the OpenStack.org project space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3d"&gt;http://tm3.org/3d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Neutron HA Talk in Tokyo Summit&lt;/strong&gt; by Assaf Muller&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Florian Haas, Adam Spiers and myself presented a session in Tokyo about Neutron high availability. We talked about:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3s"&gt;http://tm3.org/3s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo&lt;/strong&gt; by Matthias Runge&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Over the past week, I attended the OpenStack Summit in Tokyo.
+My primary focus was on Horizon sessions. Nevertheless, I was lucky to have one or two glimpses at more touristic spots in Tokyo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3t"&gt;http://tm3.org/3t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Final Summary&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As I flew home from OpenStack Summit Tokyo last week, I had plenty of time to reflect on what proved to be a truly special event. OpenStack gains more and more traction and maturity with each community release and corresponding Summit, and the 11th semi-annual OpenStack Summit certainly did not disappoint. With more than 5,000 attendees, it was the largest ever OpenStack Summit outside of North America, and there were so many high quality keynotes, session, and industry announcements, I thought it made sense to put together a final trip overview, detailing all of the noteworthy news, Red Hat press releases, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3u"&gt;http://tm3.org/3u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Community Meetup at OpenStack Tokyo&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A week ago in Tokyo, we held the third RDO Community Meetup at the OpenStack Summit. We had about 70 people in attendance, and some good discussion. The full agenda for the meeting is at https://etherpad.openstack.org/p/rdo-tokyo and below are some of the things that were discussed. (The complete recording is at the bottom of this post.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3v"&gt;http://tm3.org/3v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mike Perez: Cinder in Liberty&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Before OpenStack Summit, I interviewed Mike Perez about what's new in Cinder in the LIberty release, and what's coming in Mitaka. Unfortunately, life got a little busy and I didn't get it posted before Summit. However, with Liberty still fresh, this is still very timely content.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3w"&gt;http://tm3.org/3w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

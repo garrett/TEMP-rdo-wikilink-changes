@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Galera-boot-process-for-HA-deployments-and-manual-override &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/ha/galera-ha-boot-process-and-manual-override.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="galera-boot-process-for-ha-deployments-and-manual-override">Galera boot process for HA deployments and manual override</h1>
+
+<p>Deployments of OpenStack that rely on MariaDB+Galera benefit from a HA database thanks to Galera's synchronous replication. In such deployments, the Galera cluster is typically managed via Pacemaker, by means of a galera resource agent.</p>
+
+<p>While Galera itself has its own notion of cluster management (membership, health check, write-set replication…), a resource agent is still necessary for Pacemaker to perform the basic cluster management duties, for example:</p>
+
+<ul>
+  <li>
+    <p>Starting up the Galera servers on the available nodes in the cluster</p>
+  </li>
+  <li>
+    <p>Health monitoring and recovery actions on failure (e.g. fencing)</p>
+  </li>
+</ul>
+
+<p>This document describes the concepts involved in booting a Galera cluster with Pacemaker, how the galera resource agent decomposes the boot process, and how it can be overridden for recovery scenarios.</p>
+
+<h2 id="galera-cluster-overview">Galera cluster overview</h2>
+
+<p>A Galera cluster is identified by a cluster address, stored in the configuration variable <code>wsrep_cluster_address</code>. The value of this variable is a URI identifying all the nodes that can potentially be member of the cluster. For example:</p>
+
+<pre class="highlight plaintext"><code>wsrep_cluster_address=gcomm://node1,node2,node3&#x000A;</code></pre>
+
+<p>It is used by MariaDB at boot time to register to the cluster and to synchronize its local database with the cluster. The value of <code>wsrep_cluster_address</code> conveys a special meaning which can be used to either start a cluster or rejoin it.</p>
+
+<h2 id="galera-boot-process-explained">Galera boot process explained</h2>
+
+<p>Galera replicates database writes across all nodes of the cluster. A write succeeds if more than half of the nodes in the cluster acknowledge it (quorum). On success, a global counter representing the most recent transaction is incremented: this is called the last sequence number, or <code>seqno</code>. Desynchronized nodes or newly joining nodes will automatically sync their local database to this last sequence number.</p>
+
+<p>In order to restart an existing Galera cluster, one needs first to identify a node whose local database contains the latest transaction acknowledged by the cluster, i.e. the one with the biggest <code>seqno</code>. Once identified, MariaDB can be started on the node with option:</p>
+
+<pre class="highlight plaintext"><code>wsrep_cluster_address=gcomm://&#x000A;</code></pre>
+
+<p>This bootstraps a new cluster<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> from this node's local state: the node becomes the new Primary partition, which means the remaining nodes will sync against this new cluster when started with <code>wsrep_cluster_address=gcomm://node1,node2,node3</code>.</p>
+
+<h2 id="how-the-resource-agent-boots-the-cluster">How the resource agent boots the cluster</h2>
+
+<p>The resource agent encodes the process of booting a Galera cluster as a series of unitary steps; electing a bootstrap node, booting Galera servers in a specific order, and marking nodes as available in the clusters. It tracks those steps via Pacemaker's multi-state resource plus various attributes stored in Pacemaker's Cluster Information Base (CIB).</p>
+
+<p>In order to boot or restart a Galera cluster, the resource agent needs to retrieve the last <code>seqno</code> of all the nodes in the clusters. Without that information, the resource agent cannot safely identify a bootstrap node and it will not tell Pacemaker to start the Galera cluster.</p>
+
+<p>The boot process works as follows:</p>
+
+<ul>
+  <li>
+    <p>When a galera resource is in state <em>Started</em>, the resource agent retrieves the last <code>seqno</code> from the local MariaDB, stores it in the CIB and goes to <em>Slave</em> state. At this stage, no Galera server is running.</p>
+  </li>
+  <li>
+    <p>Once all the nodes are in <em>Slave</em> state, the resource agent elects the bootstrap node, tags it in the CIB, and tells Pacemaker that it can promote the galera resource on this node to the <em>Master</em> state.</p>
+  </li>
+  <li>
+    <p>When Pacemaker promotes the bootstrap node, the resource agent starts the Galera server, which bootstraps a new cluster. It then marks the remaining nodes as being ready for promotion. The resource on the bootstrap node is switched to <em>Master</em>, and the Galera cluster is ready to process SQL queries.</p>
+  </li>
+  <li>
+    <p>Pacemaker promotes the remaining nodes. For each node, the resource agent start a Galera server, which synchronizes its local state with the cluster via a State Snapshot Transfer (SST). This operation can take some time. The promotion to <em>Master</em> finishes when the synchronization is over and the Galera server is ready to process SQL queries.</p>
+  </li>
+</ul>
+
+<p>At this stage, the entire cluster is up and running, and the galera resource is set <em>Master</em> on all nodes.</p>
+
+<p>Note: the notion of Master / Slave state is completely different from Galera's notion of Primary / Non-primary state:</p>
+
+<ul>
+  <li>
+    <p>A Galera node is in primary state if it belongs to a partition of the cluster which has quorum (and is thus active).</p>
+  </li>
+  <li>
+    <p>If a Galera node detects the partition it belongs to is inquorate, it will switch to Non-primary state, and SQL queries will fail<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+  </li>
+</ul>
+
+<h2 id="overriding-the-boot-process">Overriding the boot process</h2>
+
+<p>The resource agent expects that all the nodes are available for performing a boot. However, there are times where this is not the case and for practical reasons it is necessary to force the boot process.</p>
+
+<p>Here are some examples of manual override scenarios, and their associated steps to bring the Galera cluster up. The examples assume that the Pacemaker cluster is composed of nodes <code>node1</code>, <code>node2</code>, <code>node3</code>, and that the galera resource is called <code>galeracluster</code>.</p>
+
+<h3 id="scenario-1-galera-cluster-to-be-restarted-but-one-galera-server-wont-come-up">Scenario 1: Galera cluster to be restarted, but one Galera server won't come up</h3>
+
+<p>Suppose that <code>node3</code> in the cluster is unavailable following an unexpected event (e.g. Galera crashed and left in a inconsistent state, hardware failure on <code>node3</code>…). In such case, the resource agent is not able to retrieve all <code>seqno</code> in the cluster, so no bootstrap node can be elected, and the cluster will not be restarted. One can force the election of a bootstrap node and start it, in order to unblock the resource agent and let Pacemaker boot the rest of the Galera cluster.</p>
+
+<p><strong>Do the following steps only if you're sure that the forced bootstrap node is up-to-date, otherwise you will permanently desynchronize your cluster and will lose data!</strong></p>
+
+<p>That being said, to unblock the boot process, you will need to elect and promote a bootstrap node manually. So first, take control of Galera away from Pacemaker:</p>
+
+<pre class="highlight plaintext"><code># pcs resource unmanage galeracluster&#x000A;</code></pre>
+
+<p>Next, identify the node with the most recent <code>seqno</code>. If Pacemaker previously tried to restart the cluster, you can retrieve this information in the CIB, e.g. for <code>node1</code>:</p>
+
+<pre class="highlight plaintext"><code># crm_attribute -N node1 -l reboot --name galeracluster-last-committed -Q&#x000A;</code></pre>
+
+<p>If the last <code>seqno</code> is not present in the CIB<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>, you can retrieve it with MariaDB:</p>
+
+<pre class="highlight plaintext"><code># mysqld_safe --wsrep-recover&#x000A;151002 13:59:35 mysqld_safe Logging to '/var/log/mariadb/mariadb.log'.&#x000A;151002 13:59:35 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql&#x000A;151002 13:59:35 mysqld_safe WSREP: Running position recovery with --log_error='/var/lib/mysql/wsrep_recovery.2FkYLQ' --pid-file='/var/lib/mysql/db1-recover.pid'&#x000A;151002 13:59:50 mysqld_safe WSREP: Recovered position 4c7ba2a8-566a-11e5-8250-1e939ac17c77:9&#x000A;151002 13:59:52 mysqld_safe mysqld from pid file /var/run/mariadb/mariadb.pid ended&#x000A;</code></pre>
+
+<p>MariaDB will recover its last known cluster position as <code>UUID:seqno</code>. In our case, on <code>node1</code> the last <code>seqno</code> is thus <code>9</code>.</p>
+
+<p>Once you have determined which node has the bigger <code>seqno</code>, make it the bootstrap node and force Pacemaker to start Galera by switching the resource's state to <em>Master</em>. In our case, assuming <code>node1</code> is the bootstrap node, connect to <code>node1</code> and run the following commands locally:</p>
+
+<pre class="highlight plaintext"><code># crm_attribute -N node1 -l reboot --name galeracluster-bootstrap -v true&#x000A;# crm_attribute -N node1 -l reboot --name master-galeracluster -v 100&#x000A;# crm_resource --force-promote -r galeracluster -V&#x000A;</code></pre>
+
+<p>Then, instruct Pacemaker to re-detect the current state of the galera resource. This will clean up failcount and purge knowledge of past failures:</p>
+
+<pre class="highlight plaintext"><code># pcs resource cleanup galeracluster&#x000A;</code></pre>
+
+<p>At this point Galera is up and Pacemaker knows that it is up. Give back control of Galera to Pacemaker and the remaining node will join automatically<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup>:</p>
+
+<pre class="highlight plaintext"><code># pcs resource enable galeracluster&#x000A;# pcs resource manage galeracluster&#x000A;</code></pre>
+
+<h3 id="scenario-2-multiple-hardware-failures-keep-service-on-the-remaining-node">Scenario 2: Multiple hardware failures, keep service on the remaining node</h3>
+
+<p>If <code>node2</code> and <code>node3</code> fail successively in the three-node cluster, you may end up with only <code>node1</code> up and running. Pacemaker will react differently to this condition depending on how quorum is configured in the cluster<sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup>.</p>
+
+<p>For Galera, things are less flexible: if two nodes out of three quit the cluster unexpectedly, the remaining node is considered inquorate and the Galera server will switch to Non-primary state. This is an error condition for the resource agent, and that causes Pacemaker to stop the Galera server on the remaining node.</p>
+
+<p>You can force the restart of Galera on <code>node1</code> if this node is still up and running in Pacemaker<sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup>. You just need to bootstrap the Galera cluster by applying similar steps as those described in Scenario 1. <strong>Please only do so if you are sure that the node is in sync with the latest revision of the cluster, otherwise you will lose data</strong>.</p>
+
+<p>Apply the step from Scenario 1 <strong>and stop before giving back control to Pacemaker</strong><sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup>. At this point, check whether the Pacemaker cluster has quorum:</p>
+
+<pre class="highlight plaintext"><code># corosync-quorumtool -s&#x000A;Quorum information&#x000A;------------------&#x000A;Date:             Fri Oct  2 18:20:37 2015&#x000A;Quorum provider:  corosync_votequorum&#x000A;Nodes:            1&#x000A;Node ID:          1&#x000A;Ring ID:          1376&#x000A;Quorate:          No&#x000A;&#x000A;Votequorum information&#x000A;----------------------&#x000A;Expected votes:   3&#x000A;Highest expected: 3&#x000A;Total votes:      1&#x000A;Quorum:           2 Activity blocked&#x000A;Flags:&#x000A;&#x000A;Membership information&#x000A;----------------------&#x000A;Nodeid      Votes Name&#x000A;     1          1 node1 (local)&#x000A;</code></pre>
+
+<p>If it does not, you have to unblock quorum temporarily for Pacemaker to manage resources, i.e. set the number of expected votes the the number of nodes which are still on-line. In our example, only <code>node1</code> is on-line, so quorum can be temporarily unblocked with:</p>
+
+<pre class="highlight plaintext"><code># corosync-quorumtool -e1&#x000A;</code></pre>
+
+<p>Note that this setting is not permanent. As soon as other nodes rejoin, the number of expected votes will go back to the original value (3 in the example).</p>
+
+<p>Once the cluster is quorate again, you can give back control of Galera to Pacemaker:</p>
+
+<pre class="highlight plaintext"><code># pcs resource manage galeracluster&#x000A;</code></pre>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Starting a new cluster can also be achieved with <code>--wsrep_new_cluster</code>. The two options are equivalent. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Data-related SQL queries will fail with <code>ERROR 1047 (08S01): WSREP has not yet prepared node for application use</code>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>If the information is not in the CIB, <code>crm_attribute</code> will report an error like <code>Error performing operation: No such device or address</code>. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p><code>pcs resource enable galeracluster</code> will ensure that Pacemaker always try to promote this resource's state to <em>Master</em>, i.e. start Galera server on the node if not already done. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>See <code>man votequorum</code> and <a href="http://clusterlabs.org/doc/en-US/Pacemaker/1.0/html/Pacemaker_Explained/s-cluster-options.html">no-quorum-policy settings</a>. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>Check whether <code>node1</code> is still online with <code>pcs status nodes</code>. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p>Applying <code>pcs resource manage galeracluster</code> will fail if the cluster is inquorate, and that will stop the Galera server that was manually restarted. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/ha/galera-ha-boot-process-and-manual-override.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 9 Oct 2015 15:34 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Securing services &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/securing-services.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="securing-services">Securing services</h1>
+
+<h2 class="no_toc" id="overview">Overview</h2>
+
+<p>The default OpenStack configuration doesn't include securing internal services with SSL. This document provides manual instructions for securing some of the services.</p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>You'll need a CA to issue server certificates, along with the CA certificate itself. Instructions for issuing certificates is beyond the scope of this document, but the subject should include CN=<fqdn> for SSL to work.</fqdn></p>
+
+<p>Depending on your host configuration, some services may be running on separate machines. Keep this in mind when restarting services.</p>
+
+<p>The location of the certificates is not mandatory, but be aware of SELinux issues if you decide to locate them elsewhere.</p>
+
+<p>It is bad practice to share the same server certificate between services.</p>
+
+<h3 id="example-ipa-setup">Example IPA Setup</h3>
+
+<p>The certmonger puppet modules works with IPA, if you choosenot to manager your own CA server of another kind. Following are some basic directions to get that set up:</p>
+
+<h4 id="set-up-server">Set up server</h4>
+
+<p>Note that this example uses 192.168.200.x as the OpenStack private network for example purposes, and assumes your IPA server can manage DNS there. Obviously when using such a setup, the configuration options are nearly endless,. This is meant merely to get you started, using the setup we have described <a href="/install/virtualized-foreman-dev-setup/">here</a>. Adjust the values according to your own setup.</p>
+
+<p>Ensure the hostname of your IPA server is the FQDN on the private network:</p>
+
+<pre class="highlight plaintext"><code>  echo "$(hostname -s).openstack.priv" &gt; /etc/hostname&#x000A;  echo "$(hostname -i) $(hostname -s).openstack.priv" &gt;&gt; /etc/hosts&#x000A;  sed -i "s/^`\(HOSTNAME=\)`.*$/\1$(hostname -s).openstack.priv/" \&#x000A;     /etc/sysconfig/network&#x000A;     hostname $(hostname -s).openstack.priv&#x000A;</code></pre>
+
+<p>Instal the IPA server:</p>
+
+<pre class="highlight plaintext"><code>  yum install freeipa-server bind bind-dyndb-ldap&#x000A;  ipa-server-install --setup-dns --forwarder=192.168.200.1 \&#x000A;    --hostname=$(hostname -s).openstack.priv -r OPENSTACK.PRIV \&#x000A;    -n openstack.priv -p Secret123 -P Secret123 -a Secret123 -U&#x000A;</code></pre>
+
+<p>Verify the IP for the subnet you are using (192.168.200.1, in our example), is in /etc/resolv.conf.</p>
+
+<p>Create your controller host entry:</p>
+
+<pre class="highlight plaintext"><code>  ipa dnsrecord-add openstack.priv v3controller --a-rec=192.168.200.10&#x000A;   --a-create-reverse&#x000A;</code></pre>
+
+<h4 id="on-openstack-controller">On OpenStack Controller</h4>
+
+<p>Make sure the ipa server is in resolv.conf (listed first)</p>
+
+<p>Install and configure the IPA client software. If you are using the IPA DNS then the domain and server will be autodiscovered. For authentication you can use the IPA admin user and password.</p>
+
+<pre class="highlight plaintext"><code>  yum install ipa-client&#x000A;  ipa-client-install&#x000A;</code></pre>
+
+<p>If you have dhclient running on your machine(s), you will also want to update the config in /etc/dhcp/dhclient-<nic>.conf to have the line:</nic></p>
+
+<pre class="highlight plaintext"><code>  option domain-name-servers 192.168.200.1, `&lt;domain-server-ip-2&gt;`, `&lt;etc&gt;`;&#x000A;</code></pre>
+
+<p>Otherwise dhclient will overwrite /etc/resolv.conf causing DNS resolution to fail.</p>
+
+<h2 id="mysql">MySQL</h2>
+
+<ul>
+  <li>Obtain a server certificate and private key, in PEM format with no password on the private key.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># openssl req -out /root/example.csr -new -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/&lt;fqdn&gt;-mysql.key&#x000A;# chown mysql  /etc/pki/tls/private/&lt;fqdn&gt;-mysql.key&#x000A;# restorecon  /etc/pki/tls/private/&lt;fqdn&gt;-mysql.key&#x000A;</code></pre>
+
+<ul>
+  <li>Place the certificate file in /etc/pki/tls/certs/<fqdn>-mysql.crt, fix permissions</fqdn></li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># chown mysql  /etc/pki/tls/certs/&lt;fqdn&gt;-mysql.crt&#x000A;# restorecon  /etc/pki/tls/certs/&lt;fqdn&gt;-mysql.crt&#x000A;</code></pre>
+
+<ul>
+  <li>Place the private key in /etc/pki/tls/private/<fqdn>-mysql.key (if you didn't create it using the step above)</fqdn></li>
+  <li>Place the CA certificate in /etc/pki/tls/CA/certs/ca.crt</li>
+  <li>Edit /etc/my.conf and point mysqld to the new cert and key:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[client]&#x000A;ssl_ca=/etc/pki/tls/CA/certs/ca.crt&#x000A;...&#x000A;[mysqld]&#x000A;ssl_ca=/etc/pki/tls/CA/certs/ca.crt&#x000A;ssl_cert=/etc/pki/tls/certs/&lt;fqdn&gt;-mysql.crt&#x000A;ssl-key=/etc/pki/tls/private/&lt;fqdn&gt;-mysql.key&#x000A;</code></pre>
+
+<ul>
+  <li>Restart mysqld:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# service mysqld restart&#x000A;</code></pre>
+
+<ul>
+  <li>Test that SSL is working:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>[root@mysql ~]# mysql -e "\s"&#x000A;--------------&#x000A;mysql  Ver 14.14 Distrib 5.5.31, for Linux (x86_64) using readline 5.1&#x000A;&#x000A;Connection id:          487&#x000A;Current database:&#x000A;Current user:           root@localhost&#x000A;SSL:                    Cipher in use is DHE-RSA-AES256-SHA&#x000A;Current pager:          stdout&#x000A;Using outfile:          ''&#x000A;Using delimiter:        ;&#x000A;Server version:         5.5.31 MySQL Community Server (GPL)&#x000A;Protocol version:       10&#x000A;Connection:             Localhost via UNIX socket&#x000A;Server characterset:    latin1&#x000A;Db     characterset:    latin1&#x000A;Client characterset:    utf8&#x000A;Conn.  characterset:    utf8&#x000A;UNIX socket:            /var/lib/mysql/mysql.sock&#x000A;Uptime:                 2 sec&#x000A;&#x000A;Threads: 10  Questions: 791702  Slow queries: 0  Opens: 91  Flush tables: 1  Open tables: 84  Queries per second avg: 4.800&#x000A;</code></pre>
+
+<ul>
+  <li>Configure the OpenStack services to use SSL. Set the SQL connection (either connection or sql_connection, depending on the service) . <strong>Note</strong>: that this also changes from addressing the host by IP address to FQDN:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>connection = mysql://keystone_admin:a3a9e1219b81473e@mysql.example.com/keystone?ssl_ca=/etc/ipa/ca.crt&#x000A;</code></pre>
+
+<ul>
+  <li>To these files (which may span several hosts):
+    <ul>
+      <li>/etc/glance/glance-api.conf</li>
+      <li>/etc/glance/glance-registry.conf</li>
+      <li>/etc/cinder/cinder.conf</li>
+      <li>/etc/nova/nova.conf</li>
+      <li>/etc/keystone/keystone.conf</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Restart the affected OpenStack services</li>
+</ul>
+
+<h2 id="qpid">qpid</h2>
+
+<p>Configuring qpidd does not currently work without making some manual changes, depending on the version of OpenStack you are running. nova and glance do not properly allow SSL configuration due to launchpad bug <a href="https://bugs.launchpad.net/oslo/+bug/1158807">https://bugs.launchpad.net/oslo/+bug/1158807</a> . It is a one-line change to make in the nova and cinder python files.</p>
+
+<ul>
+  <li>
+    <p>Install the qpid-cpp-server-ssl package</p>
+
+    <p># yum install qpid-cpp-server-ssl</p>
+  </li>
+  <li>
+    <p>Create a directory to store the NSS certificate database for qpidd</p>
+  </li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># mkdir /etc/pki/qpid&#x000A;# certutil -N -d /etc/pki/qpid (note the password you use)&#x000A;</code></pre>
+
+<ul>
+  <li>Create a password file containing the password you set on the NSS database</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># echo password &gt; /etc/pki/qpid/password.conf&#x000A;</code></pre>
+
+<ul>
+  <li>Fix permissions and ownership of files</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># chown -R qpidd /etc/pki/qpid&#x000A;# chmod 600 /etc/pki/qpid/password.conf&#x000A;# restorecon /etc/pki/qpid/*&#x000A;</code></pre>
+
+<ul>
+  <li>Request a certificate from this NSS database. The subject will depend on your PKI infrastructure. The issuing CA may change it.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># certutil -R -d /etc/pki/qpid -s "cn=&lt;fqdn&gt;,O=example.com -a&#x000A;</code></pre>
+
+<ul>
+  <li>Provide this CSR to your CA. You'll get back a certificate, probably in PEM form.</li>
+  <li>Add the server certificate and CA certificate to your NSS database. The nickname(s) you use here are for your purposes. You can use something more descriptive as needed.</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># certutil -A -n broker -d /etc/pki/qpid -t u,u,u -a -i /path/to/server.crt&#x000A;# certutil -A -n CA -d /etc/pki/qpid -t CT,, -a -i /etc/pki/tls/CA/certs/ca.crt&#x000A;* Add configuration options to /etc/qpidd.conf&#x000A;&lt;pre&gt;&#x000A;require-encryption=yes&#x000A;ssl-require-client-authentication=no&#x000A;ssl-cert-db=/etc/pki/qpid&#x000A;ssl-cert-password-file=/etc/pki/qpid/password.conf&#x000A;ssl-cert-name=broker&#x000A;ssl-port=5671&#x000A;</code></pre>
+
+<ul>
+  <li>Restart qpid</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code># service qpid restart&#x000A;</code></pre>
+
+<ul>
+  <li>
+    <p>Configure nova to use ssl in /etc/nova/nova.conf</p>
+
+    <p>qpid_protocol=ssl
+  qpid_port=5671</p>
+  </li>
+  <li>
+    <p>Configure cinder to use ssl in /etc/cinder/cinder.conf</p>
+
+    <p>qpid_protocol=ssl
+  qpid_port=5671</p>
+  </li>
+  <li>
+    <p>Restart the nova and cinder services</p>
+  </li>
+</ul>
+
+<h2 id="horizondashboard">horizon/dashboard</h2>
+
+<p>The actual configuration files may vary greatly depending on the mechanism used to install the Openstack service. These instructions are for a Foreman-managed installation. One may need to vary the configuration file used.</p>
+
+<p>To manually configure the horizon/dashboard service you will need to obtain an SSL server certificate and private key, and the CA certificate in a file.</p>
+
+<ul>
+  <li>
+    <p>Install the mod_ssl package</p>
+
+    <p># yum install mod_ssl</p>
+  </li>
+  <li>
+    <p>Modify /etc/httpd/conf/httpd.conf and add</p>
+
+    <p>Listen 0.0.0.0:443
+  SSLEngine on
+  SSLCertificateKeyFile /path/to/server.key
+  SSLCertificateFile /path/to/server.crt
+  SSLCertificateCAFile /path/to/ca.crt</p>
+  </li>
+  <li>
+    <p>Restart httpd</p>
+  </li>
+</ul>
+
+<p>Some care is needed depending on your configuration. You may already have a default VirtualHost configured for port 443. It very much depends on your distribution and how Openstack was installed.</p>
+
+<p>You can optionally remove the listener on port 80, or always forward requests made on the non-secure port to the secure port by adding this to your configuration file and restarting httpd:</p>
+
+<pre class="highlight plaintext"><code>  RewriteEngine On&#x000A;  RewriteCond %{HTTPS} !=on&#x000A;  RewriteRule ^/?(.*) `[`https://`](https://)`%{SERVER_NAME}/$1 [R,L]&#x000A;</code></pre>
+
+<p>Automating this configuration relies on upstream patch <a href="https://review.openstack.org/49799">https://review.openstack.org/49799</a> . The current horizon puppet module includes a listen_ssl option which makes Apache listen on port 443 but it doesn't require the mod_ssl package or enable the other SSL configuration options.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/securing-services.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 12 Oct 2015 12:24 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

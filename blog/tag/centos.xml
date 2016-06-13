@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Centos</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/centos.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What, Why, and How is the CentOS Cloud SIG?</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-why-and-how-is-the-centos-cloud-sig/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-why-and-how-is-the-centos-cloud-sig/</id>
+    <published>2016-04-16T20:48:08+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;2 years ago we started the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud SIG&lt;/a&gt;. Progress has been slow but steady. Slow, I think, because we've not done a wonderful job of explaining what it's for, and why it matters. But it has been a very important aspect of moving the &lt;a href="http://rdoproject.org/"&gt;RDO project&lt;/a&gt; forward, so it deserves better explanation.&lt;/p&gt;
+
+&lt;p&gt;The Cloud SIG produces packages which allow you, the CentOS user, to deploy Cloud infrastructure on top of CentOS with complete confidence that it's going to work.&lt;/p&gt;
+
+&lt;p&gt;So, it's more than just packages - the RDO project was already producing packages. It's the entire ecosystem, testing OpenStack (and other cloud platforms) on CentOS, ensuring that OpenStack will work on CentOS, and that CentOS will work on OpenStack. To this end, there's &lt;a href="https://ci.centos.org/"&gt;CI on the CentOS infrastructure&lt;/a&gt;, which is also used by numerous other projects, so we know that what we're doing doesn't break what they're doing.&lt;/p&gt;
+
+&lt;p&gt;It's also a community of cloud operators, running on CentOS, providing support to other users, and feedback and bug reports to the developers working upstream. This feedback loop further ensures the reliability of the platform, not only for CentOS users, but for the entire OpenStack community.&lt;/p&gt;
+
+&lt;p&gt;We meet every Thursday at 15:00 UTC on the #centos-devel channel on Freenode IRC, if you want to drop by and have your say. If you're using CentOS, and you're deploying any cloud infrastructure, we want to hear from you.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Community Day @ FOSDEM</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-community-day-fosdem/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-community-day-fosdem/</id>
+    <published>2015-11-17T16:57:52+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;The schedule has now been published at
+&lt;a href="https://www.rdoproject.org/events/rdo-day-fosdem-2016/"&gt;https://www.rdoproject.org/events/rdo-day-fosdem-2016/&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We're pleased to announce that we'll be holding an RDO Community Day in conjunction with the &lt;a href="https://wiki.centos.org/Events/Dojo/Brussels2016"&gt;CentOS Dojo&lt;/a&gt; on the day before FOSDEM. This event will be held at the IBM Client Center in Brussels, Belgium, on Friday, January 29th, 2016.&lt;/p&gt;
+
+&lt;p&gt;You are encouraged to send your proposed topics and sessions via the &lt;a href="http://goo.gl/forms/oDjI2BpCtm"&gt;Google form&lt;/a&gt;. If you have questions about the event, or proposed topics, bring them either to the &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list&lt;/a&gt; mailing list, or to the #rdo channel on the Freenode IRC network.&lt;/p&gt;
+
+&lt;p&gt;If you're thinking of attending either the RDO Day, or the CentOS Dojo, please &lt;a href="https://www.eventbrite.co.uk/e/centos-dojo-brussels-belgium-jan-29th-2016-tickets-19589843750"&gt;register&lt;/a&gt; so that we know how many people to expect.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Liberty released in CentOS Cloud SIG</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-liberty-released-in-centos-cloud-sig/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-liberty-released-in-centos-cloud-sig/</id>
+    <published>2015-10-22T15:34:54+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We are pleased to announce the general availability of the RDO build for
+OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building
+private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of
+contributors around the OpenStack.org project space.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="https://www.rdoproject.org/"&gt;RDO community project&lt;/a&gt; curates,
+packages, builds, tests and maintains a complete OpenStack component set
+for RHEL and CentOS Linux and is a founding member of the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud Infrastructure SIG&lt;/a&gt;. The Cloud Infrastructure SIG focus on delivering a great user
+experience for CentOS Linux users looking to build and maintain their
+own onpremise, public or hybrid clouds.&lt;/p&gt;
+
+&lt;p&gt;In addition to the comprehensive OpenStack services, libraries and
+clients, this release also provides Packstack, a simple installer for
+proof-of-concept installations, as small as a single all-in-one box and
+&lt;a href="https://www.rdoproject.org/RDO-Manager"&gt;RDO Manager&lt;/a&gt;, an OpenStack
+deployment and management tool for production environments based on the
+OpenStack TripleO project.&lt;/p&gt;
+
+&lt;h2 id="quickstart"&gt;QuickStart:&lt;/h2&gt;
+
+&lt;p&gt;Ensure you have a fully updated CentOS Linux 7/x86_64 machine, and run :&lt;/p&gt;
+
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;sudo yum install centos-release-openstack-liberty
+sudo yum install openstack-packstack
+packstack --allinone
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For a more detailed quickstart please refer to the &lt;a href="https://www.rdoproject.org/QuickStart"&gt;RDO Project hosted
+guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For RDO Manager consult the &lt;a href="https://www.rdoproject.org/RDO-Manager"&gt;RDO Manager page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;RDO project is closely tracking upstream OpenStack projects using the &lt;a href="http://trunk.rdoproject.org/"&gt;Delorean tool&lt;/a&gt; which is producing RPM packages from upstream development
+branches.&lt;/p&gt;
+
+&lt;p&gt;Since the previous OpenStack Kilo release, RDO is participating
+in the Cloud SIG and using CentOS provided infrastructure.
+Towards the end of developement cycle packages are imported into &lt;a href="http://wiki.centos.org/HowTos/CommunityBuildSystem"&gt;CentOS Cloud SIG buildsystem&lt;/a&gt; and get eventually published in &lt;a href="http://mirror.centos.org/centos/7/cloud/x86_64/"&gt;Cloud SIG repositories&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="getting-help"&gt;Getting Help:&lt;/h2&gt;
+
+&lt;p&gt;The RDO Project provides a Q&amp;amp;A service at ask.openstack.org, for more
+developer oriented content we recommend joining the &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list mailing list&lt;/a&gt;. Remember to post
+a brief introduction about yourself and your RDO story.
+You can also find extensive documentation &lt;a href="https://www.rdoproject.org/documentation"&gt;on the RDO website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also welcome comments and requests on the &lt;a href="https://lists.centos.org/"&gt;CentOS Mailing lists&lt;/a&gt; and the CentOS IRC Channels ( #centos on
+irc.freenode.net ), however we have a more focused audience in the RDO venues.&lt;/p&gt;
+
+&lt;p&gt;To get involved in the OpenStack RPM packaging effort, see &lt;a href="https://www.rdoproject.org/Get_involved"&gt;the "Get Involved" docs&lt;/a&gt; and &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;the Cloud SIG docs&lt;/a&gt;  Join us in #rdo on the
+Freenode IRC network, and follow us at &lt;a href="http://twitter.com/rdocommunity"&gt;@RDOCommunity on Twitter&lt;/a&gt;. And, if you're going to 
+be in Tokyo for the OpenStack Summit next week, join us on Wednesday at
+lunch for the &lt;a href="http://sched.co/4MYy"&gt;RDO community meetup&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I'd like to thank all RDO developers and CentOS Project for
+their effort and support resulting in this release,
+especially&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;dmsimard - for continuously improving RDO CI&lt;/li&gt;
+  &lt;li&gt;jpena - for keeping Delorean service up and running&lt;/li&gt;
+  &lt;li&gt;jruzicka - for the rdopkg auto-magic&lt;/li&gt;
+  &lt;li&gt;number80 - for countless reviews and packaging wisdom&lt;/li&gt;
+  &lt;li&gt;social - for puppet module mastery&lt;/li&gt;
+  &lt;li&gt;trown - for leading RDO Manager side of the show!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Special thanks to all the folks who helped with last minute testing in
+IRC #rdo channel !&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+
+&lt;p&gt;Alan Pevec&lt;/p&gt;
+
+&lt;p&gt;Cloud SIG and RDO project member&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Congratulations to the CentOS project, from RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2014/01/congratulations-to-the-centos-project-from-rdo/"/>
+    <id>http://rdoproject.org/blog/2014/01/congratulations-to-the-centos-project-from-rdo/</id>
+    <published>2014-01-08T17:52:18+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;The RDO Community is thrilled with Red Hat's recent announcement of the closer relationship with CentOS (LINK HERE - http://community.redhat.com/blog/2014/01/red-hat-and-centos-join-forces/ ). Congratulations to the CentOS project, and to all the folks who have worked so hard to make this happen.&lt;/p&gt;
+
+&lt;p&gt;We've already enjoyed a lot of energy from the Fedora community, in testing RDO, submitting bugs reports and fixes, and participating in the support conversation on IRC and ask.openstack.org.&lt;/p&gt;
+
+&lt;p&gt;We're really looking forward to seeing this kind of energy build from the CentOS community as well, and Red Hat's closer relationship with CentOS gives us a better avenue to help make this happen.&lt;/p&gt;
+
+&lt;p&gt;In the coming months, we hope to engage more closely with CentOS, providing a Live distro of RDO based on CentOS, CentOS cloud images, and participating in the development of the CentOS Cloud Infrastructure SIG in any way we can. We're really excited about the future with CentOS, especially those of who are already CentOS users!&lt;/p&gt;
+</content>
+  </entry>
+</feed>

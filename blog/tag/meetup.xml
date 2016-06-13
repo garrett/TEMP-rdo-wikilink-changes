@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Meetup</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/meetup.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>St. Louis OpenStack Meetup</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/st-louis-openstack-meetup/"/>
+    <id>http://rdoproject.org/blog/2016/04/st-louis-openstack-meetup/</id>
+    <published>2016-04-01T18:36:56+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;On Tuesday evening I had the privilege of addressing the &lt;a href="http://www.meetup.com/OpenStack-STL/events/229344473/"&gt;St. Louis OpenStack Meetup group&lt;/a&gt;. I gave an Introduction to OpenStack presentation to about 30 attendees, many of whom were indeed OpenStack beginners, or just beginning to research what this OpenStack thing is all about.&lt;/p&gt;
+
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;
+  &lt;p lang="en" dir="ltr"&gt;&lt;a href="https://twitter.com/rbowen"&gt;@rbowen&lt;/a&gt; speaking at tonight's &lt;a href="https://twitter.com/hashtag/OpenStack?src=hash"&gt;#OpenStack&lt;/a&gt; meet up hosted at CenturyLink's new cloud dev center &lt;a href="https://t.co/6Rxuvz3phe"&gt;pic.twitter.com/6Rxuvz3phe&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;— OpenStack St.Louis (@openstackstl) &lt;a href="https://twitter.com/openstackstl/status/714966918587875328"&gt;March 30, 2016&lt;/a&gt;&amp;lt;/blockquote&amp;gt;
+&lt;script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;&lt;/p&gt;
+
+  &lt;p&gt;There were roughly 30 people in attendance, and questions ranged across a variety of topics, including ease of deployment, ongoing support, and the upgrade path for future versions.&lt;/p&gt;
+
+  &lt;p&gt;A huge thank you is due to CenturyLink, who hosted the meetup in their beautiful office facility, and to  Ranga Chakravarthula, who coordinated everything.&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+  <entry>
+    <title>David Moreau Simard at OpenStack Montreal</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/"/>
+    <id>http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/</id>
+    <published>2016-02-25T15:09:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;David Moreau Simard giving his talk at &lt;a href="http://montrealopenstack.org/"&gt;OpenStack Montreal&lt;/a&gt; about RDO CI:&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/XAWLm3jP7Mg" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Community Meetup at OpenStack Tokyo</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/community-meetup-at-openstack-tokyo/"/>
+    <id>http://rdoproject.org/blog/2015/11/community-meetup-at-openstack-tokyo/</id>
+    <published>2015-11-04T19:45:23+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;A week ago in Tokyo, we held the third RDO Community Meetup at the
+OpenStack Summit. We had about 70 people in attendance, and some good
+discussion. The full agenda for the meeting is at &lt;a href="https://etherpad.openstack.org/p/rdo-tokyo"&gt;https://etherpad.openstack.org/p/rdo-tokyo&lt;/a&gt; and below are some of the things that were discussed. (The complete recording is at the bottom of this post.)&lt;/p&gt;
+
+&lt;p&gt;People who were in attendance, please feel free to &lt;a href="https://github.com/redhat-openstack/website/blob/master/source/blog/2015-11-04-community-meetup-at-openstack-tokyo.html.md"&gt;update and annote&lt;/a&gt; your section of this report if you wish to add detail, or if I get anything wrong.&lt;/p&gt;
+
+&lt;p&gt;We started with a discussion of how the project is governed. It was observed that although we have a &lt;a href="https://www.redhat.com/archives/rdo-list/2015-November/msg00028.html"&gt;weekly meeting&lt;/a&gt;, it's not always possible for everyone to attend, but that these meetings are summarized back to the mailing list each week.&lt;/p&gt;
+
+&lt;p&gt;We announced that the new RDO website is live (you're looking at it now!) and that it is possible to &lt;a href="https://github.com/rbowen/rdo-website"&gt;send pull requests&lt;/a&gt; for it now.&lt;/p&gt;
+
+&lt;p&gt;Haikel asked whether there was any interest in his project of an RDO aarch64 port, and identified a few people who expressed interest.&lt;/p&gt;
+
+&lt;p&gt;Trown talked a bit about the status of &lt;a href="https://www.rdoproject.org/rdo-manager/"&gt;RDO-Manager&lt;/a&gt; in Liberty. Liberty is the first release where RDO-Manager has released at the same time, which is a big step. He briefly discussed the RDO Manager quickstart that is being worked on. Check back here later for a link to Trown's more detailed writeup.&lt;/p&gt;
+
+&lt;p&gt;Regarding the question of the relationship between RDO Manager and TripleO, it was established that RDO Manager is a downstream of TripleO, rather than being an upstream effort. It's more than just TripleO, but, rather, is a distribution of several tools, built on top of TripleO.&lt;/p&gt;
+
+&lt;p&gt;We spoke briefly about documenting what all of the moving pieces of the RDO project are, and how they fit together. Haikel said that he's made a start at documenting this, and drawing diagrams. He also encourage people to step up to participate in both documenting, and in improving the infrastructure.&lt;/p&gt;
+
+&lt;p&gt;A discussion arose about what the process is to get an upstream patch into RDO. From this, an &lt;a href="https://github.com/redhat-openstack/website/issues/213"&gt;action item&lt;/a&gt; was raised to more clearly document what the process is to request patches, and where to &lt;a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO"&gt;file tickets&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We discussed the timing and frequency of test days in the Mitaka cycle, and this was later discussed more on IRC. The consensus was that there should be a test day about a week after each milestone, with a sanity check done during that week so that we don't have a catastrophic test day. Now that the &lt;a href="https://wiki.openstack.org/wiki/Mitaka_Release_Schedule"&gt;Mitaka release schedule is published&lt;/a&gt; we should be able to put together a tentative &lt;a href="https://www.rdoproject.org/testday/"&gt;test day schedule&lt;/a&gt; very soon.&lt;/p&gt;
+
+&lt;p&gt;An overview was given of the &lt;a href="https://wiki.openstack.org/wiki/Rpm-packaging"&gt;RPM packaging&lt;/a&gt; effort in upstream OpenStack.&lt;/p&gt;
+
+&lt;p&gt;The relationship with CentOS was discussed, in particular the manual process required to push packages up to the repos. This process still requires that we ping the CentOS admins, but this will soon be an automated process. Haikel also enumerated the various reasons that the relationship with CentOS is still of great benefit to RDO, including exposure to a wider audience due to CentOS's recognized name. There was also a view expressed that we should run an RDO-based cloud, perhaps in addition to the CentOS infrastructure, so that we are testing on our own platform.&lt;/p&gt;
+
+&lt;p&gt;Finally, Rich Megginson spoke about the data aggregation effort that he is working on with Tushar Katarki. Rich has written &lt;a href="http://richmegginson.livejournal.com/27696.html"&gt;a more detailed writeup of that section&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, a quick announcement was made of the upcoming &lt;a href="https://www.redhat.com/archives/rdo-list/2015-November/msg00027.html"&gt;RDO Community Day at FOSDEM&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to hear more detail from the meetup, I've put the &lt;a href="http://drbacchus.com/podcasts/openstack/rdo_meetup_tokyo.mp3"&gt;complete recording&lt;/a&gt; up, and you can listen below. (59 minutes, 109 MB)&lt;/p&gt;
+
+&lt;audio controls=""&gt;
+  &lt;source src="http://drbacchus.com/podcasts/openstack/rdo_meetup_tokyo.mp3" type="audio/mpeg" /&gt;
+&lt;/audio&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Community Meetup at OpenStack Summit, Tokyo</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/"/>
+    <id>http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/</id>
+    <published>2015-10-14T17:15:07+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We'll be having an &lt;a href="http://sched.co/4MYy"&gt;RDO community meetup&lt;/a&gt; during the upcoming OpenStack Summit in Tokyo. It will be during lunch time (12:45 - 14:00)  in Sakura Lower Level S-1 and S-2.&lt;/p&gt;
+
+&lt;p&gt;As at previous Summits, we'll be gathering to discuss progress during
+the last six months, and plans for the future. Please add discussion items
+to the &lt;a href="https://etherpad.openstack.org/p/rdo-tokyo"&gt;agenda&lt;/a&gt; that you'd like for us to talk about.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>OpenStack India event report</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/10/openstack-india-event-report/"/>
+    <id>http://rdoproject.org/blog/2013/10/openstack-india-event-report/</id>
+    <published>2013-10-10T11:10:48+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Red Hat is proud to have been a sponsor of OpenStack India this year. Over 200 people attended the  event. Here's a writeup and some photos from the event: http://openstackindia.wordpress.com/2013/10/10/event-report-openstack-india-day-2013/&lt;/p&gt;
+</content>
+  </entry>
+</feed>

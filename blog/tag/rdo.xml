@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Rdo</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/rdo.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Newbie in RDO (2): RDO Trunk from a bird's eye view</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/"/>
+    <id>http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/</id>
+    <published>2016-05-30T18:45:18+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>amoralej</name>
+    </author>
+    <content type="html">&lt;p&gt;Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my &lt;a href="https://www.rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/"&gt;previous post&lt;/a&gt; if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.&lt;/p&gt;
+
+&lt;p&gt;Although there is a lot of detailed and great information in different sources (see &lt;a href="####More info"&gt;More info&lt;/a&gt; at the end of the post), it may be useful for others to provide a high level and global description of it. In this post I'll focus in the process around RDO Trunk repositories as shown in the following diagram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="RDO high level" src="/images/blog/rdo-trunk-high-level.png" /&gt;&lt;/p&gt;
+
+&lt;h2 id="code-repositories"&gt;Code repositories&lt;/h2&gt;
+
+&lt;h3 id="upstream-code"&gt;Upstream Code&lt;/h3&gt;
+
+&lt;p&gt;As for any packaging project, everything starts with the upstream code. For RDO, it is provided by OpenStack projects in https://github.com/openstack/&amp;lt;project&amp;gt; . The process to manage these repos is defined by OpenStack and can be found in their &lt;a href="http://docs.openstack.org/infra/manual/developers.html"&gt;Developer Guide&lt;/a&gt; and the &lt;a href="http://docs.openstack.org/project-team-guide/release-management.html"&gt;Release Process&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In RDO, these repositories are used to fetch the code that will be packaged for both RDO Trunk and CloudSIG in different ways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For RDO Trunk, the automatic packager, DLRN clones the involved git repo.&lt;/li&gt;
+  &lt;li&gt;For RDO CloudSIG, the specific tarball for the point release to be packaged will be fetched at packaging time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="distgit-repo"&gt;Distgit repo&lt;/h3&gt;
+
+&lt;p&gt;As described in the great &lt;a href="https://www.rdoproject.org/packaging/rdo-packaging.html"&gt;RDO packaging guide&lt;/a&gt;, ditgit is the git repository "where the .spec file lives" . For RDO, distgit repos are located in https://review.rdoproject.org/r/#/admin/projects/openstack/&amp;lt;project&amp;gt;-distgit (you can see the entire list &lt;a href="https://review.rdoproject.org/r/#/admin/projects/?filter=distgit"&gt;here&lt;/a&gt;). Typically they contain the spec files used to build RPM packages, systemd unit files and some system config files (i.e. logrotate or sudoers configuration).&lt;/p&gt;
+
+&lt;p&gt;Because of the reproducibility requirements of RDO CloudSIG packaging, spec files for these and trunk repos differ slightly:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Changelog, version and release fields for the trunk is automatically generated while it must be manually created for stable packages.&lt;/li&gt;
+  &lt;li&gt;The source code is fetched from a versioned tarball for stable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, we usually have different requirements for each OpenStack version so different branches are created based on version and RDO "flavor" (trunk or CloudSIG):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;rpm-&amp;lt;version&amp;gt; : is used to package RDO trunk (version can be master, mitaka or liberty )&lt;/li&gt;
+  &lt;li&gt;&amp;lt;version&amp;gt;-rdo : is used for RDO CloudSIG (as this is only for released version, master-rdo does not exist)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To ensure proper management of distgit repos, required changes follow a review process in &lt;a href="https://review.rdoproject.org/r/"&gt;RDO rpmfactory&lt;/a&gt; quite similar to the OpenStack project. Before merging the change in the actual repository, every request (review) will trigger a test job in the &lt;a href="https://review.rdoproject.org/jenkins/"&gt;CI system&lt;/a&gt; that will post its -/+1 vote depending on the results and will require a core contributor to review and validate it.&lt;/p&gt;
+
+&lt;h2 id="dlrn-automatic-packager-for-rdo-trunk"&gt;DLRN: automatic packager for RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;Packaging for RDO trunk is done by &lt;a href="https://github.com/openstack-packages/DLRN"&gt;DLRN&lt;/a&gt;, a tool to build RPM packages on each commit merged in a set of configurable repositories. DLRN uses rdopkg to retrieve the metadata and repositories associated with each package (code and distgit) and mock to carry out the actual build.&lt;/p&gt;
+
+&lt;p&gt;NVR for packages generated by DLRN follows some rules:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Version&lt;/strong&gt; is set to MAJOR.MINOR.PATCH of the &lt;em&gt;next&lt;/em&gt; upstream version.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Release&lt;/strong&gt; is 0.&amp;lt;timestamp&amp;gt;.&amp;lt;short commit hash&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, python-novaclient-3.4.1-0.20160412103538.77f214b.el7.centos.noarch.rpm is a package containing code released after GA of 3.4.0 and before 3.4.1 containing code until upstream commit &lt;a href="https://github.com/openstack/python-novaclient/commit/77f214bdbd7d9e8ba935ace1dce0290061ddd737"&gt;77f214b&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once the package has been successfully built, DLRN creates a yum repository containing the latest version of every package successfully built at that time. This repo will not change and is created in a unique directory based on the specific commit hash. These repos will be available if a user wants to test an installation based on a specific commit. Finally, DLRN manages two "shorcuts" for repositories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;current&lt;/strong&gt;: will point to the last created per-commit repo.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt;: current repo, may not contain the latest versions of packages that failed to build (i.e. let's assume that packaging of python-nova package failed while a later build of python-cinder succeed, in this case, current would contain the latest upstream version of cinder but not for nova). To avoid this situation, a new pointer "consistent" is managed by DLRN and will point to the last snapshot that contained package versions in sync with upstream versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, DLRN creates some html reports that can be used to check the results of each single build and provides the logs for troubleshooting any error while building the package.&lt;/p&gt;
+
+&lt;h2 id="continuous-integration-in-rdo-trunk"&gt;Continuous Integration in RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;To ensure the packages built by DLRN work as expected, the RDO project manages some CI jobs pipeline in the &lt;a href="https://ci.centos.org/view/rdo/"&gt;CentOS CI&lt;/a&gt; system. These jobs are created using jenkins-job-builder with the configuration managed in &lt;a href="https://github.com/rdo-infra/ci-config"&gt;rdo-infra github&lt;/a&gt;. These jobs deploy and test RDO in different scenarios (packstack, tripleo quickstart and puppet) based mostly on WeIRDO (take a look into &lt;a href="http://weirdo.readthedocs.org/en/latest/how.html"&gt;weirdo documentation&lt;/a&gt;) using the &lt;strong&gt;consistent&lt;/strong&gt; repository. If all tests in the pipeline success, the content of the tested repo will be promoted as &lt;strong&gt;current-passed-ci&lt;/strong&gt;. In this way, this link always points to the latest consistent repo that passed the CI jobs.&lt;/p&gt;
+
+&lt;p&gt;Additionally, &lt;strong&gt;current-tripleo&lt;/strong&gt; repo is managed by a set of jobs focused on testing TripleO installer on the current-passed-ci repo. When those tests pass, this repo is promoted by this CI pipeline.&lt;/p&gt;
+
+&lt;h2 id="access-to-repositories"&gt;Access to repositories&lt;/h2&gt;
+
+&lt;p&gt;All the repositories and content managed by DLRN and CI jobs are directly accesible for public usage from DLRN server in &lt;a href="https://trunk.rdoproject.org/"&gt;https://trunk.rdoproject.org/&lt;/a&gt;. This includes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/consistent/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-passed-ci&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/current-passed-ci/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-tripleo&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-master/current-tripleo/&lt;/li&gt;
+  &lt;li&gt;By-commit repos http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/AB/CD/ABCD…Z (where AB are the two first characters of the commit hash, CD the following two and ABCD…Z the entire hash). On each hash repository directory a delorean.repo file is created containing the yum configuration required to enable it easily.&lt;/li&gt;
+  &lt;li&gt;html formated build reports and build logs to help packagers to troubleshoot issues that may arise.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="more-info"&gt;More info&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://www.rdoproject.org/documentation/rdo-packaging/"&gt;RDO Packaging guide&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future"&gt;Delorean: OpenStack packages from the future by Frederic Lepied&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/openstack-packages/DLRN/tree/master/doc/source"&gt;DLRN documentation&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://redhat.slides.com/dmoreaus/testing-openstack-is-hard#/"&gt;Testing Openstack is Hard by David Moreau Simard&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Newbie in RDO: one size doesn't fit all</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/"/>
+    <id>http://rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/</id>
+    <published>2016-05-30T17:18:23+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>amoralej</name>
+    </author>
+    <content type="html">&lt;p&gt;As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to &lt;a href="https://www.rdoproject.org/rdo/faq/"&gt;RDO faq&lt;/a&gt;, the main goal is to maintain a freely-available, community-supported distribution of OpenStack based on RPM packages able to run Red Hat Enterprise Linux, CentOS, Fedora, and their derivatives. But the RDO community is diverse and different use patterns have been found over the time with different requirements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Organizations running production OpenStack clouds with community support require a stable distribution.&lt;/li&gt;
+  &lt;li&gt;Organizations running production environments with community or enterprise-grade distributions require sometimes an up-to-date distribution to test recent functionalities and plan the future of their cloud deployments.&lt;/li&gt;
+  &lt;li&gt;Developers require up-to-date distribution to test their changes and run their CI jobs.&lt;/li&gt;
+  &lt;li&gt;Packagers need to have full control over the packaging process.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Providing a suitable distribution for all these scenarios is not an easy task and the RDO community ended up with two different distribution set of repos targetting different purposes:&lt;/p&gt;
+
+&lt;h3 id="rdo-cloudsig-repos"&gt;RDO CloudSIG repos&lt;/h3&gt;
+&lt;p&gt;Provide a set of stable OpenStack packages through CentOS CloudSIG repos based on CBS, &lt;a href="https://wiki.centos.org/HowTos/CommunityBuildSystem"&gt;CentOS Community Build System&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The RDO CloudSIG repos are only published after GA of a upstream release (only stable branches are used, not master).&lt;/li&gt;
+  &lt;li&gt;New packages are created only when a new point release is published (release tag created) on upstream stable repositories. The RDO community is currently working to automate as much as possible the process to build these packages in rpmfactory.&lt;/li&gt;
+  &lt;li&gt;In addition to the vanilla upstream code, some patches may be applied during packaging:
+    &lt;ul&gt;
+      &lt;li&gt;Fixes for security issues or critical bugs not backported upstream. Note that an upstream-first policy is applied so these patches will be applied only after merged in upstream master.&lt;/li&gt;
+      &lt;li&gt;Patches required for the packaging process.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Packages are created through a controlled workflow. This is accomplished by koji (the technology behind CBS) which ensures reproducibility of the building process by:
+    &lt;ul&gt;
+      &lt;li&gt;Creating a self-contained build environment (buildroot) that provides all the dependencies by a controlled package. No network access exist int this build environment.&lt;/li&gt;
+      &lt;li&gt;Recording both the spec file defining the package to be built and the packages included in the buildroot. This information allows to recreate exactly the same build environment to create the package at a later point in time.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The criteria for pubishing any new release includes both thechnical (a set of CI jobs must pass as aggreed in &lt;a href="https://meetbot.fedoraproject.org/rdo/2016-04-06/rdo_meeting_%282016-04-06%29.2016-04-06-15.00.html"&gt;RDO community meeting&lt;/a&gt;) and non-technical requirements (documentation, etc…).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is probably what you want to use for your stable cloud with a community-supported OpenStack distribution and what you will use following the &lt;a href="http://docs.openstack.org/mitaka/install-guide-rdo/environment-packages.html"&gt;official upstream install guide&lt;/a&gt; or &lt;a href="https://www.rdoproject.org/install/"&gt;RDO docummentation&lt;/a&gt; to deploy and manage OpenStack.&lt;/p&gt;
+
+&lt;h3 id="rdo-trunk-repos"&gt;RDO Trunk repos&lt;/h3&gt;
+&lt;p&gt;Provide RPM package repositories for OpenStack projects as close as possible to the vanilla upstream code in order to test any change and catch any bug or impact on packaging as soon as possible. These packages are built when a commit is merged in upstream master or any of the supported stable branches. This means that new packages are provided even during the development phase of a new release (before GA). Once a build is done, a set of CI jobs is passed to validate installation and basic functionalities. As part of RDO Trunk we provide different repos for CentOS 7 under http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/ :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;consistent:&lt;/strong&gt; provides the latest snapshot of packages successfully built (i.e. https://trunk.rdoproject.org/centos7-master/consistent/).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-passed-ci:&lt;/strong&gt; provides the latest snapshot of packages built and with CI jobs successfully passed (i.e. https://trunk.rdoproject.org/centos7-master/current-passed-ci/).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-tripleo:&lt;/strong&gt; provides the latest snapshot of packages tested by specific TripleO CI jobs on master branch (https://trunk.rdoproject.org/centos7-master/current-tripleo/)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Currently (may '16'), &amp;lt;release&amp;gt; can be master, mitaka or liberty.&lt;/p&gt;
+
+&lt;p&gt;As operators, these repos may not be the best option to run a stable OpenStack cloud but it can be a good choice in some cases:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You are interested in deploying an environment to test latest changes in OpenStack code&lt;/li&gt;
+  &lt;li&gt;You need to quickly apply a patch that has been merged upstream and can't wait until it's included in a point release and is properly packaged in RDO CloudSIG repos. Note that "current-passed-ci" repos are recommended in this case.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you are a OpenStack developer, using RDO trunk may be a good option to build your environments with latest vanilla upstream code.&lt;/p&gt;
+
+&lt;p&gt;Finally, if you are a packager, you probably want to know how the build process went for a specific commit or even to perform an installation based on it. RDO also provides both build reports and RPM repos based on each commit for both CentOS and Fedora from &lt;a href="http://trunk.rdoproject.org"&gt;http://trunk.rdoproject.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blogs.rdoproject.org/author/fred"&gt;Fred&lt;/a&gt; wrote an excelent &lt;a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future"&gt;post&lt;/a&gt; describing how DLRN (f.k.a. delorean) builds packages for RDO trunk repos.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in the details about how to build RDO packages, you'll find a lot of interesting information in &lt;a href="https://www.rdoproject.org/documentation/packaging/"&gt;RDO documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And remember that if you are looking for enterprise-level support, or information on partner certification, Red Hat also offers &lt;a href="https://redhat.com/openstack"&gt;Red Hat Enterprise Linux OpenStack Platform&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO BoF at OpenStack Summit, Austin</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-bof-at-openstack-summit-austin/</id>
+    <published>2016-04-28T14:59:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://lh3.googleusercontent.com/V4ChZTDnjP5xnDwY_9CLqVk8mHY3c7h88fHjRp0lChKiwSxIo64hIfa7Z6hxEodhYn51sDhAwiQ=w1920-h1080-rw-no" /&gt;&lt;/p&gt;
+
+&lt;p&gt;On Tuesday afternoon about 60 people gathered for the RDO BoF (Birds of a Feather) session at OpenStack Summit in Austin.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;By the way, the term Birds of a Feather comes from the saying "Birds of a feather flock together", which refers to like-minded people gathering.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The topics discussed can be found in the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-bof"&gt;agenda&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The network was friendly, and we managed to capture the whole session in a Google Hangout. The video of the session is &lt;a href="https://www.youtube.com/watch?v=pmb3RA1GmGs"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And there are several pictures from the event on the &lt;a href="https://plus.google.com/communities/110409030763231732154"&gt;RDO Google+ page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thank you for all who attended. You'll see follow-up discussion on a number of the topics discussed on &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list&lt;/a&gt; over the coming weeks.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Mitaka released</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-mitaka-released/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-mitaka-released/</id>
+    <published>2016-04-12T13:47:19+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;The RDO community is pleased to announce the general availability of the RDO build for OpenStack Mitaka for RPM-based distributions - CentOS Linux 7 and Red Hat Enterprise Linux. RDO is suitable for building private, public, and hybrid clouds and Mitaka is the 13th release from the &lt;a href="http://openstack.org"&gt;OpenStack project&lt;/a&gt;, which is the work of more than 2500 contributors from around the world. 
+(&lt;a href="http://stackalytics.com/"&gt;Source&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href="http://redhatstackblog.redhat.com/2016/03/21/learn-whats-coming-in-openstack-mitaka/"&gt;RedHatStack&lt;/a&gt; for a brief overview of what's new in Mitaka.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="https://www.rdoproject.org/"&gt;RDO community project&lt;/a&gt; curates, packages, builds, tests, and maintains a complete OpenStack component set for RHEL and CentOS Linux and is a founding member of the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud Infrastructure SIG&lt;/a&gt;. The Cloud Infrastructure SIG focuses on delivering a great user experience for CentOS Linux users looking to build and maintain their own on-premise, public or hybrid clouds.&lt;/p&gt;
+
+&lt;p&gt;All work on RDO, and on the downstream release, Red Hat OpenStack Platform, is 100% open source, with all code changes going upstream first.&lt;/p&gt;
+
+&lt;p&gt;For a complete list of what's in RDO, see &lt;a href="https://github.com/redhat-openstack/rdoinfo/blob/master/rdo.yml"&gt;the RDO projects yaml file&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Started&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;There are three ways to get started with RDO.&lt;/p&gt;
+
+&lt;p&gt;To spin up a proof of concept cloud, quickly, and on limited hardware, try the &lt;a href="http://rdoproject.org/Quickstart"&gt;RDO QuickStart&lt;/a&gt;  You can run RDO on a single node to get a feel for how it works.&lt;/p&gt;
+
+&lt;p&gt;For a production deployment of RDO, use the &lt;a href="https://www.rdoproject.org/tripleo/"&gt;TripleO Quickstart&lt;/a&gt; and you'll be running a production cloud in short order.&lt;/p&gt;
+
+&lt;p&gt;Finally, if you want to try out OpenStack, but don't have the time or hardware to run it yourself, visit &lt;a href="http://trystack.org/"&gt;TryStack&lt;/a&gt;, where you can use a free public OpenStack instance, running RDO packages, to experiment with the OpenStack management interface and API, launch instances, configure networks, and generally familiarize yourself with OpenStack&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Help&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The RDO Project participates in a Q&amp;amp;A service at &lt;a href="http://ask.openstack.org"&gt;ask.openstack.org&lt;/a&gt;, for more developer oriented content we recommend joining the &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list mailing list&lt;/a&gt;. Remember to post a brief introduction about yourself and your RDO story. You can also find extensive documentation on the &lt;a href="https://www.rdoproject.org/documentation"&gt;RDO docs site&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also welcome comments and requests on the &lt;a href="https://lists.centos.org/"&gt;CentOS Mailing lists&lt;/a&gt; and the CentOS IRC Channels (#centos on irc.freenode.net), however we have a more focused audience in the RDO venues.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Involved&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;To get involved in the OpenStack RPM packaging effort, see the &lt;a href="https://www.rdoproject.org/community/"&gt;RDO community pages&lt;/a&gt; and the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud SIG page&lt;/a&gt;. See also the &lt;a href="https://www.rdoproject.org/packaging/"&gt;RDO packaging documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Join us in #rdo on the Freenode IRC network, and follow us at &lt;a href="http://twitter.com/rdocommunity"&gt;@RDOCommunity&lt;/a&gt; on Twitter.&lt;/p&gt;
+
+&lt;p&gt;And, if you're going to be in Austin for the &lt;a href="http://openstack.org/summit/"&gt;OpenStack Summit&lt;/a&gt; two weeks from now, join us on Thursday at 4:40pm for the &lt;a href="https://goo.gl/P6kyWR"&gt;RDO community BoF&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Blogs, week of April 11</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-1/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-1/</id>
+    <published>2016-04-11T19:10:34+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts were blogging about this week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;St. Louis OpenStack Meetup&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On Tuesday evening I had the privilege of addressing the St. Louis OpenStack Meetup group. I gave an Introduction to OpenStack presentation to about 30 attendees, many of whom were indeed OpenStack beginners, or just beginning to research what this OpenStack thing is all about.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/60"&gt;http://tm3.org/60&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Upcoming events in OpenStack and RDO&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/61"&gt;http://tm3.org/61&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Extending OpenStack Disaster Recovery to Google Cloud Storage&lt;/strong&gt; by Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The OpenStack Cinder Backup service was introduced in Cinder in the Grizzly release to allow users to create backups from their volumes and store it to their Swift object storage system (still very common use case in OpenStack private clouds to date). Since then, the Backup API continued to mature with every release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/62"&gt;http://tm3.org/62&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Upcoming events in OpenStack and RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/"/>
+    <id>http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/</id>
+    <published>2016-04-06T19:04:59+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+
+&lt;p&gt;There's also a huge surge in things to announce around the RDO community, as well as the upstream OpenStack community:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;upstream release of Mitaka&lt;/a&gt; is this week. &lt;a href="http://stackalytics.com/?metric=commits"&gt;Stackalytics&lt;/a&gt; lists over 2500 people who have contributed to this release.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We'll be conducting a &lt;a href="https://www.rdoproject.org/testday/mitaka/ga/"&gt;test day for RDO Mitaka on April 13th and 14th&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://openstack.org/summit"&gt;OpenStack Summit&lt;/a&gt; is just 2 weeks away, and we'll be having an &lt;a href="https://www.openstack.org/summit/austin-2016/summit-schedule/events/6892"&gt;RDO BoF&lt;/a&gt; (Birds of a Feather) gathering there.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have something you'd like to demo in the RDO booth at OpenStack Summit, add your idea to the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-summit-booth"&gt;booth schedule etherpad&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And, as every week, there are lots of &lt;a href="http://rdoproject.org/events/"&gt;OpenStack Meetups&lt;/a&gt; all over the world this week. Especially don't miss Perry Meyers' RDO Q&amp;amp;A at the &lt;a href="http://www.meetup.com/Morgantown-Linux-User-Group/events/227482742/"&gt;Morgantown OpenStack Meetup&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blogs, week of March 28</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/03/rdo-blogs-week-of-march-28/"/>
+    <id>http://rdoproject.org/blog/2016/03/rdo-blogs-week-of-march-28/</id>
+    <published>2016-03-28T19:58:23+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been blogging about in the last week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tie Your Rabbit Down&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ve been running the Tripleo Quickstart to setup my development deployments. While looking into the setup, I noticed that the default Rabbit deployment is wide open. I can’t see anything other than firewall port blocking in place. I dug deeper.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5l"&gt;http://tm3.org/5l&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Red Hat confirms over 35 sessions at OpenStack Summit, Austin – Have a look!&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As this Spring’s 2016 OpenStack Summit in Austin, TX nears, the Foundation has posted the final session agenda, outlining the week’s schedule of events. I am pleased to see that based on your voting, Red Hat continues to remain in sync with the current topics, projects, and technologies the OpenStack community and customers are most interested in. With the expectation of the largest attendee crowd yet, and some exciting advancements around containers, storage, networking, compute, and more, we look forward to sharing the 35+ generally accepted sessions, workshops, and BoFs that will be included in the weeks agenda.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5m"&gt;http://tm3.org/5m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dependency Injection in Python applied to Ossipee&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I reworked my OpenStack API based cluster builder Ossipee last weekend. It makes heavy use of dependency resolution now, and breaks apart the super-base class into properly scoped components.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5n"&gt;http://tm3.org/5n&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Convert a keystone.rc from V2 to V3&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Everything seems to produce V2 versions of the necessary variables for Keystone, and I am more and more dependant on the V3 setup. Converting from one to the other is trivial, especially if the setup uses the default domain.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5o"&gt;http://tm3.org/5o&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Long Term OpenStack Usage Summary&lt;/strong&gt; by SilverSkySoft&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Its been about 9 months since we first kicked off a limited production install of OpenStack. There were few variables we were very interested in: How much specialized support was needed to maintain a small OpenStack and stability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5p"&gt;http://tm3.org/5p&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Learn what’s coming in OpenStack “Mitaka”&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the fastest growing open source project in history, OpenStack releases fairly rapidly, with new releases twice per year. Each time, around April and October of every year, a whole plethora of new features and functions move from incubated development status to fully-baked features and accepted into the “core” OpenStack release. Rapidly approaching is the new “Mitaka” release, the 13th release of OpenStack, filled with some great new features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5q"&gt;http://tm3.org/5q&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Attempt to set up RDO Mitaka (RC1) at any given time (Delorean trunks)&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;"The RDO project has a continuous integration pipeline that consists of multiple jobs that deploy and test OpenStack as accomplished by different installers. This vast test coverage attempts to ensure that there are no known issues either in packaging, in code or in the installers themselves.Once a Delorean consistent repository has undergone these tests successfully, it will be promoted to current-passed-ci. Current-passed-ci represents the latest and greatest
+version of RDO trunk packages that were tested together successfully"&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5r"&gt;http://tm3.org/5r&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>"RDO Manager" is now "TripleO"</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-manager-is-now-tripleo/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-manager-is-now-tripleo/</id>
+    <published>2016-02-29T20:59:46+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>K Rain Leander</name>
+    </author>
+    <content type="html">&lt;p&gt;Because of its unique branding and name, one might assume that "RDO Manager" is not TripleO - perhaps it has additional downstream patches or maybe they're entirely different projects. You would not be alone because the community, the users and the developers alike have shared their confusion on this topic.&lt;/p&gt;
+
+&lt;p&gt;The truth is "RDO Manager" really is "TripleO". There is no code or documentation difference.  The only thing that is different is the strategy around how the RDO community tests TripleO to ensure the stability of RDO packages but even this strategy is in the process of being sent upstream because we're convinced it's the best way forward.&lt;/p&gt;
+
+&lt;p&gt;Historically, RDO Manager and TripleO were different projects. Today this is no longer the case and we plan on keeping it that way.&lt;/p&gt;
+
+&lt;p&gt;Further, there is no other project in RDO that is renamed or rebranded. OpenStack Nova is referenced as Nova within the RDO project. Even the TripleO packages in RDO have the same naming as the upstream projects.&lt;/p&gt;
+
+&lt;p&gt;With this in mind, on Wednesday, 24th, February, 2016, the RDO community discussed and voted to drop the "RDO Manager" brand and use TripleO instead. This will clear the confusion surrounding the topic of what IS RDO Manager as well as strengthen the TripleO name.  It is our hope that a clear 1:1 mapping between the projects will result in more integration with upstream on the CI side as well.&lt;/p&gt;
+
+&lt;p&gt;Over the course of the next few weeks, the RDO community will work towards replacing mentions of "RDO Manager" in documentation, web sites, code, and repositories. If you'd like to help with this, please join us on irc Freenode #rdo.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO blogs, week of February 29, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-blogs-week-of-february-22-2016/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-blogs-week-of-february-22-2016/</id>
+    <published>2016-02-29T15:14:46+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been blogging about in the last week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Using a custom ssh config with Ansible’s synchronize module&lt;/strong&gt;, by Harry Rybacki&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Have you ever needed to specify which ssh config file rsync should use when called from Ansible’s synchronize module? I have and it was not obvious how to do so.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/52"&gt;http://tm3.org/52&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Mitaka 3 test day, March 10th, 11th&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;TL;DR:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;Mitaka 3 test day, March 10, 11&lt;/li&gt;
+    &lt;li&gt;On-site test day in Brno&lt;/li&gt;
+    &lt;li&gt;Demo of deploying with TripleO&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/53"&gt;http://tm3.org/53&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Keystone on Port 80 For Tripleo&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Many services assume that Keystone listens on ports 5000 and 35357. I’d prefer to have Keystone listen on the standard HTTP(s) ports of 80 and 443. We can’t remove the non-standard ports without a good deal of rewriting. But there is nothing preventing us from running Keystone on port 80 or 443 in addition to those ports.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/54"&gt;http://tm3.org/54&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Skydive : a real-time network analyzer&lt;/strong&gt; by  Sylvain Afchain&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;SDN solutions are complex and troubleshooting/monitoring them is even harder. It seems that while we have a better way to automate the network we lose visibility and operability. For example, in order to troubleshoot an issue you have of to understand the network in general but also to have a deep understanding of how the SDN solution is implementing the network. And if you have multiple SDN solutions deployed – with maybe nested SDN solutions like container network in VMs – finding the root cause of an issue starts to be really hard.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/55"&gt;http://tm3.org/55&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;David Moreau Simard at OpenStack Montreal&lt;/strong&gt; (Video)&lt;/p&gt;
+
+&lt;p&gt;… watch at &lt;a href="http://tm3.org/56"&gt;http://tm3.org/56&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hackery to get going RDO Kilo on Fedora 23&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Sequence of hacks required to get going RDO Kilo on Fedora 23 is caused by existence of many areas where Nova has a hard dependency on Glance v1. Per https://specs.openstack.org/openstack/nova-specs/specs/mitaka/approved/use-glance-v2-api.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/57"&gt;http://tm3.org/57&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>David Moreau Simard at OpenStack Montreal</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/"/>
+    <id>http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/</id>
+    <published>2016-02-25T15:09:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;David Moreau Simard giving his talk at &lt;a href="http://montrealopenstack.org/"&gt;OpenStack Montreal&lt;/a&gt; about RDO CI:&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/XAWLm3jP7Mg" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+</feed>

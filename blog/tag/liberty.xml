@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Liberty</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/liberty.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO Liberty released in CentOS Cloud SIG</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-liberty-released-in-centos-cloud-sig/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-liberty-released-in-centos-cloud-sig/</id>
+    <published>2015-10-22T15:34:54+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We are pleased to announce the general availability of the RDO build for
+OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building
+private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of
+contributors around the OpenStack.org project space.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="https://www.rdoproject.org/"&gt;RDO community project&lt;/a&gt; curates,
+packages, builds, tests and maintains a complete OpenStack component set
+for RHEL and CentOS Linux and is a founding member of the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud Infrastructure SIG&lt;/a&gt;. The Cloud Infrastructure SIG focus on delivering a great user
+experience for CentOS Linux users looking to build and maintain their
+own onpremise, public or hybrid clouds.&lt;/p&gt;
+
+&lt;p&gt;In addition to the comprehensive OpenStack services, libraries and
+clients, this release also provides Packstack, a simple installer for
+proof-of-concept installations, as small as a single all-in-one box and
+&lt;a href="https://www.rdoproject.org/RDO-Manager"&gt;RDO Manager&lt;/a&gt;, an OpenStack
+deployment and management tool for production environments based on the
+OpenStack TripleO project.&lt;/p&gt;
+
+&lt;h2 id="quickstart"&gt;QuickStart:&lt;/h2&gt;
+
+&lt;p&gt;Ensure you have a fully updated CentOS Linux 7/x86_64 machine, and run :&lt;/p&gt;
+
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;sudo yum install centos-release-openstack-liberty
+sudo yum install openstack-packstack
+packstack --allinone
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For a more detailed quickstart please refer to the &lt;a href="https://www.rdoproject.org/QuickStart"&gt;RDO Project hosted
+guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;For RDO Manager consult the &lt;a href="https://www.rdoproject.org/RDO-Manager"&gt;RDO Manager page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;RDO project is closely tracking upstream OpenStack projects using the &lt;a href="http://trunk.rdoproject.org/"&gt;Delorean tool&lt;/a&gt; which is producing RPM packages from upstream development
+branches.&lt;/p&gt;
+
+&lt;p&gt;Since the previous OpenStack Kilo release, RDO is participating
+in the Cloud SIG and using CentOS provided infrastructure.
+Towards the end of developement cycle packages are imported into &lt;a href="http://wiki.centos.org/HowTos/CommunityBuildSystem"&gt;CentOS Cloud SIG buildsystem&lt;/a&gt; and get eventually published in &lt;a href="http://mirror.centos.org/centos/7/cloud/x86_64/"&gt;Cloud SIG repositories&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="getting-help"&gt;Getting Help:&lt;/h2&gt;
+
+&lt;p&gt;The RDO Project provides a Q&amp;amp;A service at ask.openstack.org, for more
+developer oriented content we recommend joining the &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list mailing list&lt;/a&gt;. Remember to post
+a brief introduction about yourself and your RDO story.
+You can also find extensive documentation &lt;a href="https://www.rdoproject.org/documentation"&gt;on the RDO website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also welcome comments and requests on the &lt;a href="https://lists.centos.org/"&gt;CentOS Mailing lists&lt;/a&gt; and the CentOS IRC Channels ( #centos on
+irc.freenode.net ), however we have a more focused audience in the RDO venues.&lt;/p&gt;
+
+&lt;p&gt;To get involved in the OpenStack RPM packaging effort, see &lt;a href="https://www.rdoproject.org/Get_involved"&gt;the "Get Involved" docs&lt;/a&gt; and &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;the Cloud SIG docs&lt;/a&gt;  Join us in #rdo on the
+Freenode IRC network, and follow us at &lt;a href="http://twitter.com/rdocommunity"&gt;@RDOCommunity on Twitter&lt;/a&gt;. And, if you're going to 
+be in Tokyo for the OpenStack Summit next week, join us on Wednesday at
+lunch for the &lt;a href="http://sched.co/4MYy"&gt;RDO community meetup&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I'd like to thank all RDO developers and CentOS Project for
+their effort and support resulting in this release,
+especially&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;dmsimard - for continuously improving RDO CI&lt;/li&gt;
+  &lt;li&gt;jpena - for keeping Delorean service up and running&lt;/li&gt;
+  &lt;li&gt;jruzicka - for the rdopkg auto-magic&lt;/li&gt;
+  &lt;li&gt;number80 - for countless reviews and packaging wisdom&lt;/li&gt;
+  &lt;li&gt;social - for puppet module mastery&lt;/li&gt;
+  &lt;li&gt;trown - for leading RDO Manager side of the show!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Special thanks to all the folks who helped with last minute testing in
+IRC #rdo channel !&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+
+&lt;p&gt;Alan Pevec&lt;/p&gt;
+
+&lt;p&gt;Cloud SIG and RDO project member&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO test day summary</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-test-day-summary/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-test-day-summary/</id>
+    <published>2015-10-14T16:42:05+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;A big thanks to everyone that participated in the &lt;a href="http://beta.rdoproject.org/testday/rdo-test-day-liberty-02/"&gt;RDO Test Day&lt;/a&gt; over the last 48 hours. Here's a few statistics from the day.&lt;/p&gt;
+
+&lt;p&gt;29 people wrote 74 email messages to the &lt;a href="https://www.redhat.com/archives/rdo-list/2015-October/thread.html"&gt;rdo-list mailing list&lt;/a&gt;. (Of course, they weren't all about the test day, but many of them were.)&lt;/p&gt;
+
+&lt;p&gt;42 participants sent a collective 1074 messages to the #rdo IRC channel on Freenode.net. (Likewise, not all about test day.)&lt;/p&gt;
+
+&lt;p&gt;We had &lt;a href="http://tm3.org/liberty-test-day-bugs"&gt;23 new issues&lt;/a&gt; opened in the ticketing system.&lt;/p&gt;
+
+&lt;p&gt;Some people have put their day's experience in the &lt;a href="https://etherpad.openstack.org/p/rdo_test_day_oct_2015"&gt;etherpad&lt;/a&gt; and some have updated the &lt;a href="http://beta.rdoproject.org/testday/testedsetups-liberty-02/"&gt;Tested Scenarios page&lt;/a&gt;. If you didn't put your notes anywhere, please do update one of those in the coming day or two, so that we don't lose what we learned.&lt;/p&gt;
+
+&lt;p&gt;So, thanks to all of you. Particular thanks to trown for getting things rolling and herding the cats.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

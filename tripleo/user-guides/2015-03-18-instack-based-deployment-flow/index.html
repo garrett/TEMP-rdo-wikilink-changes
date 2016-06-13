@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+2015-03-18-instack-based-deployment-flow &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/tripleo/user-guides/2015-03-18-instack-based-deployment-flow.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="instack-based-deployment-flow">2015-03-18-instack-based-deployment-flow</h1>
+
+<h2 id="march-18-2015---instack-based-deployment-flow">March 18, 2015 - Instack Based Deployment Flow</h2>
+
+<hr style="margin-top: -8px" />
+
+<ul>
+  <li>Following flow is <strong>pinned</strong> to certain date (2015-03-18)</li>
+  <li>Flow is based on <a href="https://repos.fedorapeople.org/repos/openstack-m/instack-undercloud/html/index.html">Instack scripts</a> to that date
+    <ul>
+      <li>Source documentation is being updated to follow the latest code, therefor <strong>this flow might diverge from the source docs</strong> in time</li>
+    </ul>
+  </li>
+  <li>This flow should be working in time as long as enabled repositories stay pinned to certain package builds (in this guide we are pointing to these builds)</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Supported Environments: <strong>Virtual</strong></li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Supported Distributions: <strong>RHEL 7.1</strong>, <strong>CentOS 7</strong></li>
+  <li>Code specific for the distributions is having [RHEL] or [CentOS] tags</li>
+</ul>
+
+<h2 id="select-your-operating-system">Select Your Operating System</h2>
+
+<hr style="margin-top: -8px" />
+
+<p>There is a slightly different workflow to ensure that your host machine is set up correctly to proceed with the following steps. You should choose one of the supported operating systems and execute the commands listed for that Operating System, ignoring the other Operating Systems. For any section NOT tagged, this should work identically regardless of your Operating System.'</p>
+
+<h2 id="preparing-virtual-environment">Preparing Virtual Environment</h2>
+
+<hr style="margin-top: -8px" />
+
+<p>Operations in this sections are performed on hosting bare metal machine.</p>
+
+<p>We encourage to use a machine which you can fully dedicate to TripleO because during virtual setup Instack will enable multiple repositories and manipulate with your libvirt setup.</p>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<p>[CentOS]</p>
+
+<pre class="highlight plaintext"><code># provision your host machine with CentOS 7&#x000A;&#x000A;if $(grep -Eqs 'CentOS Linux release 7' /etc/redhat-release); then&#x000A;    echo "Environment is set to use CentOS 7 specific commands."&#x000A;else&#x000A;    echo "CentOS 7 is NOT your operating system."&#x000A;fi&#x000A;</code></pre>
+
+<p>[RHEL]</p>
+
+<pre class="highlight plaintext"><code># provision your host machine with RHEL 7.1&#x000A;&#x000A;if $(grep -Eqs 'Red Hat Enterprise Linux' /etc/redhat-release) &amp;&amp; $(grep -Eqs 'release 7.1' /etc/redhat-release); then&#x000A;    echo "Environment is set to use RHEL 7.1 specific commands."&#x000A;&#x000A;    # register your machine and subscribe it to pool (enter credentials for username, password and pool)&#x000A;    sudo subscription-manager register --username=$rh_user_name --password=$rh_password&#x000A;    sudo subscription-manager attach --pool=$rh_pool_id&#x000A;    # sudo subscription-manager repos --list   # make sure you have repositories available&#x000A;else&#x000A;    echo "RHEL 7.1 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>sudo useradd stack&#x000A;sudo passwd stack  # specify a password&#x000A;&#x000A;echo "stack ALL=(root) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/stack&#x000A;sudo chmod 0440 /etc/sudoers.d/stack&#x000A;&#x000A;su - stack&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>export DELOREAN_REPO=${DELOREAN_REPO:-"http://104.130.230.24/centos70/4a/1d/4a1d1169acdf6b63239b60a898a33caf428acb5c_291a4aa4/delorean.repo"}&#x000A;sudo curl -o /etc/yum.repos.d/delorean.repo $DELOREAN_REPO&#x000A;&#x000A;export DELOREAN_RHEL7_REPO=${DELOREAN_RHEL7_REPO:-"http://trunk-mgt.rdoproject.org/repos/79/9c/799cbe5c677af79643fbed96fe62c814d913e3f5_45568b15/delorean.repo"}&#x000A;sudo curl -o /etc/yum.repos.d/delorean-rdo-management.repo $DELOREAN_RHEL7_REPO&#x000A;sudo sed -i 's/delorean/delorean-rdo-management/' /etc/yum.repos.d/delorean-rdo-management.repo&#x000A;&#x000A;if ! rpm -q rdo-release; then&#x000A;  sudo yum install -y https://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo-0.noarch.rpm&#x000A;fi&#x000A;&#x000A;if ! rpm -q epel-release; then&#x000A;  sudo yum install -y http://mirrors.einstein.yu.edu/epel/7/x86_64/e/epel-release-7-5.noarch.rpm&#x000A;fi&#x000A;&#x000A;if ! rpm -q python-zope-interface; then&#x000A;  sudo yum install -y http://mirrors.kernel.org/fedora//releases/20/Everything/x86_64/os/Packages/p/python-zope-interface-4.0.5-2.fc20.x86_64.rpm&#x000A;fi&#x000A;&#x000A;sudo yum install -y openstack-heat-templates&#x000A;sudo yum install -y openstack-tripleo-puppet-elements&#x000A;</code></pre>
+
+<p>[RHEL] - add on top of above listed repositories</p>
+
+<pre class="highlight plaintext"><code># for RHEL enable extra repositories from subscription-manager on top of above listed repositories&#x000A;&#x000A;if $(grep -Eqs 'Red Hat Enterprise Linux Server release 7.1' /etc/redhat-release); then&#x000A;    sudo subscription-manager repos --enable=rhel-7-server-rpms --enable=rhel-7-server-optional-rpms --enable=rhel-7-server-extras-rpms&#x000A;elif $(grep -Eqs 'Red Hat Enterprise Linux Workstation release 7.1' /etc/redhat-release); then&#x000A;    sudo subscription-manager repos --enable=rhel-7-workstation-rpms --enable=rhel-7-workstation-optional-rpms --enable=rhel-7-workstation-extras-rpms&#x000A;else&#x000A;    echo "RHEL 7.1 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>sudo yum install -y instack-undercloud&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<p>[CentOS]</p>
+
+<pre class="highlight plaintext"><code>if $(grep -Eqs 'CentOS Linux release 7' /etc/redhat-release); then&#x000A;    # use in case of cloud based image&#x000A;    # a web server containing the CentOS guest cloud image&#x000A;    export DIB_CLOUD_IMAGES="http://cloud.centos.org/centos/7/images/"&#x000A;    export BASE_IMAGE_FILE=CentOS-7-x86_64-GenericCloud.qcow2&#x000A;&#x000A;    # use in case when you download image manually&#x000A;    # download and use images locally (need to be saved in /home/stack/)&#x000A;    # curl -O http://...   # OR #   'scp ...'&#x000A;    # export DIB_LOCAL_IMAGE=CentOS-7-x86_64-GenericCloud.qcow2   # or the image name you have downloaded&#x000A;&#x000A;    # select image distribution&#x000A;    export NODE_DIST="centos7"&#x000A;else&#x000A;    echo "CentOS 7 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p>[RHEL]</p>
+
+<pre class="highlight plaintext"><code>if $(grep -Eqs 'Red Hat Enterprise Linux' /etc/redhat-release) &amp;&amp; $(grep -Eqs 'release 7.1' /etc/redhat-release); then&#x000A;    # use in case of cloud based image&#x000A;    # a web server containing the RHEL guest cloud image&#x000A;    # export DIB_CLOUD_IMAGES="&lt;http://server/path/containing/image&gt;"&#x000A;    # export BASE_IMAGE_FILE=&lt;image_name.qcow2&gt;&#x000A;&#x000A;    # use in case when you download image manually&#x000A;    # download and use images locally (need to be saved in /home/stack/), image can be downloaded from Red Hat portal&#x000A;    # curl -O http://...   # OR #   'scp ...'&#x000A;    export DIB_LOCAL_IMAGE=rhel-guest-image-7.1-20150224.0.x86_64.qcow2   # or the image name you have downloaded&#x000A;&#x000A;    # select image distribution and registration method&#x000A;    export NODE_DIST="rhel7"&#x000A;    export REG_METHOD=portal&#x000A;&#x000A;    # find this with `subscription-manager list --available` (enter credentials)&#x000A;    export REG_USER="&lt;user_name&gt;"&#x000A;    export REG_PASSWORD="&lt;password&gt;"&#x000A;    export REG_POOL_ID="&lt;pool_id&gt;"&#x000A;    export REG_REPOS="rhel-7-server-rpms rhel-7-server-extras-rpms rhel-ha-for-rhel-7-server-rpms rhel-7-server-optional-rpms rhel-7-server-openstack-6.0-rpms"&#x000A;    export REG_HALT_UNREGISTER=1&#x000A;else&#x000A;    echo "RHEL 7.1 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>export UNDERCLOUD_VM_NAME="rdo_manager"&#x000A;export UNDERCLOUD_NODE_MEM=4096&#x000A;export UNDERCLOUD_NODE_CPU=1&#x000A;&#x000A;export NODE_COUNT=2&#x000A;export NODE_MEM=4096&#x000A;export NODE_CPU=1&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-virt-setup&#x000A;&#x000A;# if above script fails with KVM permission denied then&#x000A;sudo chgrp kvm /dev/kvm&#x000A;sudo chmod g+rw /dev/kvm&#x000A;sudo virsh start rdo_manager&#x000A;</code></pre>
+
+<h2 id="stand-up-tripleo-undercloud">Stand up TripleO (Undercloud)</h2>
+
+<hr style="margin-top: -8px" />
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>ssh root@&lt;instack-vm-ip&gt;&#x000A;# you can get the IP with 'arp -n' command&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>su - stack&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>export DELOREAN_REPO=${DELOREAN_REPO:-"http://104.130.230.24/centos70/4a/1d/4a1d1169acdf6b63239b60a898a33caf428acb5c_291a4aa4/delorean.repo"}&#x000A;sudo curl -o /etc/yum.repos.d/delorean.repo $DELOREAN_REPO&#x000A;&#x000A;export DELOREAN_RHEL7_REPO=${DELOREAN_RHEL7_REPO:-"http://trunk-mgt.rdoproject.org/repos/79/9c/799cbe5c677af79643fbed96fe62c814d913e3f5_45568b15/delorean.repo"}&#x000A;sudo curl -o /etc/yum.repos.d/delorean-rdo-management.repo $DELOREAN_RHEL7_REPO&#x000A;sudo sed -i 's/delorean/delorean-rdo-management/' /etc/yum.repos.d/delorean-rdo-management.repo&#x000A;&#x000A;if ! rpm -q rdo-release; then&#x000A;  sudo yum install -y https://rdo.fedorapeople.org/openstack-kilo/rdo-release-kilo-0.noarch.rpm&#x000A;fi&#x000A;&#x000A;if ! rpm -q epel-release; then&#x000A;  sudo yum install -y http://mirrors.einstein.yu.edu/epel/7/x86_64/e/epel-release-7-5.noarch.rpm&#x000A;fi&#x000A;&#x000A;if ! rpm -q python-zope-interface; then&#x000A;  sudo yum install -y http://mirrors.kernel.org/fedora//releases/20/Everything/x86_64/os/Packages/p/python-zope-interface-4.0.5-2.fc20.x86_64.rpm&#x000A;fi&#x000A;&#x000A;sudo yum install -y openstack-heat-templates&#x000A;sudo yum install -y openstack-tripleo-puppet-elements&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>sudo yum install -y instack-undercloud&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>cp /usr/share/instack-undercloud/instack.answers.sample ~/instack.answers&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-install-undercloud&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>sudo cp /root/tripleo-undercloud-passwords .&#x000A;sudo cp /root/stackrc .&#x000A;</code></pre>
+
+<h2 id="use-tripleo-for-deploying-rdo-overcloud">Use TripleO for Deploying RDO (Overcloud)</h2>
+
+<hr style="margin-top: -8px" />
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>source stackrc&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<p>[CentOS]</p>
+
+<pre class="highlight plaintext"><code>if $(grep -Eqs 'CentOS Linux release 7' /etc/redhat-release); then&#x000A;    # use in case of cloud based image&#x000A;    # a web server containing the CentOS guest cloud image&#x000A;    export DIB_CLOUD_IMAGES="http://cloud.centos.org/centos/7/images/"&#x000A;    export BASE_IMAGE_FILE=CentOS-7-x86_64-GenericCloud.qcow2&#x000A;&#x000A;    # use in case when you download image manually&#x000A;    # download and use images locally (need to be saved in /home/stack/)&#x000A;    # curl -O http://...   # OR #   'scp ...'&#x000A;    # export DIB_LOCAL_IMAGE=CentOS-7-x86_64-GenericCloud.qcow2   # or the image name you have downloaded&#x000A;&#x000A;    # select image distribution&#x000A;    export NODE_DIST="centos7"&#x000A;else&#x000A;    echo "CentOS 7 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p>[RHEL]</p>
+
+<pre class="highlight plaintext"><code>if $(grep -Eqs 'Red Hat Enterprise Linux' /etc/redhat-release) &amp;&amp; $(grep -Eqs 'release 7.1' /etc/redhat-release); then&#x000A;    # use in case of cloud based image&#x000A;    # a web server containing the RHEL guest cloud image&#x000A;    # export DIB_CLOUD_IMAGES="&lt;http://server/path/containing/image&gt;"&#x000A;    # export BASE_IMAGE_FILE=&lt;image_name.qcow2&gt;&#x000A;&#x000A;    # use in case when you download image manually&#x000A;    # download and use images locally (need to be saved in /home/stack/), image can be downloaded from Red Hat portal&#x000A;    # curl -O http://...   # OR #   'scp ...'&#x000A;    export DIB_LOCAL_IMAGE=rhel-guest-image-7.1-20150224.0.x86_64.qcow2   # or the image name you have downloaded&#x000A;&#x000A;    # select image distribution and registration method&#x000A;    export NODE_DIST="rhel7"&#x000A;    export REG_METHOD=portal&#x000A;&#x000A;    # find this with `subscription-manager list --available` (enter credentials)&#x000A;    export REG_USER="&lt;user_name&gt;"&#x000A;    export REG_PASSWORD="&lt;password&gt;"&#x000A;    export REG_POOL_ID="&lt;pool_id&gt;"&#x000A;    export REG_REPOS="rhel-7-server-rpms rhel-7-server-extras-rpms rhel-ha-for-rhel-7-server-rpms rhel-7-server-optional-rpms rhel-7-server-openstack-6.0-rpms"&#x000A;    export REG_HALT_UNREGISTER=1&#x000A;else&#x000A;    echo "RHEL 7.1 is NOT your operating system. Commands were not executed."&#x000A;fi&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-build-images&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-prepare-for-overcloud&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-ironic-deployment --nodes-json instackenv.json --register-nodes&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-ironic-deployment --discover-nodes&#x000A;instack-ironic-deployment --show-profile&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code>instack-ironic-deployment --setup-flavors&#x000A;</code></pre>
+
+<p><strong>\1</strong></p>
+
+<hr style="margin-top: 0" />
+
+<pre class="highlight plaintext"><code># source proper network settings for virtual environment&#x000A;source /usr/share/instack-undercloud/deploy-virt-overcloudrc&#x000A;&#x000A;# deploy&#x000A;instack-deploy-overcloud&#x000A;</code></pre>
+
+<h2 id="test-overcloud">Test Overcloud</h2>
+
+<hr style="margin-top: -8px" />
+
+<pre class="highlight plaintext"><code># download testing image (Fedora) and add path to variables&#x000A;curl -O https://repos.fedorapeople.org/repos/openstack-m/tripleo-images-rdo-juno/fedora-user.qcow2&#x000A;export IMAGE_PATH=/home/stack/&#x000A;&#x000A;# launch instack testing script&#x000A;instack-test-overcloud&#x000A;</code></pre>
+
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/tripleo/user-guides/2015-03-18-instack-based-deployment-flow.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 4 Mar 2016 20:20 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

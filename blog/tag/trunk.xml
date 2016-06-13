@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Trunk</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/trunk.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Newbie in RDO (2): RDO Trunk from a bird's eye view</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/"/>
+    <id>http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/</id>
+    <published>2016-05-30T18:45:18+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>amoralej</name>
+    </author>
+    <content type="html">&lt;p&gt;Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my &lt;a href="https://www.rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/"&gt;previous post&lt;/a&gt; if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.&lt;/p&gt;
+
+&lt;p&gt;Although there is a lot of detailed and great information in different sources (see &lt;a href="####More info"&gt;More info&lt;/a&gt; at the end of the post), it may be useful for others to provide a high level and global description of it. In this post I'll focus in the process around RDO Trunk repositories as shown in the following diagram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="RDO high level" src="/images/blog/rdo-trunk-high-level.png" /&gt;&lt;/p&gt;
+
+&lt;h2 id="code-repositories"&gt;Code repositories&lt;/h2&gt;
+
+&lt;h3 id="upstream-code"&gt;Upstream Code&lt;/h3&gt;
+
+&lt;p&gt;As for any packaging project, everything starts with the upstream code. For RDO, it is provided by OpenStack projects in https://github.com/openstack/&amp;lt;project&amp;gt; . The process to manage these repos is defined by OpenStack and can be found in their &lt;a href="http://docs.openstack.org/infra/manual/developers.html"&gt;Developer Guide&lt;/a&gt; and the &lt;a href="http://docs.openstack.org/project-team-guide/release-management.html"&gt;Release Process&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In RDO, these repositories are used to fetch the code that will be packaged for both RDO Trunk and CloudSIG in different ways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For RDO Trunk, the automatic packager, DLRN clones the involved git repo.&lt;/li&gt;
+  &lt;li&gt;For RDO CloudSIG, the specific tarball for the point release to be packaged will be fetched at packaging time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="distgit-repo"&gt;Distgit repo&lt;/h3&gt;
+
+&lt;p&gt;As described in the great &lt;a href="https://www.rdoproject.org/packaging/rdo-packaging.html"&gt;RDO packaging guide&lt;/a&gt;, ditgit is the git repository "where the .spec file lives" . For RDO, distgit repos are located in https://review.rdoproject.org/r/#/admin/projects/openstack/&amp;lt;project&amp;gt;-distgit (you can see the entire list &lt;a href="https://review.rdoproject.org/r/#/admin/projects/?filter=distgit"&gt;here&lt;/a&gt;). Typically they contain the spec files used to build RPM packages, systemd unit files and some system config files (i.e. logrotate or sudoers configuration).&lt;/p&gt;
+
+&lt;p&gt;Because of the reproducibility requirements of RDO CloudSIG packaging, spec files for these and trunk repos differ slightly:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Changelog, version and release fields for the trunk is automatically generated while it must be manually created for stable packages.&lt;/li&gt;
+  &lt;li&gt;The source code is fetched from a versioned tarball for stable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, we usually have different requirements for each OpenStack version so different branches are created based on version and RDO "flavor" (trunk or CloudSIG):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;rpm-&amp;lt;version&amp;gt; : is used to package RDO trunk (version can be master, mitaka or liberty )&lt;/li&gt;
+  &lt;li&gt;&amp;lt;version&amp;gt;-rdo : is used for RDO CloudSIG (as this is only for released version, master-rdo does not exist)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To ensure proper management of distgit repos, required changes follow a review process in &lt;a href="https://review.rdoproject.org/r/"&gt;RDO rpmfactory&lt;/a&gt; quite similar to the OpenStack project. Before merging the change in the actual repository, every request (review) will trigger a test job in the &lt;a href="https://review.rdoproject.org/jenkins/"&gt;CI system&lt;/a&gt; that will post its -/+1 vote depending on the results and will require a core contributor to review and validate it.&lt;/p&gt;
+
+&lt;h2 id="dlrn-automatic-packager-for-rdo-trunk"&gt;DLRN: automatic packager for RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;Packaging for RDO trunk is done by &lt;a href="https://github.com/openstack-packages/DLRN"&gt;DLRN&lt;/a&gt;, a tool to build RPM packages on each commit merged in a set of configurable repositories. DLRN uses rdopkg to retrieve the metadata and repositories associated with each package (code and distgit) and mock to carry out the actual build.&lt;/p&gt;
+
+&lt;p&gt;NVR for packages generated by DLRN follows some rules:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Version&lt;/strong&gt; is set to MAJOR.MINOR.PATCH of the &lt;em&gt;next&lt;/em&gt; upstream version.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Release&lt;/strong&gt; is 0.&amp;lt;timestamp&amp;gt;.&amp;lt;short commit hash&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, python-novaclient-3.4.1-0.20160412103538.77f214b.el7.centos.noarch.rpm is a package containing code released after GA of 3.4.0 and before 3.4.1 containing code until upstream commit &lt;a href="https://github.com/openstack/python-novaclient/commit/77f214bdbd7d9e8ba935ace1dce0290061ddd737"&gt;77f214b&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once the package has been successfully built, DLRN creates a yum repository containing the latest version of every package successfully built at that time. This repo will not change and is created in a unique directory based on the specific commit hash. These repos will be available if a user wants to test an installation based on a specific commit. Finally, DLRN manages two "shorcuts" for repositories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;current&lt;/strong&gt;: will point to the last created per-commit repo.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt;: current repo, may not contain the latest versions of packages that failed to build (i.e. let's assume that packaging of python-nova package failed while a later build of python-cinder succeed, in this case, current would contain the latest upstream version of cinder but not for nova). To avoid this situation, a new pointer "consistent" is managed by DLRN and will point to the last snapshot that contained package versions in sync with upstream versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, DLRN creates some html reports that can be used to check the results of each single build and provides the logs for troubleshooting any error while building the package.&lt;/p&gt;
+
+&lt;h2 id="continuous-integration-in-rdo-trunk"&gt;Continuous Integration in RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;To ensure the packages built by DLRN work as expected, the RDO project manages some CI jobs pipeline in the &lt;a href="https://ci.centos.org/view/rdo/"&gt;CentOS CI&lt;/a&gt; system. These jobs are created using jenkins-job-builder with the configuration managed in &lt;a href="https://github.com/rdo-infra/ci-config"&gt;rdo-infra github&lt;/a&gt;. These jobs deploy and test RDO in different scenarios (packstack, tripleo quickstart and puppet) based mostly on WeIRDO (take a look into &lt;a href="http://weirdo.readthedocs.org/en/latest/how.html"&gt;weirdo documentation&lt;/a&gt;) using the &lt;strong&gt;consistent&lt;/strong&gt; repository. If all tests in the pipeline success, the content of the tested repo will be promoted as &lt;strong&gt;current-passed-ci&lt;/strong&gt;. In this way, this link always points to the latest consistent repo that passed the CI jobs.&lt;/p&gt;
+
+&lt;p&gt;Additionally, &lt;strong&gt;current-tripleo&lt;/strong&gt; repo is managed by a set of jobs focused on testing TripleO installer on the current-passed-ci repo. When those tests pass, this repo is promoted by this CI pipeline.&lt;/p&gt;
+
+&lt;h2 id="access-to-repositories"&gt;Access to repositories&lt;/h2&gt;
+
+&lt;p&gt;All the repositories and content managed by DLRN and CI jobs are directly accesible for public usage from DLRN server in &lt;a href="https://trunk.rdoproject.org/"&gt;https://trunk.rdoproject.org/&lt;/a&gt;. This includes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/consistent/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-passed-ci&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/current-passed-ci/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-tripleo&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-master/current-tripleo/&lt;/li&gt;
+  &lt;li&gt;By-commit repos http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/AB/CD/ABCD…Z (where AB are the two first characters of the commit hash, CD the following two and ABCD…Z the entire hash). On each hash repository directory a delorean.repo file is created containing the yum configuration required to enable it easily.&lt;/li&gt;
+  &lt;li&gt;html formated build reports and build logs to help packagers to troubleshoot issues that may arise.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="more-info"&gt;More info&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://www.rdoproject.org/documentation/rdo-packaging/"&gt;RDO Packaging guide&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future"&gt;Delorean: OpenStack packages from the future by Frederic Lepied&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/openstack-packages/DLRN/tree/master/doc/source"&gt;DLRN documentation&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://redhat.slides.com/dmoreaus/testing-openstack-is-hard#/"&gt;Testing Openstack is Hard by David Moreau Simard&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Naming is hard or Who Let The Vowels Out</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/naming-is-hard-or-who-let-the-vowels-out/"/>
+    <id>http://rdoproject.org/blog/2016/04/naming-is-hard-or-who-let-the-vowels-out/</id>
+    <published>2016-04-13T14:00:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Alan Pevec</name>
+    </author>
+    <content type="html">&lt;p&gt;When &lt;a href="http://www.openstack.org/blog/2014/02/open-mic-spotlight-derek-higgins/"&gt;Derek Higgins&lt;/a&gt; started the &lt;a href="https://github.com/openstack-packages/DLRN/commit/496baa4eb177873ba1421c6fbd7cc7041bd584a4"&gt;tool&lt;/a&gt; to build OpenStack packages based on latest upstream aka "trunk" changes, the name Delorean seemed like a good choice: the tool is keeping older builds so you could "go back in time" like with a &lt;a href="https://en.wikipedia.org/wiki/DeLorean_time_machine"&gt;time machine&lt;/a&gt;, it's geeky enough and there's &lt;a href="https://en.wikipedia.org/wiki/DeLorean_Motor_Company#Manufacturing_facility"&gt;Irish connection&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Fast forward earlier this year, when this tool is used and maintained by the &lt;a href="https://www.rdoproject.org/community/"&gt;RDO team&lt;/a&gt; to build &lt;a href="https://trunk.rdoproject.org/"&gt;RDO trunk&lt;/a&gt; repositories, it was felt the time is right for the first release. And here is the first lesson when naming a (Python) project: check that name is available in &lt;a href="https://pypi.python.org/pypi"&gt;PyPI&lt;/a&gt; and reserve it! Unfortunately, it turned that name Delorean was already &lt;a href="https://pypi.python.org/pypi/Delorean"&gt;taken by another project&lt;/a&gt;. Next, lesson two: check if there is an active company using that name to avoid any possibility of trademark issues! In this case, a new company &lt;a href="https://en.wikipedia.org/wiki/DeLorean_Motor_Company#Today"&gt;got rights for the original DMC (TM)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href="https://www.rdoproject.org/community/community-meeting/"&gt;RDO community meeting&lt;/a&gt; we decided to start collecting new name proposals and came up with the &lt;a href="https://etherpad.openstack.org/p/RDO-Delorean-rename"&gt;list&lt;/a&gt; more or less in the same time travel and BTTF theme. The first proposal was &lt;a href="https://es.wikipedia.org/wiki/Condensador_de_flujo"&gt;fluzo&lt;/a&gt; by our Spanish-speaking folks but that was dismissed after finding out there is a company with exactly that name! Next was OUTATIME, the DeLorean time machine's license plate text, but there's actually a real movie with that name coming soon, so it was discarded to avoid confusion and possible trademark issues. Finally, staying with the license plate idea, DLRN was chosen: written as DLRN but you can read it Delorean.&lt;/p&gt;
+
+&lt;p&gt;The RDO community has already started work towards replacing mentions of "Delorean" in documentation, websites, code, and repositories. As a special case references mentioning "Delorean repository" will be renamed as "RDO trunk repository" to better describe the content.&lt;/p&gt;
+
+&lt;p&gt;P.S. The answer to the question in the title is dprince! &lt;a href="https://meetbot.fedoraproject.org/rdo/2016-03-09/rdo_meeting_%282016-03-09%29.2016-03-09-15.01.log.html#l-141"&gt;1&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+</feed>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Newbie in RDO: one size doesn't fit all &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='amoralej' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content="Newbie in RDO: one size doesn't fit all" property='og:title'>
+<meta content='As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to RDO faq, the main goal is to maintain a freely-available...' property='og:description'>
+<meta content='http://rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/' property='og:url'>
+<meta content='2016-05-30T15:18:23Z' property='article:published_time'>
+<meta content='amoralej' property='article:author:username'>
+<meta content='openstack' property='article:tag'>
+<link href='/blog/tag/openstack.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<meta content='rdo' property='article:tag'>
+<link href='/blog/tag/rdo.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<meta content='repos' property='article:tag'>
+<link href='/blog/tag/repos.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content="Newbie in RDO: one size doesn't fit all" name='twitter:title'>
+<meta content='As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to RDO faq, the main goal is to maintain a freely-available...' name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Newbie in RDO: one size doesn't fit all
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/amoralej/">amoralej</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-05-30T15:18:23Z'>
+Monday 30 May
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to <a href="https://www.rdoproject.org/rdo/faq/">RDO faq</a>, the main goal is to maintain a freely-available, community-supported distribution of OpenStack based on RPM packages able to run Red Hat Enterprise Linux, CentOS, Fedora, and their derivatives. But the RDO community is diverse and different use patterns have been found over the time with different requirements:</p>
+
+<ul>
+  <li>Organizations running production OpenStack clouds with community support require a stable distribution.</li>
+  <li>Organizations running production environments with community or enterprise-grade distributions require sometimes an up-to-date distribution to test recent functionalities and plan the future of their cloud deployments.</li>
+  <li>Developers require up-to-date distribution to test their changes and run their CI jobs.</li>
+  <li>Packagers need to have full control over the packaging process.</li>
+</ul>
+
+<p>Providing a suitable distribution for all these scenarios is not an easy task and the RDO community ended up with two different distribution set of repos targetting different purposes:</p>
+
+<h3 id="rdo-cloudsig-repos">RDO CloudSIG repos</h3>
+<p>Provide a set of stable OpenStack packages through CentOS CloudSIG repos based on CBS, <a href="https://wiki.centos.org/HowTos/CommunityBuildSystem">CentOS Community Build System</a>:</p>
+
+<ul>
+  <li>The RDO CloudSIG repos are only published after GA of a upstream release (only stable branches are used, not master).</li>
+  <li>New packages are created only when a new point release is published (release tag created) on upstream stable repositories. The RDO community is currently working to automate as much as possible the process to build these packages in rpmfactory.</li>
+  <li>In addition to the vanilla upstream code, some patches may be applied during packaging:
+    <ul>
+      <li>Fixes for security issues or critical bugs not backported upstream. Note that an upstream-first policy is applied so these patches will be applied only after merged in upstream master.</li>
+      <li>Patches required for the packaging process.</li>
+    </ul>
+  </li>
+  <li>Packages are created through a controlled workflow. This is accomplished by koji (the technology behind CBS) which ensures reproducibility of the building process by:
+    <ul>
+      <li>Creating a self-contained build environment (buildroot) that provides all the dependencies by a controlled package. No network access exist int this build environment.</li>
+      <li>Recording both the spec file defining the package to be built and the packages included in the buildroot. This information allows to recreate exactly the same build environment to create the package at a later point in time.</li>
+    </ul>
+  </li>
+  <li>The criteria for pubishing any new release includes both thechnical (a set of CI jobs must pass as aggreed in <a href="https://meetbot.fedoraproject.org/rdo/2016-04-06/rdo_meeting_%282016-04-06%29.2016-04-06-15.00.html">RDO community meeting</a>) and non-technical requirements (documentation, etc…).</li>
+</ul>
+
+<p>This is probably what you want to use for your stable cloud with a community-supported OpenStack distribution and what you will use following the <a href="http://docs.openstack.org/mitaka/install-guide-rdo/environment-packages.html">official upstream install guide</a> or <a href="https://www.rdoproject.org/install/">RDO docummentation</a> to deploy and manage OpenStack.</p>
+
+<h3 id="rdo-trunk-repos">RDO Trunk repos</h3>
+<p>Provide RPM package repositories for OpenStack projects as close as possible to the vanilla upstream code in order to test any change and catch any bug or impact on packaging as soon as possible. These packages are built when a commit is merged in upstream master or any of the supported stable branches. This means that new packages are provided even during the development phase of a new release (before GA). Once a build is done, a set of CI jobs is passed to validate installation and basic functionalities. As part of RDO Trunk we provide different repos for CentOS 7 under http://trunk.rdoproject.org/centos7-&lt;release&gt;/ :</p>
+
+<ul>
+  <li><strong>consistent:</strong> provides the latest snapshot of packages successfully built (i.e. https://trunk.rdoproject.org/centos7-master/consistent/).</li>
+  <li><strong>current-passed-ci:</strong> provides the latest snapshot of packages built and with CI jobs successfully passed (i.e. https://trunk.rdoproject.org/centos7-master/current-passed-ci/).</li>
+  <li><strong>current-tripleo:</strong> provides the latest snapshot of packages tested by specific TripleO CI jobs on master branch (https://trunk.rdoproject.org/centos7-master/current-tripleo/)</li>
+</ul>
+
+<p>Currently (may '16'), &lt;release&gt; can be master, mitaka or liberty.</p>
+
+<p>As operators, these repos may not be the best option to run a stable OpenStack cloud but it can be a good choice in some cases:</p>
+
+<ul>
+  <li>You are interested in deploying an environment to test latest changes in OpenStack code</li>
+  <li>You need to quickly apply a patch that has been merged upstream and can't wait until it's included in a point release and is properly packaged in RDO CloudSIG repos. Note that "current-passed-ci" repos are recommended in this case.</li>
+</ul>
+
+<p>If you are a OpenStack developer, using RDO trunk may be a good option to build your environments with latest vanilla upstream code.</p>
+
+<p>Finally, if you are a packager, you probably want to know how the build process went for a specific commit or even to perform an installation based on it. RDO also provides both build reports and RPM repos based on each commit for both CentOS and Fedora from <a href="http://trunk.rdoproject.org">http://trunk.rdoproject.org</a>.</p>
+
+<p><a href="http://blogs.rdoproject.org/author/fred">Fred</a> wrote an excelent <a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future">post</a> describing how DLRN (f.k.a. delorean) builds packages for RDO trunk repos.</p>
+
+<p>If you are interested in the details about how to build RDO packages, you'll find a lot of interesting information in <a href="https://www.rdoproject.org/documentation/packaging/">RDO documentation</a>.</p>
+
+<p>And remember that if you are looking for enterprise-level support, or information on partner certification, Red Hat also offers <a href="https://redhat.com/openstack">Red Hat Enterprise Linux OpenStack Platform</a>.</p>
+
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/repos/">repos</a></li>
+</div>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2016-04-08-new-in-rdo-repos-one-size-doesn-t-fit-all.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 30 May 2016 17:04 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Redhat</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/redhat.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Why does Red Hat contribute to RDO?</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/why-does-red-hat-contribute-to-rdo/"/>
+    <id>http://rdoproject.org/blog/2016/02/why-does-red-hat-contribute-to-rdo/</id>
+    <published>2016-02-04T11:20:56+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Nick Barcet</name>
+    </author>
+    <content type="html">&lt;p&gt;Red Hat's philosophy is 'Upstream First'. When we participate in an open source project, our contributions go into the upstream project first, as a prerequisite to deliver it in the downstream offering. Our continued focus, over the past years and in the future, is to reduce to a bare minimum the differences between Upstream, RDO and RHEL OpenStack Platform at General Availabilty time, as we believe this is the only way we can maximise our velocity in delivering new features. In doing so, we, as any successful enterprise would do, need to focus our efforts on what matters in respect to our "downstream" strategy, and it means that we do prioritize our efforts accordingly as we are contributing particular features and fixes.&lt;/p&gt;
+
+&lt;p&gt;Thus, it's useful to consider why Red Hat participates in RDO in the specific ways that we do.&lt;/p&gt;
+
+&lt;p&gt;Red Hat is focusing on delivering a distribution of OpenStack targeting Enterprise private clouds and Telco NFVi needs. In order to do so, we invest on the upstream features that are the most commonly requested by our user base and by our investigations on the needs of these markets. Common themes on these markets are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;easy and automatizable deployments&lt;/li&gt;
+  &lt;li&gt;life cycle and upgrade management, limiting down time&lt;/li&gt;
+  &lt;li&gt;optional intergrated operational tools&lt;/li&gt;
+  &lt;li&gt;high availability of the control plane&lt;/li&gt;
+  &lt;li&gt;optional high availability of VMs&lt;/li&gt;
+  &lt;li&gt;disaster recovery scenarios&lt;/li&gt;
+  &lt;li&gt;scalability &amp;amp; composability of deployments&lt;/li&gt;
+  &lt;li&gt;multi-site deployments&lt;/li&gt;
+  &lt;li&gt;performance improvements in networking, storage and compute&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We are also keen to enable integration of OpenStack with third party products below (storage, networking, compute, etc…) and above (management, orchestration, reporting, etc..) through well defined and stable interfaces defined upstreams, and using upstream developed integration, so that those integration are the easiest to consume by our customers and allowing them as much choice as possible at all level of the stack.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Draw day 2: Congratulations to Jean-Francois Saucier!</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/06/rdo-draw-day-2-congratulations-to-jean-francois-saucier/"/>
+    <id>http://rdoproject.org/blog/2013/06/rdo-draw-day-2-congratulations-to-jean-francois-saucier/</id>
+    <published>2013-06-18T10:37:56+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;The lucky winner of the second Nexus 4 phone which we gave away as part of the Red Hat Summit draw at the RDO stand went to Jean-François Saucier, a systems and security analyst with DJJ Consultants. He went home from the Summit the proud owner of a new phone.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Jean-Francois Saunier" src="http://farm6.staticflickr.com/5340/9076467558_a3bff5b7f3_n.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations to Jean-François! Thanks for your interest in RDO.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>OpenStack and RDO at the Red Hat Summit</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/06/openstack-and-rdo-at-the-red-hat-summit/"/>
+    <id>http://rdoproject.org/blog/2013/06/openstack-and-rdo-at-the-red-hat-summit/</id>
+    <published>2013-06-05T14:47:32+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;Next week, the Red Hat Summit will be taking place in Boston. There are lots of OpenStack related activities around the summit, including &lt;a href="http://www.redhat.com/summit/sessions/index.html#selected=topic-openstack"&gt;20 presentations&lt;/a&gt;, a practical lab, and RDO, Red Hat OpenStack and IaaS stands where you can meet developers, get demos and find out what's going on in the OpenStack world.&lt;/p&gt;
+
+&lt;p&gt;Ruth Suehle put together &lt;a href="http://community.redhat.com/where-to-catch-openstack-at-red-hat-summit/"&gt;a summary of some of the OpenStack related content happening around the Summit&lt;/a&gt; over on &lt;a href="http://community.redhat.com"&gt;community.redhat.com&lt;/a&gt; - go find out more there!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>A Community for Using OpenStack with Red Hat: RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/a-community-for-using-openstack-with-red-hat-rdo/"/>
+    <id>http://rdoproject.org/blog/2013/05/a-community-for-using-openstack-with-red-hat-rdo/</id>
+    <published>2013-05-07T11:01:29+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://www.redhat.com/about/news/archive/2013/5/a-community-for-using-openstack-with-red-hat-rdo"&gt;A new article on the RDO project&lt;/a&gt; was published on the Red Hat blog today, covering what is RDO, who it's for, and how it relates to Red Hat's OpenStack product.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RDO offers a pure community-supported upstream OpenStack experience with the latest stable 
+release (Grizzly) from OpenStack.org, packaged, integrated, and easy to deploy on Red Hat platforms.&lt;/p&gt;
+
+  &lt;p&gt;RDO is also intended to be a community—the best place to get information about running OpenStack
+on Red Hat Enterprise Linux, Fedora, or their derivatives, and to share knowledge with other
+OpenStack users on these same platforms. &lt;a href="http://rdoproject.org/"&gt;rdoproject.org&lt;/a&gt; is the best place to interact with
+other OpenStack users using Red Hat operating systems, and get access to the best information,
+answers, and community support focused on getting RDO running in your environment.&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+</feed>

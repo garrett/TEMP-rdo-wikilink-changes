@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Newbie in RDO (2): RDO Trunk from a bird's eye view &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='amoralej' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content="Newbie in RDO (2): RDO Trunk from a bird's eye view" property='og:title'>
+<meta content='Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my previous post if you still have doubts), my next goal was to have a clear high-level perspective...' property='og:description'>
+<meta content='http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/' property='og:url'>
+<meta content='2016-05-30T16:45:18Z' property='article:published_time'>
+<meta content='amoralej' property='article:author:username'>
+<meta content='openstack' property='article:tag'>
+<link href='/blog/tag/openstack.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<meta content='rdo' property='article:tag'>
+<link href='/blog/tag/rdo.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<meta content='trunk' property='article:tag'>
+<link href='/blog/tag/trunk.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content="Newbie in RDO (2): RDO Trunk from a bird's eye view" name='twitter:title'>
+<meta content='Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my previous post if you still have doubts), my next goal was to have a clear high-level perspective...' name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Newbie in RDO (2): RDO Trunk from a bird's eye view
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/amoralej/">amoralej</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2016-05-30T16:45:18Z'>
+Monday 30 May
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my <a href="https://www.rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/">previous post</a> if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.</p>
+
+<p>Although there is a lot of detailed and great information in different sources (see <a href="####More info">More info</a> at the end of the post), it may be useful for others to provide a high level and global description of it. In this post I'll focus in the process around RDO Trunk repositories as shown in the following diagram:</p>
+
+<p><img alt="RDO high level" src="/images/blog/rdo-trunk-high-level.png" /></p>
+
+<h2 id="code-repositories">Code repositories</h2>
+
+<h3 id="upstream-code">Upstream Code</h3>
+
+<p>As for any packaging project, everything starts with the upstream code. For RDO, it is provided by OpenStack projects in https://github.com/openstack/&lt;project&gt; . The process to manage these repos is defined by OpenStack and can be found in their <a href="http://docs.openstack.org/infra/manual/developers.html">Developer Guide</a> and the <a href="http://docs.openstack.org/project-team-guide/release-management.html">Release Process</a>.</p>
+
+<p>In RDO, these repositories are used to fetch the code that will be packaged for both RDO Trunk and CloudSIG in different ways:</p>
+
+<ul>
+  <li>For RDO Trunk, the automatic packager, DLRN clones the involved git repo.</li>
+  <li>For RDO CloudSIG, the specific tarball for the point release to be packaged will be fetched at packaging time.</li>
+</ul>
+
+<h3 id="distgit-repo">Distgit repo</h3>
+
+<p>As described in the great <a href="https://www.rdoproject.org/packaging/rdo-packaging.html">RDO packaging guide</a>, ditgit is the git repository "where the .spec file lives" . For RDO, distgit repos are located in https://review.rdoproject.org/r/#/admin/projects/openstack/&lt;project&gt;-distgit (you can see the entire list <a href="https://review.rdoproject.org/r/#/admin/projects/?filter=distgit">here</a>). Typically they contain the spec files used to build RPM packages, systemd unit files and some system config files (i.e. logrotate or sudoers configuration).</p>
+
+<p>Because of the reproducibility requirements of RDO CloudSIG packaging, spec files for these and trunk repos differ slightly:</p>
+
+<ul>
+  <li>Changelog, version and release fields for the trunk is automatically generated while it must be manually created for stable packages.</li>
+  <li>The source code is fetched from a versioned tarball for stable.</li>
+</ul>
+
+<p>Also, we usually have different requirements for each OpenStack version so different branches are created based on version and RDO "flavor" (trunk or CloudSIG):</p>
+
+<ul>
+  <li>rpm-&lt;version&gt; : is used to package RDO trunk (version can be master, mitaka or liberty )</li>
+  <li>&lt;version&gt;-rdo : is used for RDO CloudSIG (as this is only for released version, master-rdo does not exist)</li>
+</ul>
+
+<p>To ensure proper management of distgit repos, required changes follow a review process in <a href="https://review.rdoproject.org/r/">RDO rpmfactory</a> quite similar to the OpenStack project. Before merging the change in the actual repository, every request (review) will trigger a test job in the <a href="https://review.rdoproject.org/jenkins/">CI system</a> that will post its -/+1 vote depending on the results and will require a core contributor to review and validate it.</p>
+
+<h2 id="dlrn-automatic-packager-for-rdo-trunk">DLRN: automatic packager for RDO Trunk</h2>
+
+<p>Packaging for RDO trunk is done by <a href="https://github.com/openstack-packages/DLRN">DLRN</a>, a tool to build RPM packages on each commit merged in a set of configurable repositories. DLRN uses rdopkg to retrieve the metadata and repositories associated with each package (code and distgit) and mock to carry out the actual build.</p>
+
+<p>NVR for packages generated by DLRN follows some rules:</p>
+
+<ul>
+  <li><strong>Version</strong> is set to MAJOR.MINOR.PATCH of the <em>next</em> upstream version.</li>
+  <li><strong>Release</strong> is 0.&lt;timestamp&gt;.&lt;short commit hash&gt;</li>
+</ul>
+
+<p>For example, python-novaclient-3.4.1-0.20160412103538.77f214b.el7.centos.noarch.rpm is a package containing code released after GA of 3.4.0 and before 3.4.1 containing code until upstream commit <a href="https://github.com/openstack/python-novaclient/commit/77f214bdbd7d9e8ba935ace1dce0290061ddd737">77f214b</a>.</p>
+
+<p>Once the package has been successfully built, DLRN creates a yum repository containing the latest version of every package successfully built at that time. This repo will not change and is created in a unique directory based on the specific commit hash. These repos will be available if a user wants to test an installation based on a specific commit. Finally, DLRN manages two "shorcuts" for repositories:</p>
+
+<ul>
+  <li><strong>current</strong>: will point to the last created per-commit repo.</li>
+  <li><strong>consistent</strong>: current repo, may not contain the latest versions of packages that failed to build (i.e. let's assume that packaging of python-nova package failed while a later build of python-cinder succeed, in this case, current would contain the latest upstream version of cinder but not for nova). To avoid this situation, a new pointer "consistent" is managed by DLRN and will point to the last snapshot that contained package versions in sync with upstream versions.</li>
+</ul>
+
+<p>Also, DLRN creates some html reports that can be used to check the results of each single build and provides the logs for troubleshooting any error while building the package.</p>
+
+<h2 id="continuous-integration-in-rdo-trunk">Continuous Integration in RDO Trunk</h2>
+
+<p>To ensure the packages built by DLRN work as expected, the RDO project manages some CI jobs pipeline in the <a href="https://ci.centos.org/view/rdo/">CentOS CI</a> system. These jobs are created using jenkins-job-builder with the configuration managed in <a href="https://github.com/rdo-infra/ci-config">rdo-infra github</a>. These jobs deploy and test RDO in different scenarios (packstack, tripleo quickstart and puppet) based mostly on WeIRDO (take a look into <a href="http://weirdo.readthedocs.org/en/latest/how.html">weirdo documentation</a>) using the <strong>consistent</strong> repository. If all tests in the pipeline success, the content of the tested repo will be promoted as <strong>current-passed-ci</strong>. In this way, this link always points to the latest consistent repo that passed the CI jobs.</p>
+
+<p>Additionally, <strong>current-tripleo</strong> repo is managed by a set of jobs focused on testing TripleO installer on the current-passed-ci repo. When those tests pass, this repo is promoted by this CI pipeline.</p>
+
+<h2 id="access-to-repositories">Access to repositories</h2>
+
+<p>All the repositories and content managed by DLRN and CI jobs are directly accesible for public usage from DLRN server in <a href="https://trunk.rdoproject.org/">https://trunk.rdoproject.org/</a>. This includes:</p>
+
+<ul>
+  <li><strong>consistent</strong> repos from http://trunk.rdoproject.org/centos7-&lt;release&gt;/consistent/</li>
+  <li><strong>current-passed-ci</strong> repos from http://trunk.rdoproject.org/centos7-&lt;release&gt;/current-passed-ci/</li>
+  <li><strong>current-tripleo</strong> repos from http://trunk.rdoproject.org/centos7-master/current-tripleo/</li>
+  <li>By-commit repos http://trunk.rdoproject.org/centos7-&lt;release&gt;/AB/CD/ABCD…Z (where AB are the two first characters of the commit hash, CD the following two and ABCD…Z the entire hash). On each hash repository directory a delorean.repo file is created containing the yum configuration required to enable it easily.</li>
+  <li>html formated build reports and build logs to help packagers to troubleshoot issues that may arise.</li>
+</ul>
+
+<h4 id="more-info">More info</h4>
+
+<p><a href="https://www.rdoproject.org/documentation/rdo-packaging/">RDO Packaging guide</a><br />
+<a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future">Delorean: OpenStack packages from the future by Frederic Lepied</a><br />
+<a href="https://github.com/openstack-packages/DLRN/tree/master/doc/source">DLRN documentation</a><br />
+<a href="http://redhat.slides.com/dmoreaus/testing-openstack-is-hard#/">Testing Openstack is Hard by David Moreau Simard</a></p>
+
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/openstack/">openstack</a></li>
+<li><a href="/blog/tag/rdo/">rdo</a></li>
+<li><a href="/blog/tag/trunk/">trunk</a></li>
+</div>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2016-04-12-newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 30 May 2016 17:04 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

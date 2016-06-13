@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Testing</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/testing.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>David Moreau Simard at OpenStack Montreal</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/"/>
+    <id>http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/</id>
+    <published>2016-02-25T15:09:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;David Moreau Simard giving his talk at &lt;a href="http://montrealopenstack.org/"&gt;OpenStack Montreal&lt;/a&gt; about RDO CI:&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/XAWLm3jP7Mg" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO Mitaka 3 test day, March 10th, 11th</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/"/>
+    <id>http://rdoproject.org/blog/2016/02/rdo-mitaka-3-test-day-march-10th-11th/</id>
+    <published>2016-02-23T15:31:05+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;TL;DR:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;Mitaka 3 test day, March 10, 11&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/"&gt;On-site test day in Brno&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4O8KvC66eeU"&gt;Demo of deploying with TripleO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;Mitaka milestone 3&lt;/a&gt; is scheduled for the week of February 29 - March 4 and, as per usual, we're planning a test day about a week out from that - March 10th and 11th. We've got the usual &lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;page of instructions&lt;/a&gt; for testing.&lt;/p&gt;
+
+&lt;p&gt;This time, however, we have two bonus events.&lt;/p&gt;
+
+&lt;p&gt;First, we're delighted that Eliska Malikova is putting together an &lt;a href="https://www.rdoproject.org/testday/mitaka/brno-on-site/"&gt;on-site test day at the Red Hat office in Brno&lt;/a&gt;, for anyone in that general area. If you wish to attend, &lt;a href="https://www.eventbrite.com/e/rdo-on-site-test-day-brno-tickets-5934822213"&gt;please register&lt;/a&gt; so that we know how much pizza to order. (Attendance is limited to 50, so please register sooner rather than later.)&lt;/p&gt;
+
+&lt;p&gt;Second, as we attempt to get more people testing TripleO (formerly known as RDO Manager), John Trownbridge (that's Trown on IRC) will be doing a demo of the TripleO Quickstart. This will be conducted as a &lt;a href="https://www.youtube.com/watch?v=4O8KvC66eeU"&gt;YouTube live stream&lt;/a&gt; and will also be recorded, and available at that same location after the fact.&lt;/p&gt;
+
+&lt;p&gt;So, please, come help us ensure that Mitaka is the best RDO yet. As usual, we'll be on #rdo (on Freenode IRC), and here on rdo-list, to field any questions. Full details are on the &lt;a href="https://www.rdoproject.org/testday/mitaka/milestone3/"&gt;test day website&lt;/a&gt; and, as usual, we can use lots of help making the test case instructions better, so that more people can participate.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Automated API testing workflow</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/openstack-fuzztest/"/>
+    <id>http://rdoproject.org/blog/2015/11/openstack-fuzztest/</id>
+    <published>2015-11-13T15:00:00+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>TristanCacqueray</name>
+    </author>
+    <content type="html">&lt;p&gt;Services exposed to a network of any sort are in risk of security exploits.
+The API is the primary target of such attacks, and it is often abused by input that developers
+did not anticipate.&lt;/p&gt;
+
+&lt;p&gt;This article introduces security testing of Openstack services using
+&lt;a href="https://en.wikipedia.org/wiki/Fuzz_testing#Techniques"&gt;fuzzing techniques&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This article will demonstrate how OpenStack services could be automatically tested for security
+defects.
+First, I will introduce a set of tools called RestFuzz to demonstrate how it works in practice.
+Second, I will discuss the limitations of RestFuzz and how more advanced techniques could be used.&lt;/p&gt;
+
+&lt;p&gt;The end goal is to design an automatic test to prevent a wide range of security bugs to enter
+OpenStack's source code.&lt;/p&gt;
+
+&lt;h1 id="how-a-fuzzer-works"&gt;How a fuzzer works&lt;/h1&gt;
+
+&lt;p&gt;A fuzzer's purpose is to discover issues like
+&lt;a href="https://security.openstack.org/ossa/OSSA-2015-012.html"&gt;OSSA 2015-012&lt;/a&gt; by injecting random
+inputs into the target program.
+This advisory shows how a single invalid input, accepted by the API, broke the entire L2 network
+service.
+While code review and functional tests are not good at spoting such mistake, a fuzz test is a
+proven strategies to detect security issues.&lt;/p&gt;
+
+&lt;p&gt;A fuzzer requires at least two steps: first, inputs need to be generated and fed to the
+service's input; and second, errors needs to be detected.&lt;/p&gt;
+
+&lt;h2 id="openstack-api-description"&gt;OpenStack API description&lt;/h2&gt;
+
+&lt;p&gt;To reach the actual service code, a fuzzer will need to go through the REST interface routing,
+which is based on HTTP method and url.
+One way to effectively hit the interesting parts of the service code is to replay known valid
+HTTP queries.
+For example, a fuzzer could re-use HTTP requests created by
+&lt;a href="http://git.openstack.org/cgit/openstack/tempest"&gt;tempest&lt;/a&gt; functional tests.
+However, this method is limited by its trace quality.
+Instead, RestFuzz works the other way around and generates valid queries based on API definitions.
+That way, it covers actions that functional tests do not use, such as unusual combinaisons of
+parameters.&lt;/p&gt;
+
+&lt;p&gt;To keep the process simple, RestFuzz will need a description of the API that defines the methods'
+endpoint and inputs' types.
+While in theory the API description could be generated dynamically, it's easier to write it down
+by hand.&lt;/p&gt;
+
+&lt;p&gt;As a C function description, a REST API method description could be written in YAML format like
+this:&lt;/p&gt;
+
+&lt;pre class="highlight yaml"&gt;&lt;code&gt;  &lt;span class="pi"&gt;-&lt;/span&gt; &lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;network_create'&lt;/span&gt;
+    &lt;span class="s"&gt;url&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="pi"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;POST'&lt;/span&gt;&lt;span class="pi"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;v2.0/networks.json'&lt;/span&gt;&lt;span class="pi"&gt;]&lt;/span&gt;
+    &lt;span class="s"&gt;inputs&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+      &lt;span class="s"&gt;network&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+        &lt;span class="s"&gt;name&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="pi"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;required'&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;True'&lt;/span&gt;&lt;span class="pi"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;type'&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;string'&lt;/span&gt;&lt;span class="pi"&gt;}&lt;/span&gt;
+        &lt;span class="s"&gt;admin_state_up&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="pi"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;type'&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;bool'&lt;/span&gt;&lt;span class="pi"&gt;}&lt;/span&gt;
+    &lt;span class="s"&gt;outputs&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt;
+      &lt;span class="s"&gt;network_id&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="pi"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;type'&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;resource'&lt;/span&gt;&lt;span class="pi"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;json_extract'&lt;/span&gt;&lt;span class="pi"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;lambda&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;x:&lt;/span&gt;&lt;span class="nv"&gt; &lt;/span&gt;&lt;span class="s"&gt;x["network"]["id"]'&lt;/span&gt;&lt;span class="pi"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This example from the &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=api/network.yaml"&gt;network api&lt;/a&gt;
+defines a method called "network_create" using:
+* The HTTP method and url to access the API.
+* The description of the method's parameters' name and types.
+* The description of the expected outputs along with a lambda gadget to ease value extraction
+  from JSON output.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/method.py"&gt;method object&lt;/a&gt;
+shows how to call network_create based on the above description.
+Note that the call procedure takes a dictionary as JSON inputs.
+The next chapter will cover how to generate such inputs dynamically.&lt;/p&gt;
+
+&lt;h2 id="input-generation"&gt;Input generation&lt;/h2&gt;
+
+&lt;p&gt;An input constructor needs to be implemented for each type.
+The goal is to generate data known to cause application errors.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/input_generator.py#l277"&gt;input_generator object&lt;/a&gt;
+shows the api call parameters can be dynamically generated by using the method input description
+shown above. Here are a couple of input generators:&lt;/p&gt;
+
+&lt;pre class="highlight python"&gt;&lt;code&gt;    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;gen_string&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="n"&gt;chunk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"/dev/urandom"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;512&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;chunk&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'ignore'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;gen_address_pair&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s"&gt;"ip_address"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;generate_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"cidr"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="s"&gt;"mac_address"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;generate_input&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"mac_address"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that "resource" types are UUID data, which can't be randomly generated.
+Thus, the fuzzer needs to keep track of method outputs to reuse valid UUID whenever possible.&lt;/p&gt;
+
+&lt;p&gt;The fuzzer can now call API methods with random inputs, but, it still needs to monitor
+service API behavior.
+This leads us to the second steps of error detection.&lt;/p&gt;
+
+&lt;h2 id="openstack-error-detection"&gt;OpenStack error detection&lt;/h2&gt;
+
+&lt;p&gt;This chapter covers a few error detection mechanisms that can be used with OpenStack components.&lt;/p&gt;
+
+&lt;h3 id="http-error-code"&gt;HTTP Error code&lt;/h3&gt;
+
+&lt;p&gt;OpenStack services' API will return theses important error codes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;401 tells the keystone token needs to be refreshed&lt;/li&gt;
+  &lt;li&gt;404 tells a UUID is no longer valid&lt;/li&gt;
+  &lt;li&gt;500 tells unexpected error&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="tracebacks-in-logs"&gt;Tracebacks in logs&lt;/h3&gt;
+
+&lt;p&gt;Finding tracebacks in logs is usually a good indicator that something went wrong.
+Moreover, using file names and line numbers, a traceback identifier could be computed to
+detect new unique errors.
+The &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/health.py"&gt;health object&lt;/a&gt;
+features a collect_traceback function.&lt;/p&gt;
+
+&lt;h3 id="api-service-process-usage"&gt;API service process usage&lt;/h3&gt;
+
+&lt;p&gt;Finaly cgroups can be used to monitor API services memory and CPU usage.
+High CPU loads or constant growth of reserved memory are also good indicators that something
+went wrong.
+However this requires some mathematical calculations which are yet to be implemented.&lt;/p&gt;
+
+&lt;h2 id="fuzzing-workflow"&gt;Fuzzing Workflow&lt;/h2&gt;
+
+&lt;p&gt;All together, a fuzzing process boils down to:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;choose a random method&lt;/li&gt;
+  &lt;li&gt;call method using random inputs&lt;/li&gt;
+  &lt;li&gt;probe for defect&lt;/li&gt;
+  &lt;li&gt;repeat&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/fuzzer.py"&gt;ApiRandomCaller object&lt;/a&gt;
+uses random.shuffle to search for random methods and returns an Event object to the main process
+&lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/cmd.py#l60"&gt;starting here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="restfuzz-features"&gt;RestFuzz features&lt;/h2&gt;
+
+&lt;p&gt;Console output:&lt;/p&gt;
+
+&lt;pre class="highlight shell"&gt;&lt;code&gt;  &lt;span class="nv"&gt;$ &lt;/span&gt;restfuzz --api ./api/network.yaml --health ./tools/health_neutron.py
+  &lt;span class="o"&gt;[&lt;/span&gt;2015-10-30 06:19:09.685] port_create: 201| curl -X POST http://127.0.0.1:9696/v2.0/ports.json -d &lt;span class="s1"&gt;'{"port": {"network_id": "652b1dfa-9bcb-442c-9088-ad1a821020c8", "name": "jav&amp;amp;#x0D;ascript:alert('&lt;/span&gt;XSS&lt;span class="s1"&gt;');"}}'&lt;/span&gt; -&amp;gt; &lt;span class="s1"&gt;'{"port": {"id": 2fc01817-9ec4-43f2-a730-d76b70aa4ea5"}}'&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;2015-10-30 06:19:09.844] security_group_rule_create: 400| curl -X POST http://127.0.0.1:9696/v2.0/security-group-rules.json -d &lt;span class="s1"&gt;'{"security_group_rule": {"direction": "ingress", "port_range_max": 9741, "security_group_id": "da06e93b-87a3-4d90-877b-047ab694addb"}}'&lt;/span&gt; -&amp;gt; &lt;span class="s1"&gt;'{"NeutronError": {"message": "Must also specifiy protocol if port range is given.", "type": "SecurityGroupProtocolRequiredWithPorts", "detail": ""}}'&lt;/span&gt;
+  &lt;span class="o"&gt;[&lt;/span&gt;2015-10-30 06:19:10.123] security_group_create: 500| curl -X POST http://127.0.0.1:9696/v2.0/security-groups.json -d &lt;span class="s1"&gt;'{"security_group": {"name": ["Dnwpdv7neAdvhMUcqVyQzlUXpyWyLz6cW2NPPyA6E8Z9FbvO9mVn1hs30rlabVjtVHy6yCQqpEp0xcF1AsWZYAPThstCZYebxKcJaiS7o7fS0GsvG3i8kQwNzOl5F1SiXBxcmywqI9Y6t0ZuarZI787gzDUPpPY0wKZL69Neb87mZxObhzx4sgWHIRGfsrtYTawd6dYXYSeajEDowcr1orVwJ6vY"]}}'&lt;/span&gt; -&amp;gt; &lt;span class="s1"&gt;'{"NeutronError": {"message": "Request Failed: internal server error while processing your request.", "type": "HTTPInternalServerError", "detail": ""}}'&lt;/span&gt;, /var/log/neutron/q-svc.log
+  File &lt;span class="s2"&gt;"/opt/stack/neutron/neutron/api/v2/resource.py"&lt;/span&gt;, line 83, &lt;span class="k"&gt;in &lt;/span&gt;resource
+    result &lt;span class="o"&gt;=&lt;/span&gt; method&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;request&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;request, &lt;span class="k"&gt;**&lt;/span&gt;args&lt;span class="o"&gt;)&lt;/span&gt;
+  File &lt;span class="s2"&gt;"/opt/stack/neutron/neutron/api/v2/base.py"&lt;/span&gt;, line 391, &lt;span class="k"&gt;in &lt;/span&gt;create
+    &lt;span class="nv"&gt;allow_bulk&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;self._allow_bulk&lt;span class="o"&gt;)&lt;/span&gt;
+  File &lt;span class="s2"&gt;"/opt/stack/neutron/neutron/api/v2/base.py"&lt;/span&gt;, line 652, &lt;span class="k"&gt;in &lt;/span&gt;prepare_request_body
+    attr_vals[&lt;span class="s1"&gt;'validate'&lt;/span&gt;&lt;span class="o"&gt;][&lt;/span&gt;rule]&lt;span class="o"&gt;)&lt;/span&gt;
+  File &lt;span class="s2"&gt;"/opt/stack/neutron/neutron/extensions/securitygroup.py"&lt;/span&gt;, line 195, &lt;span class="k"&gt;in &lt;/span&gt;_validate_name_not_default
+  ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Network topology after one hour of fuzz test:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Random Network Topology" src="/images/blog/restfuzz_network_topology.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Interesting features:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=tree;f=api"&gt;API description&lt;/a&gt; works for block storage (Cinder), image (Glance),
+network (Neutron) and dns (Designate).&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/input_generator.py"&gt;Input generator&lt;/a&gt; randomly inter-changes types using
+a "chaos monkey" behavior to abuse the API even more.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/health.py"&gt;Health plugin&lt;/a&gt; implements custom probe per services.&lt;/li&gt;
+  &lt;li&gt;Simple workflow where methods are called in random order. An early version tried to build a
+graph to walk through the API more efficiently, but it turns out that calling method randomly
+is efficient enough and it keeps the code much more simple.
+See &lt;a href="images/blog/restfuzz_graph.jpg"&gt;this image&lt;/a&gt; for a dependency graph of the network API.&lt;/li&gt;
+  &lt;li&gt;More importantly, it already found a bunch of security defect like
+&lt;a href="https://bugs.launchpad.net/neutron/+bug/1486565"&gt;bug #1486565&lt;/a&gt; or
+&lt;a href="https://bugs.launchpad.net/neutron/+bug/1471957"&gt;bug #1471957&lt;/a&gt;.
+The full list is available in the &lt;a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=README"&gt;README&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, RestFuzz is a proof of concept and it's not ready to be used as an efficient
+gate mechanism.
+The next part of this article discusses the limitations reached and what needs to be done
+to get something awesome!&lt;/p&gt;
+
+&lt;h1 id="limitations-and-improvments"&gt;Limitations and improvments&lt;/h1&gt;
+
+&lt;h2 id="its-built-from-the-ground-up"&gt;It's built from the ground up&lt;/h2&gt;
+
+&lt;p&gt;RestFuzz currently only requires python-requests and PyYAML.
+A good chunk of the code could use frameworks such as the
+&lt;a href="http://git.openstack.org/cgit/openstack/syntribos"&gt;syntribos&lt;/a&gt; and/or
+&lt;a href="https://github.com/cdent/gabbi"&gt;gabbi&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="api-description"&gt;API description&lt;/h2&gt;
+
+&lt;p&gt;Managing API descriptions is a great limitation, as the fuzzer will only be as good as the API
+description.
+OpenStack really needs to provide us the API description in a unified and consistent format:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="http://developer.openstack.org/api-ref.html"&gt;API Documentation&lt;/a&gt; does not describe the input
+object precisely enough, making it impossible to use automatically.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://git.openstack.org/cgit/openstack/nova/tree/doc/api_samples"&gt;Service documentation&lt;/a&gt; is
+sporadic and REST API routing is done differently in most OpenStack projects.&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://developer.openstack.org/"&gt;Command line tools&lt;/a&gt; may provide a good base, but they usualy
+omit unusual parameters and service extensions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Having an unified API description will give a fuzzer bigger code coverage.&lt;/p&gt;
+
+&lt;h2 id="complex-types-generation"&gt;Complex types generation&lt;/h2&gt;
+
+&lt;p&gt;A formal description of API inputs is a real challenge.
+Some services like Heat or Sahara can take flat files as input that would requires dedicated
+input generators.
+Otherwise, services like Designate need coherent inputs to pass early checks.
+E.G., the domain name used at zone creation needs to be reused for record creation.&lt;/p&gt;
+
+&lt;p&gt;In theory, this limitation could be mitigated using better instruments like guided fuzzing.&lt;/p&gt;
+
+&lt;h2 id="guided-fuzzing"&gt;Guided fuzzing&lt;/h2&gt;
+
+&lt;p&gt;A modern fuzzer like &lt;a href="http://lcamtuf.coredump.cx/afl/"&gt;American Fuzzy Lop&lt;/a&gt; (afl) is able to
+monitor which instructions are executed by the target program and then use
+"rock-solid instrumentation-guided genetic algorithm" to produce inputs.
+In short, afl can generate valid input out of thin air without any description.&lt;/p&gt;
+
+&lt;p&gt;However afl is difficult to put in place for network services because it requires services'
+modification.
+&lt;a href="http://jwilk.net/software/python-afl"&gt;python-afl&lt;/a&gt; bridges the Python interpreter with the
+fuzzer, and it may be interesting for OpenStack services testing.&lt;/p&gt;
+
+&lt;h2 id="anomalies-detection-probes"&gt;Anomalies detection probes&lt;/h2&gt;
+
+&lt;p&gt;Better watchdog processes could be used in paralel to detect silent logic flaws.
+Stacktraces and 500 errors most often reveal basic programing flaws.
+If one of the following actions fail, it's a good sign something is defective:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Boot an instance, assign an ip and initiate connection&lt;/li&gt;
+  &lt;li&gt;Test methods with expected output like with
+&lt;a href="http://gabbi.readthedocs.org/en/latest/example.html"&gt;gabbi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Run functional tests&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="fuzzer-as-a-service"&gt;Fuzzer As A Service&lt;/h2&gt;
+
+&lt;p&gt;A fuzzer could also be implemented as an OpenStack service that integrates nicely with the
+following components:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Compute resources with Nova&lt;/li&gt;
+  &lt;li&gt;Database store with Trove&lt;/li&gt;
+  &lt;li&gt;Message bus for parallel testing with Zaquar&lt;/li&gt;
+  &lt;li&gt;Data processing with Sahara/Sparks&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="conclusion"&gt;Conclusion&lt;/h1&gt;
+
+&lt;p&gt;Fuzzing is a powerful strategy to pro-actively detect security issues.
+Similar to &lt;a href="https://wiki.openstack.org/wiki/Security/Projects/Bandit"&gt;bandit&lt;/a&gt; the end goal is
+to have an automatic test to detect and prevent many kinds of code defect.&lt;/p&gt;
+
+&lt;p&gt;While RestFuzz is really just a naïve proof of concept, it nonetheless indicated important
+limitations such as the lack of API description.
+I would appreciate feedback and further would like to create an upstream community to implement
+OpenStack fuzz testing.&lt;/p&gt;
+
+&lt;p&gt;This effort could start as an offline process with automatic reporting of traceback and 500
+errors.
+But ultimately this really needs to be used as a gating system to prevent erroneous commits to
+be released.&lt;/p&gt;
+
+&lt;p&gt;I'd like to thank fellow Red Hat engineers Gonéri Le Bouder, Michael McCune, and George
+Peristerakis for their support and early reviews.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO test day summary</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-test-day-summary/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-test-day-summary/</id>
+    <published>2015-10-14T16:42:05+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;A big thanks to everyone that participated in the &lt;a href="http://beta.rdoproject.org/testday/rdo-test-day-liberty-02/"&gt;RDO Test Day&lt;/a&gt; over the last 48 hours. Here's a few statistics from the day.&lt;/p&gt;
+
+&lt;p&gt;29 people wrote 74 email messages to the &lt;a href="https://www.redhat.com/archives/rdo-list/2015-October/thread.html"&gt;rdo-list mailing list&lt;/a&gt;. (Of course, they weren't all about the test day, but many of them were.)&lt;/p&gt;
+
+&lt;p&gt;42 participants sent a collective 1074 messages to the #rdo IRC channel on Freenode.net. (Likewise, not all about test day.)&lt;/p&gt;
+
+&lt;p&gt;We had &lt;a href="http://tm3.org/liberty-test-day-bugs"&gt;23 new issues&lt;/a&gt; opened in the ticketing system.&lt;/p&gt;
+
+&lt;p&gt;Some people have put their day's experience in the &lt;a href="https://etherpad.openstack.org/p/rdo_test_day_oct_2015"&gt;etherpad&lt;/a&gt; and some have updated the &lt;a href="http://beta.rdoproject.org/testday/testedsetups-liberty-02/"&gt;Tested Scenarios page&lt;/a&gt;. If you didn't put your notes anywhere, please do update one of those in the coming day or two, so that we don't lose what we learned.&lt;/p&gt;
+
+&lt;p&gt;So, thanks to all of you. Particular thanks to trown for getting things rolling and herding the cats.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

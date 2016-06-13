@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Planet</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/planet.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blogs, week of April 4</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-4/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-4/</id>
+    <published>2016-04-04T21:42:19+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO engineers are blogging about lately&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Who can +2 a patch?&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You are trying to push along a patch…and it dawns on you that you have no idea who to ask. The answer is out there.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5s"&gt;http://tm3.org/5s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;The OpenStack Schizophrenia&lt;/strong&gt; by Julien Danjou&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When I started contributing to OpenStack, almost five years ago, it was a small ecosystem. There were no foundation, a handful of projects and you could understand the code base in a few days.
+Fast forward 2016, and it is a totally different beast. The project grew to no less than 54 teams, each team providing one or more deliverable. For example, the Nova and Swift team each one produces one service and its client, whereas the Telemetry team produces 3 services and 3 different clients.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5t"&gt;http://tm3.org/5t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Improving QEMU security part 1: crypto code consolidation&lt;/strong&gt; by Daniel P. Berrangé&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog is part 1 of a series I am writing about work I’ve completed over the past few releases to improve QEMU security related features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5u"&gt;http://tm3.org/5u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Improving QEMU security part 2: generic TLS support&lt;/strong&gt; by Daniel P. Berrangé&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog is part 2 of a series I am writing about work I’ve completed over the past few releases to improve QEMU security related features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5v"&gt;http://tm3.org/5v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Improving QEMU security part 3: securely passing in credentials&lt;/strong&gt; by Daniel P. Berrangé&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog is part 3 of a series I am writing about work I’ve completed over the past few releases to improve QEMU security related features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5w"&gt;http://tm3.org/5w&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Improving QEMU security part 4: generic I/O channel framework to simplify TLS&lt;/strong&gt; by Daniel P. Berrangé&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This blog is part 4 of a series I am writing about work I’ve completed over the past few releases to improve QEMU security related features.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5x"&gt;http://tm3.org/5x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;St. Louis OpenStack Meetup&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On Tuesday evening I had the privilege of addressing the St. Louis OpenStack Meetup group. I gave an Introduction to OpenStack presentation to about 30 attendees, many of whom were indeed OpenStack beginners, or just beginning to research what this OpenStack thing is all about.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5y"&gt;http://tm3.org/5y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FreeIPA for Tripleo&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;My last post showed how to allocate an additional VM for Tripleo. Now I’m going to go through the steps to deploy FreeIPA on it. However, since I went through all of the effort to write Ossipee and Rippowam, I am going to use those to do the heavy lifting.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5z"&gt;http://tm3.org/5z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Setup Docker Hypervisor on Multi Node DVR Cluster RDO Mitaka&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DVR &amp;amp;&amp;amp; Nova-Docker Driver (stable/mitaka) tested fine on RDO Mitaka build 20160329) with no issues described in previous notice for RDO Liberty&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/5-"&gt;http://tm3.org/5-&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of October 5</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/</id>
+    <published>2015-10-06T11:10:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Migrating Cinder volumes between OpenStack environments using shared NFS storage&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Many of the upgrade guides for OpenStack focus on in-place upgrades to your OpenStack environment. Some organizations may opt for a less risky (but more hardware intensive) option of setting up a parallel environment, and then migrating data into the new environment. In this article, we look at how to use Cinder backups with a shared NFS volume to facilitate the migration of Cinder volumes between two different OpenStack environments.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2r"&gt;http://tm3.org/2r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty (beta) DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Would you experience VXLAN tunnels disappiaring issue like it happens
+on RDO Kilo add following lines to ml2_conf.ini on each Compute Node&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2s"&gt;http://tm3.org/2s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So, you're an ATC. Let me tell you something&lt;/strong&gt; by Flavio Percoco&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's that time of the cycle - ha! you saw this comming, didn't you? -, in OpenStack, when we need to elect new members for the Technical Committee. In a previous post, I talked about what being a PTL means. I talked directly to candidates and I encouraged them to understand each and every point that I've made in that post. This time, though, I'd like to talk directly to ATCs for a couple of reasons. First one is that Thierry Carrez has a great post already where he explains what being a TC member means. Second one is that I think you, my dear ATC, are one of the most valuable member of this community and of the ones with most power throughout OpenStack.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2t"&gt;http://tm3.org/2t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2u"&gt;http://tm3.org/2u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How would work changing "enable_isolated_metadata" from false to true &amp;amp;&amp;amp; &lt;code&gt;openstack-service restart neutron&lt;/code&gt; on the fly on RDO Liberty ?&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Can meta-data co-exist in qrouter and qdhcp namespace at the same time
+so that LANs without Routers involved can access meta-data ?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2v"&gt;http://tm3.org/2v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Haikel Guemar talks about RPM packaging&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This continues my series talking with OpenStack project PTLs (Project Technical Leads) about their projects, what's new in Liberty, and what's coming in future releases.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) at &lt;a href="http://tm3.org/2w"&gt;http://tm3.org/2w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

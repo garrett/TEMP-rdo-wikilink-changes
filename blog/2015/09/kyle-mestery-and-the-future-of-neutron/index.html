@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Kyle Mestery and the future of Neutron &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='Rich Bowen' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content='Kyle Mestery and the future of Neutron' property='og:title'>
+<meta content="At LinuxCon two weeks ago I had the privilege of chatting with Kyle about the future of Neutron. Kyle was a delight to interview, because he's obviously so passionate about his project.&#x000A;&#x000A;If the audio..." property='og:description'>
+<meta content='http://rdoproject.org/blog/2015/09/kyle-mestery-and-the-future-of-neutron/' property='og:url'>
+<meta content='2015-09-02T16:30:09Z' property='article:published_time'>
+<meta content='rbowen' property='article:author:username'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content='Kyle Mestery and the future of Neutron' name='twitter:title'>
+<meta content="At LinuxCon two weeks ago I had the privilege of chatting with Kyle about the future of Neutron. Kyle was a delight to interview, because he's obviously so passionate about his project.&#x000A;&#x000A;If the audio..." name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Kyle Mestery and the future of Neutron
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2015-09-02T16:30:09Z'>
+Wednesday  2 September 2015
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>At LinuxCon two weeks ago I had the privilege of chatting with Kyle about the future of Neutron. Kyle was a delight to interview, because he's obviously so passionate about his project.</p>
+
+<p>If the audio player below doesn't work for you, you can listen to the interview <a href="http://drbacchus.com/podcasts/openstack/kyle_neutron.mp3">HERE</a>, or see the transcript below</p>
+
+<audio controls="">
+  <source src="http://drbacchus.com/podcasts/openstack/kyle_neutron.mp3" type="audio/mpeg" />
+</audio>
+
+<p>R: This is Rich Bowen. I'm the OpenStack community liaison at Red Hat.  This is a continuation of my series … I'm talking with various Project Technical Leads (PTLs) at OpenStack about what's coming in the future. We've noticed … ever since I've been involved with OpenStack I've noticed that networking is always the number one place where people have difficulties. I'm really excited to be taling with <strong>Kyle Mestery</strong>, who is the PTL of <a href="https://wiki.openstack.org/wiki/Neutron"><strong>Neutron</strong></a>. Thanks so much for taking time to do this.</p>
+
+<p>K: Absolutely, Rich. Thanks a lot. I'm definitely excited to talk about this, because networking is obviously important. You've got to have a network for your compute nodes.</p>
+
+<p>R: We're doing this in person at LinuxCon. My other two interviews were online. So that's what all this background noise is. When I did the other two interviews, I focused mainly on what's new in Kilo and and what's coming in Liberty. But I'm particularly interested in looking a little bit further out with Neutron, because this seems to be a really difficult problem, but just in the last few years we've seen amazing progress here. Tell me what you see coming in Liberty, and in M and N and O and P and …</p>
+
+<p>K: I guess what I'd like to start talking about is maybe a little bit less about the technology, and more about the project itself.</p>
+
+<p>Neutron, if you look at all the metrics, whether it's code reviews, bugs, blueprints, everything … it's in the top four for everything usually. So it's a really large project. And we're also the project that has the most plugins and drivers. So we've kind of had this problem in the history of … we implemented a platform, for networking, an API and a platform layer, but we also have a reference implementation, and then we have this huge grouping of implementations of the API, whether they're from vendors or other Open Source projects, like <a href="https://www.opendaylight.org/">OpenDaylight</a> or <a href="http://www.opencontrail.org/">OpenContrail</a> or something like that.</p>
+
+<p>And there's been this perception problem of, what is Neutron? Is it a platform? Or is it Neutron, the OVS + ML2 implementation? And so I think, over the years, that's been a concern. People who had issues with Neutron, maybe had issues with this OVS + ML2 implementation.</p>
+
+<p>What we've done over the last year - Juno and Kilo - the team's done a lot of work on that implementation - the built-in agent implementation. We've really made that a lot better, and Kilo should be a pretty solid release for people. And we're still doing improvements in Liberty for this.</p>
+
+<p>In parallel, we've helped to enable the platform so things like OpenDaylight, OpenContrails, <a href="http://www.midokura.com/midonet/">Midonet</a>, all of these new projects, OVN, they can also enable and implement the APIs as well, because there's a lot of groups working there.</p>
+
+<p>It's a challenging thing when you're trying to build this platform, and you have your own implementation of it, and you're trying to enable these other groups, too. But I think we've learned a lot over the last year, and the team has done a good job.</p>
+
+<p>R: When I first started hearing about OpenDaylight, it was this magical thing where you could draw lines between blobs and networking would just happen. It feels like maybe that's a long way away, but is there going to be a time when I don't have to be a networking scholar to use OpenStack?</p>
+
+<p>K: Yes, that ultimately is the goal. We're definitely working to get there. So that you as an operator can provide this scalable tenant networking to your tenants, and you as a tenant can just consume it.  And I think we're getting there. I'm hopeful that it's going to be soon.</p>
+
+<p>So, speaking of the future, one of the things that we're looking at beyond Liberty that we've actually spent a lot of Liberty talking about has been this concept of an L3 network as well. So right now the API specifies networks of L2 broadcast domains, and we have subnets and ports and routers and things. It turns out that a lot of operators, especially operators at scale, like GoDaddy and RackSpace and Yahoo, they're very interested in breaking up what a network means, perhaps introducing the concept of an L3 network. They might want to do L3 just per-rack, for example.</p>
+
+<p>This has been a great cycle because we've spent a lot of time with these operators understanding their use case, and we've really refined this. In fact I just literally got out of a meeting. I dialed in remotely to the ops midcycle for this. I think we have this nailed down so that we can get the spec done now and get it approved, and then in <a href="http://superuser.openstack.org/articles/openstack-pins-down-next-release-name-mitaka">Mitaka</a> we can implement this. This will really help these large deployers, and these large operators, and I think it's going to be a good change.</p>
+
+<p>R: Before we started talking on mic, you were talking about the next cycle, and how Neutron will be tagged in that. Tell us more about that.</p>
+
+<p>K: There were a couple of big developments. The community as a whole has really been working to bring Neutron in, because … The quick back-story is Nova networking has been around for a long time.  Neutron's been around for 4 years now. We're getting close to the point where hopefully we can finally deprecate Nova network. We're not quite there. But the community as a whole has done a couple of great things.</p>
+
+<p>Number one, there was recently, as part of the tag process with new governance changes, someone proposed a <a href="http://governance.openstack.org/reference/tags/compute_starter_kit.html">starter-kit:compute</a> tag, that was summarized as what services in OpenStack you need to bring up a small compute cluster. Initially that had Nova network. Now the interesting thing was, we as the Neutron team, we really pushed for Neutron on there, and it emerged with Nova network, but Monty Taylor actually proposed a patch to change it to Neutron, with the logic being, if you put someone in and start this cloud with Nova network, you can't really grow it and expand to Neutron.</p>
+
+<p>So, it was great. The community came together and we all merged it, and so now Neutron is recommended.</p>
+
+<p>Now, in parallel, I was just at the OpenStack board meeting, and I dialed into the <a href="https://wiki.openstack.org/wiki/Governance/DefCoreCommittee">Defcore</a> midcycle. The current cycle that they're starting for Defcore, they're going to focus on Neutron as the default networking there as well.</p>
+
+<p>R: Great!</p>
+
+<p>K: Yeah. So it's been really great to see the community come together and rally around Neutron.</p>
+
+<p>R: The project's only five years old. Looking forward another five years, what do you envision for Neutron?</p>
+
+<p>K: I really think that we're kind of evolving it to be this platform - to be a platform layer at this point. So the hope is that one of these great Open Source networking projects like OpenDaylight, for example, could maybe come in and become the default networking, or something like that - could become this rock-solid awesome thing.</p>
+
+<p>R: That seemed to be their goal when they started out.</p>
+
+<p>K: Yeah, and they're doing a great job. I've been involved with OpenDaylight, and there's a great team from Red Hat, amongst other companies, HP, Cisco, Brocade, a really good team up there that's working really hard, and doing a lot of great stuff, and making progress. It's been fun to see that.</p>
+
+<p>So that's the goal, to make it a platform. One of the things we were looking at doing was spinning out the reference implementation into its own Gerrit repository, so it could be on equal footing with some of these other things that are out there. And I think we'll do that in Mitaka. We didn't quite do that in Liberty, but maybe then.</p>
+
+<p>R: When I was doing a little research before we talked, I was looking at the Neutron Git repository. It seems that it's got more than any other project - just dozens of subprojects. If somebody wanted to get involved with Neutron, as a developer, is there an easy place - is there an easy in?</p>
+
+<p>K: My recommendation would be, reach out in #openstack-neutron on Freenode. There's a lot of us core reviewers and other community members who are there are willing to help out. We have a lot of bugs in Launchpad, and we try to tag a bunch as low-hanging fruit, which hopefully are easy for initial developers, which also helps. And we've done a lot to enhance our DevRef - http://docs.openstack.org/developer/neutron/devref/ - documentation to hopefully make it easier for new developers to pull the tree and then go and look at what's there and say all this is documented better.  We've really focused on that so hopefully it's easier for new people to get involved. and contribute.</p>
+
+<p>The documentation team in Openstack has been great. This cycle we had some members of that team along with some Neutron people really enhance the install guide. One of the things we did was we came up with a comparable install mode to what Nova network had. You could always do it in Neutron, it turns out it wasn't documented well. So we documented that. And the other thing is we had some of the documentation people … it turns out we have a lot of documentation in DevRef, around installation and configuration, that probably should live in the install or networking guide, and so that's moving there too. We're doing a lot of work there.</p>
+
+<p>I'm really excited about, and it's really hard to believe Liberty is in two weeks. We're two weeks out, and I'm at LinuxCon. I was just in the cross-project meeting. At this point, we're really trying to focus on finishing Liberty. Then we'll take a small break, and ramp up for Mitaka again.</p>
+
+<p>R: Thanks so much for your time.</p>
+
+<p>K: Absolutely. Thanks, Rich.</p>
+
+</section>
+<footer class='post-meta'>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2015-09-02-kyle-mestery-and-the-future-of-neutron.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 13 Oct 2015 15:59 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

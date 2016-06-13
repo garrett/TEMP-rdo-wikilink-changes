@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: News</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/news.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Congratulations to the CentOS project, from RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2014/01/congratulations-to-the-centos-project-from-rdo/"/>
+    <id>http://rdoproject.org/blog/2014/01/congratulations-to-the-centos-project-from-rdo/</id>
+    <published>2014-01-08T17:52:18+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;The RDO Community is thrilled with Red Hat's recent announcement of the closer relationship with CentOS (LINK HERE - http://community.redhat.com/blog/2014/01/red-hat-and-centos-join-forces/ ). Congratulations to the CentOS project, and to all the folks who have worked so hard to make this happen.&lt;/p&gt;
+
+&lt;p&gt;We've already enjoyed a lot of energy from the Fedora community, in testing RDO, submitting bugs reports and fixes, and participating in the support conversation on IRC and ask.openstack.org.&lt;/p&gt;
+
+&lt;p&gt;We're really looking forward to seeing this kind of energy build from the CentOS community as well, and Red Hat's closer relationship with CentOS gives us a better avenue to help make this happen.&lt;/p&gt;
+
+&lt;p&gt;In the coming months, we hope to engage more closely with CentOS, providing a Live distro of RDO based on CentOS, CentOS cloud images, and participating in the development of the CentOS Cloud Infrastructure SIG in any way we can. We're really excited about the future with CentOS, especially those of who are already CentOS users!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>A Community for Using OpenStack with Red Hat: RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/a-community-for-using-openstack-with-red-hat-rdo/"/>
+    <id>http://rdoproject.org/blog/2013/05/a-community-for-using-openstack-with-red-hat-rdo/</id>
+    <published>2013-05-07T11:01:29+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://www.redhat.com/about/news/archive/2013/5/a-community-for-using-openstack-with-red-hat-rdo"&gt;A new article on the RDO project&lt;/a&gt; was published on the Red Hat blog today, covering what is RDO, who it's for, and how it relates to Red Hat's OpenStack product.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RDO offers a pure community-supported upstream OpenStack experience with the latest stable 
+release (Grizzly) from OpenStack.org, packaged, integrated, and easy to deploy on Red Hat platforms.&lt;/p&gt;
+
+  &lt;p&gt;RDO is also intended to be a community—the best place to get information about running OpenStack
+on Red Hat Enterprise Linux, Fedora, or their derivatives, and to share knowledge with other
+OpenStack users on these same platforms. &lt;a href="http://rdoproject.org/"&gt;rdoproject.org&lt;/a&gt; is the best place to interact with
+other OpenStack users using Red Hat operating systems, and get access to the best information,
+answers, and community support focused on getting RDO running in your environment.&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+  </entry>
+</feed>

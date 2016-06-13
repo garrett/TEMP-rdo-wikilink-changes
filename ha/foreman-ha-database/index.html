@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Foreman HA Database &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/ha/foreman-ha-database.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="foreman-ha-database">Foreman HA Database</h1>
+
+<p><strong>The HA Mysql Host Group</strong> provides a mechanism to set up a HA active/passive Mysql cluster which may be pointed to as the database backend for the various OpenStack service endpoints.</p>
+
+<p>To use HA/Mysql within an OpenStack deployment, you need to make sure to have your Mysql cluster up and running *before* spinning up the controller node(s), and make sure the controller Host Group has correct database IP (the virtual Mysql cluster IP) specified. You also need the HA channel enabled if you are on RHEL. Centos should not need this.</p>
+
+<pre class="highlight plaintext"><code>  # yum-config-manager --enable rhel-ha-for-rhel-6-server-rpms&#x000A;</code></pre>
+
+<p>At a high level, the required steps are:</p>
+
+<ul>
+  <li>Edit the default HA Mysql Host Group Parameters relevant to your environment.</li>
+  <li>Run the puppet agent to get the Mysql cluster up and verify that the cluster was set up with no errors.</li>
+  <li>Run the puppet agent again to create the OpenStack databases and users.</li>
+</ul>
+
+<p>Note the above does not set up any fencing configuration. In a production environment fencing is critical: you can either use pacemaker commands to setup fencing, or update the default HA mysql puppet manifests.</p>
+
+<p><strong>HA Mysql Resources</strong></p>
+
+<p>The HA Mysql Host Group is responsible for starting Pacemaker and configuring the following resources within a resource group: the floating IP, shared storage for the Mysql server, and the mysql server process. E.g.:</p>
+
+<pre class="highlight plaintext"><code>  # pcs status&#x000A;  ...&#x000A;  Resource Group: mysqlgrp&#x000A;      ip-192.168.200.10  (ocf::heartbeat:IPaddr2):       Started 192.168.202.11&#x000A;      fs-varlibmysql     (ocf::heartbeat:Filesystem):    Started 192.168.202.11&#x000A;      mysql-ostk-mysql   (ocf::heartbeat:mysql): Started 192.168.202.11&#x000A;</code></pre>
+
+<p><strong>Repository Requirements</strong></p>
+
+<p>The cluster nodes must be subscribed to the rhel-ha-for-rhel-6-server-rpms repository, or equivalent (before being subscribed to the HA Mysql Host Group).</p>
+
+<p><strong>HA Mysql Host Group Parameters</strong></p>
+
+<p>To edit the Host Group Parameters in the Foreman web UI, click More (on the top right), then Configuration, then Host Groups. Click HA Mysql Node. Click the tab on the right, Parameters. For any parameter you want to override (which very well could be all of them), click on the override button and edit the value at the bottom of the page.</p>
+
+<p>A number of the parameters (especially the IP-related parameters) have defaults which must be changed to reflect your environment. Please take care to ensure all the parameters in your Host Group are correct for your setup.</p>
+
+<p>mysql_root_password, cinder_db_password, glance_db_password, keystone_db_password, nova_db_password: the Mysql database passwords. Note that the random values displayed were generated when you installed foreman but you may wish to override them.</p>
+
+<p>mysql_bind_address: the address mysql listens on. Only two values make sense here, 0.0.0.0 (to listen on all address on whichever host mysql is running on) or the same value as mysql_virtual_ip.</p>
+
+<p>mysql_clu_member_addrs: the IP addresses (as a space-separated list) internal to the cluster that pacemaker communicates on. So, if you are going to have a cluster of 3 members, the three IP addresses of the cluster members are listed here. NOTE: these IP's must already be configured and active on the cluster-hosts-to-be before they are added to this Host Group (i.e., this Host Group does not set up these IP's for you).</p>
+
+<p>mysql_resource_group_name: the name of the resource group. This Host Group adds a virtual IP, filesystem and mysql resource to the resource group named here. The default is fine.</p>
+
+<p>mysql_shared_storage_type: e.g., nfs or ext3. The type of filesystem that pacemaker is responsible for mounting to /var/lib/mysql.</p>
+
+<p>mysql_shared_storage_device: the path to the storage device. E.g. if mysql_shared_storage_type, the nfs mount point.</p>
+
+<p>mysql_virtual_ip: the virtual IP address that pacemaker will manage and the IP address that clients will use to connect to Mysql.</p>
+
+<p>mysql_virt_ip_nic: the interface (e.g., eth2) that pacemaker will attempt to bring up the virtual IP on. Note that this may be empty if the host already has an IP address active on the same subnet that the virtual IP will be brought up on.</p>
+
+<p>mysql_virt_ip_cidr_mask: the subnet mask mysql_virtual_ip lives on (e.g., 16 or 24).</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/ha/foreman-ha-database.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 18 Apr 2016 11:33 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

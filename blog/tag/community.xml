@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Community</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/community.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO Community Day @ FOSDEM</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-community-day-fosdem/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-community-day-fosdem/</id>
+    <published>2015-11-17T16:57:52+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;The schedule has now been published at
+&lt;a href="https://www.rdoproject.org/events/rdo-day-fosdem-2016/"&gt;https://www.rdoproject.org/events/rdo-day-fosdem-2016/&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We're pleased to announce that we'll be holding an RDO Community Day in conjunction with the &lt;a href="https://wiki.centos.org/Events/Dojo/Brussels2016"&gt;CentOS Dojo&lt;/a&gt; on the day before FOSDEM. This event will be held at the IBM Client Center in Brussels, Belgium, on Friday, January 29th, 2016.&lt;/p&gt;
+
+&lt;p&gt;You are encouraged to send your proposed topics and sessions via the &lt;a href="http://goo.gl/forms/oDjI2BpCtm"&gt;Google form&lt;/a&gt;. If you have questions about the event, or proposed topics, bring them either to the &lt;a href="https://www.redhat.com/mailman/listinfo/rdo-list"&gt;rdo-list&lt;/a&gt; mailing list, or to the #rdo channel on the Freenode IRC network.&lt;/p&gt;
+
+&lt;p&gt;If you're thinking of attending either the RDO Day, or the CentOS Dojo, please &lt;a href="https://www.eventbrite.co.uk/e/centos-dojo-brussels-belgium-jan-29th-2016-tickets-19589843750"&gt;register&lt;/a&gt; so that we know how many people to expect.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of November 9</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/</id>
+    <published>2015-11-09T18:34:33+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts were blogging about this week. If you were
+at OpenStack Summit in Tokyo last month, don't forget to write up your
+experience.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty released in CentOS Cloud SIG&lt;/strong&gt;, by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are pleased to announce the general availability of the RDO build for OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of contributors around the OpenStack.org project space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3d"&gt;http://tm3.org/3d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Neutron HA Talk in Tokyo Summit&lt;/strong&gt; by Assaf Muller&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Florian Haas, Adam Spiers and myself presented a session in Tokyo about Neutron high availability. We talked about:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3s"&gt;http://tm3.org/3s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo&lt;/strong&gt; by Matthias Runge&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Over the past week, I attended the OpenStack Summit in Tokyo.
+My primary focus was on Horizon sessions. Nevertheless, I was lucky to have one or two glimpses at more touristic spots in Tokyo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3t"&gt;http://tm3.org/3t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Final Summary&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As I flew home from OpenStack Summit Tokyo last week, I had plenty of time to reflect on what proved to be a truly special event. OpenStack gains more and more traction and maturity with each community release and corresponding Summit, and the 11th semi-annual OpenStack Summit certainly did not disappoint. With more than 5,000 attendees, it was the largest ever OpenStack Summit outside of North America, and there were so many high quality keynotes, session, and industry announcements, I thought it made sense to put together a final trip overview, detailing all of the noteworthy news, Red Hat press releases, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3u"&gt;http://tm3.org/3u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Community Meetup at OpenStack Tokyo&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A week ago in Tokyo, we held the third RDO Community Meetup at the OpenStack Summit. We had about 70 people in attendance, and some good discussion. The full agenda for the meeting is at https://etherpad.openstack.org/p/rdo-tokyo and below are some of the things that were discussed. (The complete recording is at the bottom of this post.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3v"&gt;http://tm3.org/3v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mike Perez: Cinder in Liberty&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Before OpenStack Summit, I interviewed Mike Perez about what's new in Cinder in the LIberty release, and what's coming in Mitaka. Unfortunately, life got a little busy and I didn't get it posted before Summit. However, with Liberty still fresh, this is still very timely content.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3w"&gt;http://tm3.org/3w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of November 3</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-3/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-3/</id>
+    <published>2015-11-03T19:30:32+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Due to travels, it's been 2 weeks since the last RDO blog update. In conjuction with OpenStack Summit having been last week, this means that I have a &lt;em&gt;huge&lt;/em&gt; list of blog posts to catch you up on this week.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ansible 2.0: The Docker connection driver&lt;/strong&gt;, by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the release of Ansible 2.0 draws closer, I'd like to take a look at some of the new features that are coming down the pipe. In this post, we'll look at the docker connection driver.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/35"&gt;http://tm3.org/35&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO test day summary&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A big thanks to everyone that participated in the RDO Test Day over the last 48 hours. Here's a few statistics from the day.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/36"&gt;http://tm3.org/36&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootstrapping Ansible on Fedora 23&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you've tried running Ansible against a Fedora 23 system, you may have run into the following problem:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/37"&gt;http://tm3.org/37&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Stupid Ansible Tricks: Running a role from the command line&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When writing Ansible roles I occasionally want a way to just run a role from the command line, without having to muck about with a playbook. I've seen similar requests on the mailing lists and on irc.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/38"&gt;http://tm3.org/38&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Admin&lt;/strong&gt;, by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;While I tend to play up bug 968696 for dramatic effect, the reality is we have a logical contradiction on what we mean by ‘admin’ when talking about RBAC.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/39"&gt;http://tm3.org/39&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Announcing the Release of Kolla Liberty&lt;/strong&gt; by Steve Dake&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello OpenStackers! The Kolla community is pleased to announce the release of the Kolla Liberty.  This release fixes 432 bugs and implements 58 blueprints!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3a"&gt;http://tm3.org/3a&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DevOps in a Bi-Modal World (Part 3 of 4)&lt;/strong&gt; by James Labocki&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In Part 2 of this series, we discussed what IT needs to do in a Mode 1 world to make itself more relevant to the business and reduce complexity. In this part, we will turn our attention to Mode 2 and discuss how the organization can solve its challenges by improving agility and increasing scalability.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3b"&gt;http://tm3.org/3b&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Cinder HA Active-Active specs up for review&lt;/strong&gt; by Gorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It’s been some time since the last time I talked here about High Availability Active-Active configurations in Openstack’s Cinder service, and now I am quite pleased -and a little bit embarrassed it took so long- to announce that all specs are now up for reviewing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3c"&gt;http://tm3.org/3c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty released in CentOS Cloud SIG&lt;/strong&gt; by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are pleased to announce the general availability of the RDO build for OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of contributors around the OpenStack.org project space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3d"&gt;http://tm3.org/3d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DevOps in a Bi-Modal World (Part 4 of 4)&lt;/strong&gt; by James Labocki&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In this series we have seen the complexity of bridging the gap between existing infrastructure and processes (Mode 1) and new, agile processes and architectures (Mode 2). Each brings its own set of challenges and demands on the organization. In Mode-1 organizations are looking to increase relevance and reduce complexity, and in Mode-2 they are looking to improve agility and increase scalability. In this post we will discuss how Red Hat addresses and solves each of these challenges.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3e"&gt;http://tm3.org/3e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Security Groups using OVN ACLs&lt;/strong&gt; by Russell Bryant&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack Security Groups give you a way to define packet filtering policy that is implemented by the cloud infrastructure.  OVN and its OpenStack Neutron integration now includes support for security groups and this post discusses how it works.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3f"&gt;http://tm3.org/3f&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty DVR Neutron workflow on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html  DVR is supposed to address following problems which has traditional 3 Node deployment schema:-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/34"&gt;http://tm3.org/34&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Why the Operating System Matters&lt;/strong&gt; by Margaret Dawson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In IT today, we love to note that the infrastructure layer has become commoditized. This started with virtualization, as we could create many virtual machines within a single physical machine. Cloud has taken us further with a key value proposition of delivering cloud services on any standard server or virtualized environment, enabling easier scalability and faster service delivery, among other benefits.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3g"&gt;http://tm3.org/3g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ansible 2.0: New OpenStack modules&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This is the second in a loose sequence of articles looking at new features in Ansible 2.0. In the previous article I looked at the Docker connection driver. In this article, I would like to provide an overview of the new-and-much-improved suite of modules for interacting with an OpenStack environment, and provide a few examples of their use.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3h"&gt;http://tm3.org/3h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 0 (Pre-event)&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I’ve always enjoyed traveling to Tokyo, Japan, as the people are always so friendly and willing to help. Whether it’s finding my way through the Narita airport or just trying to find a place to eat, they’re always willing to help – even with the language barrier. And each time I visit, I see something new, learn another word (or two) in Japanese, and it all just seems new and exciting all over again. Add in the excitement and buzz of an OpenStack Summit and you’ve got a great week in Tokyo!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3i"&gt;http://tm3.org/3i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Ducks&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Why ducks?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3j"&gt;http://tm3.org/3j&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Container Stack for OpenStack (Part 1 of 2)&lt;/strong&gt; by Joe Fernandes&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Open source continues to be a tremendous source of innovation and nowhere is that more evident than at the biannual OpenStack Summit. Over the past couple of years, as OpenStack interest and adoption has grown, we’ve seen another important innovation emerge from the open source community in the form of Linux containers, driven by Docker and associated open source projects. As the world gathers in Tokyo for another OpenStack Summit, we wanted to talk about how Red Hat is bringing these two innovations together, to make OpenStack a great platform for running containerized applications.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3k"&gt;http://tm3.org/3k&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 1&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Kon’nichiwa from Tokyo, Japan where the 11th semi-annual OpenStack Summit is officially underway! This event has come a long way from its first gathering, more than five years ago, where 75 people gathered in Austin, Texas to learn about OpenStack in its infancy. That’s a sharp contrast with the 5,000+ people in attendance here in what marks Asia’s second OpenStack Summit.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3l"&gt;http://tm3.org/3l&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What does RDO stand for?&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The RDO FAQ has long said that RDO doesn't stand for anything. This is a very unsatisfying answer to one of the most frequently asked questions about RDO. So, a little while ago, I started saying that RDO stands for "Rich's Distribution of OpenStack." Although tongue-in-cheek, this response emphasizes that RDO is a community driven project. So it's also Radez's Distribution of OpenStack, and Radhesh's and Russel's and red_trela's. (As well as lots of people whose names don't start with R!)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3m"&gt;http://tm3.org/3m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proven OpenStack solutions. Simple OpenStack deployment. Powerful results.&lt;/strong&gt; by Radhesh Balakrishnan&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;According to an IDC global survey sponsored by Cisco of 3,643 enterprise executives responsible for IT decisions, 69% of respondents indicated that their organizations have a cloud adoption strategy in place. Of these organizations, 65% say OpenStack is an important part of their cloud strategy and had higher expectations for business improvements associated with cloud adoption.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3n"&gt;http://tm3.org/3n&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 2&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Tokyo, Japan where the second day of OpenStack Summit has come to a close with plenty of news, interesting sessions, great discussion on the showfloor, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3o"&gt;http://tm3.org/3o&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Container Stack for OpenStack (Part 2 of 2)&lt;/strong&gt; Joe Fernandes&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In Part 1 of this blog series, I talked about how Red Hat has been working with the open source community to build a new container stack and our commitment to bring that to OpenStack. In Part 2 I will discuss additional capabilities Red Hat is working on to build an enterprise container infrastructure and how this is forms the foundation of our containerized application platform in OpenShift.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3p"&gt;http://tm3.org/3p&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Day 3&lt;/strong&gt; by Jeff Jameson&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Tokyo, Japan where the third and final day of OpenStack Summit has come to a close. As with the previous days of the event, there was plenty of news, interesting sessions, great discussions on the show floor, and more. All would likely agree that the 11th OpenStack Summit was a rousing overall success!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3q"&gt;http://tm3.org/3q&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Puppet OpenStack plans for Mitaka&lt;/strong&gt; by Emilien Macchi&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Our Tokyo week just ended and I really enjoyed to be at the Summit with the Puppet OpenStack folks.
+This blog post summarizes what we did this week and what we plan for the next release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3r"&gt;http://tm3.org/3r&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Community Meetup at OpenStack Summit, Tokyo</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/"/>
+    <id>http://rdoproject.org/blog/2015/10/community-meetup-at-openstack-summit-tokyo/</id>
+    <published>2015-10-14T17:15:07+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We'll be having an &lt;a href="http://sched.co/4MYy"&gt;RDO community meetup&lt;/a&gt; during the upcoming OpenStack Summit in Tokyo. It will be during lunch time (12:45 - 14:00)  in Sakura Lower Level S-1 and S-2.&lt;/p&gt;
+
+&lt;p&gt;As at previous Summits, we'll be gathering to discuss progress during
+the last six months, and plans for the future. Please add discussion items
+to the &lt;a href="https://etherpad.openstack.org/p/rdo-tokyo"&gt;agenda&lt;/a&gt; that you'd like for us to talk about.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

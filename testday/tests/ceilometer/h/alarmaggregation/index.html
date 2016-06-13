@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+AlarmAggregation &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/testday/tests/ceilometer/h/alarmaggregation.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="alarm-aggregation">Alarm Aggregation</h1>
+
+<h2 class="no_toc" id="aggregation-over-multiple-alarm-states">Aggregation over multiple alarm states</h2>
+
+<p>Upstream <a href="https://blueprints.launchpad.net/ceilometer/+spec/alarming-logical-combination">blueprint</a> .</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>Install <code>packstack --allinone</code>, then spin up an instance in the usual way.</p>
+
+<p>Ensure the compute agent is gathering metrics at a reasonable cadence (every 60s for example instead of every 10mins as per the default):</p>
+
+<pre class="highlight plaintext"><code>   sudo sed -i '/^ *name: cpu_pipeline$/ { n ; s/interval: 600$/interval: 60/ }' /etc/ceilometer/pipeline.yaml&#x000A;   sudo service openstack-ceilometer-compute restart&#x000A;</code></pre>
+
+<p>Ensure the ceilometer alarm services are installed and running:</p>
+
+<pre class="highlight plaintext"><code>   sudo yum install -y openstack-ceilometer-alarm&#x000A;   export CEILO_ALARM_SVCS='evaluator notifier'&#x000A;   for svc in $CEILO_ALARM_SVCS; do sudo service openstack-ceilometer-alarm-$svc start; done&#x000A;</code></pre>
+
+<h2 id="step-1">Step 1.</h2>
+
+<p>Create multiple basic alarms with thresholds sufficiently low that they are guaranteed to go into alarm:</p>
+
+<pre class="highlight plaintext"><code>   for i in $(seq 5)&#x000A;   do&#x000A;     ceilometer alarm-threshold-create --name basic_cpu_low_threshold_${i} \&#x000A;      --meter-name cpu_util  --threshold 0.01 --comparison-operator gt  --statistic avg \&#x000A;      --period 60 --evaluation-periods 1 \&#x000A;      --alarm-action 'log://' \&#x000A;      --query resource_id=$INSTANCE_ID&#x000A;   done&#x000A;</code></pre>
+
+<h2 id="step-2">Step 2.</h2>
+
+<p>Create a meta-alarm combining (with logical AND) the state of these basic alarms:</p>
+
+<pre class="highlight plaintext"><code>   ALARM_IDS=&#x000A;  `  for a in `ceilometer alarm-list | awk -F\| '/basic_cpu_/ {print $2}'`; do ALARM_IDS="$ALARM_IDS --alarm_ids $a"; done `&#x000A;   ceilometer --debug alarm-combination-create --name combination_cpu_low --description 'combination of high CPU util alarms' --alarm-action 'log://' $ALARM_IDS&#x000A;</code></pre>
+
+<p>Ensure that this combination alarm transitions into the alarm state within one evaluation period (60s by default):</p>
+
+<pre class="highlight plaintext"><code>   sleep 60 ; ceilometer alarm-list | grep combination_cpu_low&#x000A;</code></pre>
+
+<h2 id="step-3">Step 3.</h2>
+
+<p>Create another set of basic alarms with thresholds sufficiently high that they are guaranteed not to go into alarm:</p>
+
+<pre class="highlight plaintext"><code>   for i in $(seq 5)&#x000A;   do&#x000A;     ceilometer alarm-threshold-create --name basic_cpu_high_threshold_${i} \&#x000A;      --meter-name cpu_util --threshold 99.99 --comparison-operator gt  --statistic max \&#x000A;      --period 60 --evaluation-periods 1 \&#x000A;      --alarm-action 'log://' \&#x000A;      --query resource_id=$INSTANCE_ID&#x000A;   done&#x000A;</code></pre>
+
+<h2 id="step-4">Step 4.</h2>
+
+<p>Create two further meta-alarms combining (with logical AND &amp; OR respectively) the state of these basic alarms:</p>
+
+<pre class="highlight plaintext"><code>   ALARM_IDS=&#x000A;  `  for a in `ceilometer alarm-list | awk -F\| '/basic_cpu_/ {print $2}'`; do   ALARM_IDS="$ALARM_IDS --alarm_ids $a"; done `&#x000A;   ceilometer --debug alarm-combination-create --name combination_cpu_mixed_and --description 'combination (AND) of mixed CPU util alarms' --alarm-action 'log://' $ALARM_IDS --operator and&#x000A;   ceilometer --debug alarm-combination-create --name combination_cpu_mixed_or --description 'combination (OR) of mixed CPU util alarms' --alarm-action 'log://' $ALARM_IDS --operator or&#x000A;</code></pre>
+
+<p>Ensure that this combination alarms transition into the alarm and ok state (for the combination_cpu_mixed_or and combination_cpu_mixed_and alarms respectively) within one evaluation period (60s by default):</p>
+
+<pre class="highlight plaintext"><code>   sleep 60 ; ceilometer alarm-list | grep combination_cpu_mixed&#x000A;</code></pre>
+
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/testday/tests/ceilometer/h/alarmaggregation.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 8 Dec 2015 14:43 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

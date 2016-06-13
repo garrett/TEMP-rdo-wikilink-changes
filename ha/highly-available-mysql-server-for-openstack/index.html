@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Highly Available MySQL server for OpenStack &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/ha/highly-available-mysql-server-for-openstack.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="highly-available-mysql-server-for-openstack">Highly Available MySQL server for OpenStack</h1>
+
+<p>When running OpenStack API services with MySQL on a single node, the database is a single point of failure. This guide will show how to manually deploy pacemaker and and use it to manage your MySQL cluster across multiple nodes.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>This guide assumes that OpenStack has been deployed on EL 6.5. There should be two database nodes using shared storage for the database's storage. See the RDO QuickStart guide to get OpenStack installed.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>MySQL will be configured in an active/passive configuration. Pacemaker will manage a floating ip address and the MySQL service across the two MySQL nodes. In the event of a failure, Pacemaker will move the ip and shared storage to another node and start the MySQL service on that node.</p>
+
+<h2 id="installing-pacemaker-and-creating-a-cluster">Installing Pacemaker and creating a cluster</h2>
+
+<p>We'll use 192.168.122.3 (node1) and 192.168.122.7 (node2) as the two MySQL nodes</p>
+
+<p>On both nodes install pacemaker</p>
+
+<pre class="highlight plaintext"><code>node1$ yum install pacemaker pcs cman&#x000A;node2$ yum install pacemaker pcs cman&#x000A;</code></pre>
+
+<p>On both nodes setup the cluster</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs cluster setup --name openstack_mysql 192.168.122.3 192.168.122.7&#x000A;node2$ pcs cluster setup --name openstack_mysql 192.168.122.3 192.168.122.7&#x000A;</code></pre>
+
+<p>The example above uses ip addresses instead of dns names. If you use names instead of ip addresses be sure they resolve to the hosts before performing this step.</p>
+
+<p>On both nodes start the cluster</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs cluster start&#x000A;node2$ pcs cluster start&#x000A;</code></pre>
+
+<p>Now that the cluster is started commands only need to be run on one of the machines to add resources and check status. You'll need to add stonith devices for resources to start properly. For this demonstration stonith it will be disabled instead. For a properly configured highly available cluster stonith must be configured, do not disable it in that case.</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs property set stonith-enabled=true&#x000A;</code></pre>
+
+<p>Now add the floating ip address, lets use 192.168.122.203</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs resource create ip-192.168.122.203 IPaddr2 ip=192.168.122.203&#x000A;</code></pre>
+
+<h2 id="adding-the-share-storage-pacemaker-resource">Adding the share storage Pacemaker resource</h2>
+
+<p>Before MySQL is started the shared storage needs to be mounted into the mysql storage directory. iSCSI or NFS can be used for this, here NFS will be demonstrated.</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs resource create nfs-mysql Filesystem device=192.168.122.1:/srv/mysql directory=/var/lib/mysql fstype=nfs&#x000A;</code></pre>
+
+<h2 id="adding-the-mysql-pacemaker-resource">Adding the MySQL Pacemaker resource</h2>
+
+<p>For MySql to be highly available we need to add it as a resource for pacemaker to manage and be sure that the service is running on the same node as the floating ip address and shared storage. Start by adding mysql as an LSB (linux standard build) resource.</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs resource create mysql1 mysql&#x000A;</code></pre>
+
+<p>Next MySQL needs to be grouped with the ip address resource so that they always run on the same node. This could have been done it the create command by passing –group test-group to each of the previous resources.</p>
+
+<pre class="highlight plaintext"><code>node1$ pcs resource group add test-group ip-192.168.122.203 nfs-mysql mysql1&#x000A;</code></pre>
+
+<p>Now the ip address and the MySQL service will always run on the same host together.</p>
+
+<h2 id="pacemaker-constraints">Pacemaker constraints</h2>
+
+<p>Constraints are unnecessary in this use case. When resources are added to a group pacemaker starts the resources in the order that they were added to the group. This ensures that the storage and ip are ready before MySQL is started without needing to define constraints.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>At this point there is a floating ip address and the MySQL service are being managed by pacemaker.</p>
+
+<p>In the event of a failure pacemaker will move the floating ip and the MySQL service the other node and database service would stay available.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/ha/highly-available-mysql-server-for-openstack.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 24 Sep 2015 19:34 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

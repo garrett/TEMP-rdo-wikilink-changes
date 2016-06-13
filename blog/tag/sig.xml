@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Sig</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/sig.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What, Why, and How is the CentOS Cloud SIG?</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-why-and-how-is-the-centos-cloud-sig/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-why-and-how-is-the-centos-cloud-sig/</id>
+    <published>2016-04-16T20:48:08+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;2 years ago we started the &lt;a href="https://wiki.centos.org/SpecialInterestGroup/Cloud"&gt;CentOS Cloud SIG&lt;/a&gt;. Progress has been slow but steady. Slow, I think, because we've not done a wonderful job of explaining what it's for, and why it matters. But it has been a very important aspect of moving the &lt;a href="http://rdoproject.org/"&gt;RDO project&lt;/a&gt; forward, so it deserves better explanation.&lt;/p&gt;
+
+&lt;p&gt;The Cloud SIG produces packages which allow you, the CentOS user, to deploy Cloud infrastructure on top of CentOS with complete confidence that it's going to work.&lt;/p&gt;
+
+&lt;p&gt;So, it's more than just packages - the RDO project was already producing packages. It's the entire ecosystem, testing OpenStack (and other cloud platforms) on CentOS, ensuring that OpenStack will work on CentOS, and that CentOS will work on OpenStack. To this end, there's &lt;a href="https://ci.centos.org/"&gt;CI on the CentOS infrastructure&lt;/a&gt;, which is also used by numerous other projects, so we know that what we're doing doesn't break what they're doing.&lt;/p&gt;
+
+&lt;p&gt;It's also a community of cloud operators, running on CentOS, providing support to other users, and feedback and bug reports to the developers working upstream. This feedback loop further ensures the reliability of the platform, not only for CentOS users, but for the entire OpenStack community.&lt;/p&gt;
+
+&lt;p&gt;We meet every Thursday at 15:00 UTC on the #centos-devel channel on Freenode IRC, if you want to drop by and have your say. If you're using CentOS, and you're deploying any cloud infrastructure, we want to hear from you.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

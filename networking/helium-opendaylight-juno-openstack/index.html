@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Helium OpenDaylight Juno OpenStack &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/helium-opendaylight-juno-openstack.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="helium-opendaylight-juno-openstack">Helium OpenDaylight Juno OpenStack</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This page describes how to setup a two node OpenStack setup using ml2 to integrate with Helium-SR1 and Helium OpenDaylight and Juno OpenStack. The setup guide for Hydrogen OpenDaylight and Icehouse Openstack can be found <a href="/networking/opendaylight-integration/">OpenDaylight_integration</a>.</p>
+
+<p>The topology:</p>
+
+<ul>
+  <li>Everything is hosted on a Fedora host.</li>
+  <li>KVM is the hypervisor.</li>
+  <li>OpenDaylight runs directly on the host.</li>
+  <li>Two VMs are created for the OpenStack nodes: one control+network+compute node and one compute node.</li>
+</ul>
+
+<h2 id="create-openstack-vms">Create OpenStack VM's</h2>
+
+<p>Follow the instructions <a href="https://wiki.opendaylight.org/view/OVSDB:Helium_and_Openstack_on_Fedora20#VMs">OVSDB:Helium and OpenStack on Fedora 20</a> to create two guest VMs to serve as the OpenStack nodes. Skip the last steps for installing devstack.</p>
+
+<h2 id="packstack">Packstack</h2>
+
+<p>Use <a href="/install/quickstart/">Quickstart</a> to install the packstack on the control node and install the OpenStack components. This will create the packstack file that we will change to also install OpenStack on the second node. Try these forms of the command to keep the system as clean as possible: <code>packstack --allinone --provision-demo=n --provision-all-in-one-ovs-bridge=n</code> and <code>packstack --answer-file=packstack-answers.txt --provision-demo=n --provision-all-in-one-ovs-bridge=n</code>.</p>
+
+<p>I ran packstack once, changed all the 192.168.122.xx addresses to 192.168.120.51 and reran packstack. I did this because by default the allinone used eth0 for the control addresses but in my setup I wanted eth2 to be the controller interface.</p>
+
+<p>You could probably also just use the attached packstack-answers.txt file and start with it. Modify the values to fit the addresses you chose for the guest VMs. This would also get around having to run packstack twice as I did above. <a href="https://github.com/shague/packstack_stuff/blob/master/packstack/packstack-answers-20141130-164347.txt">packstack-answers.txt</a></p>
+
+<p>In the example packstack_answer.txt file the node IP addresses are:</p>
+
+<ul>
+  <li>control+compute: 192.168.120.51</li>
+  <li>compute: 192.168.120.52</li>
+</ul>
+
+<p>Next we modify the packstack-answers.txt file to also install OpenStack on the compute node. Make the following changes to the file:&lt;/br&gt;</p>
+
+<ul>
+  <li>CONFIG_COMPUTE_HOSTS=192.168.120.51,192.168.120.52</li>
+  <li>CONFIG_NETWORK_HOSTS=192.168.120.51,192.168.120.52</li>
+</ul>
+
+<p>Rerun packstack, packstack –answer-file=packstack-answers.txt. This should install OpenStack on the compute node.</p>
+
+<p>I like to create really small VM images when testing so do the following if you want the smaller images. Then you can use m1.nano for VM instantiation.</p>
+
+<pre class="highlight plaintext"><code>  glance image-create \&#x000A;    --copy-from http://download.cirros-cloud.net/0.3.1/cirros-0.3.1-x86_64-disk.img \&#x000A;    --is-public true \&#x000A;    --container-format bare \&#x000A;    --disk-format qcow2 \&#x000A;    --name cirros&#x000A;  nova flavor-create m1.nano auto 128 1 1&#x000A;</code></pre>
+
+<p>Now we should have a functioning setup using ML2 and OpenvSwitch networking. You can create some VMs and see what happens.</p>
+
+<p>If you hit this error <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1080481">Fedora20: packstack gives undefined method `split' for nil:NilClass</a> then increase the memory for the VM to 4GB.</p>
+
+<h2 id="clean-up-networking-on-nodes">Clean Up Networking on Nodes</h2>
+
+<p>By default the allinone install created OpenvSwitch bridges and OpenStack projects that just pollutes the setup so if you did not use</p>
+
+<pre class="highlight plaintext"><code>--provision-demo=n&#x000A;</code></pre>
+
+<p>, we will clean up everything before changing Neutron's configuration. Once we have switched Neutro to using ML2 to OpenDaylight, we will need to stop and disable neutron-openvswitch-agent on all hosts. This is because OpenDaylight replaces the l2 agent and manages the remote vSwitches directly. I also ran some vxlan tunnel tests with using the standard ml2 OpenvSwitch setup and I believe that is where many extra crumbs were left.</p>
+
+<p>This script is more of a template for some neutron commands to run to clean out the existing projects and networks. If your system is clean there is no need to run the commands. Use the neutron list commands to see if these steps are needed.</p>
+
+<pre class="highlight plaintext"><code>  neutron port-list&#x000A;  neutron port-delete id&#x000A;&#x000A;  neutron net-list&#x000A;  neutron dhcp-agent-list-hosting-net vx-net&#x000A;  neutron dhcp-agent-network-remove &lt;subnet UUID from previous command&gt; vx-net&#x000A;&#x000A;  neutron router-list&#x000A;  neutron router-port-list vx-rtr&#x000A;  neutron router-interface-delete vx-rtr &lt;subnet_id&gt;&#x000A;  neutron router-gateway-clear vx-rtr &lt;subnet_id&gt; - the 172.x address&#x000A;  neutron router-delete vx-rtr&#x000A;&#x000A;  neutron subnet-list&#x000A;  neutron subnet-list id|name&#x000A;  neutron subnet-delete private-subnet&#x000A;&#x000A;  neutron net-list&#x000A;  neutron net-show private&#x000A;  neutron net-delete private&#x000A;&#x000A;  keystone tenant-list&#x000A;  keystone tenant-delete demo&#x000A;&#x000A;  neutron subnet-delete public-subnet&#x000A;  neutron net-delete public&#x000A;</code></pre>
+
+<h2 id="configure-controlnetworkcompute-node-to-use-opendaylight-ml2-plugin">Configure Control+Network+Compute Node to use OpenDaylight ML2 Plugin</h2>
+
+<p>Packstack does not have support for OpenDaylight yet so we need to do manual steps to enable the support. The below steps will disable the openvswitch agent, add ML2 OpenDaylight support and restart neutron. Recall that in this setup the OpenDaylight controll is running on the host at 192.168.120.1. Change the value below if you have a different address.</p>
+
+<pre class="highlight plaintext"><code>  sudo systemctl stop neutron-server&#x000A;  sudo systemctl stop neutron-openvswitch-agent&#x000A;  sudo systemctl disable neutron-openvswitch-agent&#x000A;&#x000A;  # Stops, cleans and restarts openvswitch and logs captured.&#x000A;&#x000A;  sudo systemctl stop openvswitch&#x000A;  sudo rm -rf /var/log/openvswitch/*&#x000A;  sudo rm -rf /etc/openvswitch/conf.db&#x000A;  sudo systemctl start openvswitch&#x000A;&#x000A;  sudo crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 mechanism_drivers opendaylight &#x000A;  sudo crudini --set /etc/neutron/plugins/ml2/ml2_conf.ini ml2 tenant_network_types vxlan&#x000A;&#x000A;  cat &lt;&lt;EOT | sudo tee -a /etc/neutron/plugins/ml2/ml2_conf.ini &gt; /dev/null&#x000A;  [ml2_odl]&#x000A;  password = admin&#x000A;  username = admin&#x000A;  url = http://192.168.120.1:8080/controller/nb/v2/neutron&#x000A;  EOT&#x000A;&#x000A;  sudo mysql -e "drop database if exists neutron_ml2;"&#x000A;  sudo mysql -e "create database neutron_ml2 character set utf8;"&#x000A;  sudo mysql -e "grant all on neutron_ml2.* to 'neutron'@'%';"&#x000A;  sudo neutron-db-manage --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugin.ini upgrade head&#x000A;&#x000A;  sudo systemctl start neutron-server&#x000A;</code></pre>
+
+<p>This next script will attempt to clean up any namespaces, ports or bridges still hanging around. Make sure to use <code>sudo ovs-vsctl show</code> to determine if this is even needed.</p>
+
+<pre class="highlight shell"><code>  <span class="c">#!/bin/bash</span>&#x000A;&#x000A;  <span class="sb">`</span> <span class="k">for</span> ns in <span class="sb">`</span>ip netns<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">do</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip netns del <span class="nv">$ns</span><span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">done</span>&#x000A;&#x000A;  <span class="sb">`</span> <span class="k">for</span> qvb in <span class="sb">`</span>ifconfig -a | grep qvb | cut -d<span class="s1">' '</span> -f1<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">do</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip link set <span class="nv">$qvb</span> down<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip link delete <span class="nv">$qvb</span><span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">done</span>&#x000A;  <span class="sb">`</span> <span class="k">for</span> qbr in <span class="sb">`</span>ifconfig -a | grep qbr | cut -d<span class="s1">' '</span> -f1<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">do</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip link set <span class="nv">$qbr</span> down<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip link delete <span class="nv">$qbr</span><span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">done</span>&#x000A;  <span class="sb">`</span> <span class="k">for</span> qvo in <span class="sb">`</span>ifconfig -a | grep qvo | cut -d<span class="s1">' '</span> -f1<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">do</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ovs-vsctl --if-exists del-port br-int <span class="nv">$qvo</span><span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">done</span>&#x000A;  <span class="sb">`</span> <span class="k">for</span> tap in <span class="sb">`</span>ifconfig -a | grep tap | cut -d<span class="s1">' '</span> -f1<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">do</span>&#x000A;      tap<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">tap</span><span class="p">%?</span><span class="k">}</span><span class="s2">"</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ip link set <span class="nv">$tap</span> down<span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="sb">`</span>     <span class="sb">`</span>sudo ovs-vsctl --if-exists del-port br-int <span class="nv">$tap</span><span class="sb">`</span> <span class="sb">`</span>&#x000A;  <span class="k">done</span>&#x000A;&#x000A;  <span class="sb">`</span> <span class="k">for</span> i in <span class="sb">`</span>sudo ovs-vsctl show | grep Bridge | awk <span class="s1">'{print $2}'</span><span class="sb">`</span> ; do <span class="sb">`</span>&#x000A;      if [[ <span class="nv">$i</span> <span class="o">==</span> <span class="k">*</span>br-eth1<span class="k">*</span> ]]; then&#x000A;          sudo ovs-vsctl --if-exists del-br <span class="s1">'br-eth1'</span>&#x000A;      else&#x000A;          sudo ovs-vsctl --if-exists del-br <span class="nv">$i</span>&#x000A;      fi&#x000A;  <span class="k">done</span>&#x000A;&#x000A;  <span class="sb">`</span> <span class="k">for</span> i in <span class="sb">`</span>ip addr | grep tap | awk <span class="s1">'{print $2}'</span><span class="sb">`</span>; do <span class="sb">`</span>&#x000A;      tap<span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">i</span><span class="p">%?</span><span class="k">}</span><span class="s2">"</span>&#x000A;      echo <span class="s2">"tap=</span><span class="nv">$tap</span><span class="s2">"</span>&#x000A;      sudo ip link del dev <span class="nv">$tap</span>&#x000A;  <span class="k">done&#x000A;&#x000A;  for</span> i in phy-br-eth1 int-br-eth1; do&#x000A;      ip -o link show dev <span class="nv">$i</span> &amp;&gt; /dev/null&#x000A;      if [ <span class="nv">$?</span> -eq 0 ]; then&#x000A;          sudo ip link del dev <span class="nv">$i</span>&#x000A;      fi&#x000A;  <span class="k">done&#x000A;&#x000A;  for</span> iface in br-ex br-int br-tun; do&#x000A;      sudo ovs-dpctl del-if ovs-system <span class="nv">$iface</span>&#x000A;  <span class="k">done&#x000A;&#x000A;  </span><span class="nb">echo</span> <span class="s2">"Delete vxlan_xxx if present"</span>&#x000A;  <span class="sb">`</span> <span class="k">for</span> iface in <span class="sb">`</span>sudo ovs-dpctl show | awk <span class="s1">'match($0, /[Pp]ort\s+[[:digit:]]+\s*\:\s*(.+).+\(vxlan/, m) { print m[1]; }'</span><span class="sb">`</span> ; do <span class="sb">`</span>&#x000A;     echo <span class="k">${</span><span class="nv">iface</span><span class="k">}</span> ; sudo ovs-dpctl del-if ovs-system <span class="k">${</span><span class="nv">iface</span><span class="k">}</span>&#x000A;  <span class="k">done&#x000A;&#x000A;  </span>sudo ovs-dpctl show&#x000A;</code></pre>
+
+<p>At this point the control node should be clean so now clean up the compute node. Use the above two steps to clean anything up. Then use the following script to stop the openvswitch agent and reset OpenvSwitch:</p>
+
+<pre class="highlight plaintext"><code>  sudo systemctl stop neutron-openvswitch-agent&#x000A;  sudo systemctl disable neutron-openvswitch-agent&#x000A;&#x000A;  # Stops, cleans and restarts openvswitch and logs captured.&#x000A;&#x000A;  sudo systemctl stop openvswitch&#x000A;  sudo rm -rf /var/log/openvswitch/*&#x000A;  sudo rm -rf /etc/openvswitch/conf.db&#x000A;  sudo systemctl start openvswitch&#x000A;  sudo ovs-vsctl show&#x000A;</code></pre>
+
+<h2 id="start-opendaylight">Start OpenDaylight</h2>
+
+<p>Follow the instructions at <a href="https://wiki.opendaylight.org/view/OVSDB:Helium_and_Openstack_on_Fedora20#OpenDaylight_Distribution">OVSDB:Helium and OpenStack on Fedora 20</a> to see how to download the Helium-SR1 version and start it. In this setup OpenDaylight is installed on the host and started there.</p>
+
+<h2 id="configure-nodes-to-connect-to-opendaylight">Configure Nodes to Connect to OpenDaylight</h2>
+
+<p>The nodes need to be configured to use the OpenDaylight controller. Recall that in this setup the OpenDaylight controll is running on the host at 192.168.120.1. Change the value below if you have a different address. Run the below script on both nodes.</p>
+
+<pre class="highlight plaintext"><code>  #/bin/bash&#x000A;&#x000A;  eth2=$(ip -o addr show dev eth2 | grep -w inet | awk '{print $4}' | sed -e 's/\/.*//g')&#x000A;  ovs-vsctl set-manager tcp:192.168.120.1:6640&#x000A;  read ovstbl &lt;&lt;&lt; $(ovs-vsctl get Open_vSwitch . _uuid)&#x000A;  ovs-vsctl set Open_vSwitch $ovstbl other_config:bridge_mappings=physnet1:eth1,physnet3:eth3&#x000A;  ovs-vsctl set Open_vSwitch $ovstbl other_config:local_ip=$eth2&#x000A;&#x000A;  ovs-vsctl list Manager&#x000A;  echo&#x000A;  ovs-vsctl list Open_vSwitch&#x000A;</code></pre>
+
+<h2 id="verification">Verification</h2>
+
+<p>Setup a vxlan tunnel between the two nodes to verify the setup. Use the vnc console of one of the VM's and try to ping the other VM. In the test below the two VMs should have the addresses 10.100.5.2 and 10.100.5.4 if ran the first time.</p>
+
+<pre class="highlight plaintext"><code>  neutron net-create vx-net --provider:network_type vxlan --provider:segmentation_id 1400&#x000A;  neutron subnet-create vx-net 10.100.5.0/24 --name vx-subnet&#x000A;  neutron router-create vx-rtr&#x000A;  neutron router-interface-add vx-rtr vx-subnet&#x000A;  nova boot --flavor m1.nano --image $(nova image-list | grep 'uec\s' | awk '{print $2}' | tail -1) --nic net-id=$(neutron net-list | grep -w vx-net | awk '{print $2}') vmvx1 --availability_zone=nova:fedora51&#x000A;  nova boot --flavor m1.nano --image $(nova image-list | grep 'cirros\s' | awk '{print $2}' | tail -1) --nic net-id=$(neutron net-list | grep -w vx-net | awk '{print $2}') vmvx2 --availability_zone=nova:fedora52&#x000A;  nova get-vnc-console vmvx1 novnc&#x000A;  nova get-vnc-console vmvx2 novnc&#x000A;</code></pre>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/helium-opendaylight-juno-openstack.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 25 Sep 2015 02:12 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

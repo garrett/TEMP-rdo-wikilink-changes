@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Tuskar-API &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/api/tuskar-api.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="tuskar-api">Tuskar-API</h1>
+
+<h2 id="plan">Plan</h2>
+
+<p>Example of JSON Representation of Plan</p>
+
+<pre class="highlight plaintext"><code>     {&#x000A;       "created_at": "2014-09-26T20:23:14.222815",&#x000A;       "description": "Development testing cloud",&#x000A;       "name": "dev-cloud",&#x000A;       "parameters":&#x000A;       [&#x000A;         {&#x000A;           "default": "guest",&#x000A;           "description": "The password for RabbitMQ",&#x000A;           "hidden": true,&#x000A;           "label": null,&#x000A;           "name": "compute-1::RabbitPassword",&#x000A;           "value": "secret-password"&#x000A;         }&#x000A;       ],&#x000A;       "roles":&#x000A;       [&#x000A;         {&#x000A;           "description": "OpenStack hypervisor node. Can be wrapped in a ResourceGroup for scaling.\n",&#x000A;           "name": "compute",&#x000A;           "uuid": "b7b1583c-5c80-481f-a25b-708ed4a39734",&#x000A;           "version": 1&#x000A;         }&#x000A;       ],&#x000A;       "updated_at": null,&#x000A;       "uuid": "53268a27-afc8-4b21-839f-90227dd7a001"&#x000A;     }&#x000A;</code></pre>
+
+<h3 id="list-all-plans">List All Plans</h3>
+
+<p><code>   curl -v -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' </code><a href="http://0.0.0.0:8585/v2/plans/"><code>http://0.0.0.0:8585/v2/plans/</code></a></p>
+
+<h3 id="retrieve-a-single-plan">Retrieve a Single Plan</h3>
+
+<p><code>   curl -v -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' </code><a href="http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001"><code>http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001</code></a></p>
+
+<h3 id="create-a-new-plan">Create a New Plan</h3>
+
+<pre class="highlight plaintext"><code>     curl -v -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d  '&#x000A;      {&#x000A;        "name": "dev-cloud",&#x000A;        "description": "Development testing cloud",&#x000A;      } `    ' `[`http://0.0.0.0:8585/v2/plans`](http://0.0.0.0:8585/v2/plans)&#x000A;</code></pre>
+
+<p>This command will create new Plan without any Roles associated with it. To assign a Role to Plan see 'How to Add a Role to a Plan'.</p>
+
+<h3 id="delete-an-existing-plan">Delete an Existing Plan</h3>
+
+<p><code>   curl -v -X DELETE </code><a href="http://localhost:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001"><code>http://localhost:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001</code></a></p>
+
+<h3 id="changing-a-plans-configuration-values">Changing a Plan’s Configuration Values</h3>
+
+<pre class="highlight plaintext"><code>     curl -v -X PATCH -H 'Content-Type: application/json' -H 'Accept: application/json' -d '&#x000A;     [&#x000A;       {&#x000A;         "name" : "database_host",&#x000A;         "value" : "10.11.12.13"&#x000A;       },&#x000A;       {&#x000A;         "name" : "database_password",&#x000A;         "value" : "secret"&#x000A;       }&#x000A;     ] `   ' `[`http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001`](http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001)&#x000A;</code></pre>
+
+<p>You can change only existing parameters in Plan.</p>
+
+<h3 id="retrieve-a-plans-template-files">Retrieve a Plan’s Template Files</h3>
+
+<p><code>   curl -v -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' </code><a href="http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001/templates"><code>http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001/templates</code></a></p>
+
+<p>Example of JSON representation:</p>
+
+<pre class="highlight plaintext"><code>     {&#x000A;       "environment.yaml" : "... content of template file ...",&#x000A;       "plan.yaml" : "... content of template file ...",&#x000A;       "provider-compute-1.yaml" : "... content of template file ..."&#x000A;     }&#x000A;</code></pre>
+
+<h2 id="role">Role</h2>
+
+<p>Example of JSON Representation of Role</p>
+
+<pre class="highlight plaintext"><code>     {&#x000A;       "description": "OpenStack hypervisor node. Can be wrapped in a ResourceGroup for scaling.\n",&#x000A;       "name": "compute",&#x000A;       "uuid": "b7b1583c-5c80-481f-a25b-708ed4a39734",&#x000A;       "version": 1&#x000A;     }&#x000A;</code></pre>
+
+<h3 id="retrieving-possible-roles">Retrieving Possible Roles</h3>
+
+<p><code>   curl -v -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' </code><a href="http://0.0.0.0:8585/v2/roles/"><code>http://0.0.0.0:8585/v2/roles/</code></a></p>
+
+<h3 id="adding-a-role-to-a-plan">Adding a Role to a Plan</h3>
+
+<pre class="highlight plaintext"><code>     curl -v -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d  '&#x000A;      {&#x000A;        "uuid": "b7b1583c-5c80-481f-a25b-708ed4a39734"&#x000A;      } `    ' `[`http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001`](http://0.0.0.0:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001)&#x000A;</code></pre>
+
+<h3 id="removing-a-role-from-a-plan">Removing a Role from a Plan</h3>
+
+<p><code>   curl -v -X DELETE </code><a href="http://localhost:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001/roles/b7b1583c-5c80-481f-a25b-708ed4a39734"><code>http://localhost:8585/v2/plans/53268a27-afc8-4b21-839f-90227dd7a001/roles/b7b1583c-5c80-481f-a25b-708ed4a39734</code></a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/api/tuskar-api.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 23 Jan 2015 16:25 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

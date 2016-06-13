@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Securing Services Foreman &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/securing-services-foreman.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="securing-services-foreman">Securing Services Foreman</h1>
+
+<h2 class="no_toc" id="overview">Overview</h2>
+
+<p>The default OpenStack configuration doesn't include securing internal services with SSL. This document provides instructions for securing some of the services within a Foreman-managed environment.</p>
+
+<p>This can be seen as extending <a href="http://rdoproject.org/Deploying_RDO_Using_Foreman">http://rdoproject.org/Deploying_RDO_Using_Foreman</a></p>
+
+<h2 id="preparation">Preparation</h2>
+
+<p>You'll need a CA to issue server certificates, along with the CA certificate itself. Instructions for issuing certificates is beyond the scope of this document, but the subject of the server certificates should include CN=<fqdn> for SSL to work.</fqdn></p>
+
+<p>Depending on your host configuration, some services may be running on separate machines. Keep this in mind when restarting services.</p>
+
+<p>The location of the certificates is not mandatory, but be aware of SELinux issues if you decide to locate them elsewhere.</p>
+
+<p>Optionally you may use an IPA server to streamline issuance and management of services. You will need the hostname of an IPA master and a user with the permissions to create hosts and services.</p>
+
+<h3 id="manual-ca">Manual CA</h3>
+
+<p>If you want to test with a self-signed OpenSSL CA you can generate one by creating a location for the CA and generating it with a configuration file.</p>
+
+<p>Lets create our own CA using the OpenSSL defaults.</p>
+
+<pre class="highlight plaintext"><code># mkdir /root/CA&#x000A;# cd /root/CA&#x000A;# mkdir certs crl newcerts private requests&#x000A;# echo 01 &gt; serial&#x000A;# touch index.txt index.txt.attr&#x000A;# cp /etc/pki/tls/openssl.cnf .&#x000A;</code></pre>
+
+<p>apply this diff</p>
+
+<pre class="highlight diff"><code><span class="gh">diff openssl.cnf  /etc/pki/tls/openssl.cnf&#x000A;42c42&#x000A;&lt; dir           = /root//CA             # Where everything is kept&#x000A;</span><span class="gd">---&#x000A;</span><span class="err">&gt; dir           = /etc/pki/CA           # Where everything is kept&#x000A;</span></code></pre>
+
+<p>Now generate the private key for the CA</p>
+
+<pre class="highlight plaintext"><code># openssl req -nodes -new -newkey rsa:2048 -keyout private/cakey.pem -out careq.pem -config ./openssl.cnf&#x000A;Generating a 2048 bit RSA private key&#x000A;.......................+++&#x000A;...........................+++&#x000A;writing new private key to 'private/cakey.pem'&#x000A;-----&#x000A;You are about to be asked to enter information that will be incorporated&#x000A;into your certificate request.&#x000A;What you are about to enter is what is called a Distinguished Name or a DN.&#x000A;There are quite a few fields but you can leave some blank&#x000A;For some fields there will be a default value,&#x000A;If you enter '.', the field will be left blank.&#x000A;-----&#x000A;Country Name (2 letter code) [XX]:US&#x000A;State or Province Name (full name) []:NC&#x000A;Locality Name (eg, city) [Default City]:Raleigh&#x000A;Organization Name (eg, company) [Default Company Ltd]:Example Corp.&#x000A;Organizational Unit Name (eg, section) []:&#x000A;Common Name (eg, your name or your server's hostname) []:Example Certificate Authority&#x000A;Email Address []:certs@example.com&#x000A;&#x000A;Please enter the following 'extra' attributes&#x000A;to be sent with your certificate request&#x000A;A challenge password []:&#x000A;An optional company name []:&#x000A;</code></pre>
+
+<p>Sign the CA and issue a 10-year certificate. Yes, this is overkill for testing.</p>
+
+<pre class="highlight plaintext"><code>  # openssl ca -create_serial -out cacert.pem -days 3650 -keyfile private/cakey.pem -selfsign -extensions v3_ca -config ./openssl.cnf -infiles careq.pem&#x000A;</code></pre>
+
+<p>On the controller, generate a CSR for the public and private certs.</p>
+
+<pre class="highlight plaintext"><code># openssl req -newkey rsa:1024 -nodes -sha1 -keyout /etc/pki/tls/private/set1client1.public.example.com-horizon.key  -keyform PEM -out /root/public.req -outform PEM&#x000A;&#x000A;Generating a 1024 bit RSA private key&#x000A;.++++++&#x000A;.........++++++&#x000A;writing new private key to '/etc/pki/tls/private/set1client1.public.example.com-horizon.key'&#x000A;-----&#x000A;You are about to be asked to enter information that will be incorporated&#x000A;into your certificate request.&#x000A;What you are about to enter is what is called a Distinguished Name or a DN.&#x000A;There are quite a few fields but you can leave some blank&#x000A;For some fields there will be a default value,&#x000A;If you enter '.', the field will be left blank.&#x000A;-----&#x000A;Country Name (2 letter code) [XX]:US&#x000A;State or Province Name (full name) []:NC&#x000A;Locality Name (eg, city) [Default City]:Raleigh&#x000A;Organization Name (eg, company) [Default Company Ltd]:Example Corp.&#x000A;Organizational Unit Name (eg, section) []:&#x000A;Common Name (eg, your name or your server's hostname) []:set1client1.public.example.com&#x000A;Email Address []:root@example.com&#x000A;&#x000A;Please enter the following 'extra' attributes&#x000A;to be sent with your certificate request&#x000A;A challenge password []:&#x000A;An optional company name []:&#x000A;</code></pre>
+
+<p>Then do something similar for the private interface</p>
+
+<pre class="highlight plaintext"><code># openssl req -newkey rsa:1024 -nodes -sha1 -keyout /etc/pki/tls/private/set1client1.private.example.com-mysql.key  -keyform PEM -out /root/private.req -outform PEM&#x000A;</code></pre>
+
+<p>On the CA sign the requests</p>
+
+<p>Copy the two request files and put them into /root/CA/requests. You'll be asked to confirm the certificates, answer yes.</p>
+
+<pre class="highlight plaintext"><code># openssl ca -config ./openssl.cnf -infiles requests/private.req&#x000A;# openssl ca -config ./openssl.cnf -infiles requests/public.req&#x000A;</code></pre>
+
+<p>The output of each signing is the public certificate. Copy that into the appropriate location on the controller, such as</p>
+
+<pre class="highlight plaintext"><code>/etc/pki/tls/certs/set1client1.public.example.com-horizon.crt&#x000A;/etc/pki/tls/certs/set1client1.private.example.com-mysql.crt&#x000A;</code></pre>
+
+<p>We cheat and use the same certificate for qpid as mysql. For production purposes you'd want separate certificates for each service.</p>
+
+<pre class="highlight plaintext"><code># cp /etc/pki/tls/certs/set1client1.private.example.com-mysql.crt /etc/pki/tls/certs/set1client1.private.example.com-qpid.crt&#x000A;# cp /etc/pki/tls/private/set1client1.private.example.com-mysql.key  /etc/pki/tls/private/set1client1.private.example.com-qpid.key&#x000A;</code></pre>
+
+<p>Copy /root/CA/cacert.pem to the controller machine /etc/pki/tls/certs/openssl.crt</p>
+
+<p>You could probably use the puppet CA for this as well. My assumption is that the organization already has a CA somewhere and that eventually that CA will be used to issue the certificates used for OpenStack.</p>
+
+<p>When you set up seeds.rb you want to use values that look something like this:</p>
+
+<pre class="highlight plaintext"><code>  "mysql_ca"                      =&gt; "/etc/pki/tls/certs/openssl.crt",&#x000A;  "mysql_cert"                    =&gt; "/etc/pki/tls/certs/set1client1.private.example.com-mysql.crt",&#x000A;  "mysql_key"                     =&gt; "/etc/pki/tls/private/set1client1.private.example.com-mysql.key",&#x000A;  "qpid_ca"                       =&gt; "/etc/pki/tls/certs/openssl.crt",&#x000A;  "qpid_cert"                     =&gt; "/etc/pki/tls/certs/set1client1.private.example.com-qpid.crt",&#x000A;  "qpid_key"                      =&gt; "/etc/pki/tls/private/set1client1.private.example.com-qpid.key",&#x000A;  "horizon_ca"                    =&gt; "/etc/pki/tls/certs/openssl.crt",&#x000A;  "horizon_cert"                  =&gt; "/etc/pki/tls/certs/set1client1.public.example.com-horizon.crt",&#x000A;  "horizon_key"                   =&gt; "/etc/pki/tls/private/set1client1.public.example.com-horizon.key",&#x000A;</code></pre>
+
+<h3 id="provisioning">Provisioning</h3>
+
+<p>The automatic provisioning capabilities of Foreman is not currently supported. Some manual work is needed on the hosts prior to applying the node configuration. It will work, in that your hosts will be created, but the resulting services will not be running due to missing certificates.</p>
+
+<h2 id="foreman-server-installation">Foreman server Installation</h2>
+
+<p>The Foreman installation is largely the same as a non-SSL installation with the exception that FQDNs need to be provided to the installer in order SSL to work.</p>
+
+<p>As an example, with 3 machines: a foreman server, a controller node and a compute node. The controller and compute nodes at least have two separate networks, private and public. The bin/seeds.rb might look like:</p>
+
+<pre class="highlight plaintext"><code>"controller_priv_host"          =&gt; 'controller.private.example.com',&#x000A;"controller_pub_host"           =&gt; 'controller.public.example.com',&#x000A;"mysql_host"                    =&gt; 'controller.private.example.com',&#x000A; ...&#x000A;"qpid_host"                     =&gt; 'controller.private.example.com',&#x000A;...&#x000A;"mysql_ca"                      =&gt; "/etc/ipa/ca.crt",&#x000A;"mysql_cert"                    =&gt; "/etc/pki/tls/certs/controller.private.example.com-mysql.crt",&#x000A;"mysql_key"                     =&gt; "/etc/pki/tls/private/controller.private.example.com-mysql.key",&#x000A;"qpid_ca"                       =&gt; "/etc/ipa/ca.crt",&#x000A;"qpid_cert"                     =&gt; "/etc/pki/tls/certs/controller.private.example.com-qpid.crt",&#x000A;"qpid_key"                      =&gt; "/etc/pki/tls/private/controller.private.example.com-qpid.key",&#x000A;"horizon_cert"                  =&gt; "/etc/pki/tls/certs/controller.public.example.com-horizon.crt",&#x000A;"horizon_key"                   =&gt; "/etc/pki/tls/private/controller.public.example.com-horizon.key",&#x000A;</code></pre>
+
+<h2 id="initial-node-installation">Initial Node installation</h2>
+
+<p>Before running the foreman_client.sh on your compute and controller node to register the hosts with Foreman you'll need to do some pre-configuration work, one of the following:</p>
+
+<h3 id="manual-ssl-configuration">Manual SSL Configuration</h3>
+
+<p>For a manual installation the SSL certificates need to be pre-positioned on the controller or compute node.</p>
+
+<p>The default location for the certificates are defined in the node hostgroup. The defaults are:</p>
+
+<pre class="highlight plaintext"><code>  mysql_ca        /etc/ipa/ca.crt&#x000A;  mysql_cert     /etc/pki/tls/certs/FQDN-mysql.crt&#x000A;  mysql_key      /etc/pki/tls/private/FQDN-mysql.key&#x000A;  qpid_ca          /etc/ipa/ca.crt&#x000A;  qpid_cert       /etc/pki/tls/certs/FQDN-qpid.crt&#x000A;  qpid_key        /etc/pki/tls/private/FQDN-qpid.key&#x000A;  horizon_ca    /etc/ipa/ca.crt&#x000A;  horizon_cert /etc/pki/tls/certs/FQDN-horizon.crt&#x000A;  horizon_key  /etc/pki/tls/certs/FQDN-horizon.key&#x000A;</code></pre>
+
+<p>Where FQDN is the fully-qualified domain name of the private interface of the node. Change these as needed. These settings are found in the Foreman UI under More -&gt; Configuration -&gt; Host groups. Select each hostgroup then look in Parameters for the SSL options. To change a value select override, then add a new value at the bottom of the page.</p>
+
+<p>Don't worry about file ownership, puppet should set them as needed.</p>
+
+<h3 id="ipa-configuration">IPA Configuration</h3>
+
+<p>Enroll the compute and controller nodes as IPA client machines (ipa-client-install).</p>
+
+<p>Now you need to pre-create the services that IPA will need to generate the SSL certificates. On the IPA master run:</p>
+
+<pre class="highlight plaintext"><code>  $ kinit admin&#x000A;  $ ipa service-add mysql/controller.private.example.com&#x000A;  $ ipa service-add qpid/controller.private.example.com&#x000A;  $ ipa service-add horizon/controller.public.example.com&#x000A;  $ ipa service-add-host --hosts=controller.private.example.com horizon/controller.public.example.com&#x000A;</code></pre>
+
+<p>The controller node configuration will automatically obtain the SSL certificate.</p>
+
+<h2 id="node-configuration">Node Configuration</h2>
+
+<p>First, log in to your Foreman instance (https://{foreman_fqdn}). The default login and password are admin/changeme; we recommend changing this if you plan on keeping this host around.</p>
+
+<p>Next, you’ll need to assign the correct puppet classes to each of your hosts. Click the HOSTS link and select your host from the list. Select EDIT HOST and add the appropriate Host Group.</p>
+
+<h3 id="controller">Controller</h3>
+
+<p>In either case select either the Nova or Neutron Controller host group.</p>
+
+<h4 id="manual-ssl-configuration-1">Manual SSL Configuration</h4>
+
+<p>Override ssl to true. freeipa should be false which is the default. Verify that the paths to the various SSL certs match what you've pre-positioned into the filesystem on the controller node.</p>
+
+<h4 id="ipa-configuration-1">IPA Configuration</h4>
+
+<p>Override ssl and freeipa values and set them to true.</p>
+
+<h3 id="compute">Compute</h3>
+
+<p>In both cases (manual or IPA SSL configuration) only ssl needs to be set to true if the Controller node has ssl enabled. This is true for both Nova and Neutron compute host groups.</p>
+
+<p>Be sure to verify that the interface names match the system.</p>
+
+<h2 id="apply-configuration">Apply Configuration</h2>
+
+<pre class="highlight plaintext"><code>  puppet agent -tv&#x000A;</code></pre>
+
+<h2 id="verifying-configuration-on-the-controller">Verifying Configuration on the Controller</h2>
+
+<p>Here are some basic steps to ensure that the services are working as expected.</p>
+
+<h3 id="ipa-configuration-2">IPA Configuration</h3>
+
+<p>First confirm that the certificates for qpid, mysql and horizon were retrieved and are being tracked for renewal:</p>
+
+<pre class="highlight plaintext"><code>  # ipa-getcert list&#x000A;</code></pre>
+
+<p>The output should contain 4 Request IDs in a monitoring state. These include:</p>
+
+<ul>
+  <li>a certificate for the host itself</li>
+  <li>the qpid certificate</li>
+  <li>the mysql certificate</li>
+  <li>the horizon certificate</li>
+</ul>
+
+<p>The status in certmonger should be MONITORING. If it isn't then something went wrong.</p>
+
+<h3 id="common-for-manual-and-ipa-configuration">Common for Manual and IPA Configuration</h3>
+
+<h4 id="mysql">mysql</h4>
+
+<p>Using the mysql client, verify that SSL is available, where ssl-ca is the path to the CA certificate that issued the mysql certificate. This example uses the IPA CA:</p>
+
+<pre class="highlight plaintext"><code>  # mysql --ssl-ca=/etc/ipa/ca.crt -e '\s'&#x000A;</code></pre>
+
+<p>The output should include a line like this:</p>
+
+<pre class="highlight plaintext"><code>  SSL:                    Cipher in use is DHE-RSA-AES256-SHA&#x000A;</code></pre>
+
+<h4 id="qpid">qpid</h4>
+
+<p>Here is a simple AMQP python script that will exercise a connection over SSL:</p>
+
+<pre class="highlight plaintext"><code>  import sys&#x000A;  from qpid.messaging import *&#x000A;  broker = sys.argv[1]&#x000A;  address = "amq.topic" &#x000A;  connection = Connection(broker)&#x000A;  connection.transport = 'ssl'&#x000A;  connection.port = 5671&#x000A;  try:&#x000A;    connection.open()&#x000A;    session = connection.session()&#x000A;    sender = session.sender(address)&#x000A;    receiver = session.receiver(address)&#x000A;    sender.send(Message("Hello world!"));&#x000A;    message = receiver.fetch()&#x000A;    print message.content&#x000A;    session.acknowledge()&#x000A;  except MessagingError,m:&#x000A;    print m&#x000A;  connection.close()&#x000A;</code></pre>
+
+<p>To use it:</p>
+
+<pre class="highlight plaintext"><code>  ` # python test.py `hostname` `&#x000A;  Hello world!&#x000A;</code></pre>
+
+<h4 id="horizon">horizon</h4>
+
+<p>Use curl to verify that Horizon is up and SSL works. You need to do this request on the public interface:</p>
+
+<p><code># curl --cacert /etc/ipa/ca.crt </code><a href="https://hostname.public.example.com/"><code>https://hostname.public.example.com/</code></a></p>
+
+<p>You'll get a redirect which will confirm that SSL is a-ok:</p>
+
+<pre class="highlight html"><code> <span class="cp">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN"&gt;</span>&#x000A; <span class="nt">&lt;html&gt;&lt;head&gt;</span>&#x000A; <span class="nt">&lt;title&gt;</span>301 Moved Permanently<span class="nt">&lt;/title&gt;</span>&#x000A; <span class="nt">&lt;/head&gt;&lt;body&gt;</span>&#x000A; <span class="nt">&lt;h1&gt;</span>Moved Permanently<span class="nt">&lt;/h1&gt;</span>&#x000A; <span class="nt">&lt;p&gt;</span>The document has moved <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://controller.example.com/dashboard/"</span><span class="nt">&gt;</span>here<span class="nt">&lt;/a&gt;</span>.<span class="nt">&lt;/p&gt;</span>&#x000A; <span class="nt">&lt;hr&gt;</span>&#x000A; <span class="nt">&lt;address&gt;</span>Apache/2.2.15 (Red Hat) Server at controller.example.com Port 443<span class="nt">&lt;/address&gt;</span>&#x000A; <span class="nt">&lt;/body&gt;&lt;/html&gt;</span>&#x000A;</code></pre>
+
+<h3 id="cleanup">Cleanup</h3>
+
+<p>If you are using an IPA server as your certificate source and you want to re-install an existing controller node there will be some additional steps. You need to clean up the environment on the host itself and on the IPA server.</p>
+
+<h4 id="on-the-host">On the host</h4>
+
+<p>Tell certmonger to stop tracking its certificates and remove the PEM files.</p>
+
+<p>Run <code>ipa-getcert list</code>. There should be four tracked certificates. The first one is for the host itself with the location being /etc/pki/nssdb. We can leave this one alone.</p>
+
+<p>For each of the others, cancel tracking by request id for each one:</p>
+
+<p><code># ipa-getcert stop-tracking -i </code><request_id></request_id></p>
+
+<p>Remove the private key and certificate pem files for the mysql and horizon certificates:</p>
+
+<pre class="highlight plaintext"><code>  ` # rm /etc/pki/tls/certs/`hostname`-mysql.crt `&#x000A;  ` # rm /etc/pki/tls/private/`hostname`-mysql.crt `&#x000A;  ` # rm /etc/pki/tls/certs/`hostname`-horizon.crt `&#x000A;  ` # rm /etc/pki/tls/private/`hostname`-horizon.crt `&#x000A;</code></pre>
+
+<h4 id="on-the-ipa-master">On the IPA master</h4>
+
+<p>The controller node has permission to request a certificate for its public interface but not permission to revoke or replace it so you'll need to do that in advance:</p>
+
+<pre class="highlight plaintext"><code>  # ipa service-show horizon/hostname.public.example.com&#x000A;</code></pre>
+
+<p>Note the serial number</p>
+
+<p><code># ipa cert-revoke </code><serial_number>
+      # ipa service-mod horizon/hostname.public.example.com --certificate=</serial_number></p>
+
+<p>This sets the certificate to nothing which effectively removes it from the entry.</p>
+
+<p>You are now ready to reinstall on the controller node.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/securing-services-foreman.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Mon 18 Apr 2016 11:33 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

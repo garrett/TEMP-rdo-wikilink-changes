@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Using GRE tenant networks &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/using-gre-tenant-networks.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="using-gre-tenant-networks">Using GRE tenant networks</h1>
+
+<p>The ability to use GRE tunnels with Open vSwitch has finally arrived in RHEL! GRE tunnels encapsulate isolated layer 2 network traffic in IP packets that are routed between compute and networking nodes using the hosts' network connectivity and routing tables. Using GRE tunnels as tenant networks in Neutron avoids the need for a network interface connected to a switch configured to trunk a range of VLANs. Here are simple instructions for taking advantage of GRE for tenant networks.</p>
+
+<p>See Also: <a href="/networking/configuring-neutron-with-ovs-and-gre-tunnels-using-quickstack/">Configuring Neutron with OVS and GRE Tunnels using quickstack</a></p>
+
+<h2 id="packstack-gre-tenant-network-configuration">Packstack GRE Tenant Network Configuration</h2>
+
+<p>Recent packstack versions support GRE tenant networks by specifying the following during deployment:</p>
+
+<pre class="highlight plaintext"><code>  CONFIG_NEUTRON_OVS_TENANT_NETWORK_TYPE=gre&#x000A;  CONFIG_NEUTRON_OVS_TUNNEL_RANGES=1:1000&#x000A;</code></pre>
+
+<p>Note that if you are using provider flat or VLAN networks (i.e. as the external network) in conjunction with GRE tenant networks, due to <a href="https://bugzilla.redhat.com/show_bug.cgi?id=1006534">bug 1006534</a>, the configuration of the physical_networks and their mappings to bridges and/or interfaces will be ignored. In this case, it might be easier to do the initial packstack deployment with VLAN tenant networks, and convert to GRE manually as shown below.</p>
+
+<h2 id="manual-conversion-to-gre-tenant-networks">Manual Conversion to GRE Tenant Networks</h2>
+
+<p>Older versions of packstack did not have support for configuring GRE tunnels, so if GRE support is not available, start out with a normal multi-node openvswitch-based deployment, such as is described in <a href="Neutron_with_OVS_and_VLANs">Neutron_with_OVS_and_VLANs</a>.</p>
+
+<p>New packstack deployments should install the GRE-enabled kernel and openvswitch packages by default. Existing deployments may need "yum update" run on each node. Make sure the following packages (or newer) are present:</p>
+
+<ul>
+  <li>kernel-2.6.32-358.114.1.openstack.el6.gre.2.x86_64.rpm</li>
+  <li>openvswitch-1.11.0_8ce28d-1.el6ost.x86_64.rpm</li>
+</ul>
+
+<p>If creating a new deployment, select GRE tenant networks and don't bother specifying a range of VLAN tags in the packstack answer file:</p>
+
+<pre class="highlight plaintext"><code>  CONFIG_QUANTUM_OVS_TENANT_NETWORK_TYPE=gre `CONFIG_QUANTUM_OVS_VLAN_RANGES=`&lt;physical network for external network&gt;&#x000A;</code></pre>
+
+<p>The above assumes a provider external network is being used. If an external bridge (br-ex) is being used instead, CONFIG_QUANTUM_OVS_VLAN_RANGES does not need to be set.</p>
+
+<p>If modifying an existing deployment to use GRE tenant networks, run the following on the controller node:</p>
+
+<pre class="highlight plaintext"><code>  # openstack-config --set /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini OVS tenant_network_type gre&#x000A;</code></pre>
+
+<p>Then, for either a new or existing deployment, run these commands on the controller node:</p>
+
+<pre class="highlight plaintext"><code>  # openstack-config --set /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini OVS enable_tunneling True&#x000A;  # openstack-config --set /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini OVS tunnel_id_ranges 1:1000&#x000A;  # service quantum-server restart&#x000A;</code></pre>
+
+<p>Finally, on each node where quantum-openvswitch-agent runs (all compute and network nodes), run:</p>
+
+<pre class="highlight plaintext"><code>  # openstack-config --set /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini OVS enable_tunneling True `# openstack-config --set /etc/quantum/plugins/openvswitch/ovs_quantum_plugin.ini OVS local_ip `&lt;IP address&gt;&#x000A;  # service quantum-openvswitch-agent restart&#x000A;</code></pre>
+
+<h2 id="mtu">MTU</h2>
+
+<p>When using GRE, set the MTU in the Guest to 1400, this will allow for the GRE header and no packet fragmentation.</p>
+
+<h2 id="offloading">Offloading</h2>
+
+<p>You should turn offloading such as TSO/LRO and GRO/GSO off on the instance physical machine for traffic to work.</p>
+
+<p>This can be done with this command (replace ethX with your physical network interface name):</p>
+
+<pre class="highlight plaintext"><code>  ethtool -K ethX tso off lro off gro off gso off&#x000A;</code></pre>
+
+<p>You can modify the network script for this change to apply on startup:</p>
+
+<pre class="highlight plaintext"><code>  /etc/sysconfig/network-scripts/ifcfg-eth0&#x000A;  ETHTOOL_OPTS="-K ${DEVICE}  tso off lro off gro off gso off"&#x000A;</code></pre>
+
+<h2 id="additional-configuration">Additional Configuration</h2>
+
+<p>On each node, be sure to specify the local IP address of the network interface over which the GRE tunnel traffic should be routed. Also make sure that each node's routing table is configured so that outgoing traffic to the other nodes' specified local IP addresses uses the desired interface. Production deployments would likely use a high bandwidth network interface and switch, with a dedicated subnet, for GRE traffic. For non-production deployments, each host's main (and probably only) IP address will suffice.</p>
+
+<p>New packstack deployments can specify the interface whose IP address will be used as the local tunnel endpoint IP with:</p>
+
+<pre class="highlight plaintext"><code>  CONFIG_NEUTRON_OVS_TUNNEL_IF=eth1&#x000A;</code></pre>
+
+<p>Once the above steps are complete, newly created tenant networks should be GRE tunnels, which can be verified by running the following with admin credentials and looking at the provider:network_type attribute:</p>
+
+<p><code># quantum net-show </code><network name="" or="" uuid=""></network></p>
+
+<category:networking>
+</category:networking>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/using-gre-tenant-networks.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Fri 11 Apr 2014 03:31 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: 2015</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/2015.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blog roundup, week of November 23</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-23/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-23/</id>
+    <published>2015-11-23T21:14:24+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO engineers have been blogging about lately:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Automated API testing workflow&lt;/strong&gt; by Tristan Cacqueray&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Services exposed to a network of any sort are in risk of security exploits. The API is the primary target of such attacks, and it is often abused by input that developers did not anticipate.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3y"&gt;http://tm3.org/3y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Community Day @ FOSDEM&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We're pleased to announce that we'll be holding an RDO Community Day in conjunction with the CentOS Dojo on the day before FOSDEM. This event will be held at the IBM Client Center in Brussels, Belgium, on Friday, January 29th, 2016.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3z"&gt;http://tm3.org/3z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Translating Between RDO/RHOS and Upstream OpenStack releases&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There is a straight forward mapping between the version numbers used for RDO and Red Hat Enterprise Linux OpenStack Platform release numbers, and the upstream releases of OpenStack. I can never keep them straight. So, I write code.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3-"&gt;http://tm3.org/3-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Does cloud-native have to mean all-in?&lt;/strong&gt; by Gordon Haff&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Cloud-native application architectures promise improved business agility and the ability to innovate more rapidly than ever before. However, many existing conventional applications will provide important business value for many years. Does an organization have to commit 100% to one architecture versus another to realize true business benefits?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/40"&gt;http://tm3.org/40&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of October 12</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-12/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-12/</id>
+    <published>2015-10-12T15:50:45+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Scheduled! Scale or Fail:  Containers on OpenStack with OpenShift 3 – #vBrownBag TechTalk at OpenStack Summit Tokyo&lt;/strong&gt; by Diane Mueller&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Come join us for lunch on Wednesday at noon  in the Wakashiba room! We will also be live streaming (conference Internet willing). The session will be recorded and will be posted to our YouTube channel. The link below will turn into direct links to the videos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2x"&gt;http://tm3.org/2x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What’s new in OpenStack Liberty: webinar recap&lt;/strong&gt; by Steve Gordon and Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack “Liberty,” due for imminent release, represents the 12th release of the open source computing platform for public and private clouds. Recent OpenStack releases have focused on improving stability and enhancing the operator experience. This is still the case with Liberty, but there are still new features to consider.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2y"&gt;http://tm3.org/2y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Minimum Viable Cluster&lt;/strong&gt; by Andrew Beekhof&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the past there was a clear distinction between high performance (HP) clustering and high availability (HA) clustering, however the lines have been bluring for some time. People have scaled HA clusters upwards and HP inspired clusters have been used to provide availability through redundancy.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2z"&gt;http://tm3.org/2z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Delorean: OpenStack packages from the future&lt;/strong&gt; by  Frederic Lepied&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I have been doing some patches on Delorean lately so I thought it could be a good idea to describe it in this article as it is not a well known tool.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2-"&gt;http://tm3.org/2-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Scheduling and disabling Cells&lt;/strong&gt; by  Belmiro Moreira&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In order to scale OpenStack Cloud Infrastructure at CERN, we were early to embrace an architecture that uses Cells. Cells is a Nova functionality that allows the partition a Cloud Infrastructure into smaller groups with independent control planes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/30"&gt;http://tm3.org/30&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Running NTP in a Container&lt;/strong&gt; Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Someone asked on IRC about running ntpd in a container on Atomic, so I've put together a small example. We'll start with a very simple Dockerfile:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/31"&gt;http://tm3.org/31&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Multiple external networks with a single L3 agent testing on RDO Liberty per Lars Kellogg-Stedman&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Following bellow is supposed to test in multi node environment
+Multiple external networks with a single L3 agent by Lars Kellogg-Stedman.  However, current post contains an attempt to analyze and understand how traffic to/from external network flows through br-int when provider external networks has been involved&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/33"&gt;http://tm3.org/33&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty (RC2) DVR Neutron workflow on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html&lt;br /&gt;
+DVR is supposed to address following problems which has traditional 3 Node
+deployment schema:-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/34"&gt;http://tm3.org/34&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+</feed>

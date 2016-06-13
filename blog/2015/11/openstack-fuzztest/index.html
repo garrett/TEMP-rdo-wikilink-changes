@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Automated API testing workflow &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='TristanCacqueray' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content='Automated API testing workflow' property='og:title'>
+<meta content='Services exposed to a network of any sort are in risk of security exploits.&#x000A;The API is the primary target of such attacks, and it is often abused by input that developers&#x000A;did not anticipate.&#x000A;&#x000A;This article...' property='og:description'>
+<meta content='http://rdoproject.org/blog/2015/11/openstack-fuzztest/' property='og:url'>
+<meta content='2015-11-13T14:00:00Z' property='article:published_time'>
+<meta content='TristanCacqueray' property='article:author:username'>
+<meta content='testing' property='article:tag'>
+<link href='/blog/tag/testing.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content='Automated API testing workflow' name='twitter:title'>
+<meta content='Services exposed to a network of any sort are in risk of security exploits.&#x000A;The API is the primary target of such attacks, and it is often abused by input that developers&#x000A;did not anticipate.&#x000A;&#x000A;This article...' name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Automated API testing workflow
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/tristancacqueray/">TristanCacqueray</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2015-11-13T14:00:00Z'>
+Friday 13 November 2015
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p>Services exposed to a network of any sort are in risk of security exploits.
+The API is the primary target of such attacks, and it is often abused by input that developers
+did not anticipate.</p>
+
+<p>This article introduces security testing of Openstack services using
+<a href="https://en.wikipedia.org/wiki/Fuzz_testing#Techniques">fuzzing techniques</a></p>
+
+<p>This article will demonstrate how OpenStack services could be automatically tested for security
+defects.
+First, I will introduce a set of tools called RestFuzz to demonstrate how it works in practice.
+Second, I will discuss the limitations of RestFuzz and how more advanced techniques could be used.</p>
+
+<p>The end goal is to design an automatic test to prevent a wide range of security bugs to enter
+OpenStack's source code.</p>
+
+<h1 id="how-a-fuzzer-works">How a fuzzer works</h1>
+
+<p>A fuzzer's purpose is to discover issues like
+<a href="https://security.openstack.org/ossa/OSSA-2015-012.html">OSSA 2015-012</a> by injecting random
+inputs into the target program.
+This advisory shows how a single invalid input, accepted by the API, broke the entire L2 network
+service.
+While code review and functional tests are not good at spoting such mistake, a fuzz test is a
+proven strategies to detect security issues.</p>
+
+<p>A fuzzer requires at least two steps: first, inputs need to be generated and fed to the
+service's input; and second, errors needs to be detected.</p>
+
+<h2 id="openstack-api-description">OpenStack API description</h2>
+
+<p>To reach the actual service code, a fuzzer will need to go through the REST interface routing,
+which is based on HTTP method and url.
+One way to effectively hit the interesting parts of the service code is to replay known valid
+HTTP queries.
+For example, a fuzzer could re-use HTTP requests created by
+<a href="http://git.openstack.org/cgit/openstack/tempest">tempest</a> functional tests.
+However, this method is limited by its trace quality.
+Instead, RestFuzz works the other way around and generates valid queries based on API definitions.
+That way, it covers actions that functional tests do not use, such as unusual combinaisons of
+parameters.</p>
+
+<p>To keep the process simple, RestFuzz will need a description of the API that defines the methods'
+endpoint and inputs' types.
+While in theory the API description could be generated dynamically, it's easier to write it down
+by hand.</p>
+
+<p>As a C function description, a REST API method description could be written in YAML format like
+this:</p>
+
+<pre class="highlight yaml"><code>  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">network_create'</span>&#x000A;    <span class="s">url</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">POST'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">v2.0/networks.json'</span><span class="pi">]</span>&#x000A;    <span class="s">inputs</span><span class="pi">:</span>&#x000A;      <span class="s">network</span><span class="pi">:</span>&#x000A;        <span class="s">name</span><span class="pi">:</span> <span class="pi">{</span><span class="s1">'</span><span class="s">required'</span><span class="pi">:</span> <span class="s1">'</span><span class="s">True'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">type'</span><span class="pi">:</span> <span class="s1">'</span><span class="s">string'</span><span class="pi">}</span>&#x000A;        <span class="s">admin_state_up</span><span class="pi">:</span> <span class="pi">{</span><span class="s1">'</span><span class="s">type'</span><span class="pi">:</span> <span class="s1">'</span><span class="s">bool'</span><span class="pi">}</span>&#x000A;    <span class="s">outputs</span><span class="pi">:</span>&#x000A;      <span class="s">network_id</span><span class="pi">:</span> <span class="pi">{</span><span class="s1">'</span><span class="s">type'</span><span class="pi">:</span> <span class="s1">'</span><span class="s">resource'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">json_extract'</span><span class="pi">:</span> <span class="s1">'</span><span class="s">lambda</span><span class="nv"> </span><span class="s">x:</span><span class="nv"> </span><span class="s">x["network"]["id"]'</span><span class="pi">}</span>&#x000A;</code></pre>
+
+<p>This example from the <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=api/network.yaml">network api</a>
+defines a method called "network_create" using:
+* The HTTP method and url to access the API.
+* The description of the method's parameters' name and types.
+* The description of the expected outputs along with a lambda gadget to ease value extraction
+  from JSON output.</p>
+
+<p>The <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/method.py">method object</a>
+shows how to call network_create based on the above description.
+Note that the call procedure takes a dictionary as JSON inputs.
+The next chapter will cover how to generate such inputs dynamically.</p>
+
+<h2 id="input-generation">Input generation</h2>
+
+<p>An input constructor needs to be implemented for each type.
+The goal is to generate data known to cause application errors.</p>
+
+<p>The <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/input_generator.py#l277">input_generator object</a>
+shows the api call parameters can be dynamically generated by using the method input description
+shown above. Here are a couple of input generators:</p>
+
+<pre class="highlight python"><code>    <span class="k">def</span> <span class="nf">gen_string</span><span class="p">():</span>&#x000A;        <span class="n">chunk</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"/dev/urandom"</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>&#x000A;        <span class="k">return</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">)</span>&#x000A;&#x000A;    <span class="k">def</span> <span class="nf">gen_address_pair</span><span class="p">():</span>&#x000A;        <span class="k">return</span> <span class="p">{</span>&#x000A;            <span class="s">"ip_address"</span><span class="p">:</span> <span class="n">generate_input</span><span class="p">(</span><span class="s">"cidr"</span><span class="p">),</span>&#x000A;            <span class="s">"mac_address"</span><span class="p">:</span> <span class="n">generate_input</span><span class="p">(</span><span class="s">"mac_address"</span><span class="p">)</span>&#x000A;        <span class="p">}</span>&#x000A;</code></pre>
+
+<p>Note that "resource" types are UUID data, which can't be randomly generated.
+Thus, the fuzzer needs to keep track of method outputs to reuse valid UUID whenever possible.</p>
+
+<p>The fuzzer can now call API methods with random inputs, but, it still needs to monitor
+service API behavior.
+This leads us to the second steps of error detection.</p>
+
+<h2 id="openstack-error-detection">OpenStack error detection</h2>
+
+<p>This chapter covers a few error detection mechanisms that can be used with OpenStack components.</p>
+
+<h3 id="http-error-code">HTTP Error code</h3>
+
+<p>OpenStack services' API will return theses important error codes:</p>
+
+<ul>
+  <li>401 tells the keystone token needs to be refreshed</li>
+  <li>404 tells a UUID is no longer valid</li>
+  <li>500 tells unexpected error</li>
+</ul>
+
+<h3 id="tracebacks-in-logs">Tracebacks in logs</h3>
+
+<p>Finding tracebacks in logs is usually a good indicator that something went wrong.
+Moreover, using file names and line numbers, a traceback identifier could be computed to
+detect new unique errors.
+The <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/health.py">health object</a>
+features a collect_traceback function.</p>
+
+<h3 id="api-service-process-usage">API service process usage</h3>
+
+<p>Finaly cgroups can be used to monitor API services memory and CPU usage.
+High CPU loads or constant growth of reserved memory are also good indicators that something
+went wrong.
+However this requires some mathematical calculations which are yet to be implemented.</p>
+
+<h2 id="fuzzing-workflow">Fuzzing Workflow</h2>
+
+<p>All together, a fuzzing process boils down to:</p>
+
+<ul>
+  <li>choose a random method</li>
+  <li>call method using random inputs</li>
+  <li>probe for defect</li>
+  <li>repeat</li>
+</ul>
+
+<p>The <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/fuzzer.py">ApiRandomCaller object</a>
+uses random.shuffle to search for random methods and returns an Event object to the main process
+<a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/cmd.py#l60">starting here</a>.</p>
+
+<h2 id="restfuzz-features">RestFuzz features</h2>
+
+<p>Console output:</p>
+
+<pre class="highlight shell"><code>  <span class="nv">$ </span>restfuzz --api ./api/network.yaml --health ./tools/health_neutron.py&#x000A;  <span class="o">[</span>2015-10-30 06:19:09.685] port_create: 201| curl -X POST http://127.0.0.1:9696/v2.0/ports.json -d <span class="s1">'{"port": {"network_id": "652b1dfa-9bcb-442c-9088-ad1a821020c8", "name": "jav&amp;#x0D;ascript:alert('</span>XSS<span class="s1">');"}}'</span> -&gt; <span class="s1">'{"port": {"id": 2fc01817-9ec4-43f2-a730-d76b70aa4ea5"}}'</span>&#x000A;  <span class="o">[</span>2015-10-30 06:19:09.844] security_group_rule_create: 400| curl -X POST http://127.0.0.1:9696/v2.0/security-group-rules.json -d <span class="s1">'{"security_group_rule": {"direction": "ingress", "port_range_max": 9741, "security_group_id": "da06e93b-87a3-4d90-877b-047ab694addb"}}'</span> -&gt; <span class="s1">'{"NeutronError": {"message": "Must also specifiy protocol if port range is given.", "type": "SecurityGroupProtocolRequiredWithPorts", "detail": ""}}'</span>&#x000A;  <span class="o">[</span>2015-10-30 06:19:10.123] security_group_create: 500| curl -X POST http://127.0.0.1:9696/v2.0/security-groups.json -d <span class="s1">'{"security_group": {"name": ["Dnwpdv7neAdvhMUcqVyQzlUXpyWyLz6cW2NPPyA6E8Z9FbvO9mVn1hs30rlabVjtVHy6yCQqpEp0xcF1AsWZYAPThstCZYebxKcJaiS7o7fS0GsvG3i8kQwNzOl5F1SiXBxcmywqI9Y6t0ZuarZI787gzDUPpPY0wKZL69Neb87mZxObhzx4sgWHIRGfsrtYTawd6dYXYSeajEDowcr1orVwJ6vY"]}}'</span> -&gt; <span class="s1">'{"NeutronError": {"message": "Request Failed: internal server error while processing your request.", "type": "HTTPInternalServerError", "detail": ""}}'</span>, /var/log/neutron/q-svc.log&#x000A;  File <span class="s2">"/opt/stack/neutron/neutron/api/v2/resource.py"</span>, line 83, <span class="k">in </span>resource&#x000A;    result <span class="o">=</span> method<span class="o">(</span><span class="nv">request</span><span class="o">=</span>request, <span class="k">**</span>args<span class="o">)</span>&#x000A;  File <span class="s2">"/opt/stack/neutron/neutron/api/v2/base.py"</span>, line 391, <span class="k">in </span>create&#x000A;    <span class="nv">allow_bulk</span><span class="o">=</span>self._allow_bulk<span class="o">)</span>&#x000A;  File <span class="s2">"/opt/stack/neutron/neutron/api/v2/base.py"</span>, line 652, <span class="k">in </span>prepare_request_body&#x000A;    attr_vals[<span class="s1">'validate'</span><span class="o">][</span>rule]<span class="o">)</span>&#x000A;  File <span class="s2">"/opt/stack/neutron/neutron/extensions/securitygroup.py"</span>, line 195, <span class="k">in </span>_validate_name_not_default&#x000A;  ...&#x000A;</code></pre>
+
+<p>Network topology after one hour of fuzz test:</p>
+
+<p><img alt="Random Network Topology" src="/images/blog/restfuzz_network_topology.jpg" /></p>
+
+<p>Interesting features:</p>
+
+<ul>
+  <li><a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=tree;f=api">API description</a> works for block storage (Cinder), image (Glance),
+network (Neutron) and dns (Designate).</li>
+  <li><a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/input_generator.py">Input generator</a> randomly inter-changes types using
+a "chaos monkey" behavior to abuse the API even more.</li>
+  <li><a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=restfuzz/health.py">Health plugin</a> implements custom probe per services.</li>
+  <li>Simple workflow where methods are called in random order. An early version tried to build a
+graph to walk through the API more efficiently, but it turns out that calling method randomly
+is efficient enough and it keeps the code much more simple.
+See <a href="images/blog/restfuzz_graph.jpg">this image</a> for a dependency graph of the network API.</li>
+  <li>More importantly, it already found a bunch of security defect like
+<a href="https://bugs.launchpad.net/neutron/+bug/1486565">bug #1486565</a> or
+<a href="https://bugs.launchpad.net/neutron/+bug/1471957">bug #1471957</a>.
+The full list is available in the <a href="http://softwarefactory-project.io/r/gitweb?p=restfuzz.git;a=blob;f=README">README</a>.</li>
+</ul>
+
+<p>However, RestFuzz is a proof of concept and it's not ready to be used as an efficient
+gate mechanism.
+The next part of this article discusses the limitations reached and what needs to be done
+to get something awesome!</p>
+
+<h1 id="limitations-and-improvments">Limitations and improvments</h1>
+
+<h2 id="its-built-from-the-ground-up">It's built from the ground up</h2>
+
+<p>RestFuzz currently only requires python-requests and PyYAML.
+A good chunk of the code could use frameworks such as the
+<a href="http://git.openstack.org/cgit/openstack/syntribos">syntribos</a> and/or
+<a href="https://github.com/cdent/gabbi">gabbi</a></p>
+
+<h2 id="api-description">API description</h2>
+
+<p>Managing API descriptions is a great limitation, as the fuzzer will only be as good as the API
+description.
+OpenStack really needs to provide us the API description in a unified and consistent format:</p>
+
+<ul>
+  <li><a href="http://developer.openstack.org/api-ref.html">API Documentation</a> does not describe the input
+object precisely enough, making it impossible to use automatically.</li>
+  <li><a href="http://git.openstack.org/cgit/openstack/nova/tree/doc/api_samples">Service documentation</a> is
+sporadic and REST API routing is done differently in most OpenStack projects.</li>
+  <li><a href="http://developer.openstack.org/">Command line tools</a> may provide a good base, but they usualy
+omit unusual parameters and service extensions.</li>
+</ul>
+
+<p>Having an unified API description will give a fuzzer bigger code coverage.</p>
+
+<h2 id="complex-types-generation">Complex types generation</h2>
+
+<p>A formal description of API inputs is a real challenge.
+Some services like Heat or Sahara can take flat files as input that would requires dedicated
+input generators.
+Otherwise, services like Designate need coherent inputs to pass early checks.
+E.G., the domain name used at zone creation needs to be reused for record creation.</p>
+
+<p>In theory, this limitation could be mitigated using better instruments like guided fuzzing.</p>
+
+<h2 id="guided-fuzzing">Guided fuzzing</h2>
+
+<p>A modern fuzzer like <a href="http://lcamtuf.coredump.cx/afl/">American Fuzzy Lop</a> (afl) is able to
+monitor which instructions are executed by the target program and then use
+"rock-solid instrumentation-guided genetic algorithm" to produce inputs.
+In short, afl can generate valid input out of thin air without any description.</p>
+
+<p>However afl is difficult to put in place for network services because it requires services'
+modification.
+<a href="http://jwilk.net/software/python-afl">python-afl</a> bridges the Python interpreter with the
+fuzzer, and it may be interesting for OpenStack services testing.</p>
+
+<h2 id="anomalies-detection-probes">Anomalies detection probes</h2>
+
+<p>Better watchdog processes could be used in paralel to detect silent logic flaws.
+Stacktraces and 500 errors most often reveal basic programing flaws.
+If one of the following actions fail, it's a good sign something is defective:</p>
+
+<ul>
+  <li>Boot an instance, assign an ip and initiate connection</li>
+  <li>Test methods with expected output like with
+<a href="http://gabbi.readthedocs.org/en/latest/example.html">gabbi</a></li>
+  <li>Run functional tests</li>
+</ul>
+
+<h2 id="fuzzer-as-a-service">Fuzzer As A Service</h2>
+
+<p>A fuzzer could also be implemented as an OpenStack service that integrates nicely with the
+following components:</p>
+
+<ul>
+  <li>Compute resources with Nova</li>
+  <li>Database store with Trove</li>
+  <li>Message bus for parallel testing with Zaquar</li>
+  <li>Data processing with Sahara/Sparks</li>
+</ul>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>Fuzzing is a powerful strategy to pro-actively detect security issues.
+Similar to <a href="https://wiki.openstack.org/wiki/Security/Projects/Bandit">bandit</a> the end goal is
+to have an automatic test to detect and prevent many kinds of code defect.</p>
+
+<p>While RestFuzz is really just a naïve proof of concept, it nonetheless indicated important
+limitations such as the lack of API description.
+I would appreciate feedback and further would like to create an upstream community to implement
+OpenStack fuzz testing.</p>
+
+<p>This effort could start as an offline process with automatic reporting of traceback and 500
+errors.
+But ultimately this really needs to be used as a gating system to prevent erroneous commits to
+be released.</p>
+
+<p>I'd like to thank fellow Red Hat engineers Gonéri Le Bouder, Michael McCune, and George
+Peristerakis for their support and early reviews.</p>
+
+</section>
+<footer class='post-meta'>
+<div class='tags'>
+Tags:
+<ul class='taglist'></ul>
+<li><a href="/blog/tag/testing/">testing</a></li>
+</div>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2015-11-13-openstack-fuzztest.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 17 Nov 2015 16:30 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

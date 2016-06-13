@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Enabling Migrations &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/documentation/enabling-migrations.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="enabling-migrations">Enabling Migrations</h1>
+
+<p>Migration support in Nova allows the relocation of instances to different compute nodes, and is the fundamental component that enables resize operations. There are two types of migrations supported, Live and "Cold" or "Offline" operations, both with different setup requirements.</p>
+
+<h2 id="coldoffline-migrations">Cold/Offline Migrations</h2>
+
+<p>The arguably safer and less-complicated mechanism of an offline migration is purely instrumented by nova and is relatively easy to set up. Simply create and distribute password-less SSH keys for the "nova" user, starting on one of the nodes:</p>
+
+<pre class="highlight plaintext"><code>  # su -s /bin/bash nova&#x000A;  $ ssh-keygen&#x000A;  Generating public/private rsa key pair.&#x000A;  Enter passphrase (empty for no passphrase): &#x000A;  Enter same passphrase again: &#x000A;  Your identification has been saved in id_rsa.&#x000A;  Your public key has been saved in id_rsa.pub.&#x000A;  The key fingerprint is:&#x000A;  56:1d:13:c5:3c:fd:93:01:fa:66:68:38:48:73:24:5c dan@compute1&#x000A;  The key's randomart image is:&#x000A;  +--[ RSA 2048]----+&#x000A;  |      ...E  +*o. |&#x000A;  |       .o  ..o+..|&#x000A;  |       o ....  .+|&#x000A;  |      . +.. o  o.|&#x000A;  |       .So o +  .|&#x000A;  |       .  o o    |&#x000A;  |                 |&#x000A;  |                 |&#x000A;  |                 |&#x000A;  +-----------------+&#x000A;</code></pre>
+
+<p>This key needs to be authorized to log in as nova, so we need to put it into the authorized_keys list:</p>
+
+<pre class="highlight plaintext"><code>  $ cat .ssh/id_rsa.pub &gt;&gt; .ssh/authorized_keys&#x000A;  $ chmod 600 .ssh/authorized_keys&#x000A;</code></pre>
+
+<p>Next, we need to build a known_hosts file with the host key of every compute node (including this one:</p>
+
+<pre class="highlight plaintext"><code>  ssh-keyscan compute1 compute2 compute3 compute4 &gt; ~/.ssh/known_hosts&#x000A;</code></pre>
+
+<p>Now, we need to distribute the entire .ssh directory to all the rest of the hosts. If you used something like packstack and already have root ssh key authentication set up, then you can do this as root:</p>
+
+<pre class="highlight plaintext"><code>  for host in compute1 compute2 compute3 compute4; do&#x000A;      tar cf - ~nova/.ssh | ssh $host "cd /; tar xf -"&#x000A;  done&#x000A;</code></pre>
+
+<p>To test that this is working, try ssh'ing from one compute node to another as the nova user:</p>
+
+<pre class="highlight plaintext"><code>  # su -s /bin/bash nova&#x000A;  $ ssh compute2 "echo It worked!"&#x000A;  It worked!&#x000A;  $&#x000A;</code></pre>
+
+<p>In case you get a "This account is currently not available." error, you will need to enable logins to the "nova" user with:</p>
+
+<pre class="highlight plaintext"><code>  # usermod -s /bin/bash nova&#x000A;</code></pre>
+
+<!--
+FIXME: SELinux?
+-->
+
+<p>At this point, you should be able to use the offline migration and resize commands (i.e. "nova migrate" and "nova resize") properly.</p>
+
+<h2 id="live-migrations">Live Migrations</h2>
+
+<p>Enabling live migration of instances is a little more complicated than the process for offline migrations, but it shares a lot of the same setup steps. Since live migrations are orchestrated by libvirt instead of nova, the private key must be installed for the root user (libvirt runs as root) instead of (or in addition to) the nova user. To start, follow the offline instructions above, but install the id_rsa private key for the root user on each compute node. If you used packstack or some other tool to install your deployment, this may already be done for you. The test is that you must be able to run this from any compute node to any other compute node, without being asked to approve a host key or type in a password:</p>
+
+<pre class="highlight plaintext"><code>  # id -u&#x000A;  0&#x000A;  # ssh compute2 "It works!"&#x000A;  It works!&#x000A;  #&#x000A;</code></pre>
+
+<p>The first additional step you need to take is to configure nova on the compute nodes to not bind vnc consoles to the IP of the compute node. Without this, migrations will fail because the receiving compute node will not be able to bind to the address of the sending one. In /etc/nova/nova.conf, set the bind address to any:</p>
+
+<pre class="highlight plaintext"><code>  vncserver_listen = 0.0.0.0&#x000A;</code></pre>
+
+<p>Next, you need to configure the firewall to not block libvirt ephemeral ports used during live migration:</p>
+
+<pre class="highlight plaintext"><code>  iptables -I INPUT -p tcp --dport 49152:49215 -j ACCEPT&#x000A;</code></pre>
+
+<p>Once this is done, you should be able to live-migrate instances from one host to the other.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/documentation/enabling-migrations.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 12 May 2016 13:28 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

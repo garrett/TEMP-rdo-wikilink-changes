@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Neutron GBP &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/networking/neutron-gbp.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="neutron-gbp">Neutron GBP</h1>
+
+<p>Group Based Policy (GBP) is an optional service plugin for Neutron that provides declarative abstractions for achieving scalable intent-based infrastructure automation. GBP complements the OpenStack networking model with the notion of policies that can be applied between groups of network endpoints.</p>
+
+<h2 id="gbp-status">GBP Status</h2>
+
+<p>The Juno release of Group Based Policy has been developed in StackForge as an add-on service plugin for Neutron, along with a supporting client library and integrations with Horizon and Heat. See the <a href="https://wiki.openstack.org/wiki/GroupBasedPolicy">GBP project wiki</a> for upstream project details. This page describes installation and configuration of GBP for Juno RDO on Fedora 20, Fedora 21, or EL 7 .</p>
+
+<p>Note that this describes use of the GBP's resource_mapping reference policy driver, which should work with any Neutron core plugin, such as ML2. Policy drivers for Cisco ACI, Nuage VSP and One Convergence NVSD are also included, but will be documented separately by those vendors.</p>
+
+<h2 id="configuring-gbp">Configuring GBP</h2>
+
+<p>Start with a working Packstack installation with Neutron, such as is described in <a href="/install/quickstart/">Quickstart</a>. If you plan to use Heat with GBP, be sure to generate an answer file, edit it to enable Heat, and use that answer file when running packstack. The remaining steps are all executed as root on the controller node(s) where neutron-server runs. No changes are needed on compute or network nodes when using the resource_mapping policy driver.</p>
+
+<h3 id="configuring-neutron">Configuring Neutron</h3>
+
+<p>Install the server and client RPMs:</p>
+
+<pre class="highlight plaintext"><code>  yum install openstack-neutron-gbp&#x000A;  yum install python-gbpclient&#x000A;</code></pre>
+
+<p>Stop the Neutron server:</p>
+
+<pre class="highlight plaintext"><code>  systemctl stop neutron-server&#x000A;</code></pre>
+
+<p>Edit the Neutron configuration to include the GBP service plugin and its reference policy drivers:</p>
+
+<pre class="highlight plaintext"><code>  ` crudini --set /etc/neutron/neutron.conf DEFAULT service_plugins "`crudini --get /etc/neutron/neutron.conf DEFAULT service_plugins`,group_policy" `&#x000A;  crudini --set /etc/neutron/neutron.conf group_policy policy_drivers "implicit_policy,resource_mapping"&#x000A;</code></pre>
+
+<p>Update the Neutron DB schema to include the GBP tables:</p>
+
+<pre class="highlight plaintext"><code>  gbp-db-manage --config-file /usr/share/neutron/neutron-dist.conf --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugin.ini upgrade head&#x000A;</code></pre>
+
+<p>Start the Neutron server and check its status:</p>
+
+<pre class="highlight plaintext"><code>  systemctl start neutron-server&#x000A;  systemctl status neutron-server&#x000A;</code></pre>
+
+<h3 id="configuring-horizon">Configuring Horizon</h3>
+
+<p>Install the RPMs:</p>
+
+<pre class="highlight plaintext"><code>   yum install openstack-dashboard-gbp&#x000A;</code></pre>
+
+<p>Restart the web server and check its status:</p>
+
+<pre class="highlight plaintext"><code>  systemctl restart httpd&#x000A;  systemctl status httpd&#x000A;</code></pre>
+
+<h3 id="configuring-heat">Configuring Heat</h3>
+
+<p>Assuming Heat is enabled in your RDO deployment, install the RPM:</p>
+
+<pre class="highlight plaintext"><code>  yum install openstack-heat-gbp&#x000A;</code></pre>
+
+<p>Edit the Heat configuration to include the GBP plugin:</p>
+
+<pre class="highlight plaintext"><code>  crudini --set /etc/heat/heat.conf DEFAULT plugin_dirs "/usr/lib64/heat,/usr/lib/heat,/usr/lib/python2.7/site-packages/gbpautomation/heat"&#x000A;</code></pre>
+
+<p>Restart the Heat engine and check its status:</p>
+
+<pre class="highlight plaintext"><code>  systemctl restart openstack-heat-engine&#x000A;  systemctl status openstack-heat-engine&#x000A;</code></pre>
+
+<h2 id="using-gbp">Using GBP</h2>
+
+<p>Once the neutron server is configured with GBP and running, basic operation can be verified using its API. The following commands are run with normal cloud tenant credentials on a system where the python-gbpclient package has been installed.</p>
+
+<p>Create a group:</p>
+
+<pre class="highlight plaintext"><code>  gbp group-create test1 --description "first test group"&#x000A;</code></pre>
+
+<p>The response should show the details of the group.</p>
+
+<p>List the groups:</p>
+
+<pre class="highlight plaintext"><code>  gbp group-list&#x000A;</code></pre>
+
+<p>You should see the group you just created.</p>
+
+<p>Verify that implicit L2 and L3 policies were created:</p>
+
+<pre class="highlight plaintext"><code>  gbp l2policy-list&#x000A;  gbp l3policy-list&#x000A;</code></pre>
+
+<p>You should see an L2 policy with the same name as the group, and an L3 policy named "default".</p>
+
+<p>Verify that neutron resources were created:</p>
+
+<pre class="highlight plaintext"><code>  neutron net-list&#x000A;  neutron subnet-list&#x000A;</code></pre>
+
+<p>You should see a network and a subnet with names derived from the group name.</p>
+
+<p>If all is well, you can proceed to create policy rule sets controlling connectivity between groups. Then create policy targets, and to use their ports to create nova instances. The <a href="https://wiki.openstack.org/wiki/GroupBasedPolicy/InstallDevstack">devstack instructions</a> show this in detail.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/networking/neutron-gbp.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 24 Sep 2015 19:34 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

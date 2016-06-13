@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Roundup</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/roundup.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO blog roundup, week of November 9</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/"/>
+    <id>http://rdoproject.org/blog/2015/11/rdo-blog-roundup-week-of-november-9/</id>
+    <published>2015-11-09T18:34:33+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts were blogging about this week. If you were
+at OpenStack Summit in Tokyo last month, don't forget to write up your
+experience.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty released in CentOS Cloud SIG&lt;/strong&gt;, by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are pleased to announce the general availability of the RDO build for OpenStack Liberty for CentOS Linux 7 x86_64, suitable for building private, public and hybrid clouds. OpenStack Liberty is the 12th release of the open source software collaboratively built by a large number of contributors around the OpenStack.org project space.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3d"&gt;http://tm3.org/3d&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Neutron HA Talk in Tokyo Summit&lt;/strong&gt; by Assaf Muller&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Florian Haas, Adam Spiers and myself presented a session in Tokyo about Neutron high availability. We talked about:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3s"&gt;http://tm3.org/3s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo&lt;/strong&gt; by Matthias Runge&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Over the past week, I attended the OpenStack Summit in Tokyo.
+My primary focus was on Horizon sessions. Nevertheless, I was lucky to have one or two glimpses at more touristic spots in Tokyo.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3t"&gt;http://tm3.org/3t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Tokyo – Final Summary&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As I flew home from OpenStack Summit Tokyo last week, I had plenty of time to reflect on what proved to be a truly special event. OpenStack gains more and more traction and maturity with each community release and corresponding Summit, and the 11th semi-annual OpenStack Summit certainly did not disappoint. With more than 5,000 attendees, it was the largest ever OpenStack Summit outside of North America, and there were so many high quality keynotes, session, and industry announcements, I thought it made sense to put together a final trip overview, detailing all of the noteworthy news, Red Hat press releases, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3u"&gt;http://tm3.org/3u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Community Meetup at OpenStack Tokyo&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;A week ago in Tokyo, we held the third RDO Community Meetup at the OpenStack Summit. We had about 70 people in attendance, and some good discussion. The full agenda for the meeting is at https://etherpad.openstack.org/p/rdo-tokyo and below are some of the things that were discussed. (The complete recording is at the bottom of this post.)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3v"&gt;http://tm3.org/3v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mike Perez: Cinder in Liberty&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Before OpenStack Summit, I interviewed Mike Perez about what's new in Cinder in the LIberty release, and what's coming in Mitaka. Unfortunately, life got a little busy and I didn't get it posted before Summit. However, with Liberty still fresh, this is still very timely content.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/3w"&gt;http://tm3.org/3w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of October 12</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-12/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-12/</id>
+    <published>2015-10-12T15:50:45+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Scheduled! Scale or Fail:  Containers on OpenStack with OpenShift 3 – #vBrownBag TechTalk at OpenStack Summit Tokyo&lt;/strong&gt; by Diane Mueller&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Come join us for lunch on Wednesday at noon  in the Wakashiba room! We will also be live streaming (conference Internet willing). The session will be recorded and will be posted to our YouTube channel. The link below will turn into direct links to the videos.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2x"&gt;http://tm3.org/2x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What’s new in OpenStack Liberty: webinar recap&lt;/strong&gt; by Steve Gordon and Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack “Liberty,” due for imminent release, represents the 12th release of the open source computing platform for public and private clouds. Recent OpenStack releases have focused on improving stability and enhancing the operator experience. This is still the case with Liberty, but there are still new features to consider.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2y"&gt;http://tm3.org/2y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Minimum Viable Cluster&lt;/strong&gt; by Andrew Beekhof&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the past there was a clear distinction between high performance (HP) clustering and high availability (HA) clustering, however the lines have been bluring for some time. People have scaled HA clusters upwards and HP inspired clusters have been used to provide availability through redundancy.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2z"&gt;http://tm3.org/2z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Delorean: OpenStack packages from the future&lt;/strong&gt; by  Frederic Lepied&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;I have been doing some patches on Delorean lately so I thought it could be a good idea to describe it in this article as it is not a well known tool.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2-"&gt;http://tm3.org/2-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Scheduling and disabling Cells&lt;/strong&gt; by  Belmiro Moreira&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In order to scale OpenStack Cloud Infrastructure at CERN, we were early to embrace an architecture that uses Cells. Cells is a Nova functionality that allows the partition a Cloud Infrastructure into smaller groups with independent control planes.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/30"&gt;http://tm3.org/30&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Running NTP in a Container&lt;/strong&gt; Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Someone asked on IRC about running ntpd in a container on Atomic, so I've put together a small example. We'll start with a very simple Dockerfile:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/31"&gt;http://tm3.org/31&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Multiple external networks with a single L3 agent testing on RDO Liberty per Lars Kellogg-Stedman&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Following bellow is supposed to test in multi node environment
+Multiple external networks with a single L3 agent by Lars Kellogg-Stedman.  However, current post contains an attempt to analyze and understand how traffic to/from external network flows through br-int when provider external networks has been involved&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/33"&gt;http://tm3.org/33&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty (RC2) DVR Neutron workflow on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Per http://specs.openstack.org/openstack/neutron-specs/specs/juno/neutron-ovs-dvr.html&lt;br /&gt;
+DVR is supposed to address following problems which has traditional 3 Node
+deployment schema:-&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/34"&gt;http://tm3.org/34&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blog roundup, week of October 5</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-blog-roundup-week-of-october-5/</id>
+    <published>2015-10-06T11:10:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO enthusiasts have been writing about over the past week.&lt;/p&gt;
+
+&lt;p&gt;If you're writing about RDO, or about OpenStack on CentOS, Fedora or RHEL, and you're not on my list, please let me know!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Migrating Cinder volumes between OpenStack environments using shared NFS storage&lt;/strong&gt; by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Many of the upgrade guides for OpenStack focus on in-place upgrades to your OpenStack environment. Some organizations may opt for a less risky (but more hardware intensive) option of setting up a parallel environment, and then migrating data into the new environment. In this article, we look at how to use Cinder backups with a shared NFS volume to facilitate the migration of Cinder volumes between two different OpenStack environments.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2r"&gt;http://tm3.org/2r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Liberty (beta) DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Would you experience VXLAN tunnels disappiaring issue like it happens
+on RDO Kilo add following lines to ml2_conf.ini on each Compute Node&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2s"&gt;http://tm3.org/2s&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So, you're an ATC. Let me tell you something&lt;/strong&gt; by Flavio Percoco&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's that time of the cycle - ha! you saw this comming, didn't you? -, in OpenStack, when we need to elect new members for the Technical Committee. In a previous post, I talked about what being a PTL means. I talked directly to candidates and I encouraged them to understand each and every point that I've made in that post. This time, though, I'd like to talk directly to ATCs for a couple of reasons. First one is that Thierry Carrez has a great post already where he explains what being a TC member means. Second one is that I think you, my dear ATC, are one of the most valuable member of this community and of the ones with most power throughout OpenStack.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2t"&gt;http://tm3.org/2t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RDO Kilo DVR Deployment (Controller/Network)+Compute+Compute (ML2&amp;amp;OVS&amp;amp;VXLAN) on CentOS 7.1&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2u"&gt;http://tm3.org/2u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How would work changing "enable_isolated_metadata" from false to true &amp;amp;&amp;amp; &lt;code&gt;openstack-service restart neutron&lt;/code&gt; on the fly on RDO Liberty ?&lt;/strong&gt; by Boris Derzhavets&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Can meta-data co-exist in qrouter and qdhcp namespace at the same time
+so that LANs without Routers involved can access meta-data ?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/2v"&gt;http://tm3.org/2v&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Haikel Guemar talks about RPM packaging&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;This continues my series talking with OpenStack project PTLs (Project Technical Leads) about their projects, what's new in Liberty, and what's coming in future releases.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) at &lt;a href="http://tm3.org/2w"&gt;http://tm3.org/2w&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

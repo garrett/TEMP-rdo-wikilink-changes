@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Tuskar-UI &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/install/tuskar-ui.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="tuskar-ui">Tuskar-UI</h1>
+
+<p>The Tuskar UI is a management interface for OpenStack deployments. The deployment methodology is based upon <a href="https://wiki.openstack.org/wiki/TripleO">TripleO</a> and <a href="https://wiki.openstack.org/wiki/Tuskar">Tuskar</a>; these in turn rely on OpenStack services such as Glance, Nova, and Heat.</p>
+
+<p>The Tuskar UI is developed as a plugin for OpenStack Horizon; as such it is Django-based and stateless.</p>
+
+<h2 id="features">Features</h2>
+
+<p>Key features of the Tuskar-UI include:</p>
+
+<ul>
+  <li><strong>Overcloud management</strong>
+    <ul>
+      <li>Plan and deploy your Overcloud entirely through the UI</li>
+      <li>Choose deployment counts for compute, controller, and storage roles</li>
+      <li>View and customize deployment parameters</li>
+      <li>See real-time updates in the UI during deployment or undeployment</li>
+      <li>Deployment log details each step of the deployment process</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Node management:</strong>
+    <ul>
+      <li>Create an inventory of nodes through direct user input or bulk CSV upload</li>
+      <li>Support for both baremetal and virtual nodes</li>
+      <li>Node auto-discovery allows node attributes to be automatically filled in</li>
+      <li>Tabular views allow user to easily distinguish between nodes in use and nodes that are free</li>
+      <li>View summary statistics of current node usage</li>
+      <li>Drill down to a specific node to view historical usage data</li>
+      <li>Flavor 'suggestions' allow for quick flavor creation to match existing nodes</li>
+    </ul>
+  </li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li><strong>Role management:</strong>
+    <ul>
+      <li>View aggregated historical statistics for compute, controller, and storage roles</li>
+      <li>Manage the flavors and images used by each role</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="quick-install">Quick Install</h2>
+
+<p>We recommend using Instack to install the Tuskar-UI:</p>
+
+<ol>
+  <li>
+    <p>Start by following the <a href="https://rdoproject.org/Deploying_RDO_using_Instack">Instack instructions</a> through "Deploying an Undercloud".</p>
+  </li>
+  <li>
+    <p>Follow the <a href="https://rdoproject.org/Deploying_an_RDO_Overcloud_with_Instack">Instack overcloud steps</a> in "Deploying the Overcloud via the Tuskar UI".</p>
+  </li>
+  <li>
+    <p>If using a remote virtual host, you may need to configure your ports and create an ssh tunnel, as detailed <a href="https://rdoproject.org/Instack_FAQ#How_do_I_view_the_Undercloud_Dashboard_when_using_a_remote_virt_host.3F">here</a>.</p>
+  </li>
+</ol>
+
+<p>The next section will cover usage of the Tuskar UI.</p>
+
+<h2 id="quick-usage">Quick Usage</h2>
+
+<p>Once the Tuskar-UI is installed, it can be accessed through a web browser at <a href="http:">http://</a><host>/dashboard/ ; or &lt;http://&gt;<virt-host>:8080/dashboard if you're using a virtual host.</virt-host></host></p>
+
+<h3 id="login">Login</h3>
+
+<p>Upon accessing the Tuskar-UI, you will be prompted for a username and password. The username is 'admin'; the password can be found in /root/stackrc on the instack virtual machine.</p>
+
+<h3 id="register-nodes">Register nodes</h3>
+
+<p>Start by registering nodes for your Overcloud. To do so, click on 'Nodes' in the left navigation.</p>
+
+<p>Once there, you'll see two options for registering nodes in the top-right corner. The first is to input the relevant node information manually; click on the '+' icon to do so. The other is to upload a CSV containing your node information; click on the Upload icon to do that instead.</p>
+
+<p>If you are using virtual nodes, you can generate the CSV by running <a href="https://github.com/openstack/tuskar-ui/blob/master/nodes.sh">this script</a> on your instack virtual machine.</p>
+
+<p>Both options lead to a node registration form where you can choose to have auto-discovery performed on the nodes to identify missing node attributes.</p>
+
+<p>If you choose not to use auto-discovery, fill in any missing node attributes and submit the form. Your nodes are now registered and viewable in the 'Free' tab.</p>
+
+<p>If you use auto-discovery, your nodes will appear in the 'Maintenance' tab instead with the status 'Discovering'. Wait a few minutes, and the status will change to 'Discovered'; their attributes will appear as well. Now you can choose to 'Activate' these nodes, and they will appear in the 'Free' tab. If you don't see any updates in the 'Maintenance' tab after discovery is complete, refresh your browser. The page does not auto-update.</p>
+
+<h3 id="deploy-the-overcloud">Deploy the Overcloud</h3>
+
+<p>You are now ready to deploy your Overcloud. Start by clicking on 'Overview' in the left navigation. From here, you can adjust the role count of your Overcloud as node availability permits. At a minimum, a controller node and a compute node must be specified. Also, please note that the number of controller nodes can only be increased by 2 at a time. Once you are satisfied, click on 'Deploy'. A popup will appear informing you of any autogenerated overcloud parameters; press 'Deploy'.</p>
+
+<p>Your Overcloud is now deploying.</p>
+
+<h3 id="initialize-the-overcloud">Initialize the Overcloud</h3>
+
+<p>After the Overcloud is deployed, you will still need to initialize Overcloud services. To do so simply click on the 'Initialize' button. A form will appear detailing various initialization parameters; the defaults will be sufficient. Press 'Initialize' to start the initialization process.</p>
+
+<p>Once this is complete, the 'Overview' page will show you the credentials needed to access Overcloud Horizon.</p>
+
+<p>Please note, that you should only use the generated password for your first login into the Overcloud Horizon, and change it as soon as possible, using a password of your choice. You can do that by navigating to the <strong>Admin</strong> tab, <strong>Identity</strong> panel, and clicking <strong>Users</strong>, then locating the "Admin" user on the list and change the password for that user.</p>
+
+<h2 id="advanced-usage">Advanced Usage</h2>
+
+<h3 id="post-deployment-management">Post Deployment Management</h3>
+
+<h4 id="viewing-deployment-details">Viewing Deployment Details</h4>
+
+<p>After the Overcloud is deployed, you can access the information about the current deployment on the Overview page. Overcloud access information, which includes Overcloud Horizon URL, username and password, will be displayed on the left-hand side. On the right-hand side, you can see the role configuration (i.e. number of nodes assigned to each role).</p>
+
+<h4 id="scaling-up">Scaling Up</h4>
+
+<p>If you wish to add nodes to an existing deployment, you may do so using the "Scale-out" option on the Overview page. After pressing the "Scale-out" button, the "Scale-out Deployment" dialog will appear. Using this dialog, you may modify the number of nodes assigned to each role. Two things to note here. Firstly, only scaling up is supported, meaning the number of nodes can only be increased and not decreased. Secondly, number of Controller nodes can only be increased by two at a time (i.e. you can only have an odd number of controller nodes: 1, 3, 5, etc). After modifying the number of nodes for each role, press the "Deploy Changes" button, and the deployment will start updating to reflect the changes you have just made.</p>
+
+<h4 id="removing-deployment">Removing Deployment</h4>
+
+<p>If you wish do remove an existing deployment, you may do so using the "Undeploy" option on the Overview page. After pressing the "Undeploy" button, a confirmation dialog will appear, asking you to confirm that you want to remove your deployment. Press the "Undeploy" button to confirm this, and the deployment removal will start.</p>
+
+<h3 id="flavor-management">Flavor management</h3>
+
+<p>Flavors are hardware templates that define RAM, disk, number of cores, architecture etc. Each Role is associated to certain Flavor.</p>
+
+<p>Flavors can be managed in the Flavors tab in the main navigation. Users can define new Flavors two different ways:</p>
+
+<ul>
+  <li>Suggested flavors: They are based on registered nodes hardware configuration. Create a Flavor by clicking the "plus" action button at the table row. Suggested flavor can also be edited before Flavor is created from it.</li>
+  <li>Definine a Flavor from scratch using the "New Flavor" top action button.</li>
+</ul>
+
+<p>The filterable table below Suggested flavors lists all Flavors. From here, by clicking Flavor name, it is possible to display Flavor detail and Roles associated to it.</p>
+
+<h3 id="service-configuration">Service configuration</h3>
+
+<p>Service configuration page is accessible from the main navigation. It lists configuration options for OpenStack services which are divided into multiple sections. First is global configuration followed by services configuration for each role. All configuration options are read only. User can get more information about each configuration option by clicking the question mark icon next to the option label.</p>
+
+<p>User is allowed to set configuration for reduced list of options in the form that is accessed by clicking "Edit configuration" page action button.</p>
+
+<h3 id="node-management">Node Management</h3>
+
+<p>Node registration is covered in this section: <a href="https://rdoproject.org/Tuskar-UI#Register_nodes">https://rdoproject.org/Tuskar-UI#Register_nodes</a>.</p>
+
+<h4 id="viewing-nodes-information">Viewing Nodes Information</h4>
+
+<p>Information about existing nodes can be accessed by navigating to Nodes on the left-hand side navigation menu.</p>
+
+<p>The first tab, Overview, shows general aggregated information about existing nodes. On the left-hand side, hardware information, provisioning status and power status are displayed. On the right-hand side, you can view the graphs containing information from Ceilometer.</p>
+
+<p>The remaining four tabs (All, Provisioned, Free and Maintenance) show tabular information about corresponding nodes.</p>
+
+<h4 id="viewing-node-details">Viewing Node Details</h4>
+
+<p>Clicking on a particular node will take you to the detail page for that node. On this page you can view additional information, including hardware inventory, deployment related details, as well as Ceilometer graph metrics for that node.</p>
+
+<h4 id="node-actions">Node Actions</h4>
+
+<p>Actions can be performed on a single node, or on a group of nodes (batch actions). To perform an action on a single node, you can either press the corresponding button in the "Actions" column of the tabular node view, or press the button on the node detail page. To perform a batch action on a group of nodes, you need to select the nodes using the checkboxes in the tabular view, and press the desired action button above the table.</p>
+
+<h5 id="delete">Delete</h5>
+
+<p>To delete nodes, use the "Delete Nodes" button. Note that it is only possible to delete a node if the node is both free (non deployed) and powered off.</p>
+
+<h5 id="power-onoff">Power on/off</h5>
+
+<p>To power nodes on or off, use the corresponding "Power On Nodes"/"Power Off Nodes" buttons.</p>
+
+<h5 id="activate">Activate</h5>
+
+<p>To activate nodes (move them from the maintenance state to the free state), use the "Activate Nodes" button.</p>
+
+<h3 id="development-installation">Development installation</h3>
+
+<p>If you wish to create a development installation of the Tuskar-UI, install as described in the <a href="https://rdoproject.org/Tuskar-UI#Quick_Install">Quick Install instructions</a> first.</p>
+
+<p>Next, turn off the running instance of the Tuskar UI:</p>
+
+<pre class="highlight plaintext"><code>   sudo service httpd stop&#x000A;</code></pre>
+
+<p>Now you can follow the <a href="http://tuskar-ui.readthedocs.org/en/latest/install.html">development instance installation instructions</a>.</p>
+
+<h3 id="additional-overcloud-configuration">Additional overcloud configuration</h3>
+
+<p>The parameters that Tuskar is sending to Heat can be viewed by clicking on 'Service Configuration' in the left navigation. A subset of those can be modified through the UI. To do so, click on the 'Edit Configuration' button in the upper-right corner.</p>
+
+<p>Use the Tuskar CLI to modify additional parameters. This process is described in the next section.</p>
+
+<h3 id="using-the-tuskar-cli">Using the Tuskar CLI</h3>
+
+<p>The Tuskar CLI can be used to perform additional operations. In order to use it, access the Instack virtual machine and source stackrc:</p>
+
+<pre class="highlight plaintext"><code>   source /home/stack/stackrc&#x000A;</code></pre>
+
+<p>Many of the CLI operations require the overcloud plan uuid:</p>
+
+<pre class="highlight plaintext"><code>   [stack@localhost ~]$ tuskar plan-list&#x000A;   +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;   | uuid                                 | name      | description | roles                                              |&#x000A;   +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;   | 1289d499-de0a-4688-86e2-b0caf7ae06ea | overcloud | None        | controller, swift-storage, compute, cinder-storage |&#x000A;   +--------------------------------------+-----------+-------------+----------------------------------------------------+&#x000A;</code></pre>
+
+<h4 id="view-overcloud-templates">View Overcloud templates</h4>
+
+<p>To view the Heat templates used for the Overcloud deployment, run the following:</p>
+
+<p><code> [stack@localhost ~]$ tuskar plan-templates -O output-dir </code><plan uuid="">
+       Following templates has been written:
+       output-dir/plan.yaml
+       output-dir/environment.yaml
+       output-dir/provider-swift-storage-1.yaml
+       output-dir/provider-cinder-storage-1.yaml
+       output-dir/provider-controller-1.yaml
+       output-dir/provider-compute-1.yaml</plan></p>
+
+<h4 id="modify-overcloud-parameters">Modify Overcloud parameters</h4>
+
+<p>Available Overcloud parameters can be viewed in the environment.yaml file. To modify a specific parameter, run the following:</p>
+
+<p><code> [stack@localhost ~]$ tuskar plan-patch -A </code><key>`=`<value>` `<plan uuid=""></plan></value></key></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/install/tuskar-ui.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 10 Nov 2015 18:11 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

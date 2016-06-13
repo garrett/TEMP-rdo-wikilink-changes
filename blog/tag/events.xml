@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Events</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/events.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO Blogs, Week of April 18</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-18/"/>
+    <id>http://rdoproject.org/blog/2016/04/rdo-blogs-week-of-april-18/</id>
+    <published>2016-04-18T17:57:52+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;This has been a big few weeks for RDO, and for OpenStack in general, with the Mitaka release coming out, and OpenStack Summit just around the corner.&lt;/p&gt;
+
+&lt;p&gt;Here's some of what RDO enthusiasts have been blogging about in the last few days.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO Mitaka released&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The RDO community is pleased to announce the general availability of the RDO build for OpenStack Mitaka for RPM-based distributions - CentOS Linux 7 and Red Hat Enterprise Linux. RDO is suitable for building private, public, and hybrid clouds and Mitaka is the 13th release from the OpenStack project, which is the work of more than 2500 contributors from around the world.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/65"&gt;http://tm3.org/65&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What, Why, and How is the CentOS Cloud SIG?&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2 years ago we started the CentOS Cloud SIG. Progress has been slow but steady. Slow, I think, because we've not done a wonderful job of explaining what it's for, and why it matters. But it has been a very important aspect of moving the RDO project forward, so it deserves better explanation.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/66"&gt;http://tm3.org/66&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Naming is hard or Who Let The Vowels Out&lt;/strong&gt; by Alan Pevec&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When Derek Higgins started the tool to build OpenStack packages based on latest upstream aka "trunk" changes, the name Delorean seemed like a good choice: the tool is keeping older builds so you could "go back in time" like with a time machine, it's geeky enough and there's Irish connection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/67"&gt;http://tm3.org/67&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Integrating OpenStack into the Enterprise&lt;/strong&gt; by Michael Solberg&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Adoption of OpenStack in the enterprise has been progressing steadily over the last two years. As a Forrester Report* on enterprise adoption from September noted, “OpenStack demonstrates the completeness, robustness, and capability upon which a broader range of adopters can depend.” OpenStack deployments have proven to be complex in larger IT organizations though, but not because of the reasons that you might anticipate. Much has been made about the complexity of installing the software, but we’ve found that the lion’s share of effort in these implementation comes around the practice of integrating IaaS into the fabric of enterprise IT and evolving existing processes to meet the expectations of the user community.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/68"&gt;http://tm3.org/68&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Getting Started with Puppet for Keystone&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Tripleo uses Puppet to manage the resources in a deployment. Puppet has a command line tool to look at resources.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/69"&gt;http://tm3.org/69&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did you do in Mitaka: Ihar Hrachyshka talks about Neutron&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In this installment of our "What did you do in Mitaka?" series, Ihar Hrachyshka talks about his work on Neutron both in Mitaka, and what's planned for Newton.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) more at &lt;a href="http://tm3.org/6a"&gt;http://tm3.org/6a&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did you do in Mitaka? : Ivan Chavero&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The OpenStack cloud software project recently released the Mitaka release. RDO is a community distribution of OpenStack. I've invited several of the engineers that work on RDO to talk about what they did in the Mitaka cycle.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read (and listen) more at &lt;a href="http://tm3.org/6b"&gt;http://tm3.org/6b&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Learning something new about Oslo Versioned Objects&lt;/strong&gt; byGorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If you work on an OpenStack project that is in the process of adopting Versioned Objects or has recently adopted them, like we have in Cinder, you’ve probably done some code reviews, and even implemented a couple of Versioned Objects yourself, and are probably thinking that you know your way around them pretty well, but maybe there are some gaps in that knowledge that you are not aware of, specially if you are taking Nova’s or Cinder’s code as reference, at least I know I had some gaps. If you aren’t a seasoned Versioned Object user like the Nova people are, I recommend you keep reading.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6c"&gt;http://tm3.org/6c&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TripleO with already deployed servers&lt;/strong&gt; by James Slagle&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Recently I’ve been prototyping how to use TripleO with already deployed
+and provisioned servers. In such a scenario, Nova and Ironic would not be used
+to do the initial operating system provisioning of the Overcloud nodes.
+Instead, the nodes would already be powered on, running an OS, and ready to
+start to configure OpenStack.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6d"&gt;http://tm3.org/6d&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>Upcoming events in OpenStack and RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/"/>
+    <id>http://rdoproject.org/blog/2016/04/upcoming-events-in-openstack-and-rdo/</id>
+    <published>2016-04-06T19:04:59+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I love this time of year - the energy and passion that swells right around an upstream OpenStack release, and the weeks before an OpenStack Summit. Most of the year, people are heads down working on their particular part of the project, but as we near a release, there's a lot of interest in what's going on in the larger upstream.&lt;/p&gt;
+
+&lt;p&gt;There's also a huge surge in things to announce around the RDO community, as well as the upstream OpenStack community:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;The &lt;a href="http://releases.openstack.org/mitaka/schedule.html"&gt;upstream release of Mitaka&lt;/a&gt; is this week. &lt;a href="http://stackalytics.com/?metric=commits"&gt;Stackalytics&lt;/a&gt; lists over 2500 people who have contributed to this release.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;We'll be conducting a &lt;a href="https://www.rdoproject.org/testday/mitaka/ga/"&gt;test day for RDO Mitaka on April 13th and 14th&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href="http://openstack.org/summit"&gt;OpenStack Summit&lt;/a&gt; is just 2 weeks away, and we'll be having an &lt;a href="https://www.openstack.org/summit/austin-2016/summit-schedule/events/6892"&gt;RDO BoF&lt;/a&gt; (Birds of a Feather) gathering there.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you have something you'd like to demo in the RDO booth at OpenStack Summit, add your idea to the &lt;a href="https://etherpad.openstack.org/p/rdo-austin-summit-booth"&gt;booth schedule etherpad&lt;/a&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;And, as every week, there are lots of &lt;a href="http://rdoproject.org/events/"&gt;OpenStack Meetups&lt;/a&gt; all over the world this week. Especially don't miss Perry Meyers' RDO Q&amp;amp;A at the &lt;a href="http://www.meetup.com/Morgantown-Linux-User-Group/events/227482742/"&gt;Morgantown OpenStack Meetup&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO docs hack day</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2015/10/rdo-docs-hack-day/"/>
+    <id>http://rdoproject.org/blog/2015/10/rdo-docs-hack-day/</id>
+    <published>2015-10-12T22:02:47+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We plan to have a documentation and website hack day on October 15th.
+If you would like to participate, here's what you need to do:&lt;/p&gt;
+
+&lt;p&gt;1) Get a working copy of the website by forking &lt;a href="https://github.com/redhat-openstack/website/"&gt;the Github repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;2) Look through the &lt;a href="https://github.com/redhat-openstack/website/issues"&gt;open issues list&lt;/a&gt; and pick something to work on.&lt;/p&gt;
+
+&lt;p&gt;3) Show up on #rdo on the Freenode IRC network on Thursday, ready to get started.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What's coming in OpenStack Ceilometer: Google Hangout</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2014/07/what-s-coming-in-openstack-ceilometer-google-hangout/"/>
+    <id>http://rdoproject.org/blog/2014/07/what-s-coming-in-openstack-ceilometer-google-hangout/</id>
+    <published>2014-07-03T17:59:39+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;On July 9th, 11am Eastern time, Eoghan Glynn will be leading a hangout in which he'll discuss what's coming in Ceilometer in the Juno release. You can register to attend (so you'll get a reminder) and attend the actual event, at https://plus.google.com/events/c6e8vjjn8klrf78ruhkr95j4tas&lt;/p&gt;
+
+&lt;p&gt;If the time isn't convenient, you'll be able to watch the archived video at that same location afterwards.&lt;/p&gt;
+
+&lt;p&gt;Please come to the #rdo-hangout channel on the Freenode IRC network for discussion and questions during the event.&lt;/p&gt;
+
+&lt;p&gt;Ceilometer is the metering/monitoring component of OpenStack. You can read more about it at http://docs.openstack.org/developer/ceilometer/&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>RDO Events Next Week: Test Day, Google Hangout</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/10/rdo-events-next-week-test-day-google-hangout/"/>
+    <id>http://rdoproject.org/blog/2013/10/rdo-events-next-week-test-day-google-hangout/</id>
+    <published>2013-10-25T06:11:43+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;We've got two events next week you'll want to put on your calendars.&lt;/p&gt;
+
+&lt;p&gt;On Tuesday and Wednesday (October 29th and 30th) we'll be doing another &lt;a href="http://rdoproject.org/RDO_Test_Day_October_2013"&gt;RDO Test Day&lt;/a&gt;, where we'll be putting the Havana release through its paces. We'd really appreciate a few hours of your time to help make sure that the new release is solid.&lt;/p&gt;
+
+&lt;p&gt;Then, on Thursday (October 31st), at 4pm GMT, Brent Eagles will giving a talk about more advanced networking techniques on OpenStack. You can sign up on the &lt;a href="https://plus.google.com/events/cfgnq5t8it7uvksrtpd00s2fcmg"&gt;Google Hangout&lt;/a&gt;, and attend online.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

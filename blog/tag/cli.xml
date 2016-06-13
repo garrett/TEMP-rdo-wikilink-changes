@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Cli</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/cli.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Unified CLI now available for testing in RDO</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/11/unified-cli-now-available-for-testing-in-rdo/"/>
+    <id>http://rdoproject.org/blog/2013/11/unified-cli-now-available-for-testing-in-rdo/</id>
+    <published>2013-11-22T14:01:46+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;Unified OpenStack Client command-line tool is now available for testing as &lt;code&gt;python-openstackclient&lt;/code&gt; package at RDO Havana repository.&lt;/p&gt;
+
+&lt;p&gt;OpenStack Client is on a mission to provide a single consistent CLI for interacting with OpenStack services. It's a thin wrapper to the stock &lt;code&gt;python-*client&lt;/code&gt; modules that implement the actual REST API client actions. Although OpenStack Client is considered to be &lt;strong&gt;alpha quality&lt;/strong&gt; as of 0.2, it already provides commands to interact with:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Keystone&lt;/li&gt;
+  &lt;li&gt;Nova&lt;/li&gt;
+  &lt;li&gt;Cinder&lt;/li&gt;
+  &lt;li&gt;Glance&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="tips"&gt;Tips&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;With RDO Havana repository in place, install using &lt;code&gt;yum install python-openstackclient&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;As with all clients, you need to supply your credentials. If you installed with packstack, &lt;code&gt;. ~root/keystonerc_admin&lt;/code&gt; might do the trick.&lt;/li&gt;
+  &lt;li&gt;Executable is called &lt;code&gt;openstack&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To get list of available commands, use &lt;code&gt;openstack -h&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To get usage of a specific command, use &lt;code&gt;openstack help COMMAND&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="example-usage"&gt;Example usage&lt;/h2&gt;
+
+&lt;pre&gt;
+$ openstack help image
+Command "image" matches:
+  image delete
+  image list
+  image show
+  image set
+  image save
+  image create
+
+
+$ openstack help image list
+usage: openstack image list [-h] [-f {csv,table}] [-c COLUMN]
+                            [--quote {all,minimal,none,nonnumeric}]
+                            [--page-size &lt;size&gt;]
+List available images
+[...]
+
+
+$ openstack image list
+INFO: urllib3.connectionpool Starting new HTTP connection (1): 192.168.8.81
++--------------------------------------+---------+
+| ID                                   | Name    |
++--------------------------------------+---------+
+| bfc2109b-ab0b-4fd7-99b7-ec394bebd355 | cirros  |
+| b0b22e14-4d20-4174-a2f8-b6dcafdb88bd | El Niño |
++--------------------------------------+---------+
+
+&lt;/size&gt;&lt;/pre&gt;
+</content>
+  </entry>
+</feed>

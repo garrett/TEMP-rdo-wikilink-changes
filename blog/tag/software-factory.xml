@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Software Factory</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/software-factory.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>What did you do in Mitaka: Emilien Macchi</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/</id>
+    <published>2016-05-04T21:03:33+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Continuing my series of interviews with RDO engineers, here's my chat with Emilien Macchi, who I talked with at OpenStack Summit last week in Austin.&lt;/p&gt;
+
+&lt;p&gt;If you'd like to talk about what you did in Mitaka, please contact me at &lt;a href="&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;"&gt;&amp;#114;&amp;#098;&amp;#111;&amp;#119;&amp;#101;&amp;#110;&amp;#064;&amp;#114;&amp;#101;&amp;#100;&amp;#104;&amp;#097;&amp;#116;&amp;#046;&amp;#099;&amp;#111;&amp;#109;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" data-link="https://www.podbean.com/media/player/fzkg3-5f06ba?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, please download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/uinm26/emilien_macchi.mp3"&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with Emilien Macchi, who is one of the people that
+worked on the Mitaka release of OpenStack. Thank you for taking time
+to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Emilien&lt;/strong&gt;: Thank you for welcoming me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: In Mitaka, most of my tasks were related to packaging testing. I'm
+currently leading the Puppet OpenStack group, which is a team where we
+develop some Puppet modules that deploy OpenStack in production. Red
+Hat is using the Puppet modules in TripleO, so we can automate the
+deployment of OpenStack services. Recently we switched the gates of
+OpenStack Infra to use RDO packaging. We had a lot of issued before
+because we didn't have much CI. But since Mitaka, the RDO and the
+Puppet teams worked a lot together to make sure that we can provide
+some testing together. We can fix things very early when it's broken
+upstream. Like when we have a new dependency or when we have a change
+in the requirements. That was this kind of test where you provide very
+early feedback to the RDO people that are doing the packaging. It was
+very interesting to work with RDO.&lt;/p&gt;
+
+&lt;p&gt;We provided early feedback on the builds, on the failures. We also
+contributed to … I say "we", I don't like to say "I" … we, my
+group, my Puppet group, we contributed to the new packages that we
+have in Mitaka. We updated the spec in the package so we could have
+more features, and more services in the RDO projects.&lt;/p&gt;
+
+&lt;p&gt;Testing! Testing every day. Testing, testing, testing. Participating
+in the events that the RDO community is having, like the weekly
+meetings, the testing days. It was very interesting for us to have
+this relationship with the RDO team.&lt;/p&gt;
+
+&lt;p&gt;So I'm looking forward to Newton.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What do you anticipate you'll be working on in Newton?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Well, that's an interesting question. We are talking about this
+week. [At OpenStack Summit, Austin.]&lt;/p&gt;
+
+&lt;p&gt;The challenge for us … the biggest challenge, I guess, is to follow
+the release velocity of upstream projects. We have a bunch of projects
+in OpenStack, and it's very hard to catch up with all of the projects
+at the same time. In the meantime we have to because those projects,
+they are in the RDO project and also in the products, so that's
+something we need to … we need to scale the way that we producing
+all this work.&lt;/p&gt;
+
+&lt;p&gt;Something we are very focused on right now is to use the Software
+Factory project, which is how OpenStack Infra is operating to build
+OpenStack software. This is a project - an open source project - which
+is now used by RDO. We can have this same way as upstream, but for
+downstream - we can have the same way to produce the RDO artifacts,
+like the packages and the Puppet modules, and so on. That's the next
+big challenge, is to be fully integrated with Software Factory, to
+implement the missing features we will need to make the testing
+better.&lt;/p&gt;
+
+&lt;p&gt;Yeah, that's the biggest challenge: Improve the testing, and stopping
+doing manual things, automate all the things, that is the next
+challenge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much. Thanks for your time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;E&lt;/strong&gt;: Thank you for your time.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in MItaka? Haïkel Guémar</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/"/>
+    <id>http://rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/</id>
+    <published>2016-04-22T14:51:28+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;In this installment of the "What Did You Do in Mitaka" series, I'm
+speaking with Haïkel Guémar&lt;/p&gt;
+
+&lt;iframe id="audio_iframe" src="https://www.podbean.com/media/player/z8zks-5ea7c6?from=yiiadmin" data-link="http://www.podbean.com/media/player/z8zks-5ea7c6?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, you can download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/pfcayj/haikel-guemar-mitaka.mp/"&gt;HERE&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: Thanks for making time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Haïkel&lt;/strong&gt;: Thank you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: So, tell me, what did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: I work on the &lt;a href="http://rdoproject.org"&gt;RDO&lt;/a&gt; engineering team - the team that is responsible
+for the stewardship of RDO. For this cycle, I've been focusing on our
+new packaging work flow.&lt;/p&gt;
+
+&lt;p&gt;We were using, for a long time, a piece of infrastructure taken from
+Fedora, CentOS, and GitHub. This didn't work very well, and was not
+providing a consistent experience for the contributors. So we've been
+working with another team at Red Hat to provide a more integrated
+platform, and one that mirrors the one that we have upstream, based on
+the same tools - meaning Git, Gerrit, Jenkins, Nodepool, Zuul - that is
+called &lt;a href="https://github.com/redhat-cip/software-factory"&gt;Software Factory&lt;/a&gt;. So we've been working with the Software
+Factory team to provide a specialization of that platform called
+&lt;a href="https://github.com/redhat-cip/rpmfactory"&gt;RPMFactory&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;RPMFactory is a platform specialized for producing RPMs in a
+continuous delivery fashion. It has all the advantages of the old
+tooling we have been using, but with more consistency. You don't have
+to look in different places to find the source code, the packaging,
+and stuff like that. Everything is under a single portal.&lt;/p&gt;
+
+&lt;p&gt;That's what I've been focusing on during this cycle, on top of my
+usual duties, which is producing packages and fixing it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: And looking forward to the Newton release, what do you think you're
+going to be working on in that cycle?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: While we've been working in the new workflow, we've been setting a
+new goal, that is to decrease the gap between upstream releases and
+RDO releases down to 2 weeks. Well, we did it &lt;a href="https://www.rdoproject.org/blog/2016/04/rdo-mitaka-released/"&gt;on the very same day&lt;/a&gt; for
+Mitaka! So my goal would be for Newton to do as good as this time, or
+even better. Why not under 2 hours? Not putting on ourselves more
+pressure, but to try to release almost at the same time as upstream
+GA, RDO. And also with the same quality standards.&lt;/p&gt;
+
+&lt;p&gt;One of the few things that I was not happy with during the Mitaka
+cycle was mostly the fact that we didn't manage to release some
+packages in time, so I'd like to do better. Soon enough I will be
+asking for people to fill in a wish list on packaging, so that we are
+able to work on that earlier. And so we could release them on time
+with GA.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thanks again for taking the time to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;H&lt;/strong&gt;: Thank you Rich, for the series.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

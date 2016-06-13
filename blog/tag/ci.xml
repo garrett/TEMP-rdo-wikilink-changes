@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Ci</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/ci.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>David Moreau Simard at OpenStack Montreal</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/"/>
+    <id>http://rdoproject.org/blog/2016/02/david-moreau-simard-at-openstack-montreal/</id>
+    <published>2016-02-25T15:09:08+01:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;David Moreau Simard giving his talk at &lt;a href="http://montrealopenstack.org/"&gt;OpenStack Montreal&lt;/a&gt; about RDO CI:&lt;/p&gt;
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/XAWLm3jP7Mg" frameborder="0" allowfullscreen=""&gt;&lt;/iframe&gt;
+
+</content>
+  </entry>
+</feed>

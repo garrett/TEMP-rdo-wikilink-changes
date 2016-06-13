@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Deploying RDO using Foreman &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/install/deploying-rdo-using-foreman.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="deploying-rdo-using-foreman">Deploying RDO using Foreman</h1>
+
+<p>This guide is meant to help you set up <a href="http://theforeman.org/">Foreman</a> to deploy RDO. We have wrapped this up in an installer with some predefined Foreman Host Groups to get you started. You can, of course, add your own to do thing we havenot yet added. If you do, please feel free to contribute them to our upstream <a href="https://github.com/redhat-openstack/astapor">installer</a> project!</p>
+
+<h2 id="deploying-on-vms">Deploying on VMs</h2>
+
+<p>Before using Foreman to deploy OpenStack on your bare metal machines, you might want to do a test drive using virtual machines. We have some directions for that <a href="/install/virtualized-foreman-dev-setup/">here</a>.</p>
+
+<h2 id="initial-setup">Initial setup</h2>
+
+<h3 id="operating-systems">Operating Systems</h3>
+
+<p>Please check Foreman's web site for support Operating System; <a href="http://www.theforeman.org/manuals/1.4/quickstart_guide.html">1</a></p>
+
+<h3 id="repo-setup">Repo setup</h3>
+
+<p>For RHEL systems, make sure you are registered to both rhel-6-server-rpms and the Optional channel:</p>
+
+<pre class="highlight plaintext"><code>yum-config-manager --enable rhel-6-server-rpms&#x000A;yum-config-manager --enable rhel-6-server-optional-rpms&#x000A;</code></pre>
+
+<p>For all systems, you will also want the following two repositories:</p>
+
+<pre class="highlight plaintext"><code>yum install http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm&#x000A;yum install http://repos.fedorapeople.org/repos/openstack/openstack-havana/rdo-release-havana-7.noarch.rpm&#x000A;</code></pre>
+
+<p>These steps should be run on each system.</p>
+
+<p>At this point, you will be ready to start installing your Foreman and OpenStack deployment.</p>
+
+<h2 id="foreman-non-provisioning-setup">Foreman Non-Provisioning setup</h2>
+
+<p>Foreman supports <em>provisioning mode</em>, where nodes boot from a PXE server controlled by Foreman, and <em>non-provisioning mode</em>, which works with existing nodes.</p>
+
+<h3 id="configure-the-foreman-server">Configure the Foreman server</h3>
+
+<p>First, let's configure the machine that will be our Foreman server.</p>
+
+<p>Begin by installing openstack-foreman-installer:</p>
+
+<pre class="highlight plaintext"><code>yum install openstack-foreman-installer&#x000A;</code></pre>
+
+<p>The following is an example environment file for non-provisioning mode:</p>
+
+<pre class="highlight plaintext"><code>export FOREMAN_GATEWAY=false # The Gateway set up for foreman provisioning (or 'false' when no provisioning)&#x000A;export FOREMAN_PROVISIONING=false # Will foreman be used for provisioning?&#x000A;</code></pre>
+
+<p>Check that <code>hostname --fqdn</code> returns an actual FQDN (i.e., it includes one or more dots, not just a hostname), and that <code>facter fqdn</code> is not blank. If it does not, see our dev setup page for some <a href="/install/virtualized-foreman-dev-setup/#Hostname_and_FQDN">troubleshooting help</a>.</p>
+
+<p>We recommend a minimum of 3 networks/NICs set up on each of the machines meant to be openstack nodes. There will be one to communicate with the foreman server, one for the public openstack network, and one for the private openstack network. The Foreman server only needs to be on one network where it can communicate with the nodes. If needed, for PoC testing, you could collapse the public/private openstack networks into one.</p>
+
+<p>Next:</p>
+
+<pre class="highlight plaintext"><code>cd /usr/share/openstack-foreman-installer/bin/&#x000A;</code></pre>
+
+<p>initialize the environment settings described in the example above for non-provisioning mode.</p>
+
+<pre class="highlight plaintext"><code>(sudo, if you are not root) sh foreman_server.sh&#x000A;</code></pre>
+
+<p>After a brief time, this will leave you with a working Foreman install. Before moving forward you need to open the right ports. I use lokkit: lokkit –service http lokkit –service https lokkit –service dns lokkit –service tftp lokkit –port 8140:tcp</p>
+
+<pre class="highlight plaintext"><code>   Further details are below in 'Finishing the setup', but first, go ahead and configure the clients:&#x000A;</code></pre>
+
+<h3 id="steps-for-controllercompute-nodes">Steps for controller/compute nodes</h3>
+
+<p>Next, you need to run <code>foreman_client.sh</code> on each client.</p>
+
+<p>This is located in <code>/tmp</code> on the Foreman server. Copy this to each machine.</p>
+
+<p>Once it is in place, run it on each machine:</p>
+
+<pre class="highlight plaintext"><code>sh &lt;path&gt;/foreman_client.sh&#x000A;</code></pre>
+
+<p>If there is an error that the client did not get a signed certificate back from the puppet server, check on your Foreman server with:</p>
+
+<pre class="highlight plaintext"><code>puppet cert list&#x000A;</code></pre>
+
+<p>And, if needed, puppet cert sign <client_fqdn></client_fqdn></p>
+
+<p>You may receive this error during the installation:</p>
+
+<pre class="highlight plaintext"><code>Error: Could not retrieve catalog from remote server: Error 400 on SERVER: Failed when searching for&#x000A;node set1client1: Failed to find set1client1  via exec: Execution of '/etc/puppet/node.rb set1client1'&#x000A;returned 1: --- false&#x000A;Warning: Not using cache on failed catalog&#x000A;Error: Could not retrieve catalog; skipping run&#x000A;</code></pre>
+
+<p>This is non-fatal and can be safely ignored.</p>
+
+<h2 id="finishing-the-setup">Finishing the setup</h2>
+
+<p>Assuming everything has been successful up to this point, now you just have a bit of configuration in the Foreman UI to configure the nodes you have registered with the desired host groups.</p>
+
+<p>First, log in to your Foreman instance (https://{foreman_fqdn}). The default login and password are admin/changeme; we recommend changing this if you plan on keeping this host around.</p>
+
+<p>Next, you’ll need to assign the correct puppet classes to each of your hosts. Click the 'Hosts' link and select your host from the list. Select 'Change Group' in the dropdown menu above the host list, select the appropriate Host Group, and Click 'submit'. When applying host groups, you should override any values (such as service passwords and service ip addresses) in the Foreman UI. This can either be done on a per-host basis (by clicking the host link, and then clicking the 'edit host' button'), or at the Host Group level, which will affect all hosts assigned to that hostgroup. To have the change pick up immediately, run puppet on the host (client1 and client2 in our examples) in question (or just wait for the next puppet run, which defaults to every 30 minutes):</p>
+
+<pre class="highlight plaintext"><code>puppet agent -tv&#x000A;</code></pre>
+
+<p>It is recommended that you provision the controller before the compute node, as the compute node has dependencies on the controller.</p>
+
+<p>Repeat for all of your nodes. Both Controller and Compute nodes take quite a while to setup. After about <some number="" of=""> minutes on each host, you will have a working OpenStack installation! Add more Compute nodes at any time with Foreman.</some></p>
+
+<h3 id="optional-heat-apis">Optional Heat APIs</h3>
+
+<p>By default, the controller node will install without CloudFormations and CloudWatch APIs enabled. To enable one or both of them:</p>
+
+<ul>
+  <li>In Foreman UI navigate to More -&gt; Configuration -&gt; Host Groups and click on the Controller host group (Neutron Controller or Nova Network Controller, depending on which one you use).</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Switch to the Parameters tab.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Click the Override button next to <code>heat_cfn</code> and/or <code>heat_cloudwatch</code> parameters.</li>
+</ul>
+
+<!-- -->
+
+<ul>
+  <li>Change the value(s) from "false" to "true" (you might need to scroll down if you don't see the form right away) and submit the form.</li>
+</ul>
+
+<p>When Puppet runs on the controller node, it will install the optional APIs you enabled.</p>
+
+<h2 id="foreman-provisioning-setup">Foreman Provisioning Setup</h2>
+
+<p>This is going to work largely the same as the non-provisioning mode, with the exception of changing the environment file we used earlier to configure the setup script a bit. For instance, you would enable the foreman gateway and set provisioning to true, as well as configure the appropriate eth* devices on the foreman server to allow it to provision. Eg:</p>
+
+<pre class="highlight plaintext"><code>export FOREMAN_GATEWAY=10.0.0.1&#x000A;export FOREMAN_PROVISIONING=true&#x000A;export PROVISIONING_INTERFACE=eth0&#x000A;</code></pre>
+
+<p>The Foreman server should have 2 interfaces for this configuration, one for external access and one that the clients will connect to. The clients are going to pxeboot off of the internal-only interface. Those clients are not going to have an OS on them, Foreman will do the actual provisioning. Simply start the client machines and have them PXE boot from the network they share with the foreman server.</p>
+
+<h2 id="troubleshooting-with-foremanpuppet">Troubleshooting with foreman/puppet</h2>
+
+<ul>
+  <li>If are see errors in a host report in the foreman dashboard like 'could not connect to MySQL on 172.16.0.1' it's likely because you have not over rode the default values to match your environment. you can specify overrides in the foreman UI. (Dashboard home » more » host groups » <em>group name</em> » parameters - click 'override' on each vale you want to specify and scroll to the end of the page to fill in the new parameters) -see below 'using host groups'</li>
+  <li>If you have mod_nss installed, foreman-proxy will not start, as they both attempt to use port 8443. This is something we will try to address in the near future, but in the meantime, you can easily edit your httpd conf file for either of these modules to get around this issue.</li>
+  <li>foreman-proxy restart is needed if you change certificates, or change Puppet versions (as it's loaded), or its settings file</li>
+  <li>httpd restart emcompasses both the puppetmaster and Foreman as they run inside with passenger, so it's a quick way to restart both.</li>
+  <li>Restart after changing certs (mod_ssl configuration), upgrading Puppet, changing Foreman's settings file and sometimes editing puppet.conf (especially if modifying environments).</li>
+  <li>you can restart just Foreman by touching ~foreman/tmp/restart.txt, or just 'service foreman restart'</li>
+</ul>
+
+<p>For clients with puppet 2.6, you need to add to /etc/puppet/puppet.conf "report = true", and then 'puppet agent -tv' to get it to check in with foreman. Since we are using the puppet from puppetlabs (ie, 3,2,x), this is unlikely to be a problem if you are following the above directions.</p>
+
+<h2 id="using-hostgroups">Using Hostgroups</h2>
+
+<p>This describes (and still needs more detail) how to use various host groups included by the installer. Where appropriate, these are broken out into their own pages, linked below. Thanks to gdubreuil for the initial work neutron integration and beginning neutron docs below.</p>
+
+<p>All Host Groups can have their default values edited in the Foreman UI by going to 'More -&gt; Configuration -&gt; Host Groups'. Do verify these settings are as desired before proceeding to configure any client machines via Foreman.</p>
+
+<h3 id="node-install-with-nova-networking">2 Node install with Nova Networking</h3>
+
+<ul>
+  <li>First, verify the settings for the 'Openstack Controller' and 'Openstack Nova Compute' hostgroups are correct, especially the public and private openstack network IPs/ranges.</li>
+  <li>Select the Host (checkbox) from the list on the 'Hosts' tab of Foreman UI that you wish to configure as your controller.</li>
+  <li>From the Dropdown menu directly above the table, select 'Change Group', and pick 'Openstack Controller', then 'Submit'</li>
+  <li>Next, either wait for that machine to check in via puppet, or kick off a put run the using 'puppet agent -tv'</li>
+  <li>Once that has completed successfully, make sure you can get to Horizon on the new controller node. Your password, unless you changed it for this host, is the admin_password on the paramters tab of the host group. You can also check cli services for the controller using standard openstack commands. All passwords and environment variables you need to set to do so can be found in this same Parameters tab. As an example, you could create a .keystonerc like so:</li>
+</ul>
+
+<!-- -->
+
+<pre class="highlight plaintext"><code>export OS_USERNAME=admin &#x000A;export OS_TENANT_NAME=admin&#x000A;export OS_PASSWORD=&lt;admin_password&gt;&#x000A;export OS_AUTH_URL=http://&lt;controller_ip&gt;:35357/v2.0/&#x000A;</code></pre>
+
+<p>Then you can source it and do a 'nova service-list'. This should show most services running, modulo compute, since you didnt set that up yet.</p>
+
+<ul>
+  <li>Assuming that went well, your next step would be to do the assignment of a host group to your node, this time choosing 'Openstack Nova Compute'. Once that finishes, if you run the service-list command again from your controller, you should see the newly added compute node running.</li>
+</ul>
+
+<h3 id="neutron-with-networker-node">Neutron with Networker Node</h3>
+
+<h4 id="notes">Notes</h4>
+
+<ul>
+  <li>This document needs major update, and a lot more detail.</li>
+  <li>This is for GRE Tunnel only (for now)</li>
+  <li>Minimum 3 hosts - 4 are needed for full validation (VMs communication across compute hosts)</li>
+  <li>Further doc located <a href="/networking/configuring-neutron-with-ovs-and-gre-tunnels-using-quickstack/">here</a>. Note this is also desperately in need of some updates.</li>
+</ul>
+
+<h4 id="prerequisites">Prerequisites</h4>
+
+<ul>
+  <li>rhel6.5+ core build</li>
+  <li>rhel + rhel optional + rdo havana + epel6</li>
+  <li>2 x physical networks: 1 private, 1 public. (Assuming consistent network interface name across hosts.)</li>
+  <li>1 x Controller</li>
+  <li>1 x Networker
+    <ul>
+      <li>Network node needs to have br-ex setup:
+        <ul>
+          <li>scp /usr/share/openstack-foreman-installer/bin/bridge-create.sh from Foreman node to Network node and run these commands on the Network node:</li>
+          <li>`yum install openvswitch`</li>
+          <li>`service openvswitch start`</li>
+          <li>`bridge-create.sh br-ex eth0` (assuming eth0 is your public interface)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>N x Computer(s)</li>
+</ul>
+
+<h4 id="setup">Setup</h4>
+
+<p>Set quickstack/params.pp values (directly or though foreman globals/hostgroups/smart variables).</p>
+
+<p>Assign hosts to their respective target Quickstack Puppet module classes (hostgroups): Controller -&gt; neutron_controller.pp Networker -&gt; neutron_network.pp Computer -&gt; neutron_compute.pp</p>
+
+<h3 id="cinder-storage-nodes">Cinder Storage Nodes</h3>
+
+<p>The controller node contains Cinder API and scheduler. For deploying storage capacity nodes there is "OpenStack Block Storage" hostgroup.</p>
+
+<p>The nodes assigned to the "OpenStack Block Storage" hostgroup need to have a <code>cinder-volumes</code> LVM volume group before you run puppet on them. This should be considered before you install operating system on the node and you should partition your disk if needed. (LVM volume group needs to be backed by at least one physical volume, which means you'll need to dedicate at least one disk partition to it.) You might use Kickstart to partition the disk and set up the LVM volume group automatically during OS installation.</p>
+
+<p class="alert alert-info">For more information regarding LVM setup see <a href="https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/6/html-single/Logical_Volume_Manager_Administration/index.html">LVM Administration Guide</a> and <a href="http://fedoraproject.org/wiki/Anaconda/Kickstart">Kickstart docs</a>.</p>
+
+<h4 id="quick-volume-group-creation-for-testing">Quick volume group creation for testing</h4>
+
+<p>If you just want to give Cinder a quick try, there is a script that sets up a <code>cinder-volumes</code> volume group backed by a loop file. This means you will not have to do any special partitioning and the data will be saved in file <code>/var/lib/cinder/cinder-volumes</code>. You'll find the script on the node where you installed Foreman at <code>/usr/share/openstack-foreman-installer/bin/cinder-testing-volume.sh</code>. Steps to use the script:</p>
+
+<ol>
+  <li>
+    <p>SCP <code>cinder-testing-volume.sh</code> script from the Foreman node to nodes that you want to use for block storage.</p>
+  </li>
+  <li>
+    <p>Run <code>bash cinder-testing-volume.sh 5G</code> on the storage nodes. The parameter is the desired size of loop file to be created (5 gigabytes in the example).</p>
+  </li>
+</ol>
+
+<p class="alert alert-warning">Note that <code>cinder-testing-volume.sh</code> script is meant for testing only, and the volume group will not persist between reboots. In production environment Cinder storage should be always backed by disks or disk partitions, not by loop files.</p>
+
+<p>You can also manually create you Volume Groups, example here:</p>
+
+<pre class="highlight plaintext"><code># local partition (requires an unused disk or partition)&#x000A;    pvcreate -yv -ff /dev/sdb&#x000A;        vgcreate cinder-volumes /dev/sdb&#x000A;&#x000A;# iSCSI target (requires an initiator and target)&#x000A;    iscsiadm -m discovery -t st -p 172.31.143.200&#x000A;        iscsiadm -m node -l&#x000A;        partprobe -s&#x000A;        pvcreate -yv -ff /dev/sdb&#x000A;        vgcreate cinder-volumes /dev/sdb&#x000A;&#x000A;# loopback device (poc only, requires free space)&#x000A;    truncate --size 5G /root/cinder-volumes&#x000A;        losetup -fv /root/cinder-volumes&#x000A;</code></pre>
+
+<h3 id="load-balancer">Load Balancer</h3>
+
+<p>Note that the Load Balancer itself is not yet HA, but will be part or a Pacemaker cluster group in the near future.</p>
+
+<ol>
+  <li>Install a controller node.</li>
+  <li>Install a load-balancer node (ie. add a host to this host group). The needed parameters to be set in foreman are:
+    <ul>
+      <li><strong>lb_private_vip</strong> Supply the internal (private) VIP address.</li>
+      <li><strong>lb_public_vip</strong> Supply the external (public) VIP address.</li>
+      <li><strong>lb_member_names</strong> and <strong>lb_member_addrs</strong> Supply a name and internal IP address of each controller. The name is actually arbitrary, but haproxy requires a name for each real server (in this case each controller). These are comma-separated strings.</li>
+    </ul>
+  </li>
+  <li>Edit your controller Host Group.
+    <ul>
+      <li>Change the <strong>controller_public_floating_ip</strong> and <strong>controller_private_floating_ip</strong> parameters. These need to be the public and private VIP that the load-balancer is listening on.</li>
+      <li>Set the <strong>mysql_host</strong> and <strong>qpid_host</strong> params in the controller(s) appropriately. Each controller should have same values here. In the simple case, you merely point all controllers to use the database or qpid setup installed on a single one of your load balanced controllers. More likely, you will point these at your HA Mysql cluster (see host group below), and HA qpid cluster (coming soon). In the latter case, you would use the Virtual IP managed by Pacemaker for the relevant clusters as the value for these parameters.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Add more controllers nodes to your deployment. There are some certificates you need to copy over from the first deployed controller:</p>
+
+    <p> /etc/keystone/ssl/certs/ca.pem
+   /etc/keystone/ssl/certs/signing_cert.pem
+   /etc/keystone/ssl/private/signing_key.pem</p>
+  </li>
+</ol>
+
+<p>If you know that you want to load balance your Controllers from the beginning, you could also set the correct <strong>controller_public_floating_ip</strong> and <strong>controller_private_floating_ip</strong> on your controller host group before deploying either the controllers or a load balancer (assuming you know the address of the load balancer at this time).</p>
+
+<h3 id="swift-storage">Swift Storage</h3>
+
+<p>The <strong>Swift Storage Host Group</strong> may be used to configure your Swift storage nodes. Note that this applies to the Swift back-end nodes only, not the Swift Proxy which is included in the Controller (Nova Network or Neutron) Host Group.</p>
+
+<h4 id="swift-storage-host-group-parameters">Swift Storage Host Group Parameters</h4>
+
+<p><strong><em>swift_all_ips</em></strong> An array of ip addresses. It must include all the IP's in your Swift Storage Host Group as well as the Swift Proxy IP(s). This ensures the relevant firewall rules are in place.</p>
+
+<p><strong><em>swift_ext4_device</em></strong> The ext4 device where blobs are actually stored. There must be an ext4 filesystem already present on the device.</p>
+
+<p><strong><em>swift_local_interface</em></strong> The interface used for swift network traffic. This is assumed to have an IP address.</p>
+
+<p><strong><em>swift_loopback</em></strong> Set to "true" or "false" which indicates whether to use loopback device instead of an ext4 device. The parameter swift_ext4_device becomes irrelevant if swift_loopback is true. Using a loopback device is primarily useful for testing.</p>
+
+<p><strong><em>swift_ring_server</em></strong> The IP address of the swift ring server which is typically the swift proxy/controller node.</p>
+
+<p><strong><em>swift_shared_secret</em></strong> A random hashing string that must be consistent across Swift nodes.</p>
+
+<h3 id="ha-database-cluster">HA Database Cluster</h3>
+
+<p>This sets up up a cluster for (currently) mysql via pacemaker, details <a href="/ha/foreman-ha-database/">here</a>.</p>
+
+<h3 id="ssl-configuration">SSL Configuration</h3>
+
+<p>Currently, mysql, qpid and horizon, have support for securing via ssl in foreman, directions <a href="/documentation/securing-services-foreman/">here</a>.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/install/deploying-rdo-using-foreman.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 24 Sep 2015 20:21 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

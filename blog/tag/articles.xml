@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Articles</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/articles.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>RDO in the news</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/rdo-in-the-news/"/>
+    <id>http://rdoproject.org/blog/2013/05/rdo-in-the-news/</id>
+    <published>2013-05-02T18:28:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;Since launching on April 15th, RDO has garnered a lot of attention - both in press and in blogs and podcasts. Here's a review of what's been happening in the RDO world.&lt;/p&gt;
+
+&lt;h2 id="podcast-rdo-at-the-openstack-summit"&gt;Podcast: RDO at the OpenStack Summit&lt;/h2&gt;
+
+&lt;p&gt;In Portland during &lt;a href="https://www.openstack.org/summit/portland-2013/"&gt;the OpenStack Summit&lt;/a&gt; Dave Neary sat down with Richard Morrell of Red hat to record a podcast, covering questions like "what is RDO?", "who is it for?" "why are Red Hat releasing a community distribution of OpenStack?"&lt;/p&gt;
+
+&lt;p&gt;Hear the answers to these questions and more &lt;a href="http://cloudevangelist.org/2013/04/17/podcast-openstack-developer-summit-2013/"&gt;at the Cloud Evangelist website&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id="openstack-summit-review"&gt;OpenStack Summit review&lt;/h2&gt;
+
+&lt;p&gt;Jason Brooks from the RDO team &lt;a href="http://community.redhat.com/openstack-summit-highlights-amazing-open-source-outcomes/"&gt;wrote up his experiences&lt;/a&gt; from the OpenStack Summit and the RDO launch.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;What impressed me more than the growth of the project, however, was the way that
+OpenStack embodies one of things I love most about open source, namely, its knack
+for helping people to peel back or eliminate barriers to innovation. The more
+freedom we afford ourselves to experiment with and improve the systems we care
+about, the more amazing results we can achieve.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Read more over at &lt;a href="http://community.redhat.com/"&gt;the Red Hat community blog&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id="rdo-launch-news---quick-links"&gt;RDO launch news - quick links&lt;/h2&gt;
+
+&lt;p&gt;We got a lot of attention during the launch. Here is a selection of some of the things which were written about us.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;TechCrunch: &lt;a href="http://techcrunch.com/2013/04/15/red-hat-announces-rdo-and-openstack-partner-program/"&gt;Red Hat Announces RDO And OpenStack Partner Program&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;[PackStack] is interesting. OpenStack is a complex suite of tools, and the installation process is non-trivial. Any work to streamline that will reduce at least one barrier to success.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;readwrite.com: &lt;a href="http://readwrite.com/2013/04/16/will-red-hats-openstack-contributions-turn-to-gold"&gt;Will Red Hat's OpenStack Contributions Turn To Gold?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;em&gt;It's happening again. Red Hat, which for years has dominated both the development and monetization of Linux, has turned its code contributing hand to OpenStack, the popular open-source cloud computing project. While Red Hat initially fought OpenStack, today it has become OpenStack's biggest contributor.&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GigaOM: &lt;a href="http://gigaom.com/2013/04/17/why-openstack-is-like-kale-its-cheap-easy-to-source-and-good-for-you/"&gt;Why OpenStack is like kale — it’s cheap, easy to source and good for you&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;V3: &lt;a href="http://www.v3.co.uk/v3-uk/news/2264088/red-hat-openstack-is-the-only-way-to-avoid-cloud-lockin"&gt;Red Hat: OpenStack is the only way to avoid cloud lock-in&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Application Development Trends: &lt;a href="http://adtmag.com/articles/2013/04/16/open-stack-distro.aspx"&gt;Red Hat Launches OpenStack Distro, Partner Network&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;PCWorld: &lt;a href="http://www.pcworld.com/article/2034674/red-hat-releases-community-openstack-distribution.html"&gt;Red Hat releases community OpenStack distribution&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Computer Weekly: &lt;a href="http://www.computerweekly.com/blogs/open-source-insider/2013/04/red-hat-opens-rdo-openstack-community.html"&gt;Red Hat opens RDO OpenStack community&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ServerWatch: &lt;a href="http://www.serverwatch.com/server-news/red-hat-launches-open-source-openstack-rdo-community-distribution.html"&gt;Red Hat Launches Open Source OpenStack RDO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id="news-from-around-the-world"&gt;News from around the world&lt;/h2&gt;
+
+&lt;p&gt;OpenStack has a worldwide community, and the RDO release got worldwide attention. Here are some articles in various languages from around the world.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Chinese: &lt;a href="http://www.lupaworld.com/article-223802-1.html"&gt;Red Hat releases open source RDO&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Japanese: &lt;a href="http://news.mynavi.jp/news/2013/05/02/051/"&gt;Install instructions in Japanese&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Japanese: TechCrunch: &lt;a href="http://jp.techcrunch.com/2013/04/16/20130415red-hat-announces-rdo-and-openstack-partner-program/"&gt;Red Hat announces RDO and OpenStack partner program&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;French: Le Mag IT: [Red Hat présente RDO une version communautaire de sa distribution OpenStack]http://www.lemagit.fr/economie/business/2013/04/18/red-hat-presente-rdo-une-version-communautaire-de-sa-distribution-openstack/&lt;/li&gt;
+  &lt;li&gt;French: Le Monde Informatique: &lt;a href="http://www.lemondeinformatique.fr/actualites/lire-red-hat-publie-une-distribution-communautaire-d-openstack-53255.html"&gt;Red Hat publie une distribution communautaire d'OpenStack&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Italian: Tom's Hardware: &lt;a href="http://www.tomshw.it/cont/news/red-hat-openstack-cresce-la-community/45196/1.html"&gt;Red Hat OpenStack: cresce la community&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Spanish: Silicon Week: &lt;a href="http://www.siliconweek.es/noticias/red-hat-anuncia-rdo-su-propia-distribucion-de-openstack-soportada-por-la-comunidad-35643"&gt;Red Hat anuncia RDO, su propia distribución de OpenStack soportada por la comunidad&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Let us know in the comments if you spot other articles about RDO!&lt;/p&gt;
+</content>
+  </entry>
+</feed>

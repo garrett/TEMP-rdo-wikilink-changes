@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Deploying RDO on a Virtual Machine Environment using Instack &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/install/deploying-rdo-on-a-virtual-machine-environment-using-instack.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="deploying-rdo-on-a-virtual-machine-environment-using-instack">Deploying RDO on a Virtual Machine Environment using Instack</h1>
+
+<p><a href="/install/deploying-rdo-using-instack/"> ← Deploying RDO using Instack</a></p>
+
+<p>If you are connecting to the virtual host remotely using ssh, you will need to use the -t flag to force pseudo-tty allocation or enable notty via a $USER.notty file.</p>
+
+<p>Do not use the root user for executing any instack-undercloud scripts. Some programs of libguestfs-tools are not designed to work with the root user. All of the instack-undercloud scripts were developed and tested by using a normal user with sudo privileges.</p>
+
+<h2 id="minimum-system-requirements">Minimum System Requirements</h2>
+
+<p>This setup creates three (3) to five (5) virtual machines (depending on if you choose to deploy block and object storage nodes) consisting of 4GB of memory and 40GB of disk space on each. The virtual machine disk files are thinly provisioned and will not take up the full 40GB initially.</p>
+
+<p>The minimum system requirements for the virtual host machine to follow this tutorial are:</p>
+
+<ul>
+  <li>Be running Fedora 20 x86_64</li>
+  <li>At least (1) quad core CPU</li>
+  <li>12GB free memory</li>
+  <li>120GB disk space <a href="Note that the default Fedora partitioning scheme will most likely not provide enough space to the partition containing the default path for libvirt image storage (/var/lib/libvirt/images). The easiest fix is to customize the partition layout at the time of install to provide at least 200 GB of space for that path.">1</a></li>
+</ul>
+
+<p>If you want to deviate from the tutorial or increase the scaling of one or more overcloud nodes, you will need to ensure you have enough memory and disk space.</p>
+
+<p>RHEL 7 support is experimental and may not work with the currently released packages.</p>
+
+<h2 id="preparing-the-host-machine">Preparing the Host Machine</h2>
+
+<ol>
+  <li>
+    <p>Make sure sshd service is installed and running.</p>
+  </li>
+  <li>
+    <p>The user performing all of the installation steps on the virt host needs to have sudo enabled. You can use an existing user or use the following commands to create a new user called <strong>stack</strong> with password-less sudo enabled. <strong>Do not run the rest of the steps in this guide as root.</strong></p>
+
+    <p> sudo useradd stack
+    sudo passwd stack  # specify a password
+    echo "stack ALL=(root) NOPASSWD:ALL" | sudo tee -a /etc/sudoers.d/stack
+    sudo chmod 0440 /etc/sudoers.d/stack</p>
+  </li>
+</ol>
+
+<p>If you have previously used the host machine to run TripleO's devtest setup, then that could potentially conflict with the scripts installed from RDO packages. It is recommended to clean up from any previous devtest runs by deleting ~/.cache/tripleo and making sure there is no $TRIPLEO_ROOT defined in your environment.</p>
+
+<h3 id="virtual-host-setup">Virtual Host Setup</h3>
+
+<p>These steps will setup your virtual host for a virtual environment for testing the Overcloud deployment. For more information about the changes performed, See the <a href="https://rdoproject.org/Instack_FAQ#What_configuration_changes_does_instack-virt-setup_make_to_the_virt_host.3F">FAQ</a>.</p>
+
+<ol>
+  <li>
+    <p>Make sure you are logged in as the user you created above.</p>
+  </li>
+  <li>
+    <p>Add export of LIBVIRT_DEFAULT_URI to your bashrc file.</p>
+
+    <p>  echo 'export LIBVIRT_DEFAULT_URI="qemu:///system"' » ~/.bashrc</p>
+  </li>
+  <li>
+    <p>Enable the RDO juno repository</p>
+  </li>
+</ol>
+
+<p><code>  sudo yum install -y </code><a href="http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm"><code>http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm</code></a></p>
+
+<p>If on RHEL 7, enable the EPEL repository too</p>
+
+<p><code> sudo yum install -y </code><a href="http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm"><code>http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm</code></a></p>
+
+<p>4 . Install the instack-undercloud package.</p>
+
+<pre class="highlight plaintext"><code>   sudo yum install -y instack-undercloud&#x000A;</code></pre>
+
+<ol>
+  <li>Configure your environment for your selected distribution, replacing the values in [] with the appropriate ones for your environment.</li>
+</ol>
+
+<p>Fedora 20</p>
+
+<pre class="highlight plaintext"><code>   export NODE_DIST="fedora"&#x000A;</code></pre>
+
+<p>RHEL 7, registered with the customer portal</p>
+
+<pre class="highlight plaintext"><code>  export NODE_DIST="rhel7"&#x000A;  # A web server containing the RHEL guest cloud image&#x000A;  export DIB_CLOUD_IMAGES="[http://server/path/containing/image]"&#x000A;  # The file name of your RHEL guest cloud image&#x000A;  export BASE_IMAGE_FILE=rhel-guest-image-7.0-20140930.0.x86_64.qcow2&#x000A;  export REG_METHOD=portal&#x000A;  # Find this with `subscription-manager list --available`&#x000A;  export REG_POOL_ID="[pool id]"&#x000A;  export REG_PASSWORD="[your password]"&#x000A;  export REG_USER="[your username]"&#x000A;  export REG_REPOS="rhel-7-server-extras-rpms rhel-ha-for-rhel-7-server-rpms rhel-7-server-optional-rpms"&#x000A;</code></pre>
+
+<ol>
+  <li>
+    <p>Run scripts to install required dependencies</p>
+
+    <p> source /usr/libexec/openstack-tripleo/devtest_variables.sh
+    tripleo install-dependencies
+    tripleo set-usergroup-membership
+    # The previous command has added the user to the libvirtd group, so we need to login to the new group
+    newgrp libvirtd
+    newgrp</p>
+  </li>
+</ol>
+
+<h3 id="virtual-machine-creation">Virtual Machine Creation</h3>
+
+<ol>
+  <li>
+    <p>Verify again that your user has been added to the libvirtd group. The command shown below should show the libvirtd group listed in the output.</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>id </td>
+          <td> grep libvirtd</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>
+    <p>Run the script to setup your virtual environment.</p>
+
+    <p> instack-virt-setup</p>
+  </li>
+</ol>
+
+<p>When the script has completed successfully it will output the IP address of the instack vm.</p>
+
+<p>Running <code>virsh list --all</code> will show you now have one virtual machine called instack" and four called "baremetal[0-4]", all shut off. The "instack" vm runs a minimal install of Fedora 20 x86_64 and will be used to install the undercloud on. You can login to the instack vm by running:</p>
+
+<p><code> ssh -i .ssh/id_rsa_virt_power root@</code><instack-vm-ip></instack-vm-ip></p>
+
+<p>The vm contains a user "stack" that uses the password "stack" and is granted password-less sudo privileges. Once logged in as root to the instack vm, you can su to the stack user. The other vm's don't have an operating system yet installed but will eventually become part of the "overcloud".</p>
+
+<p>You may also with to install <code>virt-manager</code> on the virt host as it can be very helpful if monitoring when the vm's for the Overcloud nodes are powered on and off. You can also use virt-manager to login to the console on the Overcloud nodes.</p>
+
+<p>Next steps: <a href="/install/deploying-an-rdo-undercloud-with-instack/"> Deploying an RDO Undercloud with Instack </a></p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/install/deploying-rdo-on-a-virtual-machine-environment-using-instack.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 10 Nov 2015 18:09 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

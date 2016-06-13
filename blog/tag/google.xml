@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Google</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/google.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Google Hangout - Neutron - September 24th</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/09/google-hangout-neutron-september-24th/"/>
+    <id>http://rdoproject.org/blog/2013/09/google-hangout-neutron-september-24th/</id>
+    <published>2013-09-17T13:02:26+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Since we've noticed that a large percentage of questions on the RDO Forum are focused on networking, we're planning to have a Google Hangout on September 24th, at 12pm Eastern time, (9am Pacific, 17:00 GMT, http://bit.ly/1cnEZEN for your local timezone.) You can see the hangout details, and let us know you're coming, at https://plus.google.com/events/cph9aq3a6ag1lb17g3gsvaiiljg&lt;/p&gt;
+
+&lt;p&gt;The presentation will be a short overview of networking in OpenStack, the relative roles of Neutron, OVS, a little bit on where OpenDaylight and OpenFlow fit into the equation, and then a walk-through of the basic L2 &amp;amp; L3 workflows that people usually want to do in Neutron, and work through a couple of common situations where people have trouble ("Can't ping my VM, can't associate floating IP") and the tools you might use to debug and fix these problems.&lt;/p&gt;
+
+&lt;p&gt;We'll have a lot of time for Q&amp;amp;A, and we will have OpenStack networking experts from Red Hat on-hand to help with those.&lt;/p&gt;
+</content>
+  </entry>
+</feed>

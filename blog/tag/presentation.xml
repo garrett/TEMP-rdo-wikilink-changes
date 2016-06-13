@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle>Tag: Presentation</subtitle>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/tag/presentation.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>Webinar, 29 May: \"RDO: An OpenStack community project\"</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/webinar-29-may-rdo-an-openstack-community-project/"/>
+    <id>http://rdoproject.org/blog/2013/05/webinar-29-may-rdo-an-openstack-community-project/</id>
+    <published>2013-05-24T17:25:58+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Update (May 30th):&lt;/strong&gt;
+ This webinar is now available online for your viewing pleasure. learn more about OpenStack, what Red Hat are doing there, and what RDO is (and why you should care) &lt;a href="https://www.redhat.com/about/events-webinars/webinars/203-05-29-rdo-openstack-community"&gt;on the Webinar page of redhat.com&lt;/a&gt;  now.&lt;/p&gt;
+
+&lt;p&gt;Next Wednesday, May 29th, Keith Basil (Red Hat OpenStack product manager) and myself (Dave Neary, RDO community liaison) will be giving&lt;a href="http://www.redhat.com/about/events-webinars/webinars/203-05-29-rdo-openstack-community"&gt; a joint webinar on OpenStack, RDO and Red Hat OpenStack&lt;/a&gt;, and how they fit together. The presentation will focus mostly on the strengths of OpenStack, and why Red Hat got involved, as well as the RDO distribution. We will also look at some of the differences between RDO and Red Hat OpenStack.&lt;/p&gt;
+
+&lt;p&gt;The event is free, and &lt;a href="http://www.redhat.com/about/events-webinars/webinars/203-05-29-rdo-openstack-community"&gt;registration is open&lt;/a&gt;!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Using Heat to deploy OpenStack</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2013/05/using-heat-to-deploy-openstack/"/>
+    <id>http://rdoproject.org/blog/2013/05/using-heat-to-deploy-openstack/</id>
+    <published>2013-05-03T15:59:15+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name/>
+    </author>
+    <content type="html">&lt;p&gt;At the recent OpenStack Summit in Portland, Oregon there were a number of excellent presentations on technologies we ship in RDO.&lt;/p&gt;
+
+&lt;p&gt;One of the more exciting ones was this presentation on using Heat to automate application deployment of OpenStack on OpenStack (the TripleO project), by Clint Byrnum from HP.&lt;/p&gt;
+
+&lt;p&gt;From the talk description:
+&amp;gt; How different are servers from VMs? Do we need special tools to manage servers, or 
+&amp;gt; can we adapt a more cloud-like pattern in managing them at scale? Heat has been
+&amp;gt; designed to deploy cloud applications on top of OpenStack. But with Nova Baremetal,
+&amp;gt; the line blurs between cloud and real server. As part of the OpenStack - on OpenStack,
+&amp;gt; or "TripleO"" project, we're excited to use Heat to manage a complete deployment of
+&amp;gt; OpenStack. We'll be sharing the various techniques we make use of in Heat to leverage
+&amp;gt; its orchestration capabilities in fully automating the deployment and management of
+&amp;gt; OpenStack.&lt;/p&gt;
+
+&lt;p&gt;http://www.youtube.com/watch?v=O-SdNaFq2CQ&lt;/p&gt;
+
+</content>
+  </entry>
+</feed>

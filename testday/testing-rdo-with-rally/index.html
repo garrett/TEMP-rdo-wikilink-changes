@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Testing RDO with Rally &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/testday/testing-rdo-with-rally.html.md'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<p>When it comes to testing RDO deployments, a lot of us rely on manual test plans and don't necessary know where to begin with tools like Tempest and Rally. The goal of this article is to quickly get you started with Rally, it should only take you a few minutes and the benefits are huge.</p>
+
+<p><a href="https://wiki.openstack.org/wiki/Rally">Rally</a> is an official OpenStack project dedicated to benchmarking and testing OpenStack deployments. Rally presents itself as a benchmarking tool, but you can use it for simple tests too, and its benchmarking features are relevant to testing a complex distributed system like OpenStack.</p>
+
+<p>I’ll consider that you have a working Rally environment, if that's not the case look at the <a href="http://rally.readthedocs.org/en/latest/install.html#install">install doc</a>.</p>
+
+<h1 id="getting-started-with-rally">Getting started with Rally</h1>
+
+<p>Rally uses the OpenStack APIs, the only requirement is that you have access to the endpoints. You will need credentials of course, and sufficient quotas to run the tests.</p>
+
+<p>The easiest way to define an Openstack deployment and storing your credentials in Rally is to use a keystonerc file:</p>
+
+<pre class="highlight plaintext"><code>source keystonerc_admin&#x000A;rally deployment create --fromenv --name=rhelosp-lab1&#x000A;rally deployment check&#x000A;</code></pre>
+
+<p>The last command will output the status of the OpenStack services. Now you can run a simple test, test scenarios in Rally are defined in a YAML file (or JSON), there’s plenty of examples to get you started in RALLY_DIR/samples/tasks/scenarios/… Let’s run <code>boot-and-delete.yaml</code>:</p>
+
+<pre class="highlight plaintext"><code>---&#x000A;  NovaServers.boot_and_delete_server:&#x000A;    -&#x000A;      args:&#x000A;        flavor:&#x000A;            name: &amp;quot;m1.tiny&amp;quot;&#x000A;        image:&#x000A;            name: &amp;quot;^cirros.*uec$&amp;quot;&#x000A;        force_delete: false&#x000A;      runner:&#x000A;        type: &amp;quot;constant&amp;quot;&#x000A;        times: 10&#x000A;        concurrency: 2&#x000A;      context:&#x000A;        users:&#x000A;          tenants: 3&#x000A;          users_per_tenant: 2&#x000A;</code></pre>
+
+<p>Before you run this scenario, you have to check that the parameters, eg. the image name, are correct. You can do this using Rally itself:</p>
+
+<pre class="highlight plaintext"><code>rally show images&#x000A;</code></pre>
+
+<p>Edit the file and make sure the flavor and image names are correct, then run it with:</p>
+
+<pre class="highlight plaintext"><code>rally task start /opt/rally/samples/tasks/scenarios/nova/boot-and-delete.yaml&#x000A;</code></pre>
+
+<p>Rally gives you all kind of information about the test run and will output a nice table with min/max/avg time for each test, and more. We’ll discuss these numbers later, for now we have a simple command that allows us to quickly prove that our services are running (in that case Keystone, Glance and Nova).</p>
+
+<h1 id="how-to-use-rally">How to use Rally</h1>
+
+<p>In the software development world, it’s common practice to have systematic testing every time you change something, for example having Jenkins run a complete test suite every time someone pushes to a source code repository. Most sane people agree that it helps build confidence in the state of the system, by detecting issues early, enabling more granular changes, reducing conflict between concurrent work.</p>
+
+<p>First we want a general test suite with reasonable functional coverage, ie. we want to be able to run one command that validates that all components of our system work from a user point of view, from basic functionality (authenticate to Keystone) to the more specific (booting from a Cinder volume). I encourage you to start with the <a href="/install/allinone.yaml/">allinone.yaml</a> file provided, which is quite complete. You’ll have to replace parameters in upper case (eg <strong>VOLUME_TYPE</strong>) with actual values and possibly change the image name to one that exists in your environment. I encourage you to either use an image that is going to be used in the environment or at least the <strong>CentOS7</strong> cloud image, testing with <strong>cirros</strong> can be misleading because it is so lightweight.</p>
+
+<p>Now you have a general test suite, when should you test? As often as possible, having a simple command to run the tests should encourage you to do so. I’m not going to consider production environments here (though I believe they should be tested too), but in my experience real-world deployments (ie. not on your laptop) are iterative processes that involve a lot of decisions, backtracking, etc. I think you should test every time you change something, even one small change in a configuration file, just to make sure everything is still running. Don’t forget to run the test suite after a change in the environment even if it’s not in OpenStack itself: router configuration change, new OS build…</p>
+
+<p>Once you get the habit of systematically testing your environment, you can refine the test suite, add more test, break it down by service, by test level (quick basic test, detailed tests) or user story. If you fix an issue in the environment, even if it’s a corner case, it’s a good idea to write a test for it to avoid regressions. As is the case for software development projects, your test suite becomes part of the system’s documentation and is a good entry point for new joiners.</p>
+
+<h1 id="going-forward-better-testing">Going forward, better testing</h1>
+
+<p>I really encourage you to try Rally now, part of its value is that it’s really easy to get started. Any test is better than no test and you can always improve your process later. That said there’s a lot more that can be done with Rally.</p>
+
+<h3 id="continuous-testing">Continuous testing</h3>
+
+<p>Having a test suite that you can run with a simple command is a big step forward from the usual “let’s log into Horizon and launch a cirros instance”. Testing is about building confidence and trust in the system, so it’s a good idea to share the results.</p>
+
+<p>Rally can generate HTML reports from test results. You can generate a report for the last task that was run with</p>
+
+<pre class="highlight plaintext"><code>rally task report --out task-report.html&#x000A;</code></pre>
+
+<p>or generate a report for a specific task ID (the ID is given in the output of the command)</p>
+
+<pre class="highlight plaintext"><code>rally task report TASKID --out TASKID-report.html&#x000A;</code></pre>
+
+<p>The resulting HTML document is self contained, you can just open it in a web browser. You might want to make it accessible to everyone, an easy way to do that is to install and run a web server on the Rally machine (and yes, it’s a good idea to have a dedicated Rally machine somewhere with a stable FQDN). You can then run tasks and generate HTML reports with a simple script like</p>
+
+<pre class="highlight shell"><code><span class="c">#!/bin/bash</span>&#x000A;&#x000A;<span class="nv">NOW</span><span class="o">=</span><span class="sb">`</span>date +&amp;quot;%Y%m%d-%H%M%S&amp;quot;<span class="sb">`</span>&#x000A;&#x000A;rally --log-file /opt/rally-tests/logs/rally_<span class="nv">$date</span>.log task start --task /opt/rally-tests/tasks/allinone.yaml&#x000A;&#x000A;<span class="c"># Create rally report</span>&#x000A;<span class="nv">TASKID</span><span class="o">=</span><span class="sb">`</span>rally task status | awk <span class="s1">'{print $2}'</span> | tr -d :<span class="sb">`</span>&#x000A;rally task report <span class="nv">$TASKID</span> --out /var/www/html/rally-tests/<span class="nv">$NOW</span>.html&#x000A;rally task report <span class="nv">$TASKID</span> --out /var/www/html/index.html&#x000A;</code></pre>
+
+<p>You can then access the last report at <a href="http://rally.example.com/">http://rally.example.com/</a> and time-sorted reports at <a href="http://rally.example.com/rally-tests/">http://rally.example.com/rally-tests/</a>.</p>
+
+<p>Of course this is just a starting point, you can parse the <code>rally task status</code> output to collect tests results automatically, build a dashboard…</p>
+
+<p>The next logical improvement is to run this script automatically, whether it’s with a simple cron job or something like Jenkins (in that case you can add logic to the process, eg. trigger on configuration change). In an ongoing deployment, where change is constant, having the tests running continuously, or near continuously, can help stabilising the system. In a way it’s like having users, you can’t cheat, you have to keep your system functional. Using Rally parameters like test runner concurrency you can progressively increase the load on your environment and do some stress-testing on the different components.</p>
+
+<p>Concurrency is also something that is rarely tested in manual scenarios. Having 10 concurrent runners for a test can help you discover some interesting issues.</p>
+
+<h3 id="metrics-and-slas">Metrics and SLAs</h3>
+
+<p>We’ve discussed using Rally as a functional testing tool, only looking at binary answers: is it working or not. Rally offers a lot more functionality than that, and it’s first designed as a benchmarking tool. I’m not going to discuss in-depth benchmarking of OpenStack environments, but Rally benchmarking features give us information that is relevant to functional testing too, like iteration time for a test and failure rate.</p>
+
+<p>In complex like OpenStack, there is always going to be an amount of failed operations. It doesn’t mean that the system is broken, just that there was a glitch and the user has to retry. As someone said, in distributed systems failure isn’t an option, it’s inevitable. If you start stress testing your environment and simulating real user behaviour, you’ll start seeing instance that fail to get provisioned, or operations plainly not getting executed. Even launching 100 instances sequentially could result in 1-2 failures in a healthy environment. It doesn’t mean you should consider this test has failed.</p>
+
+<p>On the flip side, faults in complex systems don’t necessarily result in immediate failure. For example they can manifest themselves as a performance issue. Let’s say you introduce a change in a service, and your test pass with a 100% success rate, but operations take 40% longer to complete. Tests pass, so everyone works on the next task. Now another change in another service results in a similar loss of performance and suddenly the compounded increase in operation time means that user requests time out and suddenly everything is broken.</p>
+
+<p>Binary “works/doesn’t work” testing is not very useful to prevent these issues. In a sense, most testing in a distributed testing should be “benchmarking”: collecting metrics, timing operations, looking at averages, distribution, outliers… but most importantly tracking change in these values. If a configuration change introduces an important variation in those values, it should be noticed and understood.</p>
+
+<p>Rally uses the concept of SLA to make this part of your tests. Defining SLAs for an OpenStack environment is a complex task, and we might not be in a position to do that, but we want to track variation in those numbers. As an example, we might not be able to say if a 2% failure rate for instance provisioning is acceptable, but if it’s the current failure rate, we might want to be alerted if it raises to 5%.</p>
+
+<p>To add SLAs to your test, just add a <code>sla</code> section at the same level of your <code>args</code> or <code>runner</code> section:</p>
+
+<pre class="highlight plaintext"><code>      sla:&#x000A;        max_seconds_per_iteration: 4.0&#x000A;        failure_rate:&#x000A;          max: 1&#x000A;        max_avg_duration: 3.0&#x000A;        outliers:&#x000A;          max: 1&#x000A;          min_iterations: 10&#x000A;          sigmas: 10&#x000A;</code></pre>
+
+<p>If the test pass but the SLAs are not met, it will be considered a failure. Of course you can have different test suites with different SLAs, it’s good practice to have even very lax SLAs so you can detect abnormal behaviour.</p>
+
+<p>To get the most out of the test run data, you can get a report in JSON format with</p>
+
+<pre class="highlight plaintext"><code>rally task results TASKID&#x000A;</code></pre>
+
+<p>Of course you'll have to import it somewhere to make use of it.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>To reiterate, testing is critical to any OpenStack deployment. Thankfully it is not difficult to start testing with Rally. I’ve discussed more advanced topics, but just running Rally with the provided <code>allinone.yaml</code> test suite regularly will get you a long way. Operational visibility in OpenStack is a neglected topic, we are often running blind and have to resort to guessing when facing issues.</p>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/testday/testing-rdo-with-rally.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Thu 24 Sep 2015 20:08 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

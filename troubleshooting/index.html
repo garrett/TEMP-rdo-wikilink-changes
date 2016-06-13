@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Troubleshooting &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-haml'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<a href='https://github.com/redhat-openstack/website/edit/master/source/troubleshooting/index.html.haml'>
+<img alt='Edit on GitHub' data-canonical-src='/images/edit.png' src='/images/edit.png' style='position: absolute; top: 0; right: 0; border: 0;'>
+</a>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<h1 id="troubleshooting">Troubleshooting</h1>
+
+<p>Every piece of software as complex as OpenStack has some pitfalls in its usage. We will use this page to collect tips and tricks related to installation and configuration issues, and issues which people run into during the lifetime of their OpenStack deployment.</p>
+
+<ul>
+  <li><a href="/documentation/getting-started/">Getting Started</a></li>
+  <li><a href="/troubleshooting/networking/">Troubleshooting networking</a></li>
+  <li><a href="/documentation/selinux-issues/">SELinux issues</a></li>
+  <li><a href="/documentation/accessing-nagios/">Accessing Nagios</a></li>
+  <li><a href="/install/uninstalling-rdo/">Uninstalling RDO</a></li>
+  <li><a href="/documentation/keystone-integration-with-idm/">Keystone integration with Red Hat IDM/FreeIPA</a></li>
+  <li><a href="/troubleshooting/qpid-errors/">qpidd/AMQP troubleshooting</a></li>
+</ul>
+<div class='ask-solutions'>
+<h2 id="solutions-from-askrdoprojectorg">Solutions from Ask.RDOproject.org</h2>
+
+<p>The following list is the top 20 common issues with answers using the
+RDO tag, direct from the OpenStack Q&amp;A forum.</p>
+
+<p>If you cannot find the answer you need above or below,
+<a href="http://ask.rdoproject.org/">browse all RDO Q&amp;A</a>,
+<a href="https://ask.openstack.org/">all general OpenStack questions</a>, or 
+<a href="https://ask.openstack.org/en/questions/ask/?tags=RDO">ask a new question</a>.</p>
+<ul class='ask-blurbs'>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/63711/rdo-quickstart-juno-release-guide-for-fedora-20/">RDO quickstart "Juno" release guide for fedora 20</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/56801/rdo-juno-neutron-centos-7-external-router-port-down/">RDO Juno, Neutron, CentOS 7: external router port DOWN</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/84820/rdo-could-not-find-declared-class-remotedb/">[ RDO ] Could not find declared class ::remote::db</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/90829/why-sahara-use-this-image-to-register/">why sahara use this image to register</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/83700/no-able-to-create-an-instance-in-odl-integrated-rdo-kilo-openstack/">No able to create an instance in odl integrated RDO Kilo openstack</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91642/unable-to-login-to-horizon/">Unable to login to horizon</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/90377/disk-usage-wrong-local-vs-cinder/">disk usage wrong, local vs. cinder?</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/89953/no-vnc-console-origin-header-does-not-match-this-host/">No vnc-console "Origin header does not match this host."</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91439/high-cpu-load-vpnaas-and-libreswan-on-centos-7/">High CPU load VPNaaS and libreswan on CentOS 7</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/89062/network-config-when-testing-on-nested-environment/">Network config when testing on nested environment</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/90071/glanceclientexchttpnotfound-the-resource-could-not-be-found-http-404/">glanceclient.exc.HTTPNotFound: The resource could not be found. (HTTP 404)</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91895/tripleo-installation-error-with-setuptools-version/">TripleO installation error with setuptools version</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91146/network-configuration-help-needed/">Network configuration help needed</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/84063/freeing-ip-from-flat-network-setup/">Freeing IP from FLAT network setup</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91627/add-compute-node/">add compute node</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/92361/openstack-installation-fails-on-rhel-7-using-rdo/">OpenStack Installation Fails On RHEL 7 Using RDO</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/91486/rdo-packstack-provision-all-in-one-ovs-bridge-no-longer-works/">RDO Packstack --provision-all-in-one-ovs-bridge no longer works</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/92396/openstack-manila-installation-fails-with-rdo-on-rhel-70/">OpenStack Manila Installation Fails With RDO on RHEL 7.0</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/92107/no-route-to-host-after-installing-tripleo-virtual-environment/">"NO route to host" after installing TripleO Virtual Environment</a>
+</div>
+</li>
+<li class='ask-blurb'>
+<div class='ask-blurb-content'>
+<a href="https://ask.openstack.org/en/question/90284/how-use-delorean-trunks-to-set-up-the-most-recent-rdo-mitaka-build-which-passed-continuous-integration/">How use delorean trunks to set up  the most recent RDO Mitaka build which passed continuous integration ?</a>
+</div>
+</li>
+</ul>
+
+<p><a class="more-link" href="http://ask.rdoproject.org/">View all RDO Q&amp;A&#8230;</a></p>
+</div>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/troubleshooting/index.html.haml"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Wed 6 Jan 2016 14:59 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

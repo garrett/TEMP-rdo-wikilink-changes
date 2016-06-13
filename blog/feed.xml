@@ -1,0 +1,967 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>RDO</title>
+  <subtitle/>
+  <id>http://rdoproject.org/blog/</id>
+  <link href="http://rdoproject.org/blog/"/>
+  <link href="http://rdoproject.org/blog/feed.xml" rel="self"/>
+  <updated>2016-06-08T17:52:06+02:00</updated>
+  <author>
+    <name/>
+  </author>
+  <entry>
+    <title>June RDO newsletter</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/06/june-rdo-newsletter/"/>
+    <id>http://rdoproject.org/blog/2016/06/june-rdo-newsletter/</id>
+    <published>2016-06-08T17:52:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://rdoproject.org/images/newsletter.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br clear="all" /&gt;&lt;/p&gt;
+
+&lt;p&gt;In case you missed it, the June RDO newsletter is &lt;a href="https://www.rdoproject.org/newsletter/2016-june/"&gt;now available&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you're not receiving the RDO newsletter, you can subscribe by sending email to &lt;a href="rdo-newsletter-subscribe@redhat.com"&gt;rdo-newsletter-subscribe@redhat.com&lt;/a&gt;. The newsletter is sent the first week of every month, and covers what's been going on in the RDO community, and what's happening in the coming weeks.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Recent RDO Blogs - June 8, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/06/recent-rdo-blogs-june-8-2016/"/>
+    <id>http://rdoproject.org/blog/2016/06/recent-rdo-blogs-june-8-2016/</id>
+    <published>2016-06-08T17:51:06+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://rdoproject.org/images/blog_cloud.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here's what RDO engineers have been blogging about over the last few weeks.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;[Event Report] RDO Bug Triage Day on 18th and 19th May, 2016&lt;/strong&gt; by Chandan Kumar&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As the RDO development continues to grow, the numbers of bugs also grow. To make the community robust and heavy, it is also necessary to triage and fix the existing bugs so that product will be more valuable.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6x"&gt;http://tm3.org/6x&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;How to fix a FTBFS using DLRN&lt;/strong&gt; by  Frederic Lepied&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;DLRN is the tool used by the RDO project to build RPM packages for every commit from the OpenStack projects. See http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future for more details on how DLRN works. These commits from the upstream OpenStack projects can introduce changes that break the packaging. We call these FTBFS (Failure To Build From Source).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6y"&gt;http://tm3.org/6y&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Gnocchi talk at the Paris Monitoring Meetup #6&lt;/strong&gt; by Julien Danjou&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Last week was the sixth edition of the Paris Monitoring Meetup, where I was invited as a speaker to present and talk about Gnocchi.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6z"&gt;http://tm3.org/6z&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OVB: TripleO on a Public OpenStack&lt;/strong&gt;  by Gonéri Le Bouder&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In order to deploy an OpenStack cloud with the TripleO installer ( http://tripleo.org/ ), one needs at least 2 nodes for a basic setup.  If one is interested in deploying more complex topologies, more nodes might be required, for an Highly Available (HA) setup, 4 nodes are required.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6-"&gt;http://tm3.org/6-&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reviews for RDO packages&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We are in the process of getting the docs straightened out for reviewing RDO packages. As we do, I want to record what I have working.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/70"&gt;http://tm3.org/70&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Newbie in RDO: one size doesn't fit all&lt;/strong&gt; by amoralej&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to RDO faq, the main goal is to maintain a freely-available, community-supported distribution of OpenStack based on RPM packages able to run Red Hat Enterprise Linux, CentOS, Fedora, and their derivatives. But the RDO community is diverse and different use patterns have been found over the time with different requirements:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/71"&gt;http://tm3.org/71&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Newbie in RDO (2): RDO Trunk from a bird's eye view&lt;/strong&gt; by amoralej&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my previous post if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/72"&gt;http://tm3.org/72&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Evolving the OpenStack HA Architecture&lt;/strong&gt; by Andy Beekhof&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the current OpenStack HA architecture used by Red Hat, SuSE and others, Systemd is the entity in charge of starting and stopping most OpenStack services. Pacemaker exists as a layer on top, signalling when this should happen, but Systemd is the part making it happen.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/73"&gt;http://tm3.org/73&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDO @ Red Hat Summit&lt;/strong&gt; by Rich Bowen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Red Hat Summit is just a few weeks away, and it's a great place to learn about RDO, and deploying OpenStack on Red Hat Enterprise Linux or CentOS. If you're coming, be sure to drop by the RDO booth in the Community Central section of the exhibit hall. Grab an RDO tshirt, watch demos of what people are doing on top of RDO, and we'll have experts there to answer your questions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/74"&gt;http://tm3.org/74&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ARA: One month and 200 commits later&lt;/strong&gt; by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;On May 21st, I wrote a blog post about ARA, an idea to store, browse and troubleshoot Ansible playbook runs. Let’s rewind a bit further back in time.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/75"&gt;http://tm3.org/75&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SAML Federated Auth Plugin&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;SAML is usually thought of as a WebSSO mechanism, but it can be made to work for command line operations if you use the Extended Client Protocol (ECP). When we did the Rippowam demo last year, we were successful in getting an Unscoped token by using ECP, but that was not sufficient to perform operations on other services that need a scoped token.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/76"&gt;http://tm3.org/76&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO @ Red Hat Summit</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/06/rdo-red-hat-summit/"/>
+    <id>http://rdoproject.org/blog/2016/06/rdo-red-hat-summit/</id>
+    <published>2016-06-06T20:59:17+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img alt="" src="https://www.redhat.com/cms/managed-files/styles/max_size/s3/summit_logo_170_0.png?itok=Ck4KjHH-" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://www.redhat.com/en/summit"&gt;Red Hat Summit&lt;/a&gt; is just a few weeks away, and it's a great place to learn about RDO, and deploying OpenStack on Red Hat Enterprise Linux or CentOS.&lt;/p&gt;
+
+&lt;p&gt;If you're coming, be sure to drop by the RDO booth in the Community Central section of the exhibit hall. Grab an RDO tshirt, watch demos of what people are doing on top of RDO, and we'll have experts there to answer your questions.&lt;/p&gt;
+
+&lt;p&gt;You'll want to mark these sessions on your agenda. Get there early, as sessions often fill up pretty quick.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=42740"&gt;Peanut butter and jelly: Mapping the deep integration between OpenStack and Ceph&lt;/a&gt;&lt;/strong&gt; - Federico Lucifredi, Sebastien Han, Sean Cohen&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=57012"&gt;Best practices for deploying and scaling Red Hat OpenStack Platform with Open vSwitch and Red Hat Ceph storage&lt;/a&gt;&lt;/strong&gt; - Jacob Liberman&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=57815"&gt;OpenStack-as-a-Service: Red Hat and Rackspace&lt;/a&gt;&lt;/strong&gt; - Manuel Rodriguez, Nicholas Gerasimatos, Jeff Ekstrom&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=75677"&gt;Become an OpenStack TripleO ATC, easy as ABC&lt;/a&gt;&lt;/strong&gt; - K. Rain Leander&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=88841"&gt;Running a policy-based cloud with Cisco Application Centric Infrastructure, Red Hat OpenStack, and Project Contiv&lt;/a&gt;&lt;/strong&gt; - Mike Cohen&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=88823"&gt;Hot topics in containers, OpenStack and Hadoop&lt;/a&gt;&lt;/strong&gt; - Duane DeCapite, Krishna Mayuram&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=43239"&gt;A container stack for OpenStack&lt;/a&gt;&lt;/strong&gt; - Stephen Gordon, Sebastien Han, Scott McCarty&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=78116"&gt;Influencing OpenStack documentation&lt;/a&gt;&lt;/strong&gt; - Christopher Wawak&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=43514"&gt;Software-defined networking (SDN) fundamentals for NFV, OpenStack, and containers&lt;/a&gt;&lt;/strong&gt; - Nir Yechiel, Rashid Khan&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=41765"&gt;Hands-on deep dive with Red Hat Enterprise Linux OpenStack Platform&lt;/a&gt;&lt;/strong&gt; - Guilherme Barros, Rhys Oxenham&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=44358"&gt;Red Hat Enterprise Linux OpenStack Platform NFV solution overview and roadmap&lt;/a&gt;&lt;/strong&gt; - Kyle Forster, Sandro Mazziotta&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=56752"&gt;Successfully building a private cloud with OpenStack&lt;/a&gt;&lt;/strong&gt; - Soumen Saha, Richard Haigh, Margaret Dawson&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=75675"&gt;When flexibility met simplicity: The friendship of OpenStack and Ansible&lt;/a&gt;&lt;/strong&gt; - Major Hayden, Robyn Bergeron&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=88851"&gt;Repeatable, reliable OpenStack deployments: Pipe dream or reality?&lt;/a&gt;&lt;/strong&gt; - Randy Perryman&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=42190"&gt;MySQL, containers, and Ceph&lt;/a&gt;&lt;/strong&gt; - Yves Trudeau, Kyle Bader&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=76017"&gt;Use Linux on your whole rack with RDO and open networking&lt;/a&gt;&lt;/strong&gt; - Scott Suehle&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=69905"&gt;Deploying an Overcloud with Red Hat Enterprise Linux OpenStack Platform Director&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;a href="https://rh2016.smarteventscloud.com/connect/sessionDetail.ww?SESSION_ID=69812"&gt;OpenStack instance management using the command-line interface&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Newbie in RDO (2): RDO Trunk from a bird's eye view</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/"/>
+    <id>http://rdoproject.org/blog/2016/05/newbie-in-rdo-2-rdo-trunk-from-a-bird-s-eye-view/</id>
+    <published>2016-05-30T18:45:18+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>amoralej</name>
+    </author>
+    <content type="html">&lt;p&gt;Time goes fast as a RDO newbie and once I understood what the RDO Trunk and CloudSIG repos provide (read my &lt;a href="https://www.rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/"&gt;previous post&lt;/a&gt; if you still have doubts), my next goal was to have a clear high-level perspective of the entire delivery workflow followed in the project.&lt;/p&gt;
+
+&lt;p&gt;Although there is a lot of detailed and great information in different sources (see &lt;a href="####More info"&gt;More info&lt;/a&gt; at the end of the post), it may be useful for others to provide a high level and global description of it. In this post I'll focus in the process around RDO Trunk repositories as shown in the following diagram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="RDO high level" src="/images/blog/rdo-trunk-high-level.png" /&gt;&lt;/p&gt;
+
+&lt;h2 id="code-repositories"&gt;Code repositories&lt;/h2&gt;
+
+&lt;h3 id="upstream-code"&gt;Upstream Code&lt;/h3&gt;
+
+&lt;p&gt;As for any packaging project, everything starts with the upstream code. For RDO, it is provided by OpenStack projects in https://github.com/openstack/&amp;lt;project&amp;gt; . The process to manage these repos is defined by OpenStack and can be found in their &lt;a href="http://docs.openstack.org/infra/manual/developers.html"&gt;Developer Guide&lt;/a&gt; and the &lt;a href="http://docs.openstack.org/project-team-guide/release-management.html"&gt;Release Process&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In RDO, these repositories are used to fetch the code that will be packaged for both RDO Trunk and CloudSIG in different ways:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;For RDO Trunk, the automatic packager, DLRN clones the involved git repo.&lt;/li&gt;
+  &lt;li&gt;For RDO CloudSIG, the specific tarball for the point release to be packaged will be fetched at packaging time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id="distgit-repo"&gt;Distgit repo&lt;/h3&gt;
+
+&lt;p&gt;As described in the great &lt;a href="https://www.rdoproject.org/packaging/rdo-packaging.html"&gt;RDO packaging guide&lt;/a&gt;, ditgit is the git repository "where the .spec file lives" . For RDO, distgit repos are located in https://review.rdoproject.org/r/#/admin/projects/openstack/&amp;lt;project&amp;gt;-distgit (you can see the entire list &lt;a href="https://review.rdoproject.org/r/#/admin/projects/?filter=distgit"&gt;here&lt;/a&gt;). Typically they contain the spec files used to build RPM packages, systemd unit files and some system config files (i.e. logrotate or sudoers configuration).&lt;/p&gt;
+
+&lt;p&gt;Because of the reproducibility requirements of RDO CloudSIG packaging, spec files for these and trunk repos differ slightly:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Changelog, version and release fields for the trunk is automatically generated while it must be manually created for stable packages.&lt;/li&gt;
+  &lt;li&gt;The source code is fetched from a versioned tarball for stable.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, we usually have different requirements for each OpenStack version so different branches are created based on version and RDO "flavor" (trunk or CloudSIG):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;rpm-&amp;lt;version&amp;gt; : is used to package RDO trunk (version can be master, mitaka or liberty )&lt;/li&gt;
+  &lt;li&gt;&amp;lt;version&amp;gt;-rdo : is used for RDO CloudSIG (as this is only for released version, master-rdo does not exist)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To ensure proper management of distgit repos, required changes follow a review process in &lt;a href="https://review.rdoproject.org/r/"&gt;RDO rpmfactory&lt;/a&gt; quite similar to the OpenStack project. Before merging the change in the actual repository, every request (review) will trigger a test job in the &lt;a href="https://review.rdoproject.org/jenkins/"&gt;CI system&lt;/a&gt; that will post its -/+1 vote depending on the results and will require a core contributor to review and validate it.&lt;/p&gt;
+
+&lt;h2 id="dlrn-automatic-packager-for-rdo-trunk"&gt;DLRN: automatic packager for RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;Packaging for RDO trunk is done by &lt;a href="https://github.com/openstack-packages/DLRN"&gt;DLRN&lt;/a&gt;, a tool to build RPM packages on each commit merged in a set of configurable repositories. DLRN uses rdopkg to retrieve the metadata and repositories associated with each package (code and distgit) and mock to carry out the actual build.&lt;/p&gt;
+
+&lt;p&gt;NVR for packages generated by DLRN follows some rules:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Version&lt;/strong&gt; is set to MAJOR.MINOR.PATCH of the &lt;em&gt;next&lt;/em&gt; upstream version.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Release&lt;/strong&gt; is 0.&amp;lt;timestamp&amp;gt;.&amp;lt;short commit hash&amp;gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, python-novaclient-3.4.1-0.20160412103538.77f214b.el7.centos.noarch.rpm is a package containing code released after GA of 3.4.0 and before 3.4.1 containing code until upstream commit &lt;a href="https://github.com/openstack/python-novaclient/commit/77f214bdbd7d9e8ba935ace1dce0290061ddd737"&gt;77f214b&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Once the package has been successfully built, DLRN creates a yum repository containing the latest version of every package successfully built at that time. This repo will not change and is created in a unique directory based on the specific commit hash. These repos will be available if a user wants to test an installation based on a specific commit. Finally, DLRN manages two "shorcuts" for repositories:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;current&lt;/strong&gt;: will point to the last created per-commit repo.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt;: current repo, may not contain the latest versions of packages that failed to build (i.e. let's assume that packaging of python-nova package failed while a later build of python-cinder succeed, in this case, current would contain the latest upstream version of cinder but not for nova). To avoid this situation, a new pointer "consistent" is managed by DLRN and will point to the last snapshot that contained package versions in sync with upstream versions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also, DLRN creates some html reports that can be used to check the results of each single build and provides the logs for troubleshooting any error while building the package.&lt;/p&gt;
+
+&lt;h2 id="continuous-integration-in-rdo-trunk"&gt;Continuous Integration in RDO Trunk&lt;/h2&gt;
+
+&lt;p&gt;To ensure the packages built by DLRN work as expected, the RDO project manages some CI jobs pipeline in the &lt;a href="https://ci.centos.org/view/rdo/"&gt;CentOS CI&lt;/a&gt; system. These jobs are created using jenkins-job-builder with the configuration managed in &lt;a href="https://github.com/rdo-infra/ci-config"&gt;rdo-infra github&lt;/a&gt;. These jobs deploy and test RDO in different scenarios (packstack, tripleo quickstart and puppet) based mostly on WeIRDO (take a look into &lt;a href="http://weirdo.readthedocs.org/en/latest/how.html"&gt;weirdo documentation&lt;/a&gt;) using the &lt;strong&gt;consistent&lt;/strong&gt; repository. If all tests in the pipeline success, the content of the tested repo will be promoted as &lt;strong&gt;current-passed-ci&lt;/strong&gt;. In this way, this link always points to the latest consistent repo that passed the CI jobs.&lt;/p&gt;
+
+&lt;p&gt;Additionally, &lt;strong&gt;current-tripleo&lt;/strong&gt; repo is managed by a set of jobs focused on testing TripleO installer on the current-passed-ci repo. When those tests pass, this repo is promoted by this CI pipeline.&lt;/p&gt;
+
+&lt;h2 id="access-to-repositories"&gt;Access to repositories&lt;/h2&gt;
+
+&lt;p&gt;All the repositories and content managed by DLRN and CI jobs are directly accesible for public usage from DLRN server in &lt;a href="https://trunk.rdoproject.org/"&gt;https://trunk.rdoproject.org/&lt;/a&gt;. This includes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;consistent&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/consistent/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-passed-ci&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/current-passed-ci/&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-tripleo&lt;/strong&gt; repos from http://trunk.rdoproject.org/centos7-master/current-tripleo/&lt;/li&gt;
+  &lt;li&gt;By-commit repos http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/AB/CD/ABCD…Z (where AB are the two first characters of the commit hash, CD the following two and ABCD…Z the entire hash). On each hash repository directory a delorean.repo file is created containing the yum configuration required to enable it easily.&lt;/li&gt;
+  &lt;li&gt;html formated build reports and build logs to help packagers to troubleshoot issues that may arise.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="more-info"&gt;More info&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href="https://www.rdoproject.org/documentation/rdo-packaging/"&gt;RDO Packaging guide&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future"&gt;Delorean: OpenStack packages from the future by Frederic Lepied&lt;/a&gt;&lt;br /&gt;
+&lt;a href="https://github.com/openstack-packages/DLRN/tree/master/doc/source"&gt;DLRN documentation&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://redhat.slides.com/dmoreaus/testing-openstack-is-hard#/"&gt;Testing Openstack is Hard by David Moreau Simard&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Newbie in RDO: one size doesn't fit all</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/"/>
+    <id>http://rdoproject.org/blog/2016/05/new-in-rdo-repos-one-size-doesn-t-fit-all/</id>
+    <published>2016-05-30T17:18:23+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>amoralej</name>
+    </author>
+    <content type="html">&lt;p&gt;As a new contributor to the RDO project, one of my first tasks was to understand what is actually being produced by the project. According to &lt;a href="https://www.rdoproject.org/rdo/faq/"&gt;RDO faq&lt;/a&gt;, the main goal is to maintain a freely-available, community-supported distribution of OpenStack based on RPM packages able to run Red Hat Enterprise Linux, CentOS, Fedora, and their derivatives. But the RDO community is diverse and different use patterns have been found over the time with different requirements:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Organizations running production OpenStack clouds with community support require a stable distribution.&lt;/li&gt;
+  &lt;li&gt;Organizations running production environments with community or enterprise-grade distributions require sometimes an up-to-date distribution to test recent functionalities and plan the future of their cloud deployments.&lt;/li&gt;
+  &lt;li&gt;Developers require up-to-date distribution to test their changes and run their CI jobs.&lt;/li&gt;
+  &lt;li&gt;Packagers need to have full control over the packaging process.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Providing a suitable distribution for all these scenarios is not an easy task and the RDO community ended up with two different distribution set of repos targetting different purposes:&lt;/p&gt;
+
+&lt;h3 id="rdo-cloudsig-repos"&gt;RDO CloudSIG repos&lt;/h3&gt;
+&lt;p&gt;Provide a set of stable OpenStack packages through CentOS CloudSIG repos based on CBS, &lt;a href="https://wiki.centos.org/HowTos/CommunityBuildSystem"&gt;CentOS Community Build System&lt;/a&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The RDO CloudSIG repos are only published after GA of a upstream release (only stable branches are used, not master).&lt;/li&gt;
+  &lt;li&gt;New packages are created only when a new point release is published (release tag created) on upstream stable repositories. The RDO community is currently working to automate as much as possible the process to build these packages in rpmfactory.&lt;/li&gt;
+  &lt;li&gt;In addition to the vanilla upstream code, some patches may be applied during packaging:
+    &lt;ul&gt;
+      &lt;li&gt;Fixes for security issues or critical bugs not backported upstream. Note that an upstream-first policy is applied so these patches will be applied only after merged in upstream master.&lt;/li&gt;
+      &lt;li&gt;Patches required for the packaging process.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Packages are created through a controlled workflow. This is accomplished by koji (the technology behind CBS) which ensures reproducibility of the building process by:
+    &lt;ul&gt;
+      &lt;li&gt;Creating a self-contained build environment (buildroot) that provides all the dependencies by a controlled package. No network access exist int this build environment.&lt;/li&gt;
+      &lt;li&gt;Recording both the spec file defining the package to be built and the packages included in the buildroot. This information allows to recreate exactly the same build environment to create the package at a later point in time.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The criteria for pubishing any new release includes both thechnical (a set of CI jobs must pass as aggreed in &lt;a href="https://meetbot.fedoraproject.org/rdo/2016-04-06/rdo_meeting_%282016-04-06%29.2016-04-06-15.00.html"&gt;RDO community meeting&lt;/a&gt;) and non-technical requirements (documentation, etc…).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is probably what you want to use for your stable cloud with a community-supported OpenStack distribution and what you will use following the &lt;a href="http://docs.openstack.org/mitaka/install-guide-rdo/environment-packages.html"&gt;official upstream install guide&lt;/a&gt; or &lt;a href="https://www.rdoproject.org/install/"&gt;RDO docummentation&lt;/a&gt; to deploy and manage OpenStack.&lt;/p&gt;
+
+&lt;h3 id="rdo-trunk-repos"&gt;RDO Trunk repos&lt;/h3&gt;
+&lt;p&gt;Provide RPM package repositories for OpenStack projects as close as possible to the vanilla upstream code in order to test any change and catch any bug or impact on packaging as soon as possible. These packages are built when a commit is merged in upstream master or any of the supported stable branches. This means that new packages are provided even during the development phase of a new release (before GA). Once a build is done, a set of CI jobs is passed to validate installation and basic functionalities. As part of RDO Trunk we provide different repos for CentOS 7 under http://trunk.rdoproject.org/centos7-&amp;lt;release&amp;gt;/ :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;consistent:&lt;/strong&gt; provides the latest snapshot of packages successfully built (i.e. https://trunk.rdoproject.org/centos7-master/consistent/).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-passed-ci:&lt;/strong&gt; provides the latest snapshot of packages built and with CI jobs successfully passed (i.e. https://trunk.rdoproject.org/centos7-master/current-passed-ci/).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;current-tripleo:&lt;/strong&gt; provides the latest snapshot of packages tested by specific TripleO CI jobs on master branch (https://trunk.rdoproject.org/centos7-master/current-tripleo/)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Currently (may '16'), &amp;lt;release&amp;gt; can be master, mitaka or liberty.&lt;/p&gt;
+
+&lt;p&gt;As operators, these repos may not be the best option to run a stable OpenStack cloud but it can be a good choice in some cases:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You are interested in deploying an environment to test latest changes in OpenStack code&lt;/li&gt;
+  &lt;li&gt;You need to quickly apply a patch that has been merged upstream and can't wait until it's included in a point release and is properly packaged in RDO CloudSIG repos. Note that "current-passed-ci" repos are recommended in this case.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you are a OpenStack developer, using RDO trunk may be a good option to build your environments with latest vanilla upstream code.&lt;/p&gt;
+
+&lt;p&gt;Finally, if you are a packager, you probably want to know how the build process went for a specific commit or even to perform an installation based on it. RDO also provides both build reports and RPM repos based on each commit for both CentOS and Fedora from &lt;a href="http://trunk.rdoproject.org"&gt;http://trunk.rdoproject.org&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://blogs.rdoproject.org/author/fred"&gt;Fred&lt;/a&gt; wrote an excelent &lt;a href="http://blogs.rdoproject.org/7834/delorean-openstack-packages-from-the-future"&gt;post&lt;/a&gt; describing how DLRN (f.k.a. delorean) builds packages for RDO trunk repos.&lt;/p&gt;
+
+&lt;p&gt;If you are interested in the details about how to build RDO packages, you'll find a lot of interesting information in &lt;a href="https://www.rdoproject.org/documentation/packaging/"&gt;RDO documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;And remember that if you are looking for enterprise-level support, or information on partner certification, Red Hat also offers &lt;a href="https://redhat.com/openstack"&gt;Red Hat Enterprise Linux OpenStack Platform&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>[Event Report] RDO Bug Triage Day on 18th and 19th May, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-bug-triage-day-event-report/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-bug-triage-day-event-report/</id>
+    <published>2016-05-24T01:47:00+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>chandankumar</name>
+    </author>
+    <content type="html">&lt;p&gt;As the RDO development continues to grow, the numbers of bugs also grow. 
+To make the community robust and heavy, it is also necessary to triage and fix the existing bugs so that product will be more valuable.&lt;/p&gt;
+
+&lt;p&gt;We had hosted RDO Bug Triage Day on 18th and 19th May, 2016.&lt;/p&gt;
+
+&lt;p&gt;The main aim of the triage day was :&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mass Closing of "End of Life" Bugs through automation with proper EOL statement.
+On 19th May, 2016 RDO meeting, after evaluating the Fedora EOL statement, we came up with this :
+&lt;strong&gt;"This bug is against a Version which has reached End of Life. If it's still present in supported release (http://releases.openstack.org), please update Version and reopen."&lt;/strong&gt;
+Thanks to Rich Bowen for proposing it,&lt;/li&gt;
+  &lt;li&gt;Analysis the bug and assign proper component, target-release and ask for more information if the bug is incomplete&lt;/li&gt;
+  &lt;li&gt;Close the Bug if it is already fixed in the current release&lt;/li&gt;
+  &lt;li&gt;Provide patches to the existing Bugs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Those 2 days was awesome for RDO.&lt;/p&gt;
+
+&lt;p&gt;Here is some of the stats of RDO Bug Triage Day:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;433 Bugs affected on Bug Triage Day.&lt;/li&gt;
+  &lt;li&gt;398 Bugs closed on Bug Triage Day out of which 365 EOL Bugs closed by &lt;a href="https://gist.github.com/chkumar246/23237abe5203d963054092fd989a2b88"&gt;automation script&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;35 Bugs triaged on Bug Triage Day and most of the EOL triaged bugs closed due to EOL automation script&lt;/li&gt;
+  &lt;li&gt;22 people participated in the RDO Bug Triage Day.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks to Pradeep Kilambi, Peter Nordquist, Javier Pena, Ivan Chavero, Matthias Runge, Suraj Narwade, Christopher Brown, Dan Prince, Mike Burns, Dmitry Tantsur, Alfredo Moralejo,
+Alan Pevec, Miroslav Suchy, Masanari Matsuoka, Garth Mollett, Giulio Fidente, David Moreau Simard,  Chandan Kumar and Emilien Macchi for participating and making the RDO Bug 
+triage day successful.&lt;/p&gt;
+
+&lt;p&gt;The above stats is generated using &lt;a href="https://gist.github.com/chkumar246/22ecfa8f5de4d98fb2a289904910dc4f"&gt;bztraigeday_stats.py script&lt;/a&gt;.&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO Blogs: week of May 23, 2016</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-blogs-week-of-may-23-2016/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-blogs-week-of-may-23-2016/</id>
+    <published>2016-05-23T19:34:03+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Here's what RDO engineers have been blogging about over the last week:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Connecting another vm to your tripleo-quickstart deployment&lt;/strong&gt;  by Lars Kellogg-Stedman&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Let's say that you have set up an environment using tripleo-quickstart and you would like to add another virtual machine to the mix that has both "external" connectivity ("external" in quotes because I am using it in the same way as the quickstart does w/r/t the undercloud) and connectivity to the overcloud nodes. How would you go about setting that up?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6t"&gt;http://tm3.org/6t&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Reproducing an Open vSwitch Bridge Configuration&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In the previous post, I described the setup for installing FreeIPA on a VM parallel to the undercloud VM setup by Tripleo Quickstart. The network on the undercloud VM has been setup up by Ironic and Neutron to listen on a network defined for the overcloud. I want to reproduce this on a second machine that is not enrolled in the undercloud. How can I reproduce the steps?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6u"&gt;http://tm3.org/6u&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ARA: An idea to store, browse and troubleshoot Ansible Playbook runs&lt;/strong&gt; by David Moreau Simard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Ansible can be used for a lot of things and it’s grown pretty popular for managing servers and their configuration. In the RDO and OpenStack communities, Ansible is heavily used to deploy or test OpenStack through Continuous Integration (CI). Projects like TripleO-Quickstart, WeIRDO, OpenStack-Ansible or Zuul v3 are completely driven by Ansible.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6v"&gt;http://tm3.org/6v&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>RDO blogs over the last few weeks</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/rdo-blogs-over-the-last-few-weeks/"/>
+    <id>http://rdoproject.org/blog/2016/05/rdo-blogs-over-the-last-few-weeks/</id>
+    <published>2016-05-17T19:18:56+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;I've been traveling a lot over the last few weeks, and have fallen behind on the blog post updates. Here's what RDO enthusiasts have been blogging about since OpenStack Summit.&lt;/p&gt;
+
+&lt;p&gt;I posted a number of "&lt;strong&gt;What Did You Do In Mitaka&lt;/strong&gt;" interview posts, so here those are, all together:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ivan-chavero/"&gt;Ivan Chavero&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-ihar-hrachyshka-talks-about-neutron/"&gt;Ihar Hrachyshka&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-chandan-kumar/"&gt;Chandan Kumar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-haikel-guemar/"&gt;Haïkel Guémar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/04/what-did-you-do-in-mitaka-javier-pena/"&gt;Javier Peña&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-emilien-macchi/"&gt;Emilien Macchi&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-david-moreau-simard/"&gt;David Moreau Simard&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-adam-young/"&gt;Adam Young&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Additionally, there were the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Deploying the new OpenStack EC2 API project&lt;/strong&gt; by Tim Bell&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;OpenStack has supported a subset of the EC2 API since the start of the project. This was originally built in to Nova directly. At CERN, we use this for a number of use cases where the experiments are running across both the on-premise and AWS clouds and would like a consistent API. A typical example of this is the HTCondor batch system which can instantiate new workers according to demand in the queue on the target cloud.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6e"&gt;http://tm3.org/6e&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Running Keystone Unit Tests against older Versions of RDO Etc&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just because upstrem is no longer supporting Essix doesn’t mean that someone out there is not running it. So, if you need to back port a patch, you might find yourself in the position of having to run unit tests against an older version of Keystone (or other) that does not run cleanly against the files installed by tox.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6f"&gt;http://tm3.org/6f&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Containers and the CERN cloud&lt;/strong&gt; by Ricardo Rocha&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;In recent years, different groups at CERN started looking at using containers for different purposes, covering infrastructure services but also end user applications. These efforts have been mostly done independently, resulting in a lot of repeated work especially for the parts which are CERN specific: integration with the identity service, networking and storage systems. In many cases, the projects could not complete before reaching a usable state, as some of these tasks require significant expertise and time to be done right. Alternatively, they found different solutions to the same problem which led to further complexity for the supporting infrastructure services. However, the use cases were real, and a lot of knowledge had been built on the available tools and their capabilities.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6g"&gt;http://tm3.org/6g&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Meet Red Hat OpenStack Platform 8&lt;/strong&gt; by Sean Cohen&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Last week we marked the general availability of our Red Hat OpenStack Platform 8 release, the latest version of Red Hat’s highly scalable IaaS platform based on the OpenStack community “Liberty” release. A co-engineered solution that integrates the proven foundation of Red Hat Enterprise Linux with Red Hat’s OpenStack technology to form a production-ready cloud platform, Red Hat OpenStack Platform is becoming a gold standard for large production OpenStack deployments. Hundreds of global production deployments and even more proof-of-concepts are underway, in the information, telecommunications, financial sectors, and large enterprises in general. Red Hat OpenStack Platform also benefits from a strong ecosystem of industry leaders for transformative network functions virtualization (NFV), software-defined networking (SDN), and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6h"&gt;http://tm3.org/6h&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 1&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;We’re live from Austin, Texas, where the 13th semi-annual OpenStack Summit is officially underway! This event has come a long way from its very first gathering six years ago, where 75 people gathered to learn about OpenStack in its infancy. That’s a sharp contrast with the 7,000+ people in attendance here, in what marks Austin’s second OpenStack Summit, returning to where it all started!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6i"&gt;http://tm3.org/6i&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 2&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the second busy day of OpenStack Summit has come to a close. Not surprisingly, there was plenty of news, interesting sessions, great discussions on the showfloor, and more.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6j"&gt;http://tm3.org/6j&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Culture and technology can drive the future of OpenStack&lt;/strong&gt; by E.G.Nadhan&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;“OpenStack in the future is whatever we expand it to”, said Red Hat Chief Technologist, Chris Wright during his keynote at the OpenStack Summit in Austin. After watching several keynotes including those from Gartner and AT&amp;amp;T, I attended other sessions during the course of the day culminating in a session by Lauren E Nelson, Senior Analyst at Forrester Research. Wright’s statement made me wonder about what lies in store for OpenStack and where would the OpenStack Community — the “we” that Wright referred to — take it to in the future.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6k"&gt;http://tm3.org/6k&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 3&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the third day of OpenStack Summit has come to a close. As with the first two days of the event, there was plenty of news, interesting sessions, great discussions on the showfloor, and more. All would likely agree that the 13th OpenStack Summit has been a Texas-sized success so far!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6l"&gt;http://tm3.org/6l&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resource management at CERN&lt;/strong&gt; by Tim Bell&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;As part of the recent OpenStack summit in Austin, the Scientific Working group was established looking into how scientific organisations can best make use of OpenStack clouds.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6m"&gt;http://tm3.org/6m&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Austin: Day 4&lt;/strong&gt; by Gordon Tillmore&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Hello again from Austin, Texas where the fourth day of the main OpenStack Summit has come to a close. While there are quite a few working sessions and contributor meet-ups on Friday, Thursday marks the last official day of the main summit event. The exhibition hall closed its doors around lunch time, and the last of the vendor sessions occurred later in the afternoon. As the day concluded, many attendees were already discussing travel plans for OpenStack Summit Barcelona in October!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6n"&gt;http://tm3.org/6n&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;OpenStack Summit Newton from a Telemetry point of view&lt;/strong&gt; by Julien Danjou&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's again that time of the year, where we all fly out to a different country to chat about OpenStack and what we'll do during the next 6 months. This time, it was in Austin, TX and we chatted about the new Newton release that will be out in October.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6o"&gt;http://tm3.org/6o&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Identity work for the OpenStack Newton release&lt;/strong&gt; by Adam Young&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Newton Summit is behind us, and we have six months to prepare for the next release in both upstream OpenStack and RDO. Here is my attempt to build a prioritized list of the large tasks I want to tackle in this release.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6p"&gt;http://tm3.org/6p&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mitaka Cinder Recap sessions&lt;/strong&gt; by Gorka Eguileor&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;During Mitaka we introduced some big changes in Cinder that have a great impact for developers working on new and existing functionality. These new features include, but are not limited to, API microversions, support for Rolling Upgrades, and conditional DB update functionality to remove API races. So we decided to have Recap Sessions during the OpenStack Summit in Austin.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6q"&gt;http://tm3.org/6q&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Analysis of techniques for ensuring migration completion with KVM&lt;/strong&gt; by Daniel Berrange&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Live migration is a long standing feature in QEMU/KVM (and other competing virtualization platforms), however, by default it does not cope very well with guests whose workload are very memory write intensive. It is very easy to create a guest workload that will ensure a migration will never complete in its default configuration. For example, a guest which continually writes to each byte in a 1 GB region of RAM will never successfully migrate over a 1Gb/sec NIC. Even with a 10Gb/s NIC, a slightly larger guest can dirty memory fast enough to prevent completion without an unacceptably large downtime at switchover. Thus over the years, a number of optional features have been developed for QEMU with the aim to helping migration to complete.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6r"&gt;http://tm3.org/6r&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What did everyone do for the Mitaka release of OpenStack ?&lt;/strong&gt; by David Moreau Dimard&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just what did everyone do for the Mitaka OpenStack release ?
+RDO community liaison Rich Bowen went to find out.
+He interviewed some developers and engineers that worked on OpenStack and RDO throughout the Mitaka cycle and asked them what they did and what they were up to for the Newton cycle.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;… read more at &lt;a href="http://tm3.org/6s"&gt;http://tm3.org/6s&lt;/a&gt;&lt;/p&gt;
+
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in Mitaka? Adam Young</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-adam-young/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-adam-young/</id>
+    <published>2016-05-06T22:08:42+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;In this installment of our "What did you do in Mitaka" series, I speak to Adam Young about Keystone.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/jf485-5f1716?from=yiiadmin" data-link="https://www.podbean.com/media/player/jf485-5f1716?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;(If the above player doesn't work for you, please download the audio &lt;a href="https://rdocommunity.podbean.com/mf/play/uq6sgx/adam-young-mitaka.mp3"&gt;HERE&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with &lt;a href="http://adam.younglogic.com/"&gt;Adam Young&lt;/a&gt; , who's been working on the &lt;a href="http://docs.openstack.org/developer/keystone/"&gt;Keystone&lt;/a&gt;
+project for the last 4 years or so.&lt;/p&gt;
+
+&lt;p&gt;So, Adam, what did you do in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Adam&lt;/strong&gt;: This release, I finally got a couple key features into Keystone
+for dealing with some security issues that have bothered me for a
+while. The biggest one is the ability to deal with admin - the fact
+that if you're admin somewhere you end up being admin everywhere.&lt;/p&gt;
+
+&lt;p&gt;This is bug &lt;a href="https://bugs.launchpad.net/keystone/+bug/968696"&gt;968696&lt;/a&gt;. Yes, I have the number [memorized]. I even had
+tshirts made up for it. We're finally closing that bug. Although
+closing it properly will take several releases.&lt;/p&gt;
+
+&lt;p&gt;The issue with bug 968696 is that we have no way of splitting out what
+certain APIs are that are supposed to be admin-specific. Like, you can
+see that there's a difference between adding a new hypervisor, and
+going into a project and creating a virtual machine. They are
+different levels of administration. There are certain APIs that need
+to have admin, that are really project-scope things. Things like
+adding a user to a project - role assignment - that's admin level at
+the project, as opposed to admin level at the overall service.&lt;/p&gt;
+
+&lt;p&gt;So what we did is we put a config option in Keystone which lets you
+say that a certain project is the adminstrative project. Tokens that
+are issued for a user that are scoped to that project have an
+additional field on them. is_admin_project. This can be enforced in
+policy across OpenStack. It does mean that we need to rewrite the
+policy files. We knew this was going to be a long slog.&lt;/p&gt;
+
+&lt;p&gt;There's a way of now being able to say on a given policy rule, this is
+not just that they have to have the admin role, but that they have to
+have the admin role on a project that's considered the admin project.&lt;/p&gt;
+
+&lt;p&gt;It also allows you to say, if I have admin on the admin project, I can
+go into a non-admin project, and do these administrative type things.
+But somebody who is admin on some other common project, some other
+regular project, does not have the ability to do that. So the projects
+continue to be the main scoping for access control, but we have this
+level of defining things to be cloud- or service-level administration.&lt;/p&gt;
+
+&lt;p&gt;So that was one of the big ones. We'll continue to drive on with using
+that - making that policy change throughout Nova, Glance, and the
+rest, because if they're not enforcing it, then it is still a global
+admin. So there's more work to be done there.&lt;/p&gt;
+
+&lt;p&gt;The other big feature falls into a similar type of problem-set, which
+is, roles are very, very coarse grained. If you look at the early days
+of OpenStack, there really was only one role, which was admin. And
+then everybody else was a member of a project.&lt;/p&gt;
+
+&lt;p&gt;By the time I started, which was four years ago, there already was the
+idea that a role assignment was for a role on a project. Role
+assignments were no longer global, even though they had been in the
+past. A lot of people still kept treating them like they were global
+things, but the mechanism scoped it to a project. What we wanted to be
+able to is say, I want to be able to have a different role for
+different operations - different workflows. So that I can assign small
+things, and I can delegate smaller pieces of what I need to do to a
+user.&lt;/p&gt;
+
+&lt;p&gt;A good example is that I might not want somebody to be able to create
+a virtual machine, or some offline service to be able to create a
+virtual machine on by behalf, but I want them to be able to reboot one
+of mine. They can monitor, and if it locks up they should be able to
+reboot that virtual machine.&lt;/p&gt;
+
+&lt;p&gt;So what we have is this concept of an implied role, or role inference
+rule.&lt;/p&gt;
+
+&lt;p&gt;The first one, and the example that everyone kind of gets is, if I'm
+an admin on a project, I should be a member on that project. So now,
+when I have a token and I reqest admin on there, I will see both the
+admin role and the member role inside that project, even if I don't
+have the member role explicitly assigned to me.&lt;/p&gt;
+
+&lt;p&gt;Now in the API I could specify, you only need the member role to do
+this. So now we've just made it easier to roll up finer-grained
+permissions to a more coarse-grained role assignment.&lt;/p&gt;
+
+&lt;p&gt;This, it turned out, was a feature that somebody else could use to
+implement something they were talking about doing. &lt;a href="http://stackalytics.com/report/users/henry-nash"&gt;Henry Nash&lt;/a&gt;, who
+works at IBM, had this proposal for domain-specific roles. He wanted
+to be able to have somebody who's in some organization, specify what
+the name of the role was that they gave to people, and it also
+included a subset of what the person could do there.&lt;/p&gt;
+
+&lt;p&gt;I said, that really sounds like a role inference rule, but one where
+a) the top-level name is assigned by somebody who's not a global cloud
+administrator, the domain administrator, and b) it doesn't show up in
+the token. I don't want domain-specific roles to be something that
+people are enforcing policy on. I want it to be [only enforce on] the global roles.&lt;/p&gt;
+
+&lt;p&gt;So we worked together and came up with this idea that we get implied
+roles in first, and then we would build the domain-specific roles on
+top of that.&lt;/p&gt;
+
+&lt;p&gt;It took a lot of collaboration - a lot of arguing and a lot of
+understanding … to explain to the other person what our problems
+were, and coming to the idea that a very elegant mechanism here could
+be the baseline for both features.&lt;/p&gt;
+
+&lt;p&gt;So we're presenting on both of those things together, actually, on
+Tuesday at Summit. (OpenStack Summit, Austin - &lt;a href="https://www.openstack.org/videos/video/advances-in-keystones-role-based-access-control"&gt;video here&lt;/a&gt; ) The Nash and Young
+reunion tour. We couldn't get either &lt;a href="https://en.wikipedia.org/wiki/Crosby,_Stills,_Nash_%26_Young"&gt;Stills or Crosby&lt;/a&gt; to show up.&lt;/p&gt;
+
+&lt;p&gt;Beyond that, Keystone is, as somebody once described it, performance
+art. Getting Keystone features in requires a lot of discussion. It's
+really fundamental to OpenStack that Keystone just work.&lt;/p&gt;
+
+&lt;p&gt;A lot of people will file bugs against Keystone, because it's the
+first thing that reports a failure. Or someone reports a failure
+trying to talk to Keystone. So a lot of time has been spent in
+troubleshooting other people's problems, connectivity problems,
+configuration problems, and getting it so that they understand, yes,
+you can't talk to Keystone, but it's because you have not configured
+your service to talk to Keystone.&lt;/p&gt;
+
+&lt;p&gt;And one of the big victories that we had is that a whole class of
+errors that we had were due to threading issues in eventlet, and
+eventlet is dead. Eventlet has been deprecated for a while. In
+TripleO we have it so that Keystone is not being deployed in eventlet
+any more. This means that we don't have the threading issues there.&lt;/p&gt;
+
+&lt;p&gt;A big lesson that we've learned is that the cloud deployer does not
+necessarily own the user database. And for large organizations, there
+already is a well-established user database, and so we want to reuse
+… a lot of people point to stuff like Facebook, and Google, and
+LinkedIn, as public authentication services now. OpenID, OAuth, and
+all those, are protocols that make it possible to consume these big
+databases of identity, and then you can use your same credentials that
+you use to talk to Facebook, to talk to your apps.&lt;/p&gt;
+
+&lt;p&gt;Well, this same pattern happens a lot inside the enterprise, and in
+fact it's the norm. It's called Single Sign On, and a lot of people
+want it. And pushing Single Sign On technologies, and making those
+work within Keystone has been a long-running task.&lt;/p&gt;
+
+&lt;p&gt;There's been a lot of LDAP debugging. It's still one of the main pain
+points for people. LDAP is a primary tool for most large organizations
+for managing the users. The D in there stands for Directory and it's
+user directory for large organizations. A lot of people have to make
+it work with Active Directory, Microsoft being so dominant in the
+enterprise, and Active Directory being their solution for that has
+made it a pain point. So one of the big things we've been trying to do
+is make that integrate in better with existing deployments.&lt;/p&gt;
+
+&lt;p&gt;Over multiple releases we had this idea that first you had one
+monolithic identity back-end. And then we split that out into two
+pieces, one which was the identity, the users and the groups, and the
+other which was the assignment - what roles you had on each project.&lt;/p&gt;
+
+&lt;p&gt;Now that we can vary those two things differently, what we started
+doing is saying, how about having multiple things on that identity
+side? Federation kind of works in there but before that we actually
+said you could have SQL back your user database, and that would be your
+basic install. All the service users for Keystone, and Nova and so on
+would be put in there, and then let's make a separate domain and put
+LDAP in there. So the big push has been to do that.&lt;/p&gt;
+
+&lt;p&gt;Well it turns out that in order to do that we need everybody to use
+the Keystone V3 API, because they need domain support. Specifically
+internally, the different services need to do this.&lt;/p&gt;
+
+&lt;p&gt;A lot of people have helped make this happen. This has been a
+multi-project effort because not only do we need to solve it within
+all the Keystone components, but then there are places where one
+service calls into another and needs to authenticate with Keystone and
+those calls there are calling through client network access.&lt;/p&gt;
+
+&lt;p&gt;So we're finally at a place where V3 Keystone API everywhere is a
+reality, or can be a reality, and so getting the pain of LDAP into its
+own domain has been an ongoing theme here. I really feel it's going to
+make things work the way people want them to work.&lt;/p&gt;
+
+&lt;p&gt;One of the nice benefits of this, especially for new deployments, is
+they no longer have to put service users into LDAP. This was a
+dealbreaker for a lot of people. LDAP is a read-only resource. If,
+say, the OpenStack user does not own the user database, that includes
+service users. So being able to have service users in a small database
+inside Keystone, and have consume the rest of the identity from LDAP
+has always been the dream.&lt;/p&gt;
+
+&lt;p&gt;Keystone moves very slowly. It's a very cautious project, and it has
+to be.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: Because it has to just work.&lt;/p&gt;
+
+&lt;p&gt;Adam: It has to just work, and it's the target for security. If you
+can hack Keystone, then you have access to the entire cloud. And if
+you're using LDAP, you have the potential to provide access to things
+beyond the cloud.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Tell me about some things that are coming in upcoming releases.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A&lt;/strong&gt;: One that I'm looking forward to in Newton is the ability to unify
+all the delegation mechanisms. What we're doing with &lt;a href="https://wiki.openstack.org/wiki/Keystone/Trusts"&gt;trusts&lt;/a&gt;, which is
+something I built specifically for Heat a couple of releases ago, and
+have taken on this way of a user being able to delegate another user a
+subset of their permissions, and to be able to delegate the ability
+to delegate. You don't have to be an admin in order to create some
+sort of delegation, but you can be an everyday user and hand off, to
+maybe a scheduled task, to do something on your behalf, at midnight
+when you're on vacation.&lt;/p&gt;
+
+&lt;p&gt;The other one that I'm really looking forward to trying to drive on is
+the adoption of &lt;a href="http://dolphm.com/openstack-keystone-fernet-tokens/"&gt;Fernet&lt;/a&gt;. We were hoping to get that into the Mitaka
+release. Fernet is in there, but trying to make it the default.&lt;/p&gt;
+
+&lt;p&gt;Fernet is an ephemeral token. The way that tokens work with Keystone
+now … it's a UUID. It's a claim check that you can hand to somebody
+and they can go back to Keystone, assuming they have authority to do
+this, and say, what data is associated with this token?&lt;/p&gt;
+
+&lt;p&gt;Well, Keystone has to record that.&lt;/p&gt;
+
+&lt;p&gt;If you have two different Keystone servers, and they're both issuing
+out tokens, they have to talk to the same database. Because I might
+get one issued from one, and go to a different one to validate it.&lt;/p&gt;
+
+&lt;p&gt;This is a scalability issue.&lt;/p&gt;
+
+&lt;p&gt;PKI tokens, which I wrote many releases ago, were a first attempt to
+deal with this, because you could have different signers. But PKI
+tokens had a lot of problems. &lt;a href="https://www.youtube.com/watch?v=702SRZHdNW8"&gt;Dolph and
+Lance&lt;/a&gt;, who are
+Rackspacers, who have been long-term contributors, came up with this
+implementation called Fernet tokens. The idea is that you use
+symmetric cryptography. You take the absolute minimal amount of data
+you need to reconstitute the token and you sign it. Now, the Keystone
+server is the only thing that has this key. So that means it's the
+only thing that can decrypt it. So you still need to pass the token
+back to Keystone to validate it, but Keystone no longer has to go to a
+database to look this up. It can now take the Fernet token itself, and
+say here's what it means. And if you have two different Keystone
+servers, and they share keys, you can get one issued from one, and
+have the other one validate it for you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Well, thank you again for taking the time to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A&lt;/strong&gt;: My pleasure.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>What did you do in Mitaka? David Moreau Simard</title>
+    <link rel="alternate" href="http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-david-moreau-simard/"/>
+    <id>http://rdoproject.org/blog/2016/05/what-did-you-do-in-mitaka-david-moreau-simard/</id>
+    <published>2016-05-06T15:47:48+02:00</published>
+    <updated>2016-06-09T17:28:37+02:00</updated>
+    <author>
+      <name>Rich Bowen</name>
+    </author>
+    <content type="html">&lt;p&gt;Continuing our series "What Did You Do In Mitaka?", I spoke with David Moreau Simard.&lt;/p&gt;
+
+&lt;iframe src="https://www.podbean.com/media/player/zqt2x-5f14b4?from=yiiadmin" data-link="https://www.podbean.com/media/player/zqt2x-5f14b4?from=yiiadmin" height="100" width="100%" frameborder="0" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;&lt;em&gt;(If the above player doesn't work for you, please download the recording &lt;a href="https://rdocommunity.podbean.com/mf/play/qp7cm4/david-simard.mp3"&gt;HERE&lt;/a&gt;.)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Rich&lt;/strong&gt;: I'm speaking with &lt;a href="https://github.com/dmsimard"&gt;David Moreau Simard&lt;/a&gt;, who is one of the engineers
+who works on &lt;a href="//rdoproject.org"&gt;RDO&lt;/a&gt; at Red Hat. Thanks for taking time to speak with me.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;DMSimard&lt;/strong&gt;: It's a pleasure&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: What did you work on in Mitaka?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;D&lt;/strong&gt;: I'm part of the RDO engineering team at Red Hat.
+My role is mostly around continuous integration and making sure that
+RDO works.
+This means that some days I could be implementing new ways of testing
+RDO or some other days fixing bugs identified by our CI.&lt;/p&gt;
+
+&lt;p&gt;As far as Mitaka is concerned, we got Packstack to a point where it's
+able to install and run Tempest against itself.
+This is awesome because it's a great way to make sure everything works
+properly, sort of a sanity check.&lt;/p&gt;
+
+&lt;p&gt;This improvement allowed us to make Packstack gate against itself
+upstream to prevent regressions from merging by testing each commit.
+This was part of a plan to make Packstack part of our testing
+pipeline.&lt;/p&gt;
+
+&lt;p&gt;In Mitaka, we started using a new project called &lt;a href="https://dmsimard.com/2015/12/07/thinking-outside-the-box-and-outside-the-gate-to-improve-openstack-and-rdo/"&gt;WeIRDO&lt;/a&gt;.
+It's meant to use upstream gate integration tests inside our own RDO
+testing pipeline.
+We really improved our testing coverage in Mitaka with TripleO
+quickstart and WeIRDO.
+With WeIRDO, we're able to easily test RDO trunk packages against
+Packstack and Puppet-OpenStack and the jobs that they provide.&lt;/p&gt;
+
+&lt;p&gt;We built a great relationship with projects that consume RDO packages
+throughout development cycles.
+We mutually benefit from essentially testing each other. So it makes a
+lot of sense to stay in touch with these guys.&lt;/p&gt;
+
+&lt;p&gt;Overall, I can really tell how the testing coverage for RDO has
+improved tremendously, even since liberty.
+Mitaka is really the best and most tested release of RDO yet. I want
+to extend my thanks to everyone that was involved in making it happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: So how about in Newton? What do you think is coming in Newton for
+you?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;D&lt;/strong&gt;: So, Mitaka was already an awesome cycle from the perspective of
+testing coverage that we had for RDO.
+We want to keep working on that foundation to increase the coverage
+further.
+I also want to spend some time on improving monitoring and automation
+to make troubleshooting problems easier.&lt;/p&gt;
+
+&lt;p&gt;Trunk breaks all the time, and so it takes a lot of time to
+troublshoot that, and we want to make that easier. But also have
+visibility into the problems that could be coming.&lt;/p&gt;
+
+&lt;p&gt;Earlier I talked about WeIRDO and how we use upstream gate jobs in our
+testing pipeline.
+In Newton, we want to add Kolla back into our testing pipeline through
+WeIRDO.
+I had some issues getting Kolla to work reliably in Mitaka but they've
+fixed some problems upstream since then so we'll take another look at
+it.&lt;/p&gt;
+
+&lt;p&gt;Just recently, there's also the Chef OpenStack community – they've been working on
+integration testing their cookbooks in the gate.
+I'm definitely interested in seeing what they have, and possibly leveraging their work once they're ready.&lt;/p&gt;
+
+&lt;p&gt;The other large chunk of work will probably come from our effort in
+streamlining and centralizing the different components of RDO.
+Right now, we're a bit all over the place… But we've already started
+working towards moving to a software factory instance.
+Software factory is a project to provide upstream's testing ecosystem
+with Git, Zuul, Nodepool, Gerrit and Jenkins.. but in a box, an
+appliance.&lt;/p&gt;
+
+&lt;p&gt;This will definitely make things easier for everyone since everything
+from RDO will be expected to be in this one place.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt;: Thank you very much for your time.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;D&lt;/strong&gt;: I appreciate yours, and it was great working on this great release.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;David is dmsimard on &lt;a href="http://twitter.com/dmsimard"&gt;Twitter&lt;/a&gt;, 
+&lt;a href="https://github.com/dmsimard"&gt;github&lt;/a&gt;, and on IRC.&lt;/em&gt;&lt;/p&gt;
+</content>
+  </entry>
+</feed>

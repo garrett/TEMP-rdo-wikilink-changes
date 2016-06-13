@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en-us"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]> <html class="no-js lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if lt IE 10]> <html class="no-js lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]> > <![endif]-->
+<html class='no-js' lang='en'>
+<!-- <![endif] -->
+<head>
+<title>
+Dims talks about the Oslo project &mdash;
+RDO
+</title>
+<meta charset='utf-8'>
+<meta content='' name='description'>
+<meta content='Rich Bowen' name='author'>
+<meta content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width' name='viewport'>
+<link href='/blog/feed.xml' rel='alternate' title='Atom feed' type='application/atom+xml'>
+<!-- Open Graph (FB / G+) -->
+<meta content='article' property='og:type'>
+<meta content='Dims talks about the Oslo project' property='og:title'>
+<meta content='This is the second in what I hope is a long-running series of interviews with the various OpenStack PTLs (Project Technical Leads), in an effort to better understand what the various projects do, what...' property='og:description'>
+<meta content='http://rdoproject.org/blog/2015/08/dims-talks-about-the-oslo-project/' property='og:url'>
+<meta content='2015-08-14T11:12:31Z' property='article:published_time'>
+<meta content='rbowen' property='article:author:username'>
+<!-- Twitter card -->
+<meta content='summary' name='twitter:card'>
+<meta content='Dims talks about the Oslo project' name='twitter:title'>
+<meta content='This is the second in what I hope is a long-running series of interviews with the various OpenStack PTLs (Project Technical Leads), in an effort to better understand what the various projects do, what...' name='twitter:description'>
+
+<link href='/images/favicon.ico' rel='shortcut icon'>
+<link href='/images/apple-touch-icon-precomposed.png' rel='apple-touch-icon-precomposed'>
+<link href='/images/apple-touch-icon-57x57-precomposed.png' rel='apple-touch-icon-precomposed' sizes='57x57'>
+<link href='/images/apple-touch-icon-72x72-precomposed.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/images/apple-touch-icon-114x114-precomposed.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href="/stylesheets/application.css" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+</head>
+<body class=' source-md'>
+<header class='masthead hidden-print' id='branding' role='banner'>
+<section class='hgroup'>
+<h1>
+<a href="/"><img id="logo" class="logo " alt="RDO" src="/images/rdo-logo-white.png" />
+</a></h1>
+</section>
+<div id='access'>
+<nav role='navigation'>
+<ul class='nav nav-pills'>
+<li class='nav-link-home' role='menuitem'>
+<a href='/'>Home</a>
+</li>
+
+<li class='nav-link-blog' role='menuitem'>
+<a href='/blog/'>Blog</a>
+</li>
+
+<li class='nav-link-events' role='menuitem'>
+<a href='/events/'>Events</a>
+</li>
+
+<li class='nav-link-community' role='menuitem'>
+<a href='/community/'>Community</a>
+</li>
+
+<li class='nav-link-docs' role='menuitem'>
+<a href='/documentation/'>Docs</a>
+</li>
+
+<li class='nav-link-search' role='menuitem'>
+<a href='/search/'>Search</a>
+</li>
+
+</ul>
+</nav>
+
+</div>
+</header>
+
+<section class='page-wrap' id='page-wrap'>
+<section class='page' id='page'>
+<section class='container content' id='content'>
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser.
+<a href="http://browsehappy.com/">Upgrade your browser today</a> or
+<a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+<![endif]-->
+<section class='blog-post-page row'>
+<div class='col-md-10 col-md-offset-1'>
+<article class='post hentry'>
+<header class='post-header'>
+<h2 class='post-title entry-title'>
+Dims talks about the Oslo project
+</h2>
+<header class='post-meta'>
+<span class='byline'>
+by
+<span class='author vcard'>
+<a href="/blog/author/rbowen/">Rich Bowen</a>
+</span>
+</span>
+&ndash;
+<time class='published' datetime='2015-08-14T11:12:31Z'>
+Friday 14 August 2015
+</time>
+</header>
+</header>
+<section class='post-content entry-content'>
+<p><em>This is the second in what I hope is a long-running series of interviews with the various OpenStack PTLs (Project Technical Leads), in an effort to better understand what the various projects do, what's new in the Kilo release, and what we can expect in Liberty, and beyond.</em></p>
+
+<p>If the audio player below doesn't work for you, you can listen to the recording –&gt; <a href="http://drbacchus.com/podcasts/openstack/dims_oslo.mp3">here</a> or see the transcript below.</p>
+
+<audio controls="">
+  <source src="http://drbacchus.com/podcasts/openstack/dims_oslo.mp3" type="audio/mpeg" />
+</audio>
+
+<p><strong>Rich</strong>: Hi, this is Rich Bowen. I am the OpenStack Community Liaison at Red
+Hat, and continuing my series on Project Technical Leads (PTLs) at
+OpenStack, I'm talking with Davanum Srinivas, who I've known for a few
+years outside of the OpenStack context, and he is the PTL for the <a href="https://wiki.openstack.org/wiki/Oslo">Oslo
+project</a>.</p>
+
+<p>Oslo is the OpenStack Commons Library.</p>
+
+<p>Thanks for speaking with me Davanum.</p>
+
+<p><strong>Dims</strong>: Thanks, Rich. You can call me Dims. You know me by Dims.</p>
+
+<p><strong>R</strong>: Yeah, I know. <em>laughs</em></p>
+
+<p><strong>R</strong>: Give us a little bit of background. How long has the Oslo project been around?</p>
+
+<p><strong>D</strong>: We were doing things differently - we have a really old history,
+though. Some of the initial effort was started back in release B.</p>
+
+<p><strong>R</strong>: Oh, that long ago.</p>
+
+<p><strong>D</strong>: Yeah. So, what we were doing … why did Oslo come about? Oslo came
+about because way back when Nova started, we started splitting code from Nova into separate projects. But these projects were sharing
+code, so we were trying to figure out the best way to synchronize code
+between these sibling or child projects. So we ended up with a single
+repository of source code, called Oslo Incubator, where you would have
+the master copy, and everybody would sync from there, but what was
+happening was, everybody had their own sync schedule. Some people were
+contributing patches back, and it was becoming hard to maintain those
+patches. We decided we had to change the method the team worked. And
+we started releasing libraries, for specific purposes. What you saw in
+Kilo was a big bang explosion of a huge number of libraries from the
+Oslo team. Most of it was code in Oslo Incubator. We just had to cut
+the modules in a proper shape, sequence, with an API, with a correct
+set of dependencies, and that's what we ended up releasing, one by
+one. Other projects started using things like oslo.config,
+oslo.messaging, oslo.db, oslo.log, and all these different libraries.</p>
+
+<p>So that's where we are today.</p>
+
+<p><strong>R</strong>: What is it that you'll be doing in coming releases? Is it just the
+effort of identifying duplication, or are you actively developing new
+libraries.</p>
+
+<p><strong>D</strong>: Yes, we are. In Liberty, we have 5 new libraries coming up. Three
+of them start with 'oslo.' - like oslo.cache, oslo.reports,
+oslo.service. The other two do not have 'oslo' in their names. One is
+called <a href="https://wiki.openstack.org/wiki/Oslo#automaton">Automaton</a>, the other is called <a href="https://wiki.openstack.org/wiki/Oslo#futurist">Futurist</a>.</p>
+
+<p>Automaton is a library for building state machines and things like
+that. Futurist is picking up some of the work that is done in upstream
+futures and things like that and making it available to all of the
+projects in the OpenStack ecosystem.</p>
+
+<p>So these two projects can be used outside of Oslo, and outside of
+OpenStack by other people. That's why they don't have the Oslo name in
+them.</p>
+
+<p><strong>R</strong>: Do you see a lot of projects outside of OpenStack using these?</p>
+
+<p><strong>D</strong>: We hope so. For example, there is a project called Debt Collector,
+which we think fits well with how do you deprecate code and what are
+the primitives that we can provide that make it easy to mark their
+code being deprecated. A lot of people who work on Oslo also work in
+the overall Python ecosystem, so the hope is that if we design the
+libraries in such a way that it's reusable, other people will pick
+some of our stuff up. But that's a stretch goal. The real goal is to
+make sure that these libraries work well with the OpenStack projects.</p>
+
+<p>And the other thing about these libraries is that they don't drag in
+the Oslo baggage. For example, if you take oslo.db or oslo.messaging,
+they pull in a lot of other Oslo libraries, and these little libraries
+are designed so that they don't drag in other Oslo libraries. So
+that's the other good thing about these.</p>
+
+<p>The way the Oslo project has been for the last few cycles has been
+that we are doing a lot of experiments in Oslo, which have been rolled
+out to other projects in the OpenStack ecosystem. Oslo is slightly
+different from other projects in the sense that people don't work on
+it full time. So we have people work part time on it, but they focus
+mainly on other bigger projects. They come here when they need a
+feature or a fix, or things like that, and then they stay. We have a
+few cores who monitor reviews and bugs across all of the Oslo projects,
+but we also have people who specifically focus on individual little
+libraries, and they get core rights there.</p>
+
+<p>People in the OpenStack ecosystem are experimenting with different structures, like for
+Neutron, they put everything into subrepos, and they experiement that
+way. And I think that what we are doing might be more useful to Nova,
+for example, and other projects, where they would like to keep a set
+of cores together, and also have subsystem maintainers and things like
+that.</p>
+
+<p>Oslo is a good place to do this experimentation because the code base
+is not that huge, and the community is not that big as well. And the
+rate of churn, in terms of bugs and reviews, is not that high, as
+well. We are also experimenting with release versioning and things
+like that, and some of the things that you've seen recently driven by
+Doug, across the OpenStack ecosystem, we tested it here first, in
+terms of the versioning numbers, not having the Big Bang release, how
+do we do it, and things like that.</p>
+
+<p>We lead the way.</p>
+
+<p>The other big thing is, for example, Python 3.4 support. All the Oslo
+libraries have to be Python 3.4 complient first before they can be
+used and the other projects can adopt. So we end up being in the
+forefront trying to use libraries like websockify, or other libraries from
+the OpenStack ecosystem, which are not Python 3.4 complient, and we
+work with them to get them complient, and then use it in Oslo
+libraries, and then we roll it in. So we play an important role, I
+think, in the OpenStack ecosystem.</p>
+
+<p><strong>R</strong>: As PTL, is this a full time thing for you, or not? What are your
+responsibilities as PTL?</p>
+
+<p><strong>D</strong>: One of the very time consuming work is getting the releases out on
+a weekly basis. We try to make it predictable. At least, this cycle,
+we have started to make it predictable. Earlier, we heard complaints,
+we don't know when you guys are releasing, so we were not ready, and
+things like that. So we have a good process this time around, where,
+over the weekend, we run a bunch of tests, outside of the CI, as well
+as inside our CI system, to make sure that the master of all Oslo
+libraries works well with Nova, Neutron, Glance, and things like that,
+and come Monday morning, we decide which projects need releases, based
+on what has changed in them for the last week or so. We follow the
+release management guildelines, working with Doug and Thierry, to
+generate the releases during the day on Monday.</p>
+
+<p>After Tuesday you don't have to worry about Oslo releases breaking the
+CI or your code. That has helped a lot of projects, especially Nova,
+for example. If they know there is a break late on Monday evening,
+they know who to ping, and we can start triaging the issue, and by
+Tuesday they are back on their feet.</p>
+
+<p>That's the worst-case scenario. Best-case scenario, no problem
+happens, and we are good to go. But there's always one test case, or
+one scenario here or there. We always try to test beforehand, but like
+somebody said, it's a living thing - the ecosystem, the CI system, is
+like an emergent behavior, it's a living thing. It's hard.</p>
+
+</section>
+<footer class='post-meta'>
+</footer>
+</article>
+
+<section id='blog-comments'></section>
+</div>
+</section>
+
+</section>
+</section>
+</section>
+<footer class='text-center' id='footer'>
+<hr class='visible-print'>
+<div class='footer-rdo'>
+<dl>
+  <dt>Docs</dt>
+  <dd><a href="/install/quickstart">Download</a></dd>
+  <dd><a href="/rdo/faq">Common questions</a></dd>
+  <dd><a href="/troubleshooting/">Troubleshooting</a></dd>
+  <dd><a href="/rdo/">About RDO</a></dd>
+</dl>
+
+<dl>
+  <dt>Use RDO</dt>
+  <dd><a href="/install/quickstart">Quickstart</a></dd>
+  <dd><a href="/rdo/release-cadence">Releases</a></dd>
+  <dd><a href="http://trunk.rdoproject.org/">Trunk builds</a></dd>
+</dl>
+
+<dl>
+  <dt>Community</dt>
+  <dd><a href="/community/">Participate</a></dd>
+  <dd><a href="http://ask.rdoproject.org/">Ask (Q&amp;A)</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/buglist.cgi?product=RDO&amp;query_format=advanced&amp;bug_status=NEW&amp;bug_status=ASSIGNED">Browse open issues</a></dd>
+  <dd><a href="https://bugzilla.redhat.com/enter_bug.cgi?product=RDO">Report a problem</a></dd>
+</dl>
+
+<dl>
+  <dt>Support</dt>
+  <dd><a href="https://access.redhat.com/products/red-hat-openstack-platform/">Red Hat OpenStack Platform</a></dd>
+  <dd><a href="https://www.redhat.com/mailman/listinfo/rdo-list">Contact us</a></dd>
+</dl>
+
+</div>
+
+<ul class='footer-nav-list'>
+<li><strong>RDO</strong> is a <strong>Red Hat</strong>-sponsored community project</li>
+</ul>
+
+<div class='copyright'>
+&copy; 2016 RDO
+<span class='legal'><a href="/legal/">Legal & Privacy</a></span>
+</div>
+<div class='edit-this-page'>
+<a target="_blank" href="https://github.com/redhat-openstack/website/edit/master/source/blog/2015-08-14-dims-talks-about-the-oslo-project.html.md"><i class="icon fa fa-pencil"></i>Edit this page on GitHub</a>
+</div>
+<div class='last-modified'>
+Page last modified
+Tue 13 Oct 2015 15:59 UTC
+</div>
+</footer>
+
+
+<script src="/javascripts/application.js" type="text/javascript"></script>
+
+<!-- begin eloqua tracking -->
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqCfg.js' type='text/javascript'></script>
+<script language='JavaScript' src='//www.redhat.com/j/elqNow/elqImg.js' type='text/javascript'></script>
+<!-- end eloqua tracking -->
+<!-- begin Omniture tracking -->
+<!--
+SiteCatalyst code version: H.25.4
+Copyright 1996-2013 Adobe, Inc. All Rights Reserved
+More info available at http://www.omniture.com
+-->
+<div id='oTags'>
+<script src='//www.redhat.com/assets/js/noncms_s_code.js' type='text/javascript'></script>
+<script>
+   /* You may give each page an identifying name, server, and channel on the next lines. */
+   var coreUrl = encodeURI(document.URL.split("?")[0]);
+   var urlSplit = coreUrl.toLowerCase().split(/\//);
+   var urlLast = urlSplit[urlSplit.length-1];
+   var pageNameString = "";
+   var minorSectionIndex = 3;
+   if (urlSplit[3] == "promo") {
+     minorSectionIndex = 4;
+   }
+   if (urlLast == "") {
+     urlSplit.splice(-1,1);
+   }
+   if (urlLast.search(/\./) >= 0) {
+     if (urlLast == "index.html" || urlLast == "index.php") {
+       urlSplit.splice(-1,1);
+     } else {
+       urlSplit[urlSplit.length-1] = urlLast.split(".").splice(0,1);
+     }
+   }
+   s.prop14 = s.eVar27 = "rdo";
+   s.prop15 = s.eVar28 = urlSplit[minorSectionIndex] || "";
+   s.prop16 = s.eVar29 = urlSplit[minorSectionIndex+1] || "";
+   pageNameString = urlSplit.splice(3).join(" | ");
+   s.pageName = "rh | microsite | rdo | " + pageNameString;
+   s.channel = "microsite";
+   s.prop4 = s.eVar23 = encodeURI(document.URL);
+   s.prop21 = s.eVar18 = coreUrl;
+   s.prop2 = s.eVar22 = "en";
+</script>
+<script src='//www.redhat.com/j/rh_omni_footer.js' type='text/javascript'></script>
+<script>
+   if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+</script>
+<noscript>
+<a href='http://www.omniture.com' title='Web Analytics'>
+<img alt='' border='0' height='1' src='https://smtrcs.redhat.com/b/ss/redhatcom,redhatglobal/1/H.25.4--NS/0?[AQB]=3[AQE]' width='1'>
+</a>
+</noscript>
+</div>
+<!-- /DO NOT REMOVE/ -->
+<!-- End SiteCatalyst code version: H.25.4 -->
+<!-- End Omniture tracking -->
+
+</body>
+</html>

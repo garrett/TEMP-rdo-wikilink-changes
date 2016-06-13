@@ -22,12 +22,12 @@ DESCRIPTION:Speaker: Andreas Färber\n\nAnthony Liguori has contributed the
  hop2012.sched.org/event/ecd1bdf873b0049fe992d23d0d1221cf?iframe=yes&w=750&s
  idebar=yes&bg=no#?iframe=yes&w=750&sidebar=yes&bg=no).
 DTEND:20121107T124000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121107T120000Z
 LOCATION:Barcelona\, Spain
 SEQUENCE:0
 SUMMARY:QOM Vadis? Taking Objects to CPU and Beyond
-UID:2016-06-13T16:12:09+02:00_613305682@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_953872301@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -47,12 +47,12 @@ DESCRIPTION:Speaker: Mark McLoughlin\n\nHaving recently passes its second b
  8392c105669a?iframe=yes&w=750&sidebar=yes&bg=no#?iframe=yes&w=750&sidebar=y
  es&bg=no).
 DTEND:20121109T100000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121109T093000Z
 LOCATION:Barcelona\, Spain
 SEQUENCE:0
 SUMMARY:OpenStack\: KVM for the Masses
-UID:2016-06-13T16:12:09+02:00_651094158@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_806874053@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -65,12 +65,12 @@ DESCRIPTION:Speaker: Fabian Deutsch\n\nA talk diving into the details of us
  ched.org/event/a31ccd8702d7cc1a6bcd8c66d8f8443c?iframe=no&w=750&sidebar=yes
  &bg=no#).
 DTEND:20121109T150000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121109T143000Z
 LOCATION:Barcelona\, Spain
 SEQUENCE:0
 SUMMARY:oVirt Node and OpenStack
-UID:2016-06-13T16:12:09+02:00_358736800@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_940691222@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -96,12 +96,12 @@ DESCRIPTION:KVM is an industry leading open source hypervisor that provides
  olved\, usage\, and much more. If you have any interest in an Open Virtuali
  zation Management platform\, this workshop is for you!
 DTEND:20121110
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121107
 LOCATION:Barcelona\, Spain
 SEQUENCE:0
 SUMMARY:KVM Forum + oVirt Workshop
-UID:2016-06-13T16:12:09+02:00_756934743@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_757159287@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -115,12 +115,12 @@ DESCRIPTION:Speaker: Dave Neary\n\nInfrastructure as a Service\, Platform a
  For more information\, including speaker bio\, [visit the conference websit
  e](http://fossa.inria.fr/en/archives/2996).
 DTEND:20121206T140000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121206T133000Z
 LOCATION:Lille\, France
 SEQUENCE:0
 SUMMARY:Open Source Communities and the Cloud
-UID:2016-06-13T16:12:09+02:00_54083124@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_216363769@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -130,12 +130,12 @@ DESCRIPTION:[FOSSa](http://fossa.inria.fr/en)\, Free and Open Source Softwa
  bers of academia\, to learn from each other\, and to put Open Source values
   back at the heart of academic research.
 DTEND:20121209
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20121204
 LOCATION:Lille\, France
 SEQUENCE:0
 SUMMARY:FOSSa
-UID:2016-06-13T16:12:09+02:00_930457888@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_479995647@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -151,12 +151,12 @@ DESCRIPTION:Speaker: Livnat Peer\n\nHave you ever wondered how KVM is used
  ator's actions in a web UI are translated into KVM commands running on the 
  hypervisors.
 DTEND:20131021T142000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131021T142000Z
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:Empowering Data Center Virtualization Using KVM
-UID:2016-06-13T16:12:09+02:00_610197665@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_856611673@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -174,12 +174,12 @@ DESCRIPTION:Speaker: Theron Conrey\n\nConverged infrastructure is an idea f
  rate the advantages of using Open Source to solve your organization's virtu
  alization challenges.
 DTEND:20131021T164000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131021T164000Z
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:Converged Infrastructure with Open Source
-UID:2016-06-13T16:12:09+02:00_504832090@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_419594499@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -194,12 +194,12 @@ DESCRIPTION:Speaker: Gordon Haff\n\nAs an industry\, we’ve mostly moved on
  red systematically and specifically. This session will give IT professional
  s tools and knowledge to help them make informed decisions.
 DTEND:20131022T111000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131022T111000Z
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:Controlling Clouds\: Beyond Safety
-UID:2016-06-13T16:12:09+02:00_18180542@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_954699341@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -213,12 +213,12 @@ DESCRIPTION:Speaker: Vijay Bellur\n\nGlusterFS is a general purpose distrib
  urce ecosystems like OpenStack\, Apache Hadoop\, oVirt and provide future d
  irections of the GlusterFS project.
 DTEND:20131022T111000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131022T111000Z
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:GlusterFS Architect & Roadmap
-UID:2016-06-13T16:12:09+02:00_697703446@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_430922215@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -233,12 +233,12 @@ DESCRIPTION:Speaker: Shekhar Gulati\n\nShould you learn a new skill set to
   application will be running on OpenShift – Red Hat's open source public Pl
  atform as a Service.
 DTEND:20131023T165000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131023T165000Z
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:Make Your Mobile Web App Go Hybrid with Apache Cordova
-UID:2016-06-13T16:12:09+02:00_441018578@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_137766706@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -247,12 +247,12 @@ DESCRIPTION:LinuxCon is the Linux Foundation's European Linux conference\,
  it the conference website at http://events.linuxfoundation.org/events/linux
  con-europe
 DTEND:20131024
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131021
 LOCATION:Edinburgh\, UK
 SEQUENCE:0
 SUMMARY:LinuxCon Europe
-UID:2016-06-13T16:12:09+02:00_521514278@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_629247562@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -262,23 +262,23 @@ DESCRIPTION:Speaker: Brent Eagles\n\nSee details at https://plus.google.com
  s\, including GRE tunnels and VLANs. The URL of the streaming video channel
   will be posted at the above URL closer to the event.
 DTEND:20131031T020000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131031T020000Z
 LOCATION:Google Hangout and YouTube Stream
 SEQUENCE:0
 SUMMARY:Advanced OpenStack Networking
-UID:2016-06-13T16:12:09+02:00_934885004@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_10422037@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Google Hangout Series for RDO
 DTEND:20131101
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131031
 LOCATION:Google Hangout and YouTube Stream
 SEQUENCE:0
 SUMMARY:RDO Neutron Networking Google Hangout
-UID:2016-06-13T16:12:09+02:00_710850741@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_767631075@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -291,12 +291,12 @@ DESCRIPTION:Speaker: Nikola Đipanov\n\nRDO is a community supported distrib
  tance in as little as 15 to 20 minutes.\n\nCome and hear about this distrib
  ution\, and about Red Hat's work in the OpenStack project.
 DTEND:20130529T102000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130529T102000Z
 LOCATION:Budapest\, Hungary
 SEQUENCE:0
 SUMMARY:RDO\: From zero to OpenStack in 20 minutes
-UID:2016-06-13T16:12:09+02:00_957184326@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_402627800@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -306,12 +306,12 @@ DESCRIPTION:OpenStack CEE day is a one-day conference for users and develop
  cture manager at CERN\, and Bruce Davie of VMware.\n\nFor more information\
  , check out the website at http://openstackceeday.com/.
 DTEND:20130530
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130529
 LOCATION:Budapest\, Hungary
 SEQUENCE:0
 SUMMARY:OpenStack CEE Day
-UID:2016-06-13T16:12:09+02:00_200195363@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_314616427@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -320,25 +320,25 @@ DESCRIPTION:Speaker: Dave Neary\n\nHow can you mix traditional virtualizati
  an work very well together to address your traditional virtualization needs
  \, and to facilitate your migration of workloads to the cloud.
 DTEND:20130415T165000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130415T165000Z
 LOCATION:Grenoble\, France
 SEQUENCE:0
 SUMMARY:Faire cohabiter la virtualization traditionnel et IaaS avec oVirt e
  t OpenStack
-UID:2016-06-13T16:12:09+02:00_734872857@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_894750184@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:For more information\, check out the website at http://www.meet
  up.com/OpenStack-Rhone-Alpes/events/123634732/.
 DTEND:20130416
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130415
 LOCATION:Grenoble\, France
 SEQUENCE:0
 SUMMARY:OpenStack Rhône-Alpes meet-up #1
-UID:2016-06-13T16:12:09+02:00_640640164@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_956872428@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -360,12 +360,12 @@ DESCRIPTION:Speaker: Dan Radez (Panel)\n\nOpenStack is quickly becoming the
  A summary of each of these components and explanation of how they interact 
  with each other will be included.
 DTEND:20131105T111500Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131105T111500Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Getting Started With OpenStack
-UID:2016-06-13T16:12:09+02:00_317545935@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_159404910@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -387,12 +387,12 @@ DESCRIPTION:Speaker: Chris Wright (Panel)\n\nOpenDaylight is an exciting ne
  penStack Neutron to provide a powerful SDN-based networking solution for Op
  enStack Clouds.
 DTEND:20131105T111500Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131105T111500Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenDaylight\: An Open Source SDN for your OpenStack Cloud
-UID:2016-06-13T16:12:09+02:00_115525807@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_730274109@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -412,12 +412,12 @@ DESCRIPTION:Speaker: Diane Mueller (Panel)\n\nOpenStack has experienced a p
  ent parts of the OpenStack ecosystem. More than anything they are not hesit
  ant to speak their mind and so should you.
 DTEND:20131105T173000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131105T173000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack for Enterprise Developers\: Should they care?
-UID:2016-06-13T16:12:09+02:00_737450930@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_569513105@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -441,13 +441,13 @@ DESCRIPTION:Speaker: James Labocki\, Oleg Barenboim\n\nAdding an OpenStack
  ions management of OpenStack with existing data center virtualization and p
  ublic clouds in their organization.
 DTEND:20131106T145000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131106T145000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Unifying the Management of OpenStack\, Public Cloud\, Data Center V
  irtualization and more
-UID:2016-06-13T16:12:09+02:00_146529584@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_979337055@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -460,12 +460,12 @@ DESCRIPTION:Speaker: Mark Wagner\n\nIn this session\, Mark Wagner will deta
  orking based on Linux bridge and Open vSwitch Capacity planning for OpenSta
  ck provisioning services\, including Nova\, Cinder\, Keystone\, and Glance
 DTEND:20131106T154000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131106T154000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack Performance
-UID:2016-06-13T16:12:09+02:00_479340940@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_916299779@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -474,12 +474,12 @@ DESCRIPTION:Speaker: Brent Holden (Panel)\n\nA panel proposed by the Apps O
  is)\, Himanshu Bari (HW)\, Bruce Basil Mathews (HP)\, Brent Holden (Red Hat
  )
 DTEND:20131107T110000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131107T110000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Big Data Panel
-UID:2016-06-13T16:12:09+02:00_956591758@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_41400131@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -512,12 +512,12 @@ DESCRIPTION:Speaker: John Mark Walker\, Eric Harney\n\nThe Gluster communit
  erFS roadmap tour\, discussing upcoming enhancements that will benefit Open
  Stack operators and developers.
 DTEND:20131108T090000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T090000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Real World Usage of GlusterFS + OpenStack
-UID:2016-06-13T16:12:09+02:00_310915788@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_220058302@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -536,12 +536,12 @@ DESCRIPTION:Speaker: Flavio Percoco (Panel)\n\nCome to this session to get
  n done and the path ahead – including a description of the project\, real-w
  orld performance metrics\, and a live demo.
 DTEND:20131108T095000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T095000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack Queuing and Notification Service ("Marconi")
-UID:2016-06-13T16:12:09+02:00_692049073@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_927208147@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -564,12 +564,12 @@ DESCRIPTION:Speaker: Bob Kukura (Panel)\n\nThis presentation introduces the
  it was designed to solve\, how to deploy ML2 in an OpenStack Havana environ
  ment\, and how existing Neutron deployments can migrate to ML2.
 DTEND:20131108T110000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T110000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack Neutron Modular Layer 2 Plugin Deep Dive
-UID:2016-06-13T16:12:09+02:00_422198253@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_995497156@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -585,12 +585,12 @@ DESCRIPTION:Speaker: Dave Neary\n\nEarlier this year\, Dave Neary presented
  an initial set of OpenStack personas\, discuss how they were created\, and 
  detail what conclusions we can draw from them.
 DTEND:20131108T133000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T133000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack user personas\: 6 months on
-UID:2016-06-13T16:12:09+02:00_100560934@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_944098735@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -599,12 +599,12 @@ DESCRIPTION:Speaker: Eoghan Glynn (Panel)\n\nCeilometer is a tool that coll
  ts on top of OpenStack. Heat aims to autoscale its deployments\, scaling up
   when they're running hot and scaling back when idle.
 DTEND:20131108T142000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T142000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Ceilometer+Heat=Alarming
-UID:2016-06-13T16:12:09+02:00_657372090@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_250243775@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -637,12 +637,12 @@ DESCRIPTION:Speaker: Diane Mueller\, Krishna Raman\n\nJust getting a cloud
  onstrations\, and make the technical difficulty of this topic easily approa
  chable through real-life examples.
 DTEND:20131108T151000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131108T151000Z
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:Putting the PaaS in OpenStack with Heat
-UID:2016-06-13T16:12:09+02:00_143824447@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_298078637@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -654,48 +654,48 @@ DESCRIPTION:The OpenStack Summit\, November 5-8\, 2013\, brings together th
  , check out the website at http://www.openstack.org/summit/openstack-summit
  -hong-kong-2013/
 DTEND:20131109
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131105
 LOCATION:Hong Kong
 SEQUENCE:0
 SUMMARY:OpenStack Summit Hong Kong
-UID:2016-06-13T16:12:09+02:00_319513616@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_803627463@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Dan Radez\n\nOpenStack Philly Meetup. More details at 
  http://www.meetup.com/Philly-OpenStack-Meetup-Group/events/144907072/
 DTEND:20131120T010000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131119T230000Z
 LOCATION:Philadelphia\, PA
 SEQUENCE:0
 SUMMARY:OpenStack Philly Lab
-UID:2016-06-13T16:12:09+02:00_688176880@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_108487117@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Dan Radez\n\nOpenStack Connecticut Meetup. More detail
  s at http://www.meetup.com/Openstack-Connecticut/events/143713952/
 DTEND:20131121T010000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131120T230000Z
 LOCATION:Rocky Hill\, CT
 SEQUENCE:0
 SUMMARY:OpenStack Connecticut Lab
-UID:2016-06-13T16:12:09+02:00_274728759@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_387256050@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Dan Radez\n\nOpenStack New York Meetup. More details a
  t http://www.meetup.com/OpenStack-New-York-Meetup/events/144883832/
 DTEND:20131122T010000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131121T230000Z
 LOCATION:New York\, NY
 SEQUENCE:0
 SUMMARY:OpenStack New York Lab
-UID:2016-06-13T16:12:09+02:00_576280838@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_178899409@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -707,11 +707,11 @@ DESCRIPTION:Bring your laptops and Join us as Dan Radez\, from Red Hat show
  w_GRE prior to the meetup. Please note that web page is a work in progress 
  and may be updated prior to the meetup.
 DTEND:20131123
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131119
 SEQUENCE:0
 SUMMARY:OpenStack Hands-On Labs
-UID:2016-06-13T16:12:09+02:00_741748264@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_930716971@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -732,12 +732,12 @@ DESCRIPTION:Speaker: Dave Neary\n\nPersonas were made famous by Alan Moore
  rget audiences\, and specifically those seeking to grow a community around 
  an open source project.
 DTEND:20130415T165000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130415T165000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:Using Personas to Target Users
-UID:2016-06-13T16:12:09+02:00_505064201@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_561613719@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -766,12 +766,12 @@ DESCRIPTION:Speaker: Dianne Mueller\n\nRedHat has created it's own OpenStac
  igin easily and seamlessly integrates on any OpenStack distribution and how
   to you can add Origin into your own OpenStack distributions.
 DTEND:20130415T233000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130415T233000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:Putting the PaaS in OpenStack
-UID:2016-06-13T16:12:09+02:00_180213004@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_433238130@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -799,12 +799,12 @@ DESCRIPTION:Speaker: Anne Gentle\, Iccha Sethi\, Julie Pichon\, Anita Kuno\
  tp://openstacksummitapril2013.sched.org/event/3c0c92d5ad2c1bd6a432ca77c29a9
  970#.UUhV0uPDQ24
 DTEND:20130416T185000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130416T185000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:What Everyone Ought to Know about OpenStack Internships
-UID:2016-06-13T16:12:09+02:00_634696173@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_747305086@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -816,12 +816,12 @@ DESCRIPTION:Speaker: Adam Young\n\nSecurity is important when deploying any
  eIPA can be used to help secure communication\, provide authentication and 
  authorization capabilities for a large scale Open Stack deployment.
 DTEND:20130418T160000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130418T160000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:Securing OpenStack with FreeIPA
-UID:2016-06-13T16:12:09+02:00_779154067@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_429519153@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -834,24 +834,24 @@ DESCRIPTION:Speaker: David Lutterkort\n\nSince its inception in 2009\, Delt
   use it with Openstack. It will also explain how Deltacloud is used be a nu
  mber of projects to achieve cross-cloud portability.
 DTEND:20130418T111000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130418T111000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:Apache Deltacloud - speaking EC2 and CIMI to Nova
-UID:2016-06-13T16:12:09+02:00_759177575@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_590261014@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:For more information\, check out the website at http://www.open
  stack.org/summit/portland-2013/.
 DTEND:20130419
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130415
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:OpenStack Summit Portland
-UID:2016-06-13T16:12:09+02:00_47872438@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_715879936@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -859,23 +859,23 @@ DESCRIPTION:Speaker: Hervé Lemaitre\n\nHervé Lemaitre explains how Red Hat
  builds on the power of open source communities like OpenStack\, oVirt and G
  luster to deliver an open hybrid cloud to its customers.
 DTEND:20131003T161500Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131003T161500Z
 LOCATION:Paris
 SEQUENCE:0
 SUMMARY:Building an open hybrid cloud with open source
-UID:2016-06-13T16:12:09+02:00_937006554@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_9081676@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Steven Hardy\n\nOrchestration on OpenStack.
 DTEND:20131004T094500Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131004T094500Z
 LOCATION:Paris
 SEQUENCE:0
 SUMMARY:Orchestration on OpenStack
-UID:2016-06-13T16:12:09+02:00_209600546@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_90643060@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -886,24 +886,24 @@ DESCRIPTION:Speaker: Dave Neary\n\nDave Neary has been active in free and o
  jects including oVirt\, RDO\, a distribution of OpenStack for Red Hat based
   operating systems\, Gluster and Fedora.
 DTEND:20131004T105000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131004T105000Z
 LOCATION:Paris
 SEQUENCE:0
 SUMMARY:Open Hybrid Cloud - Virt\, IaaS\, PaaS - oh\, my!
-UID:2016-06-13T16:12:09+02:00_982174001@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_572985438@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:The first free and open source european forum.\n\nFor more info
  rmation check out the website at http://www.openworldforum.org/en/
 DTEND:20131006
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131003
 LOCATION:Paris
 SEQUENCE:0
 SUMMARY:Open World forum
-UID:2016-06-13T16:12:09+02:00_733310465@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_36714970@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -916,12 +916,12 @@ DESCRIPTION:Speaker: Mark Wagner\n\nReview performance and scale testing of
  rformance. He will also reveal tips and tricks for achieving higher density
  .
 DTEND:20130916T013500Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130916T013500Z
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:OpenStack Performance & Scale
-UID:2016-06-13T16:12:09+02:00_833249251@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_936060629@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -932,12 +932,12 @@ DESCRIPTION:Speaker: Steven Dake\n\nOpenStack Heat provides autoscaling fun
   recommended\, and some brief thoughts on future OpenStack Heat autoscaling
   direction are explained.
 DTEND:20130916T061000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130916T061000Z
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:Using OpenStack Heat Autoscaling
-UID:2016-06-13T16:12:09+02:00_41179393@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_555241590@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -952,13 +952,13 @@ DESCRIPTION:Speaker: Ric Wheeler\n\nManaging storage resources in Linux has
  tatus updates on the component projects and their roadmaps will also be sha
  red.
 DTEND:20130917T071000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130917T071000Z
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:Storage Management\: Pulling Together Management Across the Cloud a
  nd Bare Metal
-UID:2016-06-13T16:12:09+02:00_42408498@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_353015347@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -972,12 +972,12 @@ DESCRIPTION:Speaker: Chris Wright\n\nWe take this opportunity at the CloudO
  s and suggestions on how OpenDaylight should evolve to best serve cloud env
  ironments in service providers and enterprises alike.
 DTEND:20130918T005000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130918T005000Z
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:Clouds\, Virtualization and SDN Panel
-UID:2016-06-13T16:12:09+02:00_729354660@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_199247989@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -995,12 +995,12 @@ DESCRIPTION:Speaker: Gordon Haff\n\nPaaS has rightly been celebrated as a w
  how organizations are using PaaS today and the benefits that they are seein
  g by doing so.
 DTEND:20130918T040000Z
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130918T040000Z
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:How Platform-as-a-Serivice Benefits More Than Developers
-UID:2016-06-13T16:12:09+02:00_429769209@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_874976513@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1010,12 +1010,12 @@ DESCRIPTION:LinuxCon is the Linux Foundation's North American Linux confere
  conference website at http://events.linuxfoundation.org/events/linuxcon-nor
  th-america.
 DTEND:20130919
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130916
 LOCATION:New Orleans\, Louisiana\, USA
 SEQUENCE:0
 SUMMARY:LinuxCon North America
-UID:2016-06-13T16:12:09+02:00_796197246@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_884014023@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1030,12 +1030,12 @@ DESCRIPTION:Speaker: Mark McLoughlin\n\nThe advent of IaaS has brought abou
  itecture so that operating an OpenStack cloud is as automated as operating 
  a modern cloud based application.
 DTEND:20130203T092500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130203T090000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:OpenStack\: 21st Century App Architecture and Cloud Operations
-UID:2016-06-13T16:12:10+02:00_705593175@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_692741396@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1055,12 +1055,12 @@ DESCRIPTION:Speaker: Tomas Sedovic\n\nDeploying complex systems on OpenStac
  nd Heat well enough to decide whether it is useful in your environment and 
  how to get started with it.
 DTEND:20130203T145500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130203T143000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Orchestrating complex deployments on OpenStack using Heat
-UID:2016-06-13T16:12:10+02:00_582516805@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_605764479@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1074,12 +1074,12 @@ DESCRIPTION:Speaker: Eoghan Glynn\n\nCeilometer is an OpenStack incubated p
  t's architecture before digging into how and why they can contribute to its
   future.
 DTEND:20130203T155500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130203T153000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Measuring OpenStack\: the Ceilometer Project
-UID:2016-06-13T16:12:10+02:00_441596417@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_629071181@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1088,12 +1088,12 @@ DESCRIPTION:The Free and Open source Software Developers’ European Meeting
  ad use of Free and Open Source software. For more information on FOSDEM\, [
  visit the conference website](http://fosdem.org/).
 DTEND:20130204
-DTSTAMP:20160613T141209Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130202
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:FOSDEM
-UID:2016-06-13T16:12:09+02:00_106775433@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_860750307@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1107,23 +1107,23 @@ DESCRIPTION:Speaker: Dave Neary\n\nHangout: https://plus.google.com/events/
   fix these problems.\n\nWe'll have a lot of time for Q&A\, and we will have
   OpenStack networking experts from Red Hat on-hand to help with those.
 DTEND:20130924T020000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130924T020000Z
 LOCATION:Google Hangout
 SEQUENCE:0
 SUMMARY:OpenStack Networking with Neutron and RDO
-UID:2016-06-13T16:12:10+02:00_588776097@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_714254274@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Google Hangout Series for RDO.
 DTEND:20130925
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130924
 LOCATION:Google Hangout
 SEQUENCE:0
 SUMMARY:RDO Neutron Networking Google Hangout
-UID:2016-06-13T16:12:10+02:00_41761466@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_98579710@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1133,12 +1133,12 @@ DESCRIPTION:We will be having a test day for the RDO Havana release on Octo
  the #rdo channel on the freenode.net IRC network for questions and conversa
  tion during the event.
 DTEND:20131031
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20131029
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:RDO Havana Test Day
-UID:2016-06-13T16:12:10+02:00_768322310@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_146690520@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1155,25 +1155,25 @@ DESCRIPTION:Speaker: Dave Neary\n\nRed Hat products are built on open sourc
   Hat product features Learn about how to influence the development of futur
  e features by working directly with the developers
 DTEND:20130612T204000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130612T194000Z
 LOCATION:Boston\, MA
 SEQUENCE:0
 SUMMARY:Community Catalysts\: The Value of Open Source Community Developmen
  t
-UID:2016-06-13T16:12:10+02:00_37814723@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_587024741@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:For more information\, check out the website at http://redhat.c
  om/summit/.
 DTEND:20130615
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20130611
 LOCATION:Boston\, MA
 SEQUENCE:0
 SUMMARY:Red Hat Summit
-UID:2016-06-13T16:12:10+02:00_594072403@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_563806509@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1183,12 +1183,12 @@ DESCRIPTION:We will be having a test day for the first Icehouse milestone o
  ipants will be on the #rdo channel on the freenode.net IRC network for ques
  tions and conversation.
 DTEND:20140109
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140107
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:RDO Icehouse Test Day
-UID:2016-06-13T16:12:10+02:00_511161899@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_978981695@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1198,12 +1198,12 @@ DESCRIPTION:We will be having a test day for the third Icehouse milestone o
  , participants will be on the #rdo channel on the freenode.net IRC network 
  for questions and conversation.
 DTEND:20140327
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140325
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:RDO Icehouse Test Day (Rescheduled)
-UID:2016-06-13T16:12:10+02:00_577734469@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_771499425@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1214,21 +1214,21 @@ DESCRIPTION:Speaker: Steve Baker\n\nIn this hangout Steve Baker will walk t
  in us on #rdo-hangout on the Freenode IRC network for questions and convers
  ation during the presentation.
 DTEND:20140429T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140429T220000Z
 SEQUENCE:0
 SUMMARY:What's new in the OpenStack Heat Icehouse release
-UID:2016-06-13T16:12:10+02:00_18007559@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_272783591@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20140430
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140429
 SEQUENCE:0
 SUMMARY:RDO Hangout OpenStack Heat
-UID:2016-06-13T16:12:10+02:00_772472659@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_432695752@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1238,11 +1238,11 @@ DESCRIPTION:Speaker: Flavio Percoco\n\nFlavio Percoco will be hosting a pre
  tps://plus.google.com/events/ckjhm8rggnqvrnspftna845kubk) and will also be 
  available at that location afterwards.
 DTEND:20140327T160000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140327T150000Z
 SEQUENCE:0
 SUMMARY:OpenStack Marconi
-UID:2016-06-13T16:12:10+02:00_896345@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_506984292@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1252,33 +1252,33 @@ DESCRIPTION:Speaker: Lars Kellogg-Stedman\n\nHeat is the OpenStack orchestr
   [streamed live on YouTube](https://plus.google.com/events/c9u4sjn7ksb8jrmm
  a7vd25aok94) and will also be available at that location afterwards.
 DTEND:20140905T170000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140905T160000Z
 SEQUENCE:0
 SUMMARY:Deploying with Heat
-UID:2016-06-13T16:12:10+02:00_294821960@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_701321370@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20140906
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140327
 SEQUENCE:0
 SUMMARY:RDO Hangouts
-UID:2016-06-13T16:12:10+02:00_879752827@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_756125391@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Giulio Fidente\n\nAn overview of the TripleO project a
  nd its tooling.
 DTEND:20140710T174000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140710T170000Z
 LOCATION:Worldwide
 SEQUENCE:0
 SUMMARY:TripleO\, chicken/egg done right (Italy event)
-UID:2016-06-13T16:12:10+02:00_987624694@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_497285811@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1286,12 +1286,12 @@ DESCRIPTION:Celebrate the 4th OpenStack Foundation birthday.\n\nFor informa
  tions and a list of the Worldwide events visit: http://www.openstack.org/bi
  rthday.
 DTEND:20140801
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140701
 LOCATION:Worldwide
 SEQUENCE:0
 SUMMARY:OpenStack 4th Birthday
-UID:2016-06-13T16:12:10+02:00_81236036@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_813800969@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1303,12 +1303,12 @@ DESCRIPTION:We will be having a test day for the RDO Juno release\, Milesto
  ted at https://openstack.redhat.com/RDO_test_day_Juno_milestone_3_test_case
  s
 DTEND:20141003
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20141001
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:RDO Havana Test Day
-UID:2016-06-13T16:12:10+02:00_971164279@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_336468405@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1325,12 +1325,12 @@ DESCRIPTION:Hard to believe another quarter has gone by in the world of Cep
  art on June 24 and carry over to June 25 if needed.\n\nhttp://ceph.com/comm
  unity/ceph-developer-summit-gh/
 DTEND:20140626
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140624
 LOCATION:Google Hangouts (Virtual)
 SEQUENCE:0
 SUMMARY:Ceph Developer Summit
-UID:2016-06-13T16:12:10+02:00_800676898@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_540545677@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1339,12 +1339,12 @@ DESCRIPTION:The OpenStack Summit is a five-day conference for developers\,
   on the OpenStack Summit\, see the event website at https://www.openstack.o
  rg/summit/openstack-paris-summit-2014/
 DTEND:20141106
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20141103
 LOCATION:Paris\, France
 SEQUENCE:0
 SUMMARY:OpenStack Summit
-UID:2016-06-13T16:12:10+02:00_487762892@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_183391175@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1358,12 +1358,12 @@ DESCRIPTION:Speaker: Federico Simoncelli\n\nThis session will cover the cur
  lance Integration Deep Dive Ideas and Future Work on Glance Integration Fut
  ure Integration with Cinder Roadmap
 DTEND:20140201T132000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140201T124000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:oVirt and OpenStack storage (present and future)
-UID:2016-06-13T16:12:10+02:00_808342369@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_859122912@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1374,13 +1374,13 @@ DESCRIPTION:Speaker: Dave Neary\n\nThis talk will be a whirlwind tour aroun
  oud on commodity hardware\, in a couple of hours\, covering virt\, storage\
  , IaaS and PaaS.
 DTEND:20140202T163500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140202T162000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Your complete Open Source cloud\: mixing oVirt\, OpenStack\, OpenSh
  ift and Gluster for a full private cloud
-UID:2016-06-13T16:12:10+02:00_8633284@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_561009294@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1409,13 +1409,13 @@ DESCRIPTION:Speaker: Assaf Muller\n\nJoin me for an architectural\, develop
  lk will be useful to developers interested in learning about new networking
   concepts - Minimal background knowledge will be assumed.
 DTEND:20140202T132000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140202T124000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Tunnels as a connectivity and segregation solution for virtualized 
  networks
-UID:2016-06-13T16:12:10+02:00_872726855@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_787335848@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1430,13 +1430,13 @@ DESCRIPTION:Speaker: Mike Kolesnik\n\nAs the prominent open-source data cen
  etworking\, and see the road-map to future network virtualization in the Da
  ta Center\, all using open source enterprise-grade software.
 DTEND:20140202T160000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140202T152000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Bring your virtualized networking stack to the next level\: oVirt &
   OpenStack Neutron integration
-UID:2016-06-13T16:12:10+02:00_693272040@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_748493723@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1445,12 +1445,12 @@ DESCRIPTION:The Free and Open source Software Developers’ European Meeting
  ad use of Free and Open Source software. For more information on FOSDEM\, [
  visit the conference website](http://fosdem.org/).
 DTEND:20140203
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140201
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:FOSDEM
-UID:2016-06-13T16:12:10+02:00_528198242@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_164705541@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1466,13 +1466,13 @@ DESCRIPTION:Speaker: Nathan Kinder\, Robert Clark and Bryan Payne\n\nOrigin
  tack Security Guide Invited security review of Ironic Security guidelines f
  or projects Security testing
 DTEND:20140512T155500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T151500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:OpenStack Security Group (OSSG)\: An Update on Our Progress and Pla
  ns
-UID:2016-06-13T16:12:10+02:00_346574544@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_153885911@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1489,12 +1489,12 @@ DESCRIPTION:Speaker: Jan Mark Holzer\, Kenneth Hui\, Caroline McCrory\, Jes
  ned and best practices for future deployments - Specific opportunities for 
  OpenStack to improve
 DTEND:20140512T155500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T151500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Scaling Out OpenStack Clouds in the Enterprise
-UID:2016-06-13T16:12:10+02:00_494914083@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_918774721@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1506,12 +1506,12 @@ DESCRIPTION:Speaker: Chris Wright\, Dan Dumitriu\, Kyle Mestery\, Nils Swar
  irements for network services Interactions with Open Daylight Network opera
  tional requirements
 DTEND:20140512T155500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T151500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:The Future of OpenStack Networking
-UID:2016-06-13T16:12:10+02:00_282914852@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_941206384@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1529,12 +1529,12 @@ DESCRIPTION:Speaker: Zane Bitter and Steven Hardy\n\nIn this session you wi
  ne Bitter are both core developers on the Heat project\, and have been acti
  ve contributors since the project was started)
 DTEND:20140512T155500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T151500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Introduction to OpenStack Orchestration
-UID:2016-06-13T16:12:10+02:00_289409414@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_513802226@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1556,12 +1556,12 @@ DESCRIPTION:Speaker: Matthew Farrellee\, Sergey Lukjanov\, and John Speidel
  re it’s going\, particularly with regard to the Unified Agent approach\, on
   which we’re currently working on leveraging in Savanna.
 DTEND:20140512T184000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T180000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:The state of OpenStack Data Processing\: Savanna\, now and in Juno
-UID:2016-06-13T16:12:10+02:00_62376838@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_465592060@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1581,12 +1581,12 @@ DESCRIPTION:Speaker: Brent Salisbury\, Madhu Venguopal\, Dave Meyer and Kyl
  ng of how OpenDaylight integrates with OpenStack Neutron to provide virtual
   networks for OpenStack tenants.
 DTEND:20140512T193000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T185000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Using OpenDaylight Within An OpenStack Environment
-UID:2016-06-13T16:12:10+02:00_551805160@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_119860071@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1604,12 +1604,12 @@ DESCRIPTION:Speaker: Stephen Gordon\n\nAs a cloud deployment grows both in
  uding their pros and cons\, example use cases\, and performance considerati
  ons.
 DTEND:20140512T193000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T185000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Divide and Conquer\: Resource Segregation in the OpenStack Cloud
-UID:2016-06-13T16:12:10+02:00_281105431@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_927553599@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1625,12 +1625,12 @@ DESCRIPTION:Speaker: Matthias Runge\n\nIn probably most cases\, when Horizo
  nd feel along distribution provided packages that will not break on minor p
  ackage updates or version upgrades.
 DTEND:20140512T192000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T204000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Customizing Horizon without breaking on upgrades
-UID:2016-06-13T16:12:10+02:00_829811019@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_116808208@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1645,13 +1645,13 @@ DESCRIPTION:Speaker: Gary Kotton and Gilad Zlotkin\n\nEnterprise-Grade Open
  r recent developments in Openstack schedulers in the context of the general
   Enterprise-Grade Openstack roadmap.
 DTEND:20140512T212000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512T204000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Enterprise-Grade Scheduling\: Enterprise-Grade Openstack from a Sch
  eduler perspective
-UID:2016-06-13T16:12:10+02:00_231470327@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_843283752@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1664,13 +1664,13 @@ DESCRIPTION:Speaker: Rob Locke and Forrest Taylor\n\nJoin us for this hands
  plore the web interface Foreman as you deploy a controller node and a compu
  te node.
 DTEND:20140513T164500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T151500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Deploying Red Hat Enterprise Linux OpenStack Platform with Packstac
  k and Foreman
-UID:2016-06-13T16:12:10+02:00_652967000@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_231939566@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1686,12 +1686,12 @@ DESCRIPTION:Speaker: Dan Smith\n\nIn large deployments\, some piece of Nova
   in recent cycles\, as well as reveal the major new capability that the Ice
  house release brings to the table.
 DTEND:20140513T184000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T180000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Nova's March Towards Live Upgrade Capability
-UID:2016-06-13T16:12:10+02:00_104581701@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_442192665@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1712,13 +1712,13 @@ DESCRIPTION:Speaker: Trevor McKay\, Alexander Ignatov and Sergey Lukjanov\n
  all of these concepts together. The demo will cover job and data source def
  inition\, job execution and collection of job results.
 DTEND:20140513T184000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T180000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Technical Deep Dive\: Big Data computations using Elastic Data Proc
  essing in OpenStack Cloud
-UID:2016-06-13T16:12:10+02:00_189051817@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_362848506@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1731,13 +1731,13 @@ DESCRIPTION:Speaker: Rob Locke and Forrest Taylor\n\nJoin us for this hands
  a service on both nodes of the cluster. - Perform fail-over scenarios to te
  st high availability.
 DTEND:20140513T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T180000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Deploying High Availability with Red Hat Enterprise Linux OpenStack
   Platform
-UID:2016-06-13T16:12:10+02:00_399369760@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_885234710@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1763,13 +1763,13 @@ DESCRIPTION:Speaker: Brent Holden\n\nThe Massachusetts Open Cloud (MOC) wil
  niversity\, MIT and North Eastern\, UMass and other parthers MOC will evolv
  e into a large scale open cloud infrastructure
 DTEND:20140513T193000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T185000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Implementation and Lessons learned from building a large scale clou
  d (Massachusetts Open Cloud/MOC)
-UID:2016-06-13T16:12:10+02:00_571465525@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_837694683@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1782,13 +1782,13 @@ DESCRIPTION:Speaker: Rob Locke and Forrest Taylor\n\nJoin us for this hands
  ty Apache Qpid. - View the monitoring feature of Apache Qpid. - Configure t
  he Red Hat Enterprise MRG web management console for Apache Qpid.
 DTEND:20140513T201500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T191500Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Deploying Apache Qpid on Red Hat Enterprise Linux OpenStack Platfor
  m
-UID:2016-06-13T16:12:10+02:00_157767079@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_46590357@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1803,12 +1803,12 @@ DESCRIPTION:Speaker: Steve Baker\n\nUntil the Icehouse release of Heat\, co
  at such as cloud-init\, shell scripts\, Puppet and golden images. You will 
  also learn how to add support for other configuration management tools.
 DTEND:20140513T202000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T194000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Application software configuration using Heat
-UID:2016-06-13T16:12:10+02:00_941279730@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_348466882@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1820,13 +1820,13 @@ DESCRIPTION:Speaker: Rob Locke and Forrest Taylor\n\nJoin us for this hands
  and create a subnet\, router\, and floating IP address for an instance. - D
  eploy the Neutron L3 agent and create L3 services.
 DTEND:20140513T214500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140513T203000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Deploying the Neutron L2 and L3 Services on Red Hat Enterprise Linu
  x OpenStack Platform
-UID:2016-06-13T16:12:10+02:00_378799773@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_121942907@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1844,12 +1844,12 @@ DESCRIPTION:Speaker: Keith Basil\n\nOperational awareness and value for clo
  ts - What TripleO means for hardware/software vendors - Early work in this 
  area
 DTEND:20140514T154000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140514T150000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Extending TripleO for OpenStack Infrastructure Management
-UID:2016-06-13T16:12:10+02:00_67119220@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_579265337@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1863,12 +1863,12 @@ DESCRIPTION:Speaker: Luis Pabon and John Dickinson\n\nRed Hat uses OpenStac
  ective project leads will show how Swift and GlusterFS work together to tak
  e advantage of the best each system has to offer.
 DTEND:20140514T192000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140514T184000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Breaking the Mold with OpenStack Swift and GlusterFS
-UID:2016-06-13T16:12:10+02:00_39780901@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_744152850@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1909,12 +1909,12 @@ DESCRIPTION:Speaker: Mark McLoughlin and Monty Taylor\n\nLike many open-sou
  s used by many application developers today versus the methodologies used b
  y open-source projects today.
 DTEND:20140514T211000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140514T203000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:OpenStack\: Where Continuous Delivery and Distros Collide
-UID:2016-06-13T16:12:10+02:00_108682159@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_164237790@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1935,12 +1935,12 @@ DESCRIPTION:Speaker: Liz Blanchard\n\nHow has the OpenStack User Experience
  nning\, design\, development\, and testing efforts to improve the overall u
  ser experience.
 DTEND:20140514T201000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140514T193000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:User Experience in the OpenStack Community
-UID:2016-06-13T16:12:10+02:00_891987467@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_273404296@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1958,13 +1958,13 @@ DESCRIPTION:Speaker: Steve Baker\, Florian Haas\, Georgy Okrokvertskhov and
  uch as Docker turn the use of existing configuration management obsolete? -
   Is there one tool to win them all?
 DTEND:20140514T220000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140514T212000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Automation\, orchestration\, confusion? Taking the discussion up th
  e stack.
-UID:2016-06-13T16:12:10+02:00_583076749@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_596095122@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -1986,12 +1986,12 @@ DESCRIPTION:Speaker: Dan Radez\, Niki Acosta and Kenneth Hui\n\nOpenStack c
  ng Ceilometer metrics - Instructions to prepare for the workshop can be fou
  nd at http://openstack.redhat.com/GettingStartedIcehouse_w_GRE
 DTEND:20140515T143000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140515T130000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Getting Started with OpenStack
-UID:2016-06-13T16:12:10+02:00_437487874@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_578757064@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2006,12 +2006,12 @@ DESCRIPTION:Speaker: Rich Megginson et al\n\nDesignate provides DNSaaS serv
  velopment of Designate. Several of the Designate contributors will be on ha
  nd during the workshop to help attendees work through the deployment.
 DTEND:20140515T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20140515T173000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:Designate\: Interactive Workshop - Install and Operate
-UID:2016-06-13T16:12:10+02:00_779678586@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_322935885@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2031,13 +2031,13 @@ DESCRIPTION:Speaker: James Cuff\, Jan Mark Holzer\, and Orran Krieger\n\nTh
  on\, and some of the required changes needed in OpenStack to enable a multi
  -provider open cloud.
 DTEND:20140515T205000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20140515T201000Z
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:The Massachusetts Open Cloud (MOC) a new model to operate and innov
  ate in a vendor neutral cloud
-UID:2016-06-13T16:12:10+02:00_231590789@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_107769909@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2046,12 +2046,12 @@ DESCRIPTION:The OpenStack Summit is a five-day conference for developers\,
   on the OpenStack Summit and to register\, see https://www.openstack.org/su
  mmit/openstack-summit-atlanta-2014/.
 DTEND:20140517
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141629Z
 DTSTART:20140512
 LOCATION:Atlanta\, Georgia
 SEQUENCE:0
 SUMMARY:OpenStack Summit
-UID:2016-06-13T16:12:10+02:00_47017771@rdoproject.org
+UID:2016-06-13T16:16:29+02:00_873319524@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2063,44 +2063,44 @@ DESCRIPTION:linux.conf.au is the largest linux and open source conference i
  s and hobbyists\, are expected to attend.\n\nAdditional details about the c
  onference are available at http://<http://hobart.lca2017.org/.>
 DTEND:20170121
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20170116
 LOCATION:Hobart\, Australia
 SEQUENCE:0
 SUMMARY:linux.conf.au
-UID:2016-06-13T16:12:10+02:00_797400367@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_828921400@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: RDO
 DTEND:20151210T235900Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151210T000100Z
 LOCATION:rdo channel on Freenode
 SEQUENCE:0
 SUMMARY:Mitaka Milestone 1 Test Day
-UID:2016-06-13T16:12:10+02:00_117691954@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_506412852@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: RDO
 DTEND:20151211T235900Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151211T000100Z
 LOCATION:rdo channel on Freenode
 SEQUENCE:0
 SUMMARY:Mitaka Milestone 1 Test Day
-UID:2016-06-13T16:12:10+02:00_757371870@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_952371206@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20151212
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151210
 SEQUENCE:0
 SUMMARY:RDO Test Days
-UID:2016-06-13T16:12:10+02:00_598224405@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_256161394@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2115,12 +2115,12 @@ DESCRIPTION:Speaker: Rich Bowen\n\nYou've seen Cloud in the press for years
  ved in the OpenStack project What the alternate cloud infrastructure platfo
  rms are
 DTEND:20131201T183000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150221T180000Z
 LOCATION:Los Angeles\, CA
 SEQUENCE:0
 SUMMARY:Introduction to OpenStack
-UID:2016-06-13T16:12:10+02:00_757860997@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_371554897@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2152,12 +2152,12 @@ DESCRIPTION:Speaker: Brian Proffitt\n\nThe difference between the scale up
   and totally geeked-out approach to discussing VMs in modern IT environment
  s.
 DTEND:20150221T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150221T220000Z
 LOCATION:Los Angeles\, CA
 SEQUENCE:0
 SUMMARY:Why Scale Up Is Like Star Trek and Scale Out Is Like Star Wars
-UID:2016-06-13T16:12:10+02:00_987199307@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_171046350@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2169,12 +2169,12 @@ DESCRIPTION:SCALE 13x – the 13th annual Southern California Linux Expo – wi
  \, SCALE is the largest community-run FOSS conference in North America.\n\n
  More information is available at http://www.socallinuxexpo.org/scale13x
 DTEND:20150223
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150219
 LOCATION:Los Angeles\, CA
 SEQUENCE:0
 SUMMARY:SCaLE 13x
-UID:2016-06-13T16:12:10+02:00_601677144@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_912026899@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2190,21 +2190,21 @@ DESCRIPTION:Speaker: Eoghan Glynn\n\nOn February 9th\, at 14:00 UTC\, Eogha
   30th. (See the [Kilo release schedule](https://wiki.openstack.org/wiki/Kil
  o_Release_Schedule) for details.)
 DTEND:20150209T150000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150209T140000Z
 SEQUENCE:0
 SUMMARY:What's coming for Ceilometer in OpenStack Kilo
-UID:2016-06-13T16:12:10+02:00_426163463@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_275524183@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20150210
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150209
 SEQUENCE:0
 SUMMARY:RDO Hangouts
-UID:2016-06-13T16:12:10+02:00_701284426@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_224451985@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2222,12 +2222,12 @@ DESCRIPTION:Speaker: Steve Baker\n\nImage-based deployment of cloud applica
   use Heat\, OpenStack\, or Docker.\n\nSee the linuxconf.au [schedule](http:
  //linux.conf.au/schedule/30047/view_talk?day=thursday) for details.
 DTEND:20150114T232000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150114T223500Z
 LOCATION:Auckland\, NZ
 SEQUENCE:0
 SUMMARY:Deploying to the Cloud with Golden Images\, Heat\, and Docker
-UID:2016-06-13T16:12:10+02:00_295120615@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_678420988@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2238,12 +2238,12 @@ DESCRIPTION:linux.conf.au is one of the foremost open source conferences in
   a week collaborating on free\, open source software projects.\n\nMore info
  rmation is available at http://linux.conf.au/
 DTEND:20150117
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150112
 LOCATION:Auckland\, NZ
 SEQUENCE:0
 SUMMARY:LinuxConf AU
-UID:2016-06-13T16:12:10+02:00_521971391@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_637671383@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2254,12 +2254,12 @@ DESCRIPTION:Speaker: Pei Chen\, Jay Vyas\n\nReal Time Drug Safety Monitorin
  gTop\, OpenStack\, Spark\, cTAKES\, Cassandra to proactively monitor and de
  tect adverse drug events from Twitter data.
 DTEND:20150413T082000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150413T073000Z
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:Pharmacovigilance - Big Data for RealTime Drug Monitoring
-UID:2016-06-13T16:12:10+02:00_594176843@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_260179386@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2274,12 +2274,12 @@ DESCRIPTION:ApacheCon brings together the open source community to learn ab
  and community building.\n\nMore information is available at http://events.l
  inuxfoundation.org/events/apachecon-north-america/
 DTEND:20150418
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150413
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:ApacheCon North America
-UID:2016-06-13T16:12:10+02:00_872781578@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_477861309@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2287,24 +2287,24 @@ DESCRIPTION:Speaker: Brussels - WeCraft & DevOps\n\nBrussels\, BE What's ho
  t DockerCon EU 2015 & Docker 1.9 http://www.meetup.com/Brussels-WeCraft-Dev
  Ops/events/227266299/
 DTEND:20151214T133000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T123000Z
 LOCATION:Brussels\, BE
 SEQUENCE:0
 SUMMARY:What's hot DockerCon EU 2015 + Docker 1.9
-UID:2016-06-13T16:12:10+02:00_519932827@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_437422276@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Docker Milano\n\nMilano\, MI\, IT DockerCon EU 2015. C
  osa c’è di nuovo? http://www.meetup.com/Docker-Milano/events/226988503/
 DTEND:20151214T133000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T123000Z
 LOCATION:Milano\, MI
 SEQUENCE:0
 SUMMARY:DockerCon EU 2015. Cosa c’è di nuovo?
-UID:2016-06-13T16:12:10+02:00_427387112@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_271608102@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2312,12 +2312,12 @@ DESCRIPTION:Speaker: OpenStack GDL\n\nGuadalajara\, MX Software Defined Sto
  rage - What makes Ceph special http://www.meetup.com/OpenStack-GDL/events/2
  24852574/
 DTEND:20151214T210000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T200000Z
 LOCATION:Guadalajara\, MX
 SEQUENCE:0
 SUMMARY:Software Defined Storage - What makes Ceph special
-UID:2016-06-13T16:12:10+02:00_200418784@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_641135955@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2325,13 +2325,13 @@ DESCRIPTION:Speaker: San Francisco DevOps\n\nSan Francisco\, CA\, US Mitche
  ll Hashimoto\, creator of Vagrant\, speaks about Nomad and Otto http://www.
  meetup.com/San-Francisco-DevOps/events/227067291/
 DTEND:20151214T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T220000Z
 LOCATION:San Francisco\, CA
 SEQUENCE:0
 SUMMARY:Mitchell Hashimoto\, creator of Vagrant\, speaks about Nomad and Ot
  to
-UID:2016-06-13T16:12:10+02:00_951701894@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_893592256@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2339,12 +2339,12 @@ DESCRIPTION:Speaker: New York City Cloud Foundry Meetup\n\nNew York\, NY\,
  US 2015 NYC Tech Holiday Meta-Party http://www.meetup.com/nyc-cloud-foundry
  /events/227138198/
 DTEND:20151214T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T190000Z
 LOCATION:New York\, NY
 SEQUENCE:0
 SUMMARY:2015 NYC Tech Holiday Meta-Party
-UID:2016-06-13T16:12:10+02:00_906795330@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_821264086@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2352,12 +2352,12 @@ DESCRIPTION:Speaker: Next Generation Infrastructure management\n\nAmsterdam
  \, NL Presentation Glimmer and QResponse.net http://www.meetup.com/Next-Gen
  eration-Infrastructure-management/events/226974032/
 DTEND:20151214T140000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214T130000Z
 LOCATION:Amsterdam\, NL
 SEQUENCE:0
 SUMMARY:Presentation Glimmer and QResponse.net
-UID:2016-06-13T16:12:10+02:00_69276092@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_612526774@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2366,13 +2366,13 @@ DESCRIPTION:Speaker: Southern California Red Hat User Group (RHUG)\n\nLos A
  ers for public sector http://www.meetup.com/Southern-California-Red-Hat-Use
  r-Group-RHUG/events/227118797/
 DTEND:20151215T120000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T110000Z
 LOCATION:Los Angeles\, CA
 SEQUENCE:0
 SUMMARY:Webinar - Run your agency like Google The power of containers for p
  ublic sector
-UID:2016-06-13T16:12:10+02:00_478929856@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_868844279@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2380,13 +2380,13 @@ DESCRIPTION:Speaker: OpenStack Seattle\n\nSeattle\, WA\, US Openstack Seatt
  le Meetup A Deep Dive of the OpenStack Security Project http://www.meetup.c
  om/OpenStack-Seattle/events/226702941/
 DTEND:20151215T220000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T210000Z
 LOCATION:Seattle\, WA
 SEQUENCE:0
 SUMMARY:Openstack Seattle Meetup A Deep Dive of the OpenStack Security Proj
  ect
-UID:2016-06-13T16:12:10+02:00_350473346@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_687446083@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2394,24 +2394,24 @@ DESCRIPTION:Speaker: DevOps Kansas City\n\nKansas City\, MO\, US Guest Spea
  kers - Abner Germanow and Paul Brant - New Relic http://www.meetup.com/DevO
  ps-Kansas-City/events/227161199/
 DTEND:20151215T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T190000Z
 LOCATION:Kansas City\, MO
 SEQUENCE:0
 SUMMARY:Guest Speakers - Abner Germanow and Paul Brant - New Relic
-UID:2016-06-13T16:12:10+02:00_821782454@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_314360104@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Cloud Austin\n\nAustin\, TX\, US CloudAustin - The Twe
  lve Clouds of Christmas http://www.meetup.com/CloudAustin/events/226373629/
 DTEND:20151215T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T190000Z
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:CloudAustin - The Twelve Clouds of Christmas
-UID:2016-06-13T16:12:10+02:00_394467219@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_88068370@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2419,24 +2419,24 @@ DESCRIPTION:Speaker: Infrastructure as Code\, Arlington/DC Meetup\n\nArling
  ton\, VA\, US 1st Meeting http://www.meetup.com/infrastructure-as-code/even
  ts/227093326/
 DTEND:20151215T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T180000Z
 LOCATION:Arlington\, VA
 SEQUENCE:0
 SUMMARY:1st Meeting
-UID:2016-06-13T16:12:10+02:00_687450757@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_250204902@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: AWSwiss User Group\n\nBern\, CH Erstes AWSwiss Meetup 
  http://www.meetup.com/AWSwiss/events/226315789/
 DTEND:20151215T130000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T120000Z
 LOCATION:Bern\, CH
 SEQUENCE:0
 SUMMARY:Erstes AWSwiss Meetup
-UID:2016-06-13T16:12:10+02:00_936780109@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_20670518@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2444,12 +2444,12 @@ DESCRIPTION:Speaker: Melbourne Docker User Group\n\nMelbourne\, AU Docker M
  eetup December @ EMC http://www.meetup.com/Melbourne-Docker-User-Group/even
  ts/227010734/
 DTEND:20151215T030000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T020000Z
 LOCATION:Melbourne\, AU
 SEQUENCE:0
 SUMMARY:Docker Meetup December @ EMC
-UID:2016-06-13T16:12:10+02:00_804269511@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_960074147@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2457,36 +2457,36 @@ DESCRIPTION:Speaker: Toulouse DevOps\n\nToulouse\, FR Soirée Jenkins avec l
  e Toulouse Java User Group http://www.meetup.com/Toulouse-DevOps/events/227
  207372/
 DTEND:20151215T133000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T123000Z
 LOCATION:Toulouse\, FR
 SEQUENCE:0
 SUMMARY:Soirée Jenkins avec le Toulouse Java User Group
-UID:2016-06-13T16:12:10+02:00_164484675@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_42575972@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Ansible Milan\n\nMilano\, MI\, IT Ansible Milan kickof
  f meeting http://www.meetup.com/Ansible-Milan/events/222869631/
 DTEND:20151215T140000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T130000Z
 LOCATION:Milano\, MI
 SEQUENCE:0
 SUMMARY:Ansible Milan kickoff meeting
-UID:2016-06-13T16:12:10+02:00_601543816@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_936495217@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Docker Paris\n\nParis\, FR Meetup Docker #27 @42 http:
  //www.meetup.com/Docker-Paris/events/227135277/
 DTEND:20151215T143000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151215T133000Z
 LOCATION:Paris\, FR
 SEQUENCE:0
 SUMMARY:Meetup Docker
-UID:2016-06-13T16:12:10+02:00_893304497@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_293344328@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2494,12 +2494,12 @@ DESCRIPTION:Speaker: Delaware DevOps\n\nWilmington\, DE\, US Holiday Social
   and Experience sharing http://www.meetup.com/Delaware-DevOps/events/224534
  126/
 DTEND:20151216T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T180000Z
 LOCATION:Wilmington\, DE
 SEQUENCE:0
 SUMMARY:Holiday Social and Experience sharing
-UID:2016-06-13T16:12:10+02:00_181715630@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_136895410@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2508,24 +2508,24 @@ DESCRIPTION:Speaker: Aristacrats Independence / Philadelphia PA\n\nPhiladel
  on http://www.meetup.com/Arista-Warriors-Independence-Philadelphia-PA/event
  s/227115762/
 DTEND:20151216T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T180000Z
 LOCATION:Philadelphia\, PA
 SEQUENCE:0
 SUMMARY:Arista Networks Software Driven Networking Holiday Celebration
-UID:2016-06-13T16:12:10+02:00_942847791@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_292801257@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Ansible Berlin\n\nBerlin\, DE Ansible Berlin 12/15 htt
  p://www.meetup.com/Ansible-Berlin/events/226987946/
 DTEND:20151216T133000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T123000Z
 LOCATION:Berlin\, DE
 SEQUENCE:0
 SUMMARY:Ansible Berlin 12/15
-UID:2016-06-13T16:12:10+02:00_867376771@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_204306975@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2533,12 +2533,12 @@ DESCRIPTION:Speaker: Docker Marseille\n\nMarseille\, FR Meetup Docker avec
  Amazon et REX des startups Marseillaises http://www.meetup.com/Docker-Marse
  ille/events/227017921/
 DTEND:20151216T133000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T123000Z
 LOCATION:Marseille\, FR
 SEQUENCE:0
 SUMMARY:Meetup Docker avec Amazon et REX des startups Marseillaises
-UID:2016-06-13T16:12:10+02:00_523479368@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_272500994@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2546,37 +2546,37 @@ DESCRIPTION:Speaker: Boston Devops\n\nBoston\, MA\, US December Social - Ne
  tworking and Collaboration. What did you learn in 2015? http://www.meetup.c
  om/Boston-Devops/events/226812073/
 DTEND:20151216T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T190000Z
 LOCATION:Boston\, MA
 SEQUENCE:0
 SUMMARY:December Social - Networking and Collaboration. What did you learn 
  in 2015?
-UID:2016-06-13T16:12:10+02:00_583545848@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_29324920@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: San Diego DevOps\n\nSan Diego\, CA\, US December Meeti
  ng Lightning Talks http://www.meetup.com/sddevops/events/226894408/
 DTEND:20151216T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T220000Z
 LOCATION:San Diego\, CA
 SEQUENCE:0
 SUMMARY:December Meeting Lightning Talks
-UID:2016-06-13T16:12:10+02:00_177464159@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_472783564@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: AWS Shanghai\n\nShanghai\, CN AWS Summit 2015 in SHANG
  HAI http://www.meetup.com/AWS_Shanghai/events/226880603/
 DTEND:20151216T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151216T180000Z
 LOCATION:Shanghai\, CN
 SEQUENCE:0
 SUMMARY:AWS Summit 2015 in SHANGHAI
-UID:2016-06-13T16:12:10+02:00_340413760@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_48833489@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2585,25 +2585,25 @@ DESCRIPTION:Speaker: Southern California Red Hat User Group (RHUG)\n\nLos A
  Enterprise http://www.meetup.com/Southern-California-Red-Hat-User-Group-RHU
  G/events/227118822/
 DTEND:20151217T120000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T110000Z
 LOCATION:Los Angeles\, CA
 SEQUENCE:0
 SUMMARY:Webinar - Red Hat and Cisco Making OpenStack work for the Enterpris
  e
-UID:2016-06-13T16:12:10+02:00_209144359@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_920711314@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Red Hat Belgium\n\nBrussels\, BE Red Hat Technical Use
  r Group (TUG) http://www.meetup.com/RedHat-Belgium/events/226254433/
 DTEND:20151217T081500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T071500Z
 LOCATION:Brussels\, BE
 SEQUENCE:0
 SUMMARY:Red Hat Technical User Group (TUG)
-UID:2016-06-13T16:12:10+02:00_593269913@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_714950633@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2611,12 +2611,12 @@ DESCRIPTION:Speaker: Tintri Nashville - VMaware storage\n\nFranklin\, TN\,
  US Join your Tintri friends for a fun\, casual holiday party! http://www.me
  etup.com/Tintri-Nashville/events/227269574/
 DTEND:20151217T183000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T173000Z
 LOCATION:Franklin\, TN
 SEQUENCE:0
 SUMMARY:Join your Tintri friends for a fun\, casual holiday party!
-UID:2016-06-13T16:12:10+02:00_960326120@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_693293396@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2624,12 +2624,12 @@ DESCRIPTION:Speaker: Colorado Cloud Foundry Meetup\n\nDenver\, CO\, US Clou
  d Foundry on Google Cloud Platform http://www.meetup.com/Colorado-Cloud-Fou
  ndry-Meetup/events/226862691/
 DTEND:20151217T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T190000Z
 LOCATION:Denver\, CO
 SEQUENCE:0
 SUMMARY:Cloud Foundry on Google Cloud Platform
-UID:2016-06-13T16:12:10+02:00_254897064@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_882765091@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2638,12 +2638,12 @@ DESCRIPTION:Speaker: Docker\, Containers & Cloud Foundry PaaS East Bay Meet
  er http://www.meetup.com/Docker-Containers-Cloud-Foundry-PaaS-East-Bay-Meet
  up/events/227111357/
 DTEND:20151217T210000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T200000Z
 LOCATION:Pleasanton\, CA
 SEQUENCE:0
 SUMMARY:CF Beat Cloud Foundry 2015 Wrap-up & Holiday Mixer
-UID:2016-06-13T16:12:10+02:00_359939700@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_266635447@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2651,12 +2651,12 @@ DESCRIPTION:Speaker: OpenStack Phoenix\n\nPhoenix\, AZ\, US Whiteboarding O
  penStack Architecture http://www.meetup.com/OpenStack-Phoenix/events/227367
  393/
 DTEND:20151217T213000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T203000Z
 LOCATION:Phoenix\, AZ
 SEQUENCE:0
 SUMMARY:Whiteboarding OpenStack Architecture
-UID:2016-06-13T16:12:10+02:00_420803377@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_810789478@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2664,12 +2664,12 @@ DESCRIPTION:Speaker: SFBay OpenStack\n\nSan Francisco\, CA\, US SFBay OpenS
  tack Advanced Track #OSSFO http://www.meetup.com/openstack/events/224424928
  /
 DTEND:20151217T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T220000Z
 LOCATION:San Francisco\, CA
 SEQUENCE:0
 SUMMARY:SFBay OpenStack Advanced Track
-UID:2016-06-13T16:12:10+02:00_383129892@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_685117414@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2677,24 +2677,24 @@ DESCRIPTION:Speaker: Atlanta OpenStack Meetup Group\n\nAtlanta\, GA\, US Op
  enStack Meetup (Topic TBD) http://www.meetup.com/openstack-atlanta/events/2
  26994564/
 DTEND:20151217T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T190000Z
 LOCATION:Atlanta\, GA
 SEQUENCE:0
 SUMMARY:OpenStack Meetup (Topic TBD)
-UID:2016-06-13T16:12:10+02:00_233871089@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_318946813@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Ansible Lyon\n\nLyon\, FR Ansible Lyon kickoff meeting
   http://www.meetup.com/Ansible-Lyon/events/223238801/
 DTEND:20151217T140000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T130000Z
 LOCATION:Lyon\, FR
 SEQUENCE:0
 SUMMARY:Ansible Lyon kickoff meeting
-UID:2016-06-13T16:12:10+02:00_370749352@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_33455173@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2702,24 +2702,24 @@ DESCRIPTION:Speaker: Super Users VLC\n\nValencia\, ES Modelos de Negocio ba
  sados en Software Libre http://www.meetup.com/superusers-vlc/events/2270408
  51/
 DTEND:20151217T143000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151217T133000Z
 LOCATION:Valencia\, ES
 SEQUENCE:0
 SUMMARY:Modelos de Negocio basados en Software Libre
-UID:2016-06-13T16:12:10+02:00_122787820@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_248661841@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: GlusterFS India community\n\nBangalore\, IN Gluster Co
  mmunity Meetup http://www.meetup.com/glusterfs-India/events/227287952/
 DTEND:20151218T043000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151218T033000Z
 LOCATION:Bangalore\, IN
 SEQUENCE:0
 SUMMARY:Gluster Community Meetup
-UID:2016-06-13T16:12:10+02:00_127527942@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_617129939@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2727,12 +2727,12 @@ DESCRIPTION:Speaker: Chicago PaaS\, Bluemix and Cloud Computing Meetup\n\nC
  hicago\, IL\, US Bluemix Star Wars Premiere Event http://www.meetup.com/Chi
  cago-PaaS-Bluemix-and-Cloud-Computing-Meetup/events/227276535/
 DTEND:20151218T160000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151218T150000Z
 LOCATION:Chicago\, IL
 SEQUENCE:0
 SUMMARY:Bluemix Star Wars Premiere Event
-UID:2016-06-13T16:12:10+02:00_583479778@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_180054072@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2741,12 +2741,12 @@ DESCRIPTION:Speaker: Promoting Open Source/Libre to the Canadian government
  SLING) http://www.meetup.com/Promoting-Open-Source-Libre-to-the-Canadian-go
  vernment/events/227026959/
 DTEND:20151218T173000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151218T163000Z
 LOCATION:Ottawa\, ON
 SEQUENCE:0
 SUMMARY:Getting Open Source/Standard Logic into Government (GOSLING)
-UID:2016-06-13T16:12:10+02:00_910318140@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_961313624@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2754,12 +2754,12 @@ DESCRIPTION:Speaker: Indian OpenStack User Group\n\nBangalore\, IN OpenStac
  k awareness camp at Indore http://www.meetup.com/Indian-OpenStack-User-Grou
  p/events/226561165/
 DTEND:20151219T010000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151219T000000Z
 LOCATION:Bangalore\, IN
 SEQUENCE:0
 SUMMARY:OpenStack awareness camp at Indore
-UID:2016-06-13T16:12:10+02:00_161819308@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_722681885@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2767,24 +2767,24 @@ DESCRIPTION:Speaker: Xian OpenStack Meetup\n\nXian\, CN 西安OpenStack/Docker
  Meetup –Dec.19 @葡萄城 http://www.meetup.com/Xian-OpenStack-Meetup/events/2273
  35949/
 DTEND:20151219T014500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151219T004500Z
 LOCATION:Xian\, CN
 SEQUENCE:0
 SUMMARY:西安OpenStack/Docker Meetup --Dec.19 @葡萄城
-UID:2016-06-13T16:12:10+02:00_786053664@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_133058065@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Docker Xi'an\n\nXian\, CN Docker&OpenStack Meetup http
  ://www.meetup.com/Docker-Xian/events/227336534/
 DTEND:20151219T014500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151219T004500Z
 LOCATION:Xian\, CN
 SEQUENCE:0
 SUMMARY:Docker&OpenStack Meetup
-UID:2016-06-13T16:12:10+02:00_542262453@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_651483504@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2792,34 +2792,34 @@ DESCRIPTION:Speaker: OpenStack Russia\n\nMoscow\, RU Митап OpenStack и к�
  ейнеры + Новый Год RCCPA http://www.meetup.com/OpenStack-Russia/events/2271
  83795/
 DTEND:20151221T090000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151221T080000Z
 LOCATION:Moscow\, RU
 SEQUENCE:0
 SUMMARY:Митап OpenStack и контейнеры + Новый Год RCCPA
-UID:2016-06-13T16:12:10+02:00_372590579@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_746789456@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Docker Atlanta\n\nAtlanta\, GA\, US Chat with Kelsey H
  ightower http://www.meetup.com/Docker-Atlanta/events/227321451/
 DTEND:20151222T190000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151222T180000Z
 LOCATION:Atlanta\, GA
 SEQUENCE:0
 SUMMARY:Chat with Kelsey Hightower
-UID:2016-06-13T16:12:10+02:00_354184727@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_849559336@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20151223
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151214
 SEQUENCE:0
 SUMMARY:RDO Meetups
-UID:2016-06-13T16:12:10+02:00_368597982@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_618863827@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2837,12 +2837,12 @@ DESCRIPTION:Speaker: Chmouel Boudjnah\n\nOn one side you have the kid that
  d OpenStack\, how they can live happily in your infrastructure\, and what a
  re the ways to make it even better in the future.
 DTEND:20150204T150000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150204T140000Z
 LOCATION:Ghent\, Belgium
 SEQUENCE:0
 SUMMARY:A Story of Two Best Buddies\: OpenStack and Docker
-UID:2016-06-13T16:12:10+02:00_432163615@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_777899562@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2851,12 +2851,12 @@ DESCRIPTION:Red Hat is sponsoring a new one-day event in Ghent\, Belgium on
  if you’re involved in managing or building modern IT infrastructure.\n\nMor
  e details: http://lanyrd.com/2015/infranext-ghent/
 DTEND:20150205
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150204
 LOCATION:Ghent\, Belgium
 SEQUENCE:0
 SUMMARY:Infrastructure.Next
-UID:2016-06-13T16:12:10+02:00_83867369@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_155423157@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2866,12 +2866,12 @@ DESCRIPTION:There's simply no other event in Europe where developers\, sys
   Linux platform.\n\nMore information is available at http://events.linuxfou
  ndation.org/events/linuxcon-europe
 DTEND:20151008
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151005
 LOCATION:Dublin\, Ireland
 SEQUENCE:0
 SUMMARY:LinuxCon Europe
-UID:2016-06-13T16:12:10+02:00_642787601@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_813284593@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2880,12 +2880,12 @@ DESCRIPTION:OpenStack Silicon Valley is a community event that gathers thou
  ile infrastructure.\n\nAdditional details about the conference are availabl
  e at http://www.openstacksv.com/.
 DTEND:20150828
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150826
 LOCATION:Mountain View\, CA
 SEQUENCE:0
 SUMMARY:OpenStack Silicon Valley
-UID:2016-06-13T16:12:10+02:00_98703177@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_806797473@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2893,12 +2893,12 @@ DESCRIPTION:The OpenStack Summit is a five-day conference for developers\,
  users\, and administrators of OpenStack Cloud Software.\n\nMore information
   is available at https://www.openstack.org/summit/vancouver-2015/
 DTEND:20150523
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150518
 LOCATION:Vancouver\, BC
 SEQUENCE:0
 SUMMARY:OpenStack Summit
-UID:2016-06-13T16:12:10+02:00_4191690@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_387814265@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2912,12 +2912,12 @@ DESCRIPTION:Speaker: Niels de Vos\n\nGlusterFS is a distributed scale-out f
   like OpenStack\, oVirt and provide future directions of the GlusterFS proj
  ect.
 DTEND:20150131T112000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150131T104000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:GlusterFS - overview & future directions
-UID:2016-06-13T16:12:10+02:00_962286223@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_968309986@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2927,13 +2927,13 @@ DESCRIPTION:Speaker: Loic Dachary\, Sage Weil\n\nThe Ceph storage system is
  of the most recent Ceph features will be followed by use cases about how cu
  rrent IaaS stacks could leverage them.
 DTEND:20150131T124000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150131T120000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Leveraging Ceph\: Ceph integration in OpenStack\, CloudStack\, Gane
  ti ..
-UID:2016-06-13T16:12:10+02:00_279105923@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_267004380@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2950,12 +2950,12 @@ DESCRIPTION:Speaker: Flavio Percoco\n\nWe've been talking about Infrastruct
  for nowadays needs\, especially when those needs require a cloud to be cove
  red.
 DTEND:20150131T170000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150131T164000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:IaaS beyond the infrastructure
-UID:2016-06-13T16:12:10+02:00_834294915@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_430526472@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2970,12 +2970,12 @@ DESCRIPTION:Speaker: Stefan Hajnoczi\n\nKVM is the most popular hypervisor
  , disk I/O\, network traffic\, and the QEMU monitor. Examples are based on 
  real-life scenarios often encountered by KVM users.
 DTEND:20150201T132000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150201T124000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Observability in KVM\: how to troubleshoot virtual machines
-UID:2016-06-13T16:12:10+02:00_129467508@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_810645202@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -2986,12 +2986,12 @@ DESCRIPTION:Speaker: Haïkel Guémar\n\nThis talk will describe the state of
  how it is packaged and maintained in Fedora/CentOS and what are the plans i
  n the near future.
 DTEND:20150201T125500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150201T122500Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:OpenStack on Fedora & CentOS
-UID:2016-06-13T16:12:10+02:00_384682595@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_169005360@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3004,12 +3004,12 @@ DESCRIPTION:FOSDEM is a free and non-commercial event organised by the comm
  and the benefits of open source solutions.\n\n For more details on FOSDEM\,
   see the event website at https://fosdem.org/2015/
 DTEND:20150202
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150131
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:FOSDEM
-UID:2016-06-13T16:12:10+02:00_430273459@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_424246945@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3020,12 +3020,12 @@ DESCRIPTION:OpenStack Live 2015 is an opportunity to learn key consideratio
  will include sessions presented by OpenStack community members.\n\nMore inf
  ormation is available at http://www.percona.com/live/openstack-live-2015/
 DTEND:20150415
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150413
 LOCATION:San Francisco\, CA
 SEQUENCE:0
 SUMMARY:OpenStack Live
-UID:2016-06-13T16:12:10+02:00_640575179@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_541778934@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3038,12 +3038,12 @@ DESCRIPTION:The ManageIQ User Day is an event co-located at OpenStack Summi
  a pass to OpenStack Summit in order to attend. Additional details about the
   ManageIQ User Day are available at http://miq-oss-cday.eventbrite.com/.
 DTEND:20150521
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150520
 LOCATION:Vancouver\, Canada
 SEQUENCE:0
 SUMMARY:ManageIQ User Day at OpenStack Summit
-UID:2016-06-13T16:12:10+02:00_913648445@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_658603670@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3055,12 +3055,12 @@ DESCRIPTION:Speaker: Stefano Maffulli\, OpenStack\; Chris Price\, Ericsson\
  iscuss how the future of networking and cloud infrastructure is open\, and 
  how these projects work together.
 DTEND:20150218T191500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150218T183000Z
 LOCATION:Santa Rosa\, California\, USA
 SEQUENCE:0
 SUMMARY:Panel\: The Future of Open Networking and Cloud Infrastructure
-UID:2016-06-13T16:12:10+02:00_458069@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_959413622@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3070,12 +3070,12 @@ DESCRIPTION:The Linux Foundation Collaboration Summit is an invitation-only
  he conference are available [on the conference website](http://events.linux
  foundation.org/events/collaboration-summit).
 DTEND:20150221
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20150218
 LOCATION:Santa Rosa\, California\, USA
 SEQUENCE:0
 SUMMARY:Linux Foundation Collaboration Summit
-UID:2016-06-13T16:12:10+02:00_473800334@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_541985111@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3086,12 +3086,12 @@ DESCRIPTION:Speaker:\n\nRDO is a community packaging of OpenStack for CentO
  yo and you can add your items of interest. Details of the event may be foun
  d at http://sched.co/4MYy
 DTEND:20151028T050000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151028T034500Z
 LOCATION:Tokyo\, Japan
 SEQUENCE:0
 SUMMARY:RDO Community Meetup
-UID:2016-06-13T16:12:10+02:00_191059663@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_230414885@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3100,12 +3100,12 @@ DESCRIPTION:The OpenStack Summit is a four-day conference for developers\,
  to get started and keep connected with OpenStack.\n\nMore information is av
  ailable at https://www.openstack.org/summit/tokyo-2015/
 DTEND:20151031
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20151027
 LOCATION:Tokyo\, Japan
 SEQUENCE:0
 SUMMARY:OpenStack Summit Tokyo
-UID:2016-06-13T16:12:10+02:00_960536837@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_689113712@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3115,12 +3115,12 @@ DESCRIPTION:The focus of this conference is on the use of enterprise softwa
  ed developers and representatives of large companies.\n\nAdditional details
   about the conference are available at https://openstack-tage.de/.
 DTEND:20160623
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160620
 LOCATION:Köln\, Germany
 SEQUENCE:0
 SUMMARY:Deutsche OpenStack Tage
-UID:2016-06-13T16:12:10+02:00_797280699@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_524432067@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3128,22 +3128,22 @@ DESCRIPTION:Speaker: RDO\n\nCome help make RDO better by testing the Newton
   Milestone 1 packages. Details at https://www.rdoproject.org/testday/newton
  /milestone1
 DTEND:20160610T235900Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609T000100Z
 LOCATION:rdo channel on Freenode
 SEQUENCE:0
 SUMMARY:Newton Milestone 1 Test Day
-UID:2016-06-13T16:12:10+02:00_420737475@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_965123849@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20160611
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609
 SEQUENCE:0
 SUMMARY:RDO Test Days
-UID:2016-06-13T16:12:10+02:00_732447720@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_269998093@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3152,12 +3152,12 @@ DESCRIPTION:Speaker:\n\nRDO Community Day at the CentOS Dojo. Schedule and
  ps://www.eventbrite.co.uk/e/centos-dojo-brussels-belgium-jan-29th-2016-tick
  ets-19589843750
 DTEND:20160129T170000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160129T070000Z
 LOCATION:IBM Client Center\, Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:RDO Community Day at FOSDEM
-UID:2016-06-13T16:12:10+02:00_109467206@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_57872981@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3165,12 +3165,12 @@ DESCRIPTION:The CentOS Dojo at FOSDEM is part of the FOSDEM Fringe - https:
  //fosdem.org/2016/fringe/ - and will be held at the IBM Client Center in Br
  ussels. Find out more at https://wiki.centos.org/Events/Dojo/Brussels2016
 DTEND:20160130
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160129
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:CentOS Dojo at FOSDEM
-UID:2016-06-13T16:12:10+02:00_888672938@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_927488213@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3184,13 +3184,13 @@ DESCRIPTION:Speaker: Sandro Bonazzola\n\noVirt is a virtualization platform
  thin jobs execution ManageIQ\n\n oVirt allows to leverage cloud technologie
  s allowing you to have a IAAS / IAC for your Dev-Ops environment.
 DTEND:20160401T153000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160401T145500Z
 LOCATION:Bologna\, Italy
 SEQUENCE:0
 SUMMARY:oVirt as virtualization platform to leverage cloud technologies all
  owing you to have a IAAS / IAC for your Dev-Ops environment
-UID:2016-06-13T16:12:10+02:00_493844861@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_193914770@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3201,12 +3201,12 @@ DESCRIPTION:The 4th edition of the Incontro DevOps Italia (Italian DevOps M
   and enthusiasts.\n\nAdditional details about the conference are available 
  at http://www.incontrodevops.it/events/idi2016/.
 DTEND:20160402
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160401
 LOCATION:Bologna\, Italy
 SEQUENCE:0
 SUMMARY:Incontro DevOps Italia
-UID:2016-06-13T16:12:10+02:00_96254810@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_94235942@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3220,12 +3220,12 @@ DESCRIPTION:Speaker: Steven Ellis\n\nDo you need to utilise many different
  s of ManageIQ and demo connectivity to a range of Cloud and IaaS technologi
  es.
 DTEND:20160201T052500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160201T050500Z
 LOCATION:Geelong\, Australia
 SEQUENCE:0
 SUMMARY:Cloud Crafting – Public / Private / Hybrid
-UID:2016-06-13T16:12:10+02:00_240312761@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_275016534@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3237,12 +3237,12 @@ DESCRIPTION:linux.conf.au is the largest linux and open source conference i
  s and hobbyists\, are expected to attend.\n\nAdditional details about the c
  onference are available at http://lcabythebay.org.au/.
 DTEND:20160206
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160201
 LOCATION:Geelong\, Australia
 SEQUENCE:0
 SUMMARY:linux.conf.au
-UID:2016-06-13T16:12:10+02:00_334309121@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_988838682@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3250,34 +3250,34 @@ DESCRIPTION:Speaker: Alvaro Lopez Ortega\n\nA mini-conference in Madrid. Re
  gister at https://www.eventbrite.com/e/mad-for-openstack-feb-2016-tickets-1
  9997969465
 DTEND:20160212T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160212T170000Z
 LOCATION:Madrid\, ES
 SEQUENCE:0
 SUMMARY:MAD for OpenStack
-UID:2016-06-13T16:12:10+02:00_331919331@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_911742074@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker:\n\nThe first OpenStack conference in Prague. http://op
  enstackdayprague.eu/
 DTEND:20160608T180000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160608T060000Z
 LOCATION:Prague\, CZ
 SEQUENCE:0
 SUMMARY:OpenStack Day Prague
-UID:2016-06-13T16:12:10+02:00_92718680@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_699163651@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20160609
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160212
 SEQUENCE:0
 SUMMARY:RDO Commuity events
-UID:2016-06-13T16:12:10+02:00_395240556@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_569704581@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3285,12 +3285,12 @@ DESCRIPTION:Speaker: Meetup SUSE Linux Paris\n\nParis\, FR Discutons OpenSt
  ack et containers http://www.meetup.com/Meetup-SUSE-Linux-Paris/events/2310
  95109/
 DTEND:20160606T140000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160606T130000Z
 LOCATION:Paris\, FR
 SEQUENCE:0
 SUMMARY:Discutons OpenStack et containers
-UID:2016-06-13T16:12:10+02:00_625397893@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_340811895@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3298,12 +3298,12 @@ DESCRIPTION:Speaker: Australian OpenStack User Group\n\nSydney\, AU June Sy
  dney Meetup - SDN 101 and Gnocchi http://www.meetup.com/Australian-OpenStac
  k-User-Group/events/229602105/
 DTEND:20160607T050000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160607T040000Z
 LOCATION:Sydney\, AU
 SEQUENCE:0
 SUMMARY:June Sydney Meetup - SDN 101 and Gnocchi
-UID:2016-06-13T16:12:10+02:00_456206367@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_255493465@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3311,24 +3311,24 @@ DESCRIPTION:Speaker: Silicon Valley OpenStack Ops Meetup\n\nSan Jose\, CA\,
   US Come and talk about Openstack Project Romana and Datera Storage http://
  www.meetup.com/Silicon-Valley-OpenStack-Ops-Meetup/events/231210364/
 DTEND:20160607T220000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160607T210000Z
 LOCATION:San Jose\, CA
 SEQUENCE:0
 SUMMARY:Come and talk about Openstack Project Romana  and Datera Storage
-UID:2016-06-13T16:12:10+02:00_172817841@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_909783370@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: Colorado OpenStack\n\nFort Collins\, CO\, US Heat usag
  e http://www.meetup.com/OpenStack-Colorado/events/231434361/
 DTEND:20160607T213000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160607T203000Z
 LOCATION:Fort Collins\, CO
 SEQUENCE:0
 SUMMARY:Heat usage
-UID:2016-06-13T16:12:10+02:00_982849754@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_698074666@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3336,12 +3336,12 @@ DESCRIPTION:Speaker: OpenStack Czech User Group Meetup\n\nPrague\, CZ OpenS
  tack Day Prague http://www.meetup.com/OpenStack-Czech-User-Group-Meetup/eve
  nts/228029462/
 DTEND:20160608T040000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160608T030000Z
 LOCATION:Prague\, CZ
 SEQUENCE:0
 SUMMARY:OpenStack Day Prague
-UID:2016-06-13T16:12:10+02:00_668524092@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_14072168@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3349,12 +3349,12 @@ DESCRIPTION:Speaker: Houston Cisco UCS Meetup\n\nHouston\, TX\, US OpenStac
  k & Cisco UCS http://www.meetup.com/Houston-Cisco-UCS-Meetup/events/2308531
  27/
 DTEND:20160608T130000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160608T120000Z
 LOCATION:Houston\, TX
 SEQUENCE:0
 SUMMARY:OpenStack & Cisco UCS
-UID:2016-06-13T16:12:10+02:00_751928519@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_351266357@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3362,13 +3362,13 @@ DESCRIPTION:Speaker: SA OpenStackers San Antonio Texas\n\nSan Antonio\, TX\
  , US Passing the Certified OpenStack Administrator Test Part 1 OpenStack Ov
  erview http://www.meetup.com/SA-Open-Stackers/events/231626701/
 DTEND:20160609T201500Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609T191500Z
 LOCATION:San Antonio\, TX
 SEQUENCE:0
 SUMMARY:Passing the Certified OpenStack Administrator Test Part 1 OpenStack
   Overview
-UID:2016-06-13T16:12:10+02:00_499892804@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_765669407@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3376,13 +3376,13 @@ DESCRIPTION:Speaker: SFBay OpenStack\n\nSan Francisco\, CA\, US SF Bay Open
  Stack Meetup Data-Driven\, Cost-Based OpenStack Capacity Management http://
  www.meetup.com/openstack/events/231297777/
 DTEND:20160609T223000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609T213000Z
 LOCATION:San Francisco\, CA
 SEQUENCE:0
 SUMMARY:SF Bay OpenStack Meetup Data-Driven\, Cost-Based OpenStack Capacity
   Management
-UID:2016-06-13T16:12:10+02:00_158943195@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_629706469@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3390,36 +3390,36 @@ DESCRIPTION:Speaker: San Diego Cloud Computing Meetup\n\nSan Diego\, CA\, U
  S OpenStack LAMP & Load Balancing as a Service http://www.meetup.com/San-Di
  ego-Cloud-Computing-Meetup/events/231422642/
 DTEND:20160609T230000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609T220000Z
 LOCATION:San Diego\, CA
 SEQUENCE:0
 SUMMARY:OpenStack LAMP & Load Balancing as a Service
-UID:2016-06-13T16:12:10+02:00_786120646@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_619654053@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: OpenStack Uruguay\n\nMontevideo\, UY El 13 no es mala 
  suerte http://www.meetup.com/OpenStack-Uruguay/events/231426806/
 DTEND:20160609T193000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160609T183000Z
 LOCATION:Montevideo\, UY
 SEQUENCE:0
 SUMMARY:El 13 no es mala suerte
-UID:2016-06-13T16:12:10+02:00_837986604@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_65257534@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: OpenStack Ireland\n\nDublin\, IE OpenStack Ireland Day
   - June 10th 2016 http://www.meetup.com/OpenStack-Ireland/events/229221735/
 DTEND:20160610T040000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160610T030000Z
 LOCATION:Dublin\, IE
 SEQUENCE:0
 SUMMARY:OpenStack Ireland Day - June 10th 2016
-UID:2016-06-13T16:12:10+02:00_548888633@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_686763814@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3427,12 +3427,12 @@ DESCRIPTION:Speaker: OpenStack Houston Meetup\n\nHouston\, TX\, US Arista\,
   Neutron\, and Docker Oh My! Did I mention Docker!? http://www.meetup.com/o
  penstackhoustonmeetup/events/231594293/
 DTEND:20160610T200000Z
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160610T190000Z
 LOCATION:Houston\, TX
 SEQUENCE:0
 SUMMARY:Arista\, Neutron\, and Docker Oh My! Did I mention Docker!?
-UID:2016-06-13T16:12:10+02:00_740475784@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_713908210@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3440,13 +3440,13 @@ DESCRIPTION:Speaker: OpenStack Seattle\n\nSeattle\, WA\, US Learn How Dater
  a's Elastic Data Fabric Can Accelerate OpenStack and Containers http://www.
  meetup.com/OpenStack-Seattle/events/230928689/
 DTEND:20160614T220000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160614T210000Z
 LOCATION:Seattle\, WA
 SEQUENCE:0
 SUMMARY:Learn How Datera's Elastic Data Fabric Can Accelerate OpenStack and
   Containers
-UID:2016-06-13T16:12:11+02:00_900385651@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_364640460@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3454,12 +3454,12 @@ DESCRIPTION:Speaker: SFBay OpenStack\n\nSan Francisco\, CA\, US SF Bay Open
  Stack Meetup Cloud Native Networks with Neutron IPAM http://www.meetup.com/
  openstack/events/231092447/
 DTEND:20160614T223000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160614T213000Z
 LOCATION:San Francisco\, CA
 SEQUENCE:0
 SUMMARY:SF Bay OpenStack Meetup Cloud Native Networks with Neutron IPAM
-UID:2016-06-13T16:12:11+02:00_814766944@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_804213079@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3468,24 +3468,24 @@ DESCRIPTION:Speaker: Software Defined Networking Group - Baltimore/Washingt
  etup.com/Software-Defined-Networking-Group-Baltimore-Washington/events/2311
  97887/
 DTEND:20160614T193000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160614T183000Z
 LOCATION:Baltimore\, MD
 SEQUENCE:0
 SUMMARY:Network Virtualization in OpenStack
-UID:2016-06-13T16:12:11+02:00_318811069@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_673421617@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: OpenStack Rhône-Alpes\n\nLyon\, FR OpenStack Workshop 
  Lyon 2016 http://www.meetup.com/OpenStack-Rhone-Alpes/events/231387171/
 DTEND:20160615T040000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160615T030000Z
 LOCATION:Lyon\, FR
 SEQUENCE:0
 SUMMARY:OpenStack Workshop Lyon 2016
-UID:2016-06-13T16:12:11+02:00_493028518@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_934991263@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3493,12 +3493,12 @@ DESCRIPTION:Speaker: Internet Architecture & Engineering Meetup\n\nNew York
  \, NY\, US Deploying Commodity Cloud with SUSE OpenStack Demos http://www.m
  eetup.com/Internet-Architecture-Engineering-Meetup/events/231226299/
 DTEND:20160615T190000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160615T180000Z
 LOCATION:New York\, NY
 SEQUENCE:0
 SUMMARY:Deploying Commodity Cloud with SUSE OpenStack Demos
-UID:2016-06-13T16:12:11+02:00_708758410@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_276319902@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3506,24 +3506,24 @@ DESCRIPTION:Speaker: OpenStack Philly\n\nPhiladelphia\, PA\, US Private Paa
  S + Kubernetes + OpenStack! http://www.meetup.com/Philly-OpenStack-Meetup-G
  roup/events/231164733/
 DTEND:20160616T190000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160616T180000Z
 LOCATION:Philadelphia\, PA
 SEQUENCE:0
 SUMMARY:Private PaaS + Kubernetes + OpenStack!
-UID:2016-06-13T16:12:11+02:00_686317474@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_983126998@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: OpenStack PDX\n\nPortland\, OR\, US OpenStack PDX Meet
  up http://www.meetup.com/openstack-pdx/events/230892180/
 DTEND:20160616T220000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160616T210000Z
 LOCATION:Portland\, OR
 SEQUENCE:0
 SUMMARY:OpenStack PDX Meetup
-UID:2016-06-13T16:12:11+02:00_93314299@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_992200764@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3531,13 +3531,13 @@ DESCRIPTION:Speaker: Openstack Boston\n\nBoston\, MA\, US Exclusive Preview
   of the First Native Backup and Recovery Solution for OpenStack http://www.
  meetup.com/Openstack-Boston/events/231006550/
 DTEND:20160616T194500Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160616T184500Z
 LOCATION:Boston\, MA
 SEQUENCE:0
 SUMMARY:Exclusive Preview of the First Native Backup and Recovery Solution 
  for OpenStack
-UID:2016-06-13T16:12:11+02:00_234407447@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_63493783@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3545,24 +3545,24 @@ DESCRIPTION:Speaker: Atlanta OpenStack Meetup Group\n\nAtlanta\, GA\, US Op
  enStack Meetup (Topic TBD) http://www.meetup.com/openstack-atlanta/events/2
  30239816/
 DTEND:20160616T200000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160616T190000Z
 LOCATION:Atlanta\, GA
 SEQUENCE:0
 SUMMARY:OpenStack Meetup (Topic TBD)
-UID:2016-06-13T16:12:11+02:00_696498515@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_837388025@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker: OpenStack User Group Nigeria\n\nLagos\, NG OpenStack M
  eetup http://www.meetup.com/OpenStack-User-Group-Nigeria/events/230988956/
 DTEND:20160617T121500Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160617T111500Z
 LOCATION:Lagos\, NG
 SEQUENCE:0
 SUMMARY:OpenStack Meetup
-UID:2016-06-13T16:12:11+02:00_766292322@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_705114541@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3570,22 +3570,22 @@ DESCRIPTION:Speaker: CloudnLoud - Openstack\,PrivateCloud\,Red Hat\,Opensou
  rce\n\nTambaram\, IN Want to Loud in Linux to shape your career ? http://ww
  w.meetup.com/CloudnLoud-Openstack-Cloud-RedHat-Opensource/events/231588247/
 DTEND:20160619T013000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160619T003000Z
 LOCATION:Tambaram\, IN
 SEQUENCE:0
 SUMMARY:Want to Loud in Linux to shape your career ?
-UID:2016-06-13T16:12:11+02:00_744500634@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_634736984@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20160620
-DTSTAMP:20160613T141210Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160606
 SEQUENCE:0
 SUMMARY:RDO Meetups
-UID:2016-06-13T16:12:10+02:00_523450358@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_830405185@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3593,12 +3593,12 @@ DESCRIPTION:Speaker: RDO\n\nCome help make RDO better by improving the docu
  mentation and the website. Details at https://www.rdoproject.org/events/doc
  days
 DTEND:20160121T235800Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160120T000100Z
 LOCATION:rdo channel on Freenode
 SEQUENCE:0
 SUMMARY:RDO Doc Day
-UID:2016-06-13T16:12:11+02:00_97161973@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_107874218@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3606,80 +3606,80 @@ DESCRIPTION:Speaker: RDO\n\nCome help make RDO better by improving the docu
  mentation and the website. Details at https://www.rdoproject.org/events/doc
  days
 DTEND:20160304T235800Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160303T000100Z
 LOCATION:rdo channel on Freenode
 SEQUENCE:0
 SUMMARY:RDO Doc Day
-UID:2016-06-13T16:12:11+02:00_928816057@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_5253126@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20160305
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160120
 SEQUENCE:0
 SUMMARY:RDO Doc Days
-UID:2016-06-13T16:12:11+02:00_467928475@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_166561270@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker:\n\nWeekly RDO IRC sync meeting\, 15:00 UTC every Wedne
  sday on the #rdo channel on the Freenode IRC network.
 DTEND:20160120T160000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160120T150000Z
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:Weekly RDO community sync
-UID:2016-06-13T16:12:11+02:00_679322133@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_663215568@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker:\n\nWeekly CentOS Cloud SIG meeting\, 15:00 UTC every T
  hursday on the #centos-devel channel on the Freenode IRC network.
 DTEND:20160121T160000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160121T150000Z
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:Weekly CentOS Cloud SIG meeting
-UID:2016-06-13T16:12:11+02:00_361773770@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_579668056@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker:\n\nWeekly RDO IRC sync meeting\, 15:00 UTC every Wedne
  sday on the #rdo channel on the Freenode IRC network.
 DTEND:20160127T160000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160127T150000Z
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:Weekly RDO community sync
-UID:2016-06-13T16:12:11+02:00_100331385@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_697130138@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:Speaker:\n\nWeekly CentOS Cloud SIG meeting\, 15:00 UTC every T
  hursday on the #centos-devel channel on the Freenode IRC network.
 DTEND:20160128T160000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160128T150000Z
 LOCATION:IRC
 SEQUENCE:0
 SUMMARY:Weekly CentOS Cloud SIG meeting
-UID:2016-06-13T16:12:11+02:00_21404048@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_723787715@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
 DESCRIPTION:
 DTEND:20160129
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160120
 SEQUENCE:0
 SUMMARY:RDO Weekly Meetings
-UID:2016-06-13T16:12:11+02:00_791995847@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_537159930@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3690,12 +3690,12 @@ DESCRIPTION:The event format features keynotes and deep dives on the main s
  dditional details about the conference are available at https://www.opensta
  cksv.com/.
 DTEND:20160811
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160809
 LOCATION:Mountain View\, California
 SEQUENCE:0
 SUMMARY:OpenStack Silicon Valley
-UID:2016-06-13T16:12:11+02:00_485759964@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_997591518@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3704,12 +3704,12 @@ DESCRIPTION:This is a Networking/SDN-focused Meetup for OpenStack developer
  ed up for this evening.\n\nAdditional details about the conference are avai
  lable at http://meetu.ps/2TKzxc.
 DTEND:20160318
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160317
 LOCATION:München\, Germany
 SEQUENCE:0
 SUMMARY:OpenStack Munich Meetup - Networking Focused
-UID:2016-06-13T16:12:11+02:00_71335222@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_585238306@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3729,12 +3729,12 @@ DESCRIPTION:Speaker: Mark McLoughlin\, Alexis Monville\n\nMark is a long-ti
  improve the way individuals and companies are contributing to the success o
  f OpenStack.
 DTEND:20160425T165500Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160425T161500Z
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:Contributing to the Success of OpenStack
-UID:2016-06-13T16:12:11+02:00_489840217@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_523945244@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3753,12 +3753,12 @@ DESCRIPTION:Speaker: Thomas Cameron\n\nApplication containerization is one
  ners.\n\nAttendees will understand the fundamentals of container security w
  hen they leave.
 DTEND:20160426T203000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160426T195000Z
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:Introduction to Container Security
-UID:2016-06-13T16:12:11+02:00_238614429@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_282061521@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3773,12 +3773,12 @@ DESCRIPTION:Speaker: Steven Ellis\n\nFed up fighting with the public cloud\
  chitect or End User - come learn some tips and tricks\, or share some of yo
  ur own.
 DTEND:20160427T173000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160427T165000Z
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:Is that a cloud in your pocket?
-UID:2016-06-13T16:12:11+02:00_195937107@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_202060118@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3792,12 +3792,12 @@ DESCRIPTION:The OpenStack Summit is the most important gathering of IT lead
  and operating OpenStack clouds.\n\nAdditional details about the conference 
  are available at https://www.openstack.org/summit/austin-2016/.
 DTEND:20160430
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160425
 LOCATION:Austin\, TX
 SEQUENCE:0
 SUMMARY:OpenStack Summit
-UID:2016-06-13T16:12:11+02:00_591247481@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_609912694@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3820,13 +3820,13 @@ DESCRIPTION:Speaker: Dave Neary\n\nNetworks Functions Virtualizationm or NF
  ndustry benefit everyone\, from the home hardware hacker hobbyist to IT ope
  rations in small and large companies.
 DTEND:20160130T165000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160130T160000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:How to run a telco on Free Software\: the network transformation wi
  th OPNFV
-UID:2016-06-13T16:12:11+02:00_936436314@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_899925380@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3839,12 +3839,12 @@ DESCRIPTION:Speaker: K Rain Leander\n\nOne of the impediments to becoming a
  nt!\n\nAfter this presentation\, you will be able to build your own basic c
  loud using RDO-manager.
 DTEND:20160130T164000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160130T161500Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Build a basic cloud using RDO-Manager
-UID:2016-06-13T16:12:11+02:00_872158593@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_84897262@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3856,12 +3856,12 @@ DESCRIPTION:Speaker: Cyril Roelandt\n\nTox is a very well-known tool\, writ
  ll give real-life examples using Python packages from the OpenStack project
  .
 DTEND:20160130T163000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160130T160000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Guix-tox\, a functional version of Tox
-UID:2016-06-13T16:12:11+02:00_13271374@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_263017381@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3873,13 +3873,13 @@ DESCRIPTION:Speaker: Eduardo Lima\n\nIf you are running Linux on an Intel G
  iver is fully powered by NIR now\, after support to non-scalar shaders has 
  been recently added.
 DTEND:20160131T105000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160131T100000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Nir on the Mesa i965 backend\: a case for a faster and simpler driv
  er
-UID:2016-06-13T16:12:11+02:00_489692758@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_690585376@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3895,12 +3895,12 @@ DESCRIPTION:Speaker: Maor Lipchuk\n\nThe demand for managing a large amount
  ualized way and also opens the door for interesting future integrations wit
  h other storage providers.
 DTEND:20160131T092500Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160131T090000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Managing Ceph through cinder using oVirt
-UID:2016-06-13T16:12:11+02:00_192122450@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_939596539@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3911,12 +3911,12 @@ DESCRIPTION:Speaker: Orit Wasserman\n\nCeph is a highly available distribut
  vide an architecture overview of Ceph and RGW and will talk of RGW future d
  irections.
 DTEND:20160131T101000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160131T093000Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Ceph RADOS gateway overview
-UID:2016-06-13T16:12:11+02:00_407897721@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_797406238@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3929,12 +3929,12 @@ DESCRIPTION:Speaker: Joe Brockmeier\n\nA lot of folks are talking about con
   like oVirt and OpenStack\, as well as the best way to run KVM virtual mach
  ines in privileged containers.
 DTEND:20160131T114000Z
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160131T111500Z
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:Containers and virtualization\: how they can work together
-UID:2016-06-13T16:12:11+02:00_722614776@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_850344928@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3947,12 +3947,12 @@ DESCRIPTION:FOSDEM is a free and non-commercial event organised by the comm
  and the benefits of open source solutions.\n\n For more details on FOSDEM\,
   see the event website at https://fosdem.org/2016/
 DTEND:20160201
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160130
 LOCATION:Brussels\, Belgium
 SEQUENCE:0
 SUMMARY:FOSDEM
-UID:2016-06-13T16:12:11+02:00_915393027@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_591504502@rdoproject.org
 END:VEVENT
 
 BEGIN:VEVENT
@@ -3960,12 +3960,12 @@ DESCRIPTION:Everything about the cloud\, open-source technology and devops
  automation. Additional details about the conference are available at http:/
  /openstackceeday.com/
 DTEND:20160607
-DTSTAMP:20160613T141211Z
+DTSTAMP:20160613T141630Z
 DTSTART:20160606
 LOCATION:Budapest\, HU
 SEQUENCE:0
 SUMMARY:OpenStack Day Budapest
-UID:2016-06-13T16:12:11+02:00_783270770@rdoproject.org
+UID:2016-06-13T16:16:30+02:00_54744489@rdoproject.org
 END:VEVENT
 END:VCALENDAR
 
